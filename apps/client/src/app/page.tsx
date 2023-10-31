@@ -1,5 +1,11 @@
+import { Header } from '@/components/common';
+
 const Home = () => {
-  return <div>안녕</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default Home;
