@@ -1,7 +1,7 @@
 'use client';
 
 import { Header } from '@/components/common';
-import { Box, Text, Flex, Center, Button, Image } from '@chakra-ui/react';
+import { Box, Text, Flex, Center, Button, Image, Wrap, Grid } from '@chakra-ui/react';
 
 const Home = () => {
   return (
@@ -44,7 +44,7 @@ const Home = () => {
             </Box>
           </Flex>
           {/* 직군별 리스트 */}
-          <Flex justifyContent="space-between">
+          <Flex justifyContent="space-between" marginBottom="36px">
             {Array(5)
               .fill('')
               .map((_, i) => (
@@ -62,6 +62,49 @@ const Home = () => {
                 </Center>
               ))}
           </Flex>
+          {/* 선배들이 간 회사 목록 */}
+          <Box display="flex" flexDirection="column" gap="18px">
+            <Text fontSize="18px" fontWeight="semibold">
+              선배들이 간 회사 목록이에요!
+            </Text>
+            <Grid templateColumns="repeat(3, 2fr)" gap="16px">
+              {Array(6)
+                .fill('')
+                .map((_, i) => (
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap="12px"
+                    padding="16px"
+                    transition="all 0.25s ease"
+                    borderBottom="1px solid"
+                    borderColor="gray.50"
+                    _hover={{
+                      backgroundColor: 'gray.50',
+                      cursor: 'pointer',
+                      borderRadius: '8px',
+                    }}
+                    height="80px"
+                  >
+                    <Image
+                      src="/assets/mock_company_profile.webp"
+                      width="50px"
+                      height="50px"
+                      borderRadius="8px"
+                      alt="Company"
+                    />
+                    <Flex flexDirection="column" alignItems="flex-start">
+                      <Text fontSize="16px" fontWeight="semibold">
+                        카카오스타일(Kakao Style)
+                      </Text>
+                      <Text color="gray.500" fontSize="12px" fontWeight="medium">
+                        IT.컨텐츠
+                      </Text>
+                    </Flex>
+                  </Box>
+                ))}
+            </Grid>
+          </Box>
         </Box>
       </Box>
     </>
