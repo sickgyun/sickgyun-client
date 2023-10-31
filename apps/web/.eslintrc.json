@@ -1,0 +1,4 @@
+{
+  "root": true,
+  "extends": ["@cheerup/eslint-config/react-ts-noimport", "next/core-web-vitals"]
+}
