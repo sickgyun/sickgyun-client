@@ -1,8 +1,8 @@
 'use client';
 
+import { Box, Button, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
-import { Box, Text, Flex, Center, Button, Image, Wrap, Grid } from '@chakra-ui/react';
 
 const Home = () => {
   return (
@@ -48,7 +48,7 @@ const Home = () => {
           <Flex justifyContent="space-between" marginBottom="36px">
             {Array(5)
               .fill('')
-              .map((_, i) => (
+              .map(() => (
                 <Center
                   transition="all 0.25s ease"
                   borderRadius="8px"
@@ -71,7 +71,7 @@ const Home = () => {
             <Grid templateColumns="repeat(3, 2fr)" gap="16px">
               {Array(6)
                 .fill('')
-                .map((_, i) => (
+                .map(() => (
                   <Box
                     display="flex"
                     alignItems="center"
