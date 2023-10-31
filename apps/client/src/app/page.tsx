@@ -1,13 +1,14 @@
 'use client';
 
 import { Header } from '@/components/common';
+import Footer from '@/components/common/Footer';
 import { Box, Text, Flex, Center, Button, Image, Wrap, Grid } from '@chakra-ui/react';
 
 const Home = () => {
   return (
     <>
       <Header />
-      <Box width="100vw" height="100vh" backgroundColor="white">
+      <Box width="100vw" height="110vh" backgroundColor="white">
         <Box margin="0 auto" paddingTop="30px" width="80%">
           {/* 로그인 & 배너 섹션 */}
           <Flex gap="36px" alignItems="center" marginBottom="48px">
@@ -107,6 +108,7 @@ const Home = () => {
           </Box>
         </Box>
       </Box>
+      <Footer />
     </>
   );
 };
