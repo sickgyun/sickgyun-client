@@ -1,0 +1,3 @@
+{
+  "extends": ["@cheerup/eslint-config/react-ts", "next/core-web-vitals"]
+}
