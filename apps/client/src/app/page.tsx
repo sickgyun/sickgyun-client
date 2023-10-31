@@ -8,10 +8,10 @@ const Home = () => {
   return (
     <>
       <Header />
-      <Box width="100vw" height="110vh" backgroundColor="white">
-        <Box margin="0 auto" paddingTop="30px" width="80%">
+      <Box width="100vw" height="120vh" backgroundColor="white">
+        <Box margin="0 auto" paddingTop="48px" width="80%">
           {/* 로그인 & 배너 섹션 */}
-          <Flex gap="36px" alignItems="center" marginBottom="48px">
+          <Flex gap="36px" alignItems="center" marginBottom="64px">
             <Image
               src="/assets/mock_banner.jpeg"
               objectFit="cover"
@@ -45,26 +45,31 @@ const Home = () => {
             </Box>
           </Flex>
           {/* 직군별 리스트 */}
-          <Flex justifyContent="space-between" marginBottom="36px">
-            {Array(5)
-              .fill('')
-              .map(() => (
-                <Center
-                  transition="all 0.25s ease"
-                  borderRadius="8px"
-                  width="200px"
-                  height="120px"
-                  _hover={{
-                    backgroundColor: 'gray.50',
-                    cursor: 'pointer',
-                  }}
-                >
-                  Frontend
-                </Center>
-              ))}
+          <Flex flexDirection="column" gap="18px">
+            <Text fontSize="18px" fontWeight="semibold">
+              직군별 선배들을 찾아봐요!
+            </Text>
+            <Flex justifyContent="space-between" marginBottom="64px">
+              {Array(5)
+                .fill('')
+                .map(() => (
+                  <Center
+                    transition="all 0.25s ease"
+                    borderRadius="8px"
+                    width="200px"
+                    height="120px"
+                    _hover={{
+                      backgroundColor: 'gray.50',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Frontend
+                  </Center>
+                ))}
+            </Flex>
           </Flex>
           {/* 선배들이 간 회사 목록 */}
-          <Box display="flex" flexDirection="column" gap="18px">
+          <Flex flexDirection="column" gap="18px" marginBottom="64px">
             <Text fontSize="18px" fontWeight="semibold">
               선배들이 간 회사 목록이에요!
             </Text>
@@ -105,7 +110,7 @@ const Home = () => {
                   </Box>
                 ))}
             </Grid>
-          </Box>
+          </Flex>
         </Box>
       </Box>
       <Footer />
