@@ -4,11 +4,13 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "commit": "cz"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
+    "commitizen": "^4.3.0",
     "eslint": "^8.48.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
