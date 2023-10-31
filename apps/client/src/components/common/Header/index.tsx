@@ -2,7 +2,7 @@ import { Box, Button, Flex, Image, Spacer, Text } from '@chakra-ui/react';
 
 const Header = () => {
   return (
-    <Box borderBottom="1px solid" borderColor="gray.100" width="100%" height="48px">
+    <Box borderBottom="1px solid" borderColor="gray.100" width="100%" height="54px">
       <Box
         margin="0 auto"
         display="flex"
