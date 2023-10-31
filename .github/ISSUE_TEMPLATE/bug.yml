@@ -9,19 +9,6 @@ body:
       placeholder: 꼼꼼하게 적을수록 좋습니다!
     validations:
       required: true
-  - type: textarea
-    attributes:
-      label: 📄 로그
-      description: 로그 있으면 복붙해 주세요.
-      render: shell
-    validations:
-      required: false
-  - type: textarea
-    attributes:
-      label: 🌏 환경
-      description: 버그가 발생한 환경에 대해 작성해 주세요.
-      placeholder: |
-        OS: macOS 12.2.1
     validations:
       required: true
   - type: textarea
