@@ -4,7 +4,7 @@ import { Box, Button, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 
-const Home = () => {
+const MainPage = () => {
   return (
     <>
       <Header />
@@ -118,4 +118,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default MainPage;
