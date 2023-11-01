@@ -11,7 +11,12 @@ const Header = () => {
         width="80%"
         height="100%"
       >
-        <Text fontSize="18px" fontWeight="semibold">
+        <Text
+          onClick={() => (window.location.href = '/')}
+          fontSize="18px"
+          fontWeight="semibold"
+          _hover={{ cursor: 'pointer' }}
+        >
           로고
         </Text>
         <Button size="sm" variant="ghost">
