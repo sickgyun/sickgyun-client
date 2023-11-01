@@ -44,11 +44,11 @@ const SeniorPage = () => {
                         <Text fontSize="24px" fontWeight="semibold">
                           김석진
                         </Text>
-                        <Text fontSize="16px" fontWeight="medium">
+                        <Text fontSize="16px" color="gray.900" fontWeight="medium">
                           2기 - 토스페이먼츠
                         </Text>
                       </Flex>
-                      <Text maxWidth="100%" color="gray.900" fontSize="14px">
+                      <Text maxWidth="100%" color="gray.600" fontSize="14px">
                         즐거움을 토대로 토대를 만드는 토나오는 개발자
                       </Text>
                     </div>
@@ -56,6 +56,7 @@ const SeniorPage = () => {
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
+                      color="gray.700"
                       border="1px solid"
                       borderColor="gray.200"
                       borderRadius="18px"
