@@ -18,8 +18,5 @@
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.6.10",
-  "name": "cheerup",
-  "dependencies": {
-    "@chakra-ui/icons": "^2.1.1"
-  }
+  "name": "cheerup"
 }

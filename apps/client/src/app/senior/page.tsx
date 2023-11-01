@@ -1,16 +1,49 @@
 'use client';
 
-import { Box, Flex, Grid, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Grid, Image, Link, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
+import type { Position } from '@/types';
+
+const POSITION_LIST: Position[] = [
+  '전체',
+  '프론트엔드',
+  '백엔드',
+  '데브옵스',
+  'IOS/Android',
+  '디자이너',
+];
 
 const SeniorPage = () => {
+  const [selectedPosition, setSelectedPosition] = useState<Position>('전체');
+
   return (
     <>
       <Header />
       <Box width="100vw" backgroundColor="white">
-        {/* 바 */}
         <Box margin="0 auto" paddingTop="48px" width="80%">
+          <Image
+            src="/assets/mock_banner.jpeg"
+            marginBottom="48px"
+            borderRadius="8px"
+            objectFit="cover"
+            width="100%"
+            height="250px"
+          />
+          <Box display="flex" alignItems="center" gap="16px" marginBottom="48px">
+            {POSITION_LIST.map((position) => {
+              return (
+                <Link
+                  onClick={() => setSelectedPosition(position)}
+                  color={selectedPosition === position ? 'primary' : 'gray.700'}
+                  _hover={{ color: 'primary' }}
+                >
+                  {position}
+                </Link>
+              );
+            })}
+          </Box>
           <Grid templateColumns="repeat(2, 1fr)" gap="32px" marginBottom="64px">
             {Array(10)
               .fill('')
@@ -49,7 +82,7 @@ const SeniorPage = () => {
                         </Text>
                       </Flex>
                       <Text maxWidth="100%" color="gray.600" fontSize="14px">
-                        즐거움을 토대로 토대를 만드는 토나오는 개발자
+                        즐거움을 토대로 토대를 만드는 도리"토스"를 좋아하는 개발자
                       </Text>
                     </div>
                     <Box
