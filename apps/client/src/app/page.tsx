@@ -49,7 +49,12 @@ const MainPage = () => {
           </Box>
           {/* 직군별 리스트 */}
           <Flex flexDirection="column" gap="18px">
-            <Text fontSize="18px" fontWeight="semibold">
+            <Text
+              onClick={() => router.push('/senior')}
+              fontSize="18px"
+              fontWeight="semibold"
+              _hover={{ cursor: 'pointer' }}
+            >
               직군별 선배들을 찾아봐요!
             </Text>
             <Box display="flex" justifyContent="space-between" marginBottom="64px">
@@ -74,7 +79,12 @@ const MainPage = () => {
           </Flex>
           {/* 선배들이 간 회사 목록 */}
           <Box display="flex" flexDirection="column" gap="18px">
-            <Text fontSize="18px" fontWeight="semibold">
+            <Text
+              onClick={() => router.push('/mou-company')}
+              fontSize="18px"
+              fontWeight="semibold"
+              _hover={{ cursor: 'pointer' }}
+            >
               우리 학교와 협약되어 있는 회사들이에요!
             </Text>
             <Grid templateColumns="repeat(3, 2fr)" gap="16px">
