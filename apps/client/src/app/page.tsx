@@ -58,28 +58,23 @@ const MainPage = () => {
               직군별 선배들을 찾아봐요!
             </Text>
             <Box display="flex" justifyContent="space-between" marginBottom="64px">
-              {[
-                '전체',
-                '프론트엔드',
-                '백엔드',
-                '데브옵스',
-                'IOS/Android',
-                '디자이너',
-              ].map((position) => (
-                <Center
-                  onClick={() => router.push('/senior')}
-                  transition="all 0.25s ease"
-                  borderRadius="8px"
-                  width="200px"
-                  height="120px"
-                  _hover={{
-                    backgroundColor: 'gray.50',
-                    cursor: 'pointer',
-                  }}
-                >
-                  {position}
-                </Center>
-              ))}
+              {['전체', '프론트엔드', '백엔드', '데브옵스', '앱', '디자이너'].map(
+                (position) => (
+                  <Center
+                    onClick={() => router.push(`/senior/${position}`)}
+                    transition="all 0.25s ease"
+                    borderRadius="8px"
+                    width="200px"
+                    height="120px"
+                    _hover={{
+                      backgroundColor: 'gray.50',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {position}
+                  </Center>
+                )
+              )}
             </Box>
           </Flex>
           {/* 협약 회사 목록 */}

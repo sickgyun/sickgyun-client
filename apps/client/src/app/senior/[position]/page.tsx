@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Flex, Grid, Image, Link, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 import type { Position } from '@/types';
@@ -11,12 +11,16 @@ const POSITION_LIST: Position[] = [
   '프론트엔드',
   '백엔드',
   '데브옵스',
-  'IOS/Android',
+  '앱',
   '디자이너',
 ];
 
-const SeniorPage = () => {
-  const [selectedPosition, setSelectedPosition] = useState<Position>('전체');
+type SeniorProps = {
+  params: { position: Position };
+};
+
+const SeniorPage = ({ params }: SeniorProps) => {
+  const router = useRouter();
 
   return (
     <>
@@ -34,8 +38,8 @@ const SeniorPage = () => {
           <Box display="flex" alignItems="center" gap="16px" marginBottom="48px">
             {POSITION_LIST.map((position) => (
               <Link
-                onClick={() => setSelectedPosition(position)}
-                color={selectedPosition === position ? 'primary' : 'gray.700'}
+                onClick={() => router.push(`/senior/${position}`)}
+                color={decodeURI(params.position) === position ? 'primary' : 'gray.700'}
                 _hover={{ color: 'primary' }}
               >
                 {position}
