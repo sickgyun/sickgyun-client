@@ -22,7 +22,7 @@ const SeniorPage = () => {
     <>
       <Header />
       <Box width="100vw" backgroundColor="white">
-        <Box margin="0 auto" paddingTop="48px" width="80%">
+        <Box margin="0 auto" paddingTop="48px" paddingBottom="64px" width="80%">
           <Image
             src="/assets/mock_banner.jpeg"
             marginBottom="48px"
@@ -42,7 +42,7 @@ const SeniorPage = () => {
               </Link>
             ))}
           </Box>
-          <Grid templateColumns="repeat(2, 1fr)" gap="32px" marginBottom="64px">
+          <Grid templateColumns="repeat(2, 1fr)" gap="32px">
             {Array(10)
               .fill('')
               .map(() => (

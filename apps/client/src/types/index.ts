@@ -5,3 +5,5 @@ export type Position =
   | '데브옵스'
   | 'IOS/Android'
   | '디자이너';
+
+export type Department = '전체' | '소프트웨어개발과' | '임베디드과';

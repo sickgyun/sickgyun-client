@@ -12,7 +12,7 @@ const MainPage = () => {
     <>
       <Header />
       <Box width="100vw" backgroundColor="white">
-        <Box margin="0 auto" paddingTop="48px" width="80%">
+        <Box margin="0 auto" paddingTop="48px" paddingBottom="64px" width="80%">
           {/* 로그인 & 배너 섹션 */}
           <Box display="flex" gap="36px" alignItems="center" marginBottom="64px">
             <Image
@@ -73,7 +73,7 @@ const MainPage = () => {
             </Box>
           </Flex>
           {/* 선배들이 간 회사 목록 */}
-          <Box display="flex" flexDirection="column" gap="18px" marginBottom="64px">
+          <Box display="flex" flexDirection="column" gap="18px">
             <Text fontSize="18px" fontWeight="semibold">
               우리 학교와 협약되어 있는 회사들이에요!
             </Text>
