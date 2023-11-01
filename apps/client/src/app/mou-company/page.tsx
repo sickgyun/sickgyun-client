@@ -32,6 +32,11 @@ const MouCompanyPage = () => {
               .fill('')
               .map(() => (
                 <Box
+                  onClick={() =>
+                    window.open(
+                      'https://www.jobkorea.co.kr/company/43275639?utm_term=&utm_source=pmax&utm_medium=display&cmpid=pmax&gad_source=1&gclid=CjwKCAjw7oeqBhBwEiwALyHLM03yJKeELO6J4otOId4BL8r1rXsuC_v-fcgyqsLPZ9OSe1KW67LLtBoCzn0QAvD_BwE'
+                    )
+                  }
                   display="flex"
                   alignItems="center"
                   gap="12px"
