@@ -1,6 +1,9 @@
 import { Box, Button, Text } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <Box borderBottom="1px solid" borderColor="gray.100" width="100%" height="54px">
       <Box
@@ -12,7 +15,7 @@ const Header = () => {
         height="100%"
       >
         <Text
-          onClick={() => (window.location.href = '/')}
+          onClick={() => router.push('/')}
           fontSize="18px"
           fontWeight="semibold"
           _hover={{ cursor: 'pointer' }}
