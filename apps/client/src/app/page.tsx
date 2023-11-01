@@ -50,7 +50,7 @@ const MainPage = () => {
           {/* 직군별 리스트 */}
           <Flex flexDirection="column" gap="18px">
             <Text
-              onClick={() => router.push('/senior')}
+              onClick={() => router.push('/senior/all')}
               fontSize="18px"
               fontWeight="semibold"
               _hover={{ cursor: 'pointer' }}
