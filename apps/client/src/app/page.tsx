@@ -75,7 +75,7 @@ const MainPage = () => {
           {/* 선배들이 간 회사 목록 */}
           <Box display="flex" flexDirection="column" gap="18px" marginBottom="64px">
             <Text fontSize="18px" fontWeight="semibold">
-              선배들이 간 회사 목록이에요!
+              우리 학교와 협약되어 있는 회사들이에요!
             </Text>
             <Grid templateColumns="repeat(3, 2fr)" gap="16px">
               {Array(6)
