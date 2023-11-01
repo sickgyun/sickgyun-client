@@ -32,8 +32,7 @@ const SeniorPage = () => {
             height="250px"
           />
           <Box display="flex" alignItems="center" gap="16px" marginBottom="48px">
-            {POSITION_LIST.map((position) => {
-              return (
+            {POSITION_LIST.map((position) => (
                 <Link
                   onClick={() => setSelectedPosition(position)}
                   color={selectedPosition === position ? 'primary' : 'gray.700'}
@@ -41,8 +40,7 @@ const SeniorPage = () => {
                 >
                   {position}
                 </Link>
-              );
-            })}
+              ))}
           </Box>
           <Grid templateColumns="repeat(2, 1fr)" gap="32px" marginBottom="64px">
             {Array(10)
