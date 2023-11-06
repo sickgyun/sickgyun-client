@@ -8,6 +8,10 @@ import Footer from '@/components/common/Footer';
 const MainPage = () => {
   const router = useRouter();
 
+  const handleLogin = () => {
+    window.open(process.env.NEXT_PUBLIC_AUTH_URL);
+  };
+
   return (
     <>
       <Header />
@@ -44,7 +48,9 @@ const MainPage = () => {
                   다양한 정보를 얻어보세요.
                 </Text>
               </div>
-              <Button width="100%">로그인</Button>
+              <Button onClick={handleLogin} width="100%">
+                로그인
+              </Button>
             </Box>
           </Box>
           {/* 직군별 리스트 */}
