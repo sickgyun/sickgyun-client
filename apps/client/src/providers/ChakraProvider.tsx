@@ -1,6 +1,5 @@
 import { CacheProvider } from '@chakra-ui/next-js';
 import { ChakraProvider as CheerUpChakraProvider, extendTheme } from '@chakra-ui/react';
-import React from 'react';
 
 const colors = {
   primary: '#257CFF',

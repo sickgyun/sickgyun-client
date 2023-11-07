@@ -2,10 +2,20 @@
 
 import { Box, Spinner } from '@chakra-ui/react';
 import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+import { useLoginBsmMutation } from '@/hooks/api/auth/useLoginBsmMutation';
 
 const BsmAuth = () => {
   const params = useSearchParams();
-  console.log(params.get('code'));
+
+  const { mutate: loginBsmMutate } = useLoginBsmMutation();
+
+  useEffect(() => {
+    const authCode = params.get('code');
+    if (authCode) {
+      loginBsmMutate({ authCode });
+    }
+  }, [loginBsmMutate, params]);
 
   return (
     <Box
