@@ -1,11 +1,17 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
+import { useUserInformation } from '@/store/UserInformation';
 
 const Header = () => {
   const router = useRouter();
+  const { isLoggedIn } = useUserInformation();
 
   const handleLogin = () => {
     window.open(process.env.NEXT_PUBLIC_AUTH_URL);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
   };
 
   return (
@@ -26,9 +32,15 @@ const Header = () => {
         >
           로고
         </Text>
-        <Button onClick={handleLogin} size="sm" variant="ghost">
-          로그인
-        </Button>
+        {isLoggedIn ? (
+          <Button onClick={handleLogin} size="sm" variant="ghost">
+            로그인
+          </Button>
+        ) : (
+          <Button onClick={handleLogout} size="sm" variant="ghost">
+            로그아웃
+          </Button>
+        )}
       </Box>
     </Box>
   );

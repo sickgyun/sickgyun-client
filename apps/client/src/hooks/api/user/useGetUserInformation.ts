@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import { get } from '@/libs/api/client';
+import { userInformationState } from '@/store/UserInformation/userInformationState';
 
-type UserInfoResponse = {
+export type UserInformationResponse = {
   github_id: string;
   profile_url: string;
   name: string;
@@ -13,23 +15,12 @@ type UserInfoResponse = {
 
 export const USER_INFORMATION_QUERY_KEY = 'userInformation';
 
-const fetchUserInformation = () => {
-  return get<UserInfoResponse>('/user');
-};
-
 export const useGetUserInformation = () => {
-  const [userInformation, setUserInformation] = useState<UserInfoResponse>({
-    github_id: '',
-    profile_url: '',
-    name: '',
-    cardinal: 0,
-    role: 'STUDENT',
-    isGraduate: false,
-  });
+  const [userInformation, setUserInformation] = useRecoilState(userInformationState);
 
-  const userInformationQuery = useQuery<UserInfoResponse>({
+  const userInformationQuery = useQuery<UserInformationResponse>({
     queryKey: [USER_INFORMATION_QUERY_KEY],
-    queryFn: async () => await fetchUserInformation(),
+    queryFn: async () => await get<UserInformationResponse>('/user'),
   });
 
   useEffect(() => {
@@ -38,7 +29,7 @@ export const useGetUserInformation = () => {
     if (userInformation) {
       setUserInformation(userInformation);
     }
-  }, [userInformationQuery]);
+  }, [setUserInformation, userInformationQuery]);
 
   return { userInformation };
 };
