@@ -1,11 +1,24 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
+import { useSetRecoilState } from 'recoil';
+import { LOCAL_STORAGE_KEY } from '@/constants/storage';
+import { useUserInformation } from '@/store/UserInformation';
+import { isLoginState } from '@/store/UserInformation/isLoginState';
 
 const Header = () => {
   const router = useRouter();
+  const setIsLogin = useSetRecoilState(isLoginState);
+  const { isLogin } = useUserInformation();
 
   const handleLogin = () => {
-    window.open(process.env.NEXT_PUBLIC_AUTH_URL);
+    if (!process.env.NEXT_PUBLIC_AUTH_URL) return;
+    router.replace(process.env.NEXT_PUBLIC_AUTH_URL);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
+    setIsLogin(false);
+    router.push('/');
   };
 
   return (
@@ -26,9 +39,15 @@ const Header = () => {
         >
           로고
         </Text>
-        <Button onClick={handleLogin} size="sm" variant="ghost">
-          로그인
-        </Button>
+        {isLogin ? (
+          <Button onClick={handleLogout} size="sm" variant="ghost">
+            로그아웃
+          </Button>
+        ) : (
+          <Button onClick={handleLogin} size="sm" variant="ghost">
+            로그인
+          </Button>
+        )}
       </Box>
     </Box>
   );
