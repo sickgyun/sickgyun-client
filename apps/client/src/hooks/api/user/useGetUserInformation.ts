@@ -1,4 +1,5 @@
-import { useSuspenseQuery } from '@suspensive/react-query';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { get } from '@/libs/api/client';
 
 type UserInfoResponse = {
@@ -12,11 +13,32 @@ type UserInfoResponse = {
 
 export const USER_INFORMATION_QUERY_KEY = 'userInformation';
 
+const fetchUserInformation = () => {
+  return get<UserInfoResponse>('/user');
+};
+
 export const useGetUserInformation = () => {
-  const { data: userInformation, ...restQuery } = useSuspenseQuery<UserInfoResponse>({
-    queryKey: [USER_INFORMATION_QUERY_KEY],
-    queryFn: async () => await get<UserInfoResponse>('/user'),
+  const [userInformation, setUserInformation] = useState<UserInfoResponse>({
+    github_id: '',
+    profile_url: '',
+    name: '',
+    cardinal: 0,
+    role: 'STUDENT',
+    isGraduate: false,
   });
 
-  return { userInformation, ...restQuery };
+  const userInformationQuery = useQuery<UserInfoResponse>({
+    queryKey: [USER_INFORMATION_QUERY_KEY],
+    queryFn: async () => await fetchUserInformation(),
+  });
+
+  useEffect(() => {
+    const { data: userInformation } = userInformationQuery;
+
+    if (userInformation) {
+      setUserInformation(userInformation);
+    }
+  }, [userInformationQuery]);
+
+  return { userInformation };
 };
