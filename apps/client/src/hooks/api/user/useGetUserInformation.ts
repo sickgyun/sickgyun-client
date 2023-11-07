@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { get } from '@/libs/api/client';
+import { Storage } from '@/libs/localStorage/storage';
 import { userInformationState } from '@/store/UserInformation/userInformationState';
 
 export type UserInformationResponse = {
@@ -18,7 +19,7 @@ export const USER_INFORMATION_QUERY_KEY = 'userInformation';
 
 export const useGetUserInformation = () => {
   const [userInformation, setUserInformation] = useRecoilState(userInformationState);
-  const accessToken = window.localStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
 
   const userInformationQuery = useQuery<UserInformationResponse>({
     queryKey: [USER_INFORMATION_QUERY_KEY],

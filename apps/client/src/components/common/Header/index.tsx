@@ -16,7 +16,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    window.localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
+    localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
     setIsLogin(false);
     router.push('/');
   };
