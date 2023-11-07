@@ -10,11 +10,23 @@ const BsmAuth = () => {
   const router = useRouter();
   const params = useSearchParams();
 
-  const {
-    mutate: loginBsmMutate,
-    data: loginBsmData,
-    error: loginBsmError,
-  } = useLoginBsmMutation();
+  const { mutate: loginBsmMutate } = useLoginBsmMutation({
+    onSuccess: (data) => {
+      const { accessToken, isGraduate } = data.data;
+
+      localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
+
+      const redirectPath = isGraduate === 'GRADUATE' ? '/user/info' : '/';
+
+      router.replace(redirectPath);
+    },
+    onError: (data) => {
+      if (data.message) {
+        alert(data.message);
+      }
+      router.replace('/');
+    },
+  });
 
   useEffect(() => {
     const authCode = params.get('code');
@@ -23,29 +35,6 @@ const BsmAuth = () => {
       loginBsmMutate({ authCode });
     }
   }, [loginBsmMutate, params]);
-
-  useEffect(() => {
-    if (loginBsmData) {
-      if (loginBsmData.data) {
-        const { accessToken, isGraduate } = loginBsmData.data;
-
-        localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
-
-        const redirectPath = isGraduate === 'GRADUATE' ? '/user/info' : '/';
-
-        router.replace(redirectPath);
-      } else {
-        alert('로그인 도중 오류가 발생하였습니다. 다시 한번 시도해주세요.');
-      }
-    }
-  }, [loginBsmData, router]);
-
-  useEffect(() => {
-    if (loginBsmError) {
-      alert('로그인 도중 오류가 발생하였습니다. 다시 한번 시도해주세요.');
-      router.replace('/');
-    }
-  }, [loginBsmError, router]);
 
   return (
     <Box
