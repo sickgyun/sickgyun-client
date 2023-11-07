@@ -5,6 +5,7 @@ type LoginBsmMutationResponse = {
   message: string;
   data: {
     accessToken: string;
+    isGraduate: 'STUDENT' | 'GRADUATE';
   };
 };
 

@@ -27,11 +27,13 @@ const BsmAuth = () => {
   useEffect(() => {
     if (loginBsmData) {
       if (loginBsmData.data) {
-        localStorage.setItem(
-          LOCAL_STORAGE_KEY.accessToken,
-          loginBsmData.data.accessToken
-        );
-        router.replace('/');
+        const { accessToken, isGraduate } = loginBsmData.data;
+
+        localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
+
+        const redirectPath = isGraduate === 'GRADUATE' ? '/user/info' : '/';
+
+        router.replace(redirectPath);
       } else {
         alert('로그인 도중 오류가 발생하였습니다. 다시 한번 시도해주세요.');
       }
