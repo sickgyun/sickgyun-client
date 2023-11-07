@@ -14,7 +14,7 @@ const BsmAuth = () => {
     onSuccess: (data) => {
       const { accessToken, isGraduate } = data.data;
 
-      localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
+      window.localStorage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
 
       const redirectPath = isGraduate === 'GRADUATE' ? '/user/info' : '/';
 

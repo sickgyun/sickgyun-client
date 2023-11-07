@@ -18,7 +18,7 @@ export const USER_INFORMATION_QUERY_KEY = 'userInformation';
 
 export const useGetUserInformation = () => {
   const [userInformation, setUserInformation] = useRecoilState(userInformationState);
-  const accessToken = localStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const accessToken = window.localStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
 
   const userInformationQuery = useQuery<UserInformationResponse>({
     queryKey: [USER_INFORMATION_QUERY_KEY],

@@ -1,10 +1,13 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
+import { useSetRecoilState } from 'recoil';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useUserInformation } from '@/store/UserInformation';
+import { isLoginState } from '@/store/UserInformation/isLoginState';
 
 const Header = () => {
   const router = useRouter();
+  const setIsLogin = useSetRecoilState(isLoginState);
   const { isLogin } = useUserInformation();
 
   const handleLogin = () => {
@@ -13,7 +16,8 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
+    window.localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
+    setIsLogin(false);
     router.push('/');
   };
 
