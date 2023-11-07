@@ -1,16 +1,14 @@
 'use client';
 
-import { Box, Button, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
+import LoginBox from '@/components/LoginBox';
+import MouCompanyCard from '@/components/MouCompanyCard';
 
 const MainPage = () => {
   const router = useRouter();
-
-  const handleLogin = () => {
-    window.open(process.env.NEXT_PUBLIC_AUTH_URL);
-  };
 
   return (
     <>
@@ -27,32 +25,9 @@ const MainPage = () => {
               height="250px"
               alt="Banner"
             />
-            {/* 로그인 박스 */}
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              gap="48px"
-              padding="32px"
-              borderRadius="8px"
-              border="1px solid"
-              borderColor="gray.200"
-              width="500px"
-              height="250px"
-            >
-              <div>
-                <Text as="p" fontSize="20px">
-                  로그인하고
-                </Text>
-                <Text as="p" fontSize="20px">
-                  다양한 정보를 얻어보세요.
-                </Text>
-              </div>
-              <Button onClick={handleLogin} width="100%">
-                로그인
-              </Button>
-            </Box>
           </Box>
+          {/* 로그인 박스 */}
+          <LoginBox />
           {/* 직군별 리스트 */}
           <Flex flexDirection="column" gap="18px">
             <Text
@@ -97,42 +72,7 @@ const MainPage = () => {
               {Array(6)
                 .fill('')
                 .map(() => (
-                  <Box
-                    onClick={() =>
-                      window.open(
-                        'https://www.jobkorea.co.kr/company/43275639?utm_term=&utm_source=pmax&utm_medium=display&cmpid=pmax&gad_source=1&gclid=CjwKCAjw7oeqBhBwEiwALyHLM03yJKeELO6J4otOId4BL8r1rXsuC_v-fcgyqsLPZ9OSe1KW67LLtBoCzn0QAvD_BwE'
-                      )
-                    }
-                    display="flex"
-                    alignItems="center"
-                    gap="12px"
-                    padding="16px"
-                    transition="all 0.25s ease"
-                    borderBottom="1px solid"
-                    borderColor="gray.50"
-                    _hover={{
-                      backgroundColor: 'gray.50',
-                      cursor: 'pointer',
-                      borderRadius: '8px',
-                    }}
-                    height="80px"
-                  >
-                    <Image
-                      src="/assets/mock_company.webp"
-                      width="50px"
-                      height="50px"
-                      borderRadius="8px"
-                      alt="Company"
-                    />
-                    <Flex flexDirection="column" alignItems="flex-start">
-                      <Text fontSize="16px" fontWeight="semibold">
-                        카카오스타일(Kakao Style)
-                      </Text>
-                      <Text color="gray.500" fontSize="12px" fontWeight="medium">
-                        IT.컨텐츠
-                      </Text>
-                    </Flex>
-                  </Box>
+                  <MouCompanyCard />
                 ))}
             </Grid>
           </Box>

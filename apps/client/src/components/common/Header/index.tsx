@@ -2,8 +2,7 @@ import { Box, Button, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
-import { useUserInformation } from '@/store/UserInformation';
-import { isLoginState } from '@/store/UserInformation/isLoginState';
+import { isLoginState, useUserInformation } from '@/store/UserInformation';
 
 const Header = () => {
   const router = useRouter();
