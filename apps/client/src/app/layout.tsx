@@ -1,6 +1,6 @@
 'use client';
 
-import { Providers } from './providers';
+import { ChakraProvider, QueryClientProvider } from '@/providers';
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -10,7 +10,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <QueryClientProvider>
+          <ChakraProvider>{children}</ChakraProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

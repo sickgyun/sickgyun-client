@@ -4,6 +4,10 @@ import { useRouter } from 'next/navigation';
 const Header = () => {
   const router = useRouter();
 
+  const handleLogin = () => {
+    window.open(process.env.NEXT_PUBLIC_AUTH_URL);
+  };
+
   return (
     <Box borderBottom="1px solid" borderColor="gray.100" width="100%" height="54px">
       <Box
@@ -22,7 +26,7 @@ const Header = () => {
         >
           로고
         </Text>
-        <Button size="sm" variant="ghost">
+        <Button onClick={handleLogin} size="sm" variant="ghost">
           로그인
         </Button>
       </Box>
