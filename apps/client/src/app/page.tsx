@@ -25,9 +25,9 @@ const MainPage = () => {
               height="250px"
               alt="Banner"
             />
+            {/* 로그인 박스 */}
+            <LoginBox />
           </Box>
-          {/* 로그인 박스 */}
-          <LoginBox />
           {/* 직군별 리스트 */}
           <Flex flexDirection="column" gap="18px">
             <Text

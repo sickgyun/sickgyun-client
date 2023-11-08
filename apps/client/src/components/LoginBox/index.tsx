@@ -1,16 +1,34 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Link, Text } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
+import { useSetRecoilState } from 'recoil';
+import { LOCAL_STORAGE_KEY } from '@/constants/storage';
+import { isLoginState, useUserInformation } from '@/store/UserInformation';
 
 const LoginBox = () => {
+  const router = useRouter();
+  const setIsLogin = useSetRecoilState(isLoginState);
+  const { isLogin, userInformation } = useUserInformation();
+
   const handleLogin = () => {
     window.open(process.env.NEXT_PUBLIC_AUTH_URL);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
+    setIsLogin(false);
+    router.push('/');
+  };
+
+  const handleGoJumpit = () => {
+    window.open('https://www.jumpit.co.kr');
+  };
+
+  const handleGoWanted = () => {
+    window.open('https://www.wanted.co.kr');
+  };
+
   return (
     <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      gap="48px"
       padding="32px"
       borderRadius="8px"
       border="1px solid"
@@ -18,17 +36,70 @@ const LoginBox = () => {
       width="500px"
       height="250px"
     >
-      <Box>
-        <Text as="p" fontSize="20px">
-          로그인하고
-        </Text>
-        <Text as="p" fontSize="20px">
-          다양한 정보를 얻어보세요.
-        </Text>
-      </Box>
-      <Button onClick={handleLogin} width="100%">
-        로그인
-      </Button>
+      {isLogin ? (
+        <Flex flexDirection="column" gap="24px" width="100%" height="100%">
+          <Flex flexDirection="column" gap="6px">
+            <Flex alignItems="center" gap="2px">
+              <Text as="span" fontSize="12px" color="gray.500">
+                {userInformation.cardinal}기
+              </Text>
+              <Text as="span" fontSize="12px" color="gray.500">
+                {userInformation.isGraduate ? '졸업생' : '학생'}
+              </Text>
+            </Flex>
+            <Flex alignItems="center" gap="8px">
+              <Text fontSize="18px">{userInformation.name}님 취업하셔아죠?</Text>
+              <Link
+                onClick={handleLogout}
+                fontSize="16px"
+                color="gray.500"
+                _hover={{ border: 'none' }}
+              >
+                로그아웃
+              </Link>
+            </Flex>
+            <Text fontSize="16px" color="gray.500">
+              {userInformation.email}
+            </Text>
+          </Flex>
+          <Flex alignItems="center" justifyContent="space-between">
+            <Center
+              onClick={handleGoJumpit}
+              padding="16px"
+              border="1px solid"
+              borderColor="gray.200"
+              _hover={{ cursor: 'pointer' }}
+              width="48%"
+              height="60px"
+            >
+              점핏 바로가기
+            </Center>
+            <Center
+              onClick={handleGoWanted}
+              padding="16px"
+              border="1px solid"
+              borderColor="gray.200"
+              _hover={{ cursor: 'pointer' }}
+              width="48%"
+              height="60px"
+            >
+              원티드 바로가기
+            </Center>
+          </Flex>
+        </Flex>
+      ) : (
+        <Flex alignItems="center" width="100%" height="100%">
+          <Flex flexDirection="column" gap="48px" width="100%">
+            <Box>
+              <Text fontSize="20px">로그인하고</Text>
+              <Text fontSize="20px">다양한 정보를 얻어보세요.</Text>
+            </Box>
+            <Button onClick={handleLogin} width="100%">
+              로그인
+            </Button>
+          </Flex>
+        </Flex>
+      )}
     </Box>
   );
 };
