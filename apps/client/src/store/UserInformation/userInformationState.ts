@@ -1,9 +1,10 @@
 import { atom } from 'recoil';
-import type { UserInformationResponse } from '@/hooks/api/user/useGetUserInformation';
+import type { UserInformationData } from '@/hooks/api/user/useGetUserInformation';
 
-export const userInformationState = atom<UserInformationResponse>({
+export const userInformationState = atom<UserInformationData>({
   key: 'userInformationState',
   default: {
+    email: '',
     github_id: '',
     profile_url: '',
     name: '',

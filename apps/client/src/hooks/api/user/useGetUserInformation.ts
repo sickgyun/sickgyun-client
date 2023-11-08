@@ -6,13 +6,19 @@ import { get } from '@/libs/api/client';
 import { Storage } from '@/libs/localStorage/storage';
 import { userInformationState } from '@/store/UserInformation/userInformationState';
 
-export type UserInformationResponse = {
+export type UserInformationData = {
   github_id: string;
+  email: string;
   profile_url: string;
   name: string;
   cardinal: number;
   role: 'STUDENT' | 'TEACHER';
   isGraduate: boolean;
+};
+
+export type UserInformationResponse = {
+  message: string;
+  data: UserInformationData;
 };
 
 export const USER_INFORMATION_QUERY_KEY = 'userInformation';
@@ -31,7 +37,9 @@ export const useGetUserInformation = () => {
     const { data: userInformation } = userInformationQuery;
 
     if (userInformation) {
-      setUserInformation(userInformation);
+      if (userInformation.data) {
+        setUserInformation(userInformation.data);
+      }
     }
   }, [setUserInformation, userInformationQuery]);
 
