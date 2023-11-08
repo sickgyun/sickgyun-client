@@ -48,7 +48,14 @@ const LoginBox = () => {
               </Text>
             </Flex>
             <Flex alignItems="center" gap="8px">
-              <Text fontSize="18px">{userInformation.name}님 취업하셔아죠?</Text>
+              <Flex alignItems="center" gap="4px">
+                <Text as="span" fontSize="18px">
+                  {userInformation.name}님
+                </Text>
+                <Text as="span" fontSize="18px">
+                  {userInformation.isGraduate ? '알려주셔야죠?' : '취업하셔야죠?'}
+                </Text>
+              </Flex>
               <Link
                 onClick={handleLogout}
                 fontSize="16px"
