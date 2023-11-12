@@ -5,9 +5,8 @@ import { useState } from 'react';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 import MouCompanyCard from '@/components/MouCompanyCard';
+import { DEPARTMENT_LIST } from '@/constants/department';
 import type { Department } from '@/types';
-
-const DEPARTMENT_LIST: Department[] = ['전체', '소프트웨어개발과', '임베디드과'];
 
 const MouCompanyPage = () => {
   const [selectedDepartment, setSelectedDepartment] = useState<Department>('전체');
