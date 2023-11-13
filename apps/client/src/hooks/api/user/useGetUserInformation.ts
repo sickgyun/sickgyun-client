@@ -7,11 +7,12 @@ import { Storage } from '@/libs/localStorage/storage';
 import { userInformationState } from '@/store/UserInformation/userInformationState';
 
 export type UserInformationData = {
-  github_id: string;
+  githubId: string;
   email: string;
-  profile_url: string;
+  profileUrl: string;
   name: string;
   cardinal: number;
+  company: string;
   role: 'STUDENT' | 'TEACHER';
   isGraduate: boolean;
 };
