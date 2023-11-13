@@ -8,7 +8,6 @@ import LoginBox from '@/components/LoginBox';
 import MouCompanyCard from '@/components/MouCompanyCard';
 import { POSITION_LIST } from '@/constants/common';
 
-
 const MainPage = () => {
   const router = useRouter();
 
