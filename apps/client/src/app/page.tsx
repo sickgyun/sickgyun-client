@@ -6,7 +6,7 @@ import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 import LoginBox from '@/components/LoginBox';
 import MouCompanyCard from '@/components/MouCompanyCard';
-import { DEPARTMENT_LIST } from '@/constants/department';
+import { POSITION_LIST } from '@/constants/common';
 
 const MainPage = () => {
   const router = useRouter();
@@ -40,7 +40,7 @@ const MainPage = () => {
               직군별 선배들을 찾아봐요!
             </Text>
             <Box display="flex" justifyContent="space-between" marginBottom="64px">
-              {DEPARTMENT_LIST.map((position) => (
+              {POSITION_LIST.map((position) => (
                 <Center
                   onClick={() => router.push(`/senior/${position}`)}
                   transition="all 0.25s ease"

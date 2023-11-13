@@ -1,18 +1,28 @@
-import { Box, Button, Center, Flex, Link, Text } from '@chakra-ui/react';
+import { SettingsIcon } from '@chakra-ui/icons';
+import { Box, Button, Center, Flex, Text, Text as TextButton } from '@chakra-ui/react';
+import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
+import ProfileSettingModal from '../ProfileSettingModal/page';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { isLoginState, useUserInformation } from '@/store/UserInformation';
 
 const LoginBox = () => {
   const router = useRouter();
+  const overlay = useOverlay();
   const setIsLogin = useSetRecoilState(isLoginState);
   const { isLogin, userInformation } = useUserInformation();
 
   const handleLogin = () => {
-    window.open(process.env.NEXT_PUBLIC_AUTH_URL);
+    if (!process.env.NEXT_PUBLIC_AUTH_URL) return;
+    router.replace(process.env.NEXT_PUBLIC_AUTH_URL);
   };
 
+  const openProfileSettingModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <ProfileSettingModal isOpen={isOpen} onClose={close} />
+    ));
+  };
   const handleLogout = () => {
     localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
     setIsLogin(false);
@@ -39,13 +49,20 @@ const LoginBox = () => {
       {isLogin ? (
         <Flex flexDirection="column" gap="24px" width="100%" height="100%">
           <Flex flexDirection="column" gap="6px">
-            <Flex alignItems="center" gap="2px">
-              <Text as="span" fontSize="12px" color="gray.500">
-                {userInformation.cardinal}기
-              </Text>
-              <Text as="span" fontSize="12px" color="gray.500">
-                {userInformation.isGraduate ? '졸업생' : '학생'}
-              </Text>
+            <Flex alignItems="center" justifyContent="space-between">
+              <Flex alignItems="center" gap="2px">
+                <Text as="span" fontSize="12px" color="gray.500">
+                  {userInformation.cardinal}기
+                </Text>
+                <Text as="span" fontSize="12px" color="gray.500">
+                  {userInformation.isGraduate ? '졸업생' : '학생'}
+                </Text>
+              </Flex>
+              <SettingsIcon
+                onClick={openProfileSettingModal}
+                color="gray.500"
+                _hover={{ cursor: 'pointer' }}
+              />
             </Flex>
             <Flex alignItems="center" gap="8px">
               <Flex alignItems="center" gap="4px">
@@ -56,14 +73,14 @@ const LoginBox = () => {
                   {userInformation.isGraduate ? '알려주셔야죠?' : '취업하셔야죠?'}
                 </Text>
               </Flex>
-              <Link
+              <TextButton
                 onClick={handleLogout}
                 fontSize="16px"
                 color="gray.500"
-                _hover={{ border: 'none' }}
+                _hover={{ cursor: 'pointer' }}
               >
                 로그아웃
-              </Link>
+              </TextButton>
             </Flex>
             <Text fontSize="16px" color="gray.500">
               {userInformation.email}

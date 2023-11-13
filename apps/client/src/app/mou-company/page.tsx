@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 import MouCompanyCard from '@/components/MouCompanyCard';
-import { DEPARTMENT_LIST } from '@/constants/department';
+import { DEPARTMENT_LIST } from '@/constants/common';
 import type { Department } from '@/types';
 
 const MouCompanyPage = () => {

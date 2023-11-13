@@ -5,11 +5,12 @@ export const userInformationState = atom<UserInformationData>({
   key: 'userInformationState',
   default: {
     email: '',
-    github_id: '',
-    profile_url: '',
+    githubId: '',
+    profileUrl: '',
     name: '',
     cardinal: 0,
     role: 'STUDENT',
+    company: '',
     isGraduate: false,
   },
 });

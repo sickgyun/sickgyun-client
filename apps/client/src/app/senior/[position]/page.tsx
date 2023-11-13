@@ -5,16 +5,8 @@ import { useRouter } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 import SeniorCard from '@/components/SeniorCard';
+import { POSITION_LIST } from '@/constants/common';
 import type { Position } from '@/types';
-
-const POSITION_LIST: Position[] = [
-  '전체',
-  '프론트엔드',
-  '백엔드',
-  '데브옵스',
-  '앱',
-  '디자이너',
-];
 
 type SeniorProps = {
   params: { position: Position };
