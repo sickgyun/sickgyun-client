@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Link, Text } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Text, Text as TextButton } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
@@ -10,7 +10,8 @@ const LoginBox = () => {
   const { isLogin, userInformation } = useUserInformation();
 
   const handleLogin = () => {
-    window.open(process.env.NEXT_PUBLIC_AUTH_URL);
+    if (!process.env.NEXT_PUBLIC_AUTH_URL) return;
+    router.replace(process.env.NEXT_PUBLIC_AUTH_URL);
   };
 
   const handleLogout = () => {
@@ -56,14 +57,14 @@ const LoginBox = () => {
                   {userInformation.isGraduate ? '알려주셔야죠?' : '취업하셔야죠?'}
                 </Text>
               </Flex>
-              <Link
+              <TextButton
                 onClick={handleLogout}
                 fontSize="16px"
                 color="gray.500"
-                _hover={{ border: 'none' }}
+                _hover={{ cursor: 'pointer' }}
               >
                 로그아웃
-              </Link>
+              </TextButton>
             </Flex>
             <Text fontSize="16px" color="gray.500">
               {userInformation.email}
