@@ -7,7 +7,7 @@ import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useLoginBsmMutation } from '@/hooks/api/auth/useLoginBsmMutation';
 import { Storage } from '@/libs/localStorage/storage';
 
-const BsmAuth = () => {
+const BsmAuthPage = () => {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -57,4 +57,4 @@ const BsmAuth = () => {
   );
 };
 
-export default BsmAuth;
+export default BsmAuthPage;

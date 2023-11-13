@@ -8,11 +8,11 @@ import SeniorCard from '@/components/SeniorCard';
 import { POSITION_LIST } from '@/constants/common';
 import type { Position } from '@/types';
 
-type SeniorProps = {
+type SeniorPageProps = {
   params: { position: Position };
 };
 
-const SeniorPage = ({ params }: SeniorProps) => {
+const SeniorPage = ({ params }: SeniorPageProps) => {
   const router = useRouter();
 
   return (
@@ -20,7 +20,6 @@ const SeniorPage = ({ params }: SeniorProps) => {
       <Header />
       <Box width="100vw" backgroundColor="white">
         <Box margin="0 auto" paddingTop="48px" paddingBottom="64px" width="80%">
-          {/* 배너 */}
           <Image
             src="/assets/mock_banner.jpeg"
             marginBottom="48px"
