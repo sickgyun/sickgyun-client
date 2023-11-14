@@ -33,11 +33,11 @@ const MainPage = () => {
           <Flex flexDirection="column" gap="18px">
             <Text
               onClick={() => router.push('/senior/all')}
-              fontSize="18px"
-              fontWeight="semibold"
+              fontSize="20px"
+              fontWeight="bold"
               _hover={{ cursor: 'pointer' }}
             >
-              직군별 선배들을 찾아봐요!
+              # 직군별 선배
             </Text>
             <Box display="flex" justifyContent="space-between" marginBottom="64px">
               {POSITION_LIST.map((position) => (
@@ -61,11 +61,11 @@ const MainPage = () => {
           <Box display="flex" flexDirection="column" gap="18px">
             <Text
               onClick={() => router.push('/mou-company')}
-              fontSize="18px"
-              fontWeight="semibold"
+              fontSize="20px"
+              fontWeight="bold"
               _hover={{ cursor: 'pointer' }}
             >
-              우리 학교와 협약되어 있는 회사들이에요!
+              # 협약 회사
             </Text>
             <Grid templateColumns="repeat(3, 2fr)" gap="16px">
               {Array(6)
