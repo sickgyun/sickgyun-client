@@ -5,7 +5,6 @@ import { put } from '@/libs/api/client';
 type UpdateProfileMutationRequest = {
   email: string;
   githubId: string;
-  company: string;
 };
 
 type UpdateProfileMutationResponse = {
@@ -20,8 +19,8 @@ export const useUpdateProfileMutation = () => {
     { message?: string },
     UpdateProfileMutationRequest
   >({
-    mutationFn: ({ email, githubId, company }: UpdateProfileMutationRequest) =>
-      put<UpdateProfileMutationResponse>('/user/update', { email, githubId, company }),
+    mutationFn: ({ email, githubId }: UpdateProfileMutationRequest) =>
+      put<UpdateProfileMutationResponse>('/user/update', { email, githubId }),
     onSuccess: () => {
       alert('프로필 업데이트 성공');
       queryClient.invalidateQueries({ queryKey: [USER_INFORMATION_QUERY_KEY] });

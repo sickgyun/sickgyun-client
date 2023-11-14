@@ -19,7 +19,6 @@ import { useUserInformation } from '@/store/UserInformation';
 type UpdateProfileFormInput = {
   email: string;
   githubId: string;
-  company: string;
 };
 
 type UpdateProfileModalProps = {
@@ -35,9 +34,9 @@ const UpdateProfileModal = ({ isOpen, onClose }: UpdateProfileModalProps) => {
   const { mutate: updateProfileMutate } = useUpdateProfileMutation();
 
   const onUpdateProfileSubmit: SubmitHandler<UpdateProfileFormInput> = (data) => {
-    const { email, githubId, company } = data;
+    const { email, githubId } = data;
 
-    updateProfileMutate({ email, githubId, company });
+    updateProfileMutate({ email, githubId });
     onClose();
   };
 
@@ -61,13 +60,6 @@ const UpdateProfileModal = ({ isOpen, onClose }: UpdateProfileModalProps) => {
               placeholder="깃허브 아이디를 입력해주세요."
               {...register('githubId')}
             />
-            {userInformation.isGraduate && (
-              <Input
-                defaultValue={userInformation.company}
-                placeholder="회사를 입력해주세요."
-                {...register('company')}
-              />
-            )}
           </Flex>
         </ModalBody>
         <ModalFooter>
