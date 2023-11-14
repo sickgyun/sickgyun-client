@@ -50,19 +50,17 @@ const LoginBox = () => {
         <Flex flexDirection="column" gap="24px" width="100%" height="100%">
           <Flex flexDirection="column" gap="6px">
             <Flex alignItems="center" gap="2px">
-              <Text as="span" fontSize="12px" color="gray.500">
+              <Text fontSize="12px" color="gray.500">
                 {userInformation.cardinal}기
               </Text>
-              <Text as="span" fontSize="12px" color="gray.500">
+              <Text fontSize="12px" color="gray.500">
                 {userInformation.isGraduate ? '졸업생' : '학생'}
               </Text>
             </Flex>
             <Flex alignItems="center" gap="8px">
               <Flex alignItems="center" gap="4px">
-                <Text as="span" fontSize="18px">
-                  {userInformation.name}님
-                </Text>
-                <Text as="span" fontSize="18px">
+                <Text fontSize="18px">{userInformation.name}님</Text>
+                <Text fontSize="18px">
                   {userInformation.isGraduate ? '알려주셔야죠?' : '취업하셔야죠?'}
                 </Text>
               </Flex>
