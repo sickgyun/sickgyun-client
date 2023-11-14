@@ -14,6 +14,7 @@
     "next": "14.0.2"
   },
   "devDependencies": {
+    "@cheerup/eslint-config": "workspace:*",
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
