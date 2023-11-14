@@ -1,11 +1,13 @@
 'use client';
 
 import { Box, Button, Grid, Image } from '@chakra-ui/react';
+import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 import SeniorCard from '@/components/SeniorCard';
 import SeniorRegisterButton from '@/components/SeniorRegisterButton';
+import SeniorRegisterModal from '@/components/SeniorRegisterModal';
 import { POSITION_LIST } from '@/constants/common';
 import { useUserInformation } from '@/store/UserInformation';
 import type { Position } from '@/types';
@@ -16,7 +18,14 @@ type SeniorPageProps = {
 
 const SeniorPage = ({ params }: SeniorPageProps) => {
   const router = useRouter();
+  const overlay = useOverlay();
   const { userInformation } = useUserInformation();
+
+  const openSeniorRegisterModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <SeniorRegisterModal isOpen={isOpen} onClose={close} />
+    ));
+  };
 
   return (
     <>
@@ -31,7 +40,7 @@ const SeniorPage = ({ params }: SeniorPageProps) => {
             width="100%"
             height="250px"
           />
-          <Box display="flex" alignItems="center" gap="16px" marginBottom="48px">
+          <Box display="flex" alignItems="center" gap="8px" marginBottom="48px">
             {POSITION_LIST.map((position) => (
               <Button
                 onClick={() => router.push(`/senior/${position}`)}
@@ -55,7 +64,9 @@ const SeniorPage = ({ params }: SeniorPageProps) => {
         </Box>
       </Box>
       <Footer />
-      {userInformation.isGraduate && <SeniorRegisterButton />}
+      {!userInformation.isGraduate && (
+        <SeniorRegisterButton onClick={openSeniorRegisterModal} />
+      )}
     </>
   );
 };

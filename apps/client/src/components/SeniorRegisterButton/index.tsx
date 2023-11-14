@@ -1,9 +1,14 @@
 import { AddIcon } from '@chakra-ui/icons';
 import { Box, Text } from '@chakra-ui/react';
 
-const SeniorRegisterButton = () => {
+type SeniorRegisterButton = {
+  onClick: () => void;
+};
+
+const SeniorRegisterButton = ({ onClick }: SeniorRegisterButton) => {
   return (
     <Box
+      onClick={onClick}
       display="flex"
       gap="8px"
       alignItems="center"
