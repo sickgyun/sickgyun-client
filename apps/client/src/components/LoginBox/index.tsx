@@ -2,6 +2,7 @@ import { SettingsIcon } from '@chakra-ui/icons';
 import { Box, Button, Center, Flex, Text, Text as TextButton } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import UpdateProfileModal from '../UpdateProfileModal';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
@@ -18,11 +19,6 @@ const LoginBox = () => {
     router.replace(process.env.NEXT_PUBLIC_AUTH_URL);
   };
 
-  const openUpdateProfileModal = () => {
-    overlay.open(({ isOpen, close }) => (
-      <UpdateProfileModal isOpen={isOpen} onClose={close} />
-    ));
-  };
   const handleLogout = () => {
     localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
     setIsLogin(false);
@@ -36,6 +32,20 @@ const LoginBox = () => {
   const handleGoWanted = () => {
     window.open('https://www.wanted.co.kr');
   };
+
+  const openUpdateProfileModal = useCallback(() => {
+    overlay.open(({ isOpen, close }) => (
+      <UpdateProfileModal isOpen={isOpen} onClose={close} />
+    ));
+  }, [overlay]);
+
+  useEffect(() => {
+    if (userInformation.isGraduate) {
+      if (userInformation.company === undefined) {
+        openUpdateProfileModal();
+      }
+    }
+  }, [openUpdateProfileModal, userInformation.company, userInformation.isGraduate]);
 
   return (
     <Box
