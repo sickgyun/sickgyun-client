@@ -3,7 +3,7 @@ import { Box, Button, Center, Flex, Text, Text as TextButton } from '@chakra-ui/
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
-import ProfileSettingModal from '../ProfileSettingModal/page';
+import UpdateProfileModal from '../UpdateProfileModal';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { isLoginState, useUserInformation } from '@/store/UserInformation';
 
@@ -18,9 +18,9 @@ const LoginBox = () => {
     router.replace(process.env.NEXT_PUBLIC_AUTH_URL);
   };
 
-  const openProfileSettingModal = () => {
+  const openUpdateProfileModal = () => {
     overlay.open(({ isOpen, close }) => (
-      <ProfileSettingModal isOpen={isOpen} onClose={close} />
+      <UpdateProfileModal isOpen={isOpen} onClose={close} />
     ));
   };
   const handleLogout = () => {
@@ -59,7 +59,7 @@ const LoginBox = () => {
                 </Text>
               </Flex>
               <SettingsIcon
-                onClick={openProfileSettingModal}
+                onClick={openUpdateProfileModal}
                 color="gray.500"
                 _hover={{ cursor: 'pointer' }}
               />
