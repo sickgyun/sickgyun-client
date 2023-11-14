@@ -2,11 +2,7 @@
 
 import { ChakraProvider, QueryClientProvider } from '@/providers';
 
-type RootLayoutProps = {
-  children: React.ReactNode;
-};
-
-const RootLayout = ({ children }: RootLayoutProps) => {
+const RootLayout = ({ children }: StrictPropsWithChildren) => {
   return (
     <html lang="en">
       <body>
