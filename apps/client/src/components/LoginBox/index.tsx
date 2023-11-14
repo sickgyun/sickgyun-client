@@ -1,28 +1,18 @@
-import { SettingsIcon } from '@chakra-ui/icons';
 import { Box, Button, Center, Flex, Text, Text as TextButton } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
 import UpdateProfileModal from '../UpdateProfileModal';
-import { LOCAL_STORAGE_KEY } from '@/constants/storage';
-import { isLoginState, useUserInformation } from '@/store/UserInformation';
+import { useUserInformation } from '@/store/UserInformation';
 
 const LoginBox = () => {
   const router = useRouter();
   const overlay = useOverlay();
-  const setIsLogin = useSetRecoilState(isLoginState);
   const { isLogin, userInformation } = useUserInformation();
 
   const handleLogin = () => {
     if (!process.env.NEXT_PUBLIC_AUTH_URL) return;
     router.replace(process.env.NEXT_PUBLIC_AUTH_URL);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
-    setIsLogin(false);
-    router.push('/');
   };
 
   const handleGoJumpit = () => {
@@ -59,20 +49,13 @@ const LoginBox = () => {
       {isLogin ? (
         <Flex flexDirection="column" gap="24px" width="100%" height="100%">
           <Flex flexDirection="column" gap="6px">
-            <Flex alignItems="center" justifyContent="space-between">
-              <Flex alignItems="center" gap="2px">
-                <Text as="span" fontSize="12px" color="gray.500">
-                  {userInformation.cardinal}기
-                </Text>
-                <Text as="span" fontSize="12px" color="gray.500">
-                  {userInformation.isGraduate ? '졸업생' : '학생'}
-                </Text>
-              </Flex>
-              <SettingsIcon
-                onClick={openUpdateProfileModal}
-                color="gray.500"
-                _hover={{ cursor: 'pointer' }}
-              />
+            <Flex alignItems="center" gap="2px">
+              <Text as="span" fontSize="12px" color="gray.500">
+                {userInformation.cardinal}기
+              </Text>
+              <Text as="span" fontSize="12px" color="gray.500">
+                {userInformation.isGraduate ? '졸업생' : '학생'}
+              </Text>
             </Flex>
             <Flex alignItems="center" gap="8px">
               <Flex alignItems="center" gap="4px">
@@ -84,12 +67,12 @@ const LoginBox = () => {
                 </Text>
               </Flex>
               <TextButton
-                onClick={handleLogout}
+                onClick={openUpdateProfileModal}
                 fontSize="16px"
                 color="gray.500"
                 _hover={{ cursor: 'pointer' }}
               >
-                로그아웃
+                설정
               </TextButton>
             </Flex>
             <Text fontSize="16px" color="gray.500">
