@@ -5,7 +5,9 @@ import { useRouter } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 import SeniorCard from '@/components/SeniorCard';
+import SeniorRegisterButton from '@/components/SeniorRegisterButton';
 import { POSITION_LIST } from '@/constants/common';
+import { useUserInformation } from '@/store/UserInformation';
 import type { Position } from '@/types';
 
 type SeniorPageProps = {
@@ -14,6 +16,7 @@ type SeniorPageProps = {
 
 const SeniorPage = ({ params }: SeniorPageProps) => {
   const router = useRouter();
+  const { userInformation } = useUserInformation();
 
   return (
     <>
@@ -52,6 +55,7 @@ const SeniorPage = ({ params }: SeniorPageProps) => {
         </Box>
       </Box>
       <Footer />
+      {userInformation.isGraduate && <SeniorRegisterButton />}
     </>
   );
 };
