@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { post } from '@/libs/api/client';
 
 type LoginBsmMutationResponse = {
-  message?: string;
+  message: string;
   data: {
     accessToken: string;
     isGraduate: 'STUDENT' | 'GRADUATE';

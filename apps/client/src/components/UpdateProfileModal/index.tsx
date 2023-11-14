@@ -13,12 +13,13 @@ import {
 } from '@chakra-ui/react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import { useUpdateProfileMutation } from '@/hooks/api/user/useUpdateProfileMutation';
 import { useUserInformation } from '@/store/UserInformation';
 
 type UpdateProfileFormInput = {
   email: string;
   githubId: string;
-  company?: string;
+  company: string;
 };
 
 type UpdateProfileModalProps = {
@@ -31,8 +32,13 @@ const UpdateProfileModal = ({ isOpen, onClose }: UpdateProfileModalProps) => {
   const { register, handleSubmit: handleUpdateProfileSubmit } =
     useForm<UpdateProfileFormInput>();
 
+  const { mutate: updateProfileMutate } = useUpdateProfileMutation();
+
   const onUpdateProfileSubmit: SubmitHandler<UpdateProfileFormInput> = (data) => {
-    console.log(data);
+    const { email, githubId, company } = data;
+
+    updateProfileMutate({ email, githubId, company });
+    onClose();
   };
 
   return (
