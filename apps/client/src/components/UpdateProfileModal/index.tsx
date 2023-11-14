@@ -21,10 +21,7 @@ type UpdateProfileFormInput = {
   githubId: string;
 };
 
-type UpdateProfileModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-};
+type UpdateProfileModalProps = ModalProps;
 
 const UpdateProfileModal = ({ isOpen, onClose }: UpdateProfileModalProps) => {
   const { userInformation } = useUserInformation();
@@ -45,7 +42,7 @@ const UpdateProfileModal = ({ isOpen, onClose }: UpdateProfileModalProps) => {
       <ModalOverlay />
       <ModalContent as="form" onSubmit={handleUpdateProfileSubmit(onUpdateProfileSubmit)}>
         <ModalHeader>
-          <Text>프로필 설정</Text>
+          <Text as="span">프로필 설정</Text>
           <ModalCloseButton />
         </ModalHeader>
         <ModalBody>
