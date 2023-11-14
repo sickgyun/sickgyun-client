@@ -56,6 +56,9 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^5.7.2
         version: 5.7.2(@tanstack/react-query@5.7.2)(react-dom@18.2.0)(react@18.2.0)
+      framer-motion:
+        specifier: ^10.16.4
+        version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
       next:
         specifier: 14.0.2
         version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
