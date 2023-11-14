@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Grid, Image, Link } from '@chakra-ui/react';
+import { Box, Button, Grid, Image } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
@@ -30,13 +30,16 @@ const SeniorPage = ({ params }: SeniorPageProps) => {
           />
           <Box display="flex" alignItems="center" gap="16px" marginBottom="48px">
             {POSITION_LIST.map((position) => (
-              <Link
+              <Button
                 onClick={() => router.push(`/senior/${position}`)}
+                variant="ghost"
+                fontWeight="medium"
+                backgroundColor="white"
                 color={decodeURI(params.position) === position ? 'primary' : 'gray.700'}
-                _hover={{ color: 'primary' }}
+                _hover={{ color: 'primary', backgroundColor: 'gray.100' }}
               >
                 {position}
-              </Link>
+              </Button>
             ))}
           </Box>
           <Grid templateColumns="repeat(2, 1fr)" gap="32px">
