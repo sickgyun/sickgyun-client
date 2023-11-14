@@ -12,13 +12,11 @@ const MouCompanyCard = () => {
       alignItems="center"
       gap="12px"
       padding="16px"
+      borderRadius="8px"
       transition="all 0.25s ease"
-      borderBottom="1px solid"
-      borderColor="gray.50"
       _hover={{
         backgroundColor: 'gray.50',
         cursor: 'pointer',
-        borderRadius: '8px',
       }}
       height="80px"
     >
