@@ -44,7 +44,7 @@ const UpdateProfileModal = ({ isOpen, onClose }: UpdateProfileModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent onSubmit={handleUpdateProfileSubmit(onUpdateProfileSubmit)} as="form">
+      <ModalContent as="form" onSubmit={handleUpdateProfileSubmit(onUpdateProfileSubmit)}>
         <ModalHeader>
           <Text>프로필 설정</Text>
           <ModalCloseButton />
