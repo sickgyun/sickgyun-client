@@ -61,7 +61,7 @@ const SeniorCard = ({
             )}
             {company && (
               <Flex gap="6px" alignItems="center">
-                <Image src="/assets/company.svg" height="16px" alt="Company Icon" />
+                <Image src="/assets/company.svg" height="16px" alt="Company" />
                 <Text fontSize="14px" color="gray.600">
                   {company}
                 </Text>

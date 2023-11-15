@@ -39,6 +39,9 @@ const MainPage = () => {
               {POSITION_LIST.map((position) => (
                 <Center
                   onClick={() => router.push(`/senior?position=${position.queryParams}`)}
+                  display="flex"
+                  flexDirection="column"
+                  gap="12px"
                   transition="all 0.25s ease"
                   borderRadius="8px"
                   width="200px"
@@ -48,7 +51,14 @@ const MainPage = () => {
                     cursor: 'pointer',
                   }}
                 >
-                  {position.name}
+                  <Image
+                    src={`/assets/position/${position.queryParams}.png`}
+                    height="48px"
+                    alt="Position"
+                  />
+                  <Text fontSize="16px" fontWeight="semibold">
+                    {position.name}
+                  </Text>
                 </Center>
               ))}
             </Box>
@@ -74,7 +84,7 @@ const MainPage = () => {
                 🏢 부산소프트웨어마이스터고등학교의 협약 회사를 알아보러 가세요!
               </Text>
               <Flex alignItems="center">
-                <Text fontSize="14px" color="gray.700">
+                <Text fontSize="12px" color="gray.700">
                   협약 회사 알아보러가기
                 </Text>
                 <ChevronRightIcon color="gray.700" />
