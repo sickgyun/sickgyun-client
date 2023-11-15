@@ -32,7 +32,7 @@ const MainPage = () => {
           {/* 직군별 리스트 */}
           <Flex flexDirection="column" gap="18px">
             <Text
-              onClick={() => router.push('/senior/전체')}
+              onClick={() => router.push('/senior?position=all')}
               fontSize="20px"
               fontWeight="bold"
               _hover={{ cursor: 'pointer' }}
@@ -42,7 +42,7 @@ const MainPage = () => {
             <Box display="flex" justifyContent="space-between" marginBottom="64px">
               {POSITION_LIST.map((position) => (
                 <Center
-                  onClick={() => router.push(`/senior/${position}`)}
+                  onClick={() => router.push(`/senior?position=${position.queryParams}`)}
                   transition="all 0.25s ease"
                   borderRadius="8px"
                   width="200px"
@@ -52,7 +52,7 @@ const MainPage = () => {
                     cursor: 'pointer',
                   }}
                 >
-                  {position}
+                  {position.name}
                 </Center>
               ))}
             </Box>
