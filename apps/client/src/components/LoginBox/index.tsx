@@ -1,4 +1,12 @@
-import { Box, Button, Center, Flex, Text, Text as TextButton } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Image,
+  Text,
+  Text as TextButton,
+} from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
@@ -59,8 +67,10 @@ const LoginBox = () => {
             </Flex>
             <Flex alignItems="center" gap="8px">
               <Flex alignItems="center" gap="4px">
-                <Text fontSize="18px">{userInformation.name}님</Text>
-                <Text fontSize="18px">
+                <Text fontSize="18px" fontWeight="medium">
+                  {userInformation.name}님
+                </Text>
+                <Text fontSize="18px" fontWeight="medium">
                   {userInformation.isGraduate ? '알려주셔야죠?' : '취업하셔야죠?'}
                 </Text>
               </Flex>
@@ -80,25 +90,41 @@ const LoginBox = () => {
           <Flex alignItems="center" justifyContent="space-between">
             <Center
               onClick={handleGoJumpit}
-              padding="16px"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              gap="6px"
+              padding="12px"
               border="1px solid"
               borderColor="gray.200"
-              _hover={{ cursor: 'pointer' }}
+              borderRadius="8px"
+              _hover={{ cursor: 'pointer', color: 'primary' }}
               width="48%"
-              height="60px"
+              height="79px"
             >
-              점핏 바로가기
+              <Image src="/assets/jumpit.png" height="24px" alt="Jumpit" />
+              <Text fontSize="14px" fontWeight="medium">
+                점핏 바로가기
+              </Text>
             </Center>
             <Center
               onClick={handleGoWanted}
-              padding="16px"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              gap="6px"
+              padding="12px"
               border="1px solid"
               borderColor="gray.200"
-              _hover={{ cursor: 'pointer' }}
+              borderRadius="8px"
+              _hover={{ cursor: 'pointer', color: 'primary' }}
               width="48%"
-              height="60px"
+              height="79px"
             >
-              원티드 바로가기
+              <Image src="/assets/wanted.png" height="24px" alt="Wanted" />
+              <Text fontSize="14px" fontWeight="medium">
+                원티드 바로가기
+              </Text>
             </Center>
           </Flex>
         </Flex>
@@ -106,8 +132,12 @@ const LoginBox = () => {
         <Flex alignItems="center" width="100%" height="100%">
           <Flex flexDirection="column" gap="48px" width="100%">
             <Box>
-              <Text fontSize="20px">로그인하고</Text>
-              <Text fontSize="20px">다양한 정보를 얻어보세요.</Text>
+              <Text fontSize="20px" fontWeight="medium">
+                로그인하고
+              </Text>
+              <Text fontSize="20px" fontWeight="medium">
+                다양한 취업 정보를 얻어봐요!
+              </Text>
             </Box>
             <Button onClick={handleLogin} width="100%">
               로그인
