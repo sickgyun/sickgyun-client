@@ -7,6 +7,7 @@ import { Storage } from '@/libs/localStorage/storage';
 import { userInformationState } from '@/store/UserInformation/userInformationState';
 
 export type UserInformationData = {
+  id: number;
   githubId: string;
   email: string;
   profileUrl: string;

@@ -12,14 +12,58 @@ import {
   Select,
   Text,
 } from '@chakra-ui/react';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { useRegisterSeniorMutation } from '@/hooks/api/senior/useRegisterSeniorMutation';
+import { useUserInformation } from '@/store/UserInformation';
+
+type SeniorRegisterFormInput = {
+  githubId: string;
+  email: string;
+  bio: string;
+  position: string;
+  company: string;
+};
 
 type SeniorRegisterModalProps = ModalProps;
 
 const SeniorRegisterModal = ({ isOpen, onClose }: SeniorRegisterModalProps) => {
+  const { userInformation } = useUserInformation();
+  const { register, handleSubmit: handleRegisterSeniorSubmit } =
+    useForm<SeniorRegisterFormInput>();
+
+  const { mutate: registerSeniorMutate } = useRegisterSeniorMutation();
+
+  const onRegisterSeniorSubmit: SubmitHandler<SeniorRegisterFormInput> = (data) => {
+    const registerSeniorRequstData = {
+      id: userInformation.id,
+      profileUrl: userInformation.profileUrl,
+      name: userInformation.name,
+      cardinal: userInformation.cardinal,
+      isGraduate: userInformation.isGraduate,
+      bio: data.bio,
+      githubId: data.githubId,
+      email: data.email,
+      position: data.position,
+      company: data.company,
+    };
+
+    if (registerSeniorRequstData.isGraduate === false) {
+      alert('졸업생이 아닙니다.');
+      return;
+    }
+
+    registerSeniorMutate(registerSeniorRequstData);
+    onClose();
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent
+        as="form"
+        onSubmit={handleRegisterSeniorSubmit(onRegisterSeniorSubmit)}
+      >
         <ModalHeader>
           <Text as="span">선배 프로필 등록</Text>
           <ModalCloseButton />
@@ -27,23 +71,35 @@ const SeniorRegisterModal = ({ isOpen, onClose }: SeniorRegisterModalProps) => {
         <ModalBody>
           <Flex flexDirection="column" gap="16px">
             <Flex gap="8px">
-              <Input placeholder="이름을 입력해주세요." />
-              <Input placeholder="깃허브 아이디를 입력해주세요." />
+              <Input
+                value={userInformation.name}
+                placeholder="이름을 입력해주세요."
+                disabled
+              />
+              <Input
+                defaultValue={userInformation.githubId}
+                placeholder="깃허브 아이디를 입력해주세요."
+                {...register('githubId')}
+              />
             </Flex>
-            <Input placeholder="이메일을 적어주세요." />
-            <Input placeholder="소개 말을 적어주세요." />
-            <Select size="md">
-              <option value="프론트엔드">프론트엔드</option>
-              <option value="백엔드">백엔드</option>
-              <option value="데브옵스">데브옵스</option>
-              <option value="앱">앱</option>
-              <option value="디자이너">디자이너</option>
+            <Input
+              defaultValue={userInformation.email}
+              placeholder="이메일을 적어주세요."
+              {...register('email')}
+            />
+            <Input placeholder="소개 말을 적어주세요." {...register('bio')} />
+            <Select size="md" {...register('position')}>
+              <option value="FRONTEND">프론트엔드</option>
+              <option value="BACKEND">백엔드</option>
+              <option value="DEVOPS">데브옵스</option>
+              <option value="APP">앱</option>
+              <option value="DESIGNER">디자이너</option>
             </Select>
-            <Input placeholder="회사명을 입력해주세요." />
+            <Input placeholder="회사명을 입력해주세요." {...register('company')} />
           </Flex>
         </ModalBody>
         <ModalFooter>
-          <Button>등록</Button>
+          <Button type="submit">등록</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
