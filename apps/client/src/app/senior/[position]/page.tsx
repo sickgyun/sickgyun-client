@@ -9,6 +9,7 @@ import SeniorCard from '@/components/SeniorCard';
 import SeniorRegisterButton from '@/components/SeniorRegisterButton';
 import SeniorRegisterModal from '@/components/SeniorRegisterModal';
 import { POSITION_LIST } from '@/constants/common';
+import { useGetSeniorList } from '@/hooks/api/senior/useGetSeniorList';
 import { useUserInformation } from '@/store/UserInformation';
 import type { Position } from '@/types';
 
@@ -20,6 +21,7 @@ const SeniorPage = ({ params }: SeniorPageProps) => {
   const router = useRouter();
   const overlay = useOverlay();
   const { userInformation } = useUserInformation();
+  const { seniorList } = useGetSeniorList();
 
   const openSeniorRegisterModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -55,11 +57,17 @@ const SeniorPage = ({ params }: SeniorPageProps) => {
             ))}
           </Box>
           <Grid templateColumns="repeat(2, 1fr)" gap="32px">
-            {Array(10)
-              .fill('')
-              .map(() => (
-                <SeniorCard />
-              ))}
+            {seniorList.map((senior) => (
+              <SeniorCard
+                id={senior.id}
+                name={senior.name}
+                profileUrl={senior.profileUrl}
+                cardinal={senior.cardinal}
+                position={senior.position}
+                bio={senior.bio}
+                company={senior.company}
+              />
+            ))}
           </Grid>
         </Box>
       </Box>

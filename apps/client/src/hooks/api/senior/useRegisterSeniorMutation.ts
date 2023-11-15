@@ -4,7 +4,7 @@ import { post } from '@/libs/api/client';
 type RegisterSeniorMutationRequest = {
   id: number;
   name: string;
-  profileUrl: string;
+  profileUrl?: string;
   bio?: string;
   email?: string;
   cardinal: number;

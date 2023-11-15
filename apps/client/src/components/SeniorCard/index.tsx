@@ -1,6 +1,29 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import { getUserProfileImage } from '@/utils/common';
 
-const SeniorCard = () => {
+type SeniorCardProps = {
+  id: number;
+  name: string;
+  profileUrl?: string;
+  cardinal: number;
+  position: string;
+  bio?: string;
+  company?: string;
+};
+
+const SeniorCard = ({
+  id,
+  name,
+  cardinal,
+  profileUrl,
+  position,
+  bio,
+  company,
+}: SeniorCardProps) => {
+  console.log(id);
+
+  const profileImage = getUserProfileImage(profileUrl);
+
   return (
     <Box
       transition="all 0.25s ease"
@@ -13,38 +36,37 @@ const SeniorCard = () => {
       height="120px"
     >
       <Flex gap="24px" alignItems="center" height="100%">
-        <Image
-          src="/assets/mock_senior.jpeg"
-          borderRadius="8px"
-          height="100%"
-          alt="Senior Profile"
-        />
+        <Image src={profileImage} borderRadius="8px" height="100%" alt="Senior Profile" />
         <Flex flexDirection="column" justifyContent="flex-start" height="100%">
           <Flex flexDirection="column" gap="4px">
             <Flex alignItems="center" gap="6px">
               <Text fontSize="18px" fontWeight="semibold">
-                김석진
+                {name}
               </Text>
               <Text fontSize="12px" color="gray.600" fontWeight="medium">
-                2기 • 프론트엔드
+                {cardinal}기 • {position}
               </Text>
             </Flex>
-            <Text
-              maxWidth="95%"
-              overflow="hidden"
-              textOverflow="ellipsis"
-              whiteSpace="nowrap"
-              color="gray.600"
-              fontSize="14px"
-            >
-              즐거움을 토대로 토대를 만드는 도리"토스"를 좋아하는 개발자
-            </Text>
-            <Flex gap="6px" alignItems="center">
-              <Image src="/assets/company.svg" height="16px" alt="Company Icon" />
-              <Text fontSize="14px" color="gray.600">
-                토스페이먼츠
+            {bio && (
+              <Text
+                maxWidth="95%"
+                overflow="hidden"
+                textOverflow="ellipsis"
+                whiteSpace="nowrap"
+                color="gray.600"
+                fontSize="14px"
+              >
+                {bio}
               </Text>
-            </Flex>
+            )}
+            {company && (
+              <Flex gap="6px" alignItems="center">
+                <Image src="/assets/company.svg" height="16px" alt="Company Icon" />
+                <Text fontSize="14px" color="gray.600">
+                  {company}
+                </Text>
+              </Flex>
+            )}
           </Flex>
         </Flex>
       </Flex>

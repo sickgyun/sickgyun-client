@@ -10,7 +10,7 @@ export type UserInformationData = {
   id: number;
   githubId: string;
   email: string;
-  profileUrl: string;
+  profileUrl?: string;
   name: string;
   cardinal: number;
   company: string;
@@ -36,11 +36,11 @@ export const useGetUserInformation = () => {
   });
 
   useEffect(() => {
-    const { data: userInformation } = userInformationQuery;
+    const { data: userInformationQueryData } = userInformationQuery;
 
-    if (userInformation) {
-      if (userInformation.data) {
-        setUserInformation(userInformation.data);
+    if (userInformationQueryData) {
+      if (userInformationQueryData.data) {
+        setUserInformation(userInformationQueryData.data);
       }
     }
   }, [setUserInformation, userInformationQuery]);
