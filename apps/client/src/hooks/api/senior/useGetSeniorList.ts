@@ -19,21 +19,20 @@ export type SeniorListResponse = {
 
 export const SENIOR_LIST_QUERY_KEY = 'seniorList';
 
-export const useGetSeniorList = () => {
+export const useGetSeniorList = (positionQueryParams: string) => {
   const [seniorList, setSeniorList] = useState<SeniorData[]>([]);
 
   const seniorListQuery = useQuery<SeniorListResponse>({
-    queryKey: [SENIOR_LIST_QUERY_KEY],
-    queryFn: async () => await get<SeniorListResponse>('/senior'),
+    queryKey: [SENIOR_LIST_QUERY_KEY, positionQueryParams],
+    queryFn: async () =>
+      await get<SeniorListResponse>(`/senior?position=${positionQueryParams}`),
   });
 
   useEffect(() => {
     const { data: seniorListQueryData } = seniorListQuery;
 
     if (seniorListQueryData) {
-      if (seniorListQueryData) {
-        setSeniorList(seniorListQueryData.dataList);
-      }
+      setSeniorList(seniorListQueryData.dataList);
     }
   }, [setSeniorList, seniorList, seniorListQuery]);
 

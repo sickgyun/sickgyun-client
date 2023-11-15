@@ -2,7 +2,7 @@
 
 import { Box, Button, Grid, Image } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 import SeniorCard from '@/components/SeniorCard';
@@ -11,17 +11,20 @@ import SeniorRegisterModal from '@/components/SeniorRegisterModal';
 import { POSITION_LIST } from '@/constants/common';
 import { useGetSeniorList } from '@/hooks/api/senior/useGetSeniorList';
 import { useUserInformation } from '@/store/UserInformation';
-import type { Position } from '@/types';
 
-type SeniorPageProps = {
-  params: { position: Position };
-};
-
-const SeniorPage = ({ params }: SeniorPageProps) => {
+const SeniorPage = () => {
   const router = useRouter();
+  const params = useSearchParams();
   const overlay = useOverlay();
+
+  const positionQueryParams = params.get('position');
+
+  if (!positionQueryParams) {
+    throw new Error('잘못된 접근 방식입니다.');
+  }
+
   const { userInformation } = useUserInformation();
-  const { seniorList } = useGetSeniorList();
+  const { seniorList } = useGetSeniorList(positionQueryParams);
 
   const openSeniorRegisterModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -45,14 +48,16 @@ const SeniorPage = ({ params }: SeniorPageProps) => {
           <Box display="flex" alignItems="center" gap="8px" marginBottom="48px">
             {POSITION_LIST.map((position) => (
               <Button
-                onClick={() => router.push(`/senior/${position}`)}
+                onClick={() => router.replace(`/senior?position=${position.queryParams}`)}
                 variant="ghost"
                 fontWeight="medium"
                 backgroundColor="white"
-                color={decodeURI(params.position) === position ? 'primary' : 'gray.700'}
+                color={
+                  position.queryParams === positionQueryParams ? 'primary' : 'gray.700'
+                }
                 _hover={{ color: 'primary', backgroundColor: 'gray.100' }}
               >
-                {position}
+                {position.name}
               </Button>
             ))}
           </Box>
