@@ -31,7 +31,7 @@ const LoginBox = () => {
 
   useEffect(() => {
     if (userInformation.isGraduate) {
-      if (userInformation.company === undefined) {
+      if (!userInformation.company) {
         openProfileUpdateModal();
       }
     }
