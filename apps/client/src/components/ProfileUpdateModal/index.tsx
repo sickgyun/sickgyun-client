@@ -16,21 +16,21 @@ import { useForm } from 'react-hook-form';
 import { useUpdateProfileMutation } from '@/hooks/api/user/useUpdateProfileMutation';
 import { useUserInformation } from '@/store/UserInformation';
 
-type UpdateProfileFormInput = {
+type ProfileUpdateFormInput = {
   email: string;
   githubId: string;
 };
 
-type UpdateProfileModalProps = ModalProps;
+type ProfileUpdateModalProps = ModalProps;
 
-const UpdateProfileModal = ({ isOpen, onClose }: UpdateProfileModalProps) => {
+const ProfileUpdateModal = ({ isOpen, onClose }: ProfileUpdateModalProps) => {
   const { userInformation } = useUserInformation();
   const { register, handleSubmit: handleUpdateProfileSubmit } =
-    useForm<UpdateProfileFormInput>();
+    useForm<ProfileUpdateFormInput>();
 
   const { mutate: updateProfileMutate } = useUpdateProfileMutation();
 
-  const onUpdateProfileSubmit: SubmitHandler<UpdateProfileFormInput> = ({
+  const onUpdateProfileSubmit: SubmitHandler<ProfileUpdateFormInput> = ({
     email,
     githubId,
   }) => {
@@ -68,4 +68,4 @@ const UpdateProfileModal = ({ isOpen, onClose }: UpdateProfileModalProps) => {
   );
 };
 
-export default UpdateProfileModal;
+export default ProfileUpdateModal;

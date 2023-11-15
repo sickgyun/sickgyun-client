@@ -2,7 +2,7 @@ import { Box, Button, Center, Flex, Text, Text as TextButton } from '@chakra-ui/
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
-import UpdateProfileModal from '../UpdateProfileModal';
+import ProfileUpdateModal from '../ProfileUpdateModal';
 import { useUserInformation } from '@/store/UserInformation';
 
 const LoginBox = () => {
@@ -23,19 +23,19 @@ const LoginBox = () => {
     window.open('https://www.wanted.co.kr');
   };
 
-  const openUpdateProfileModal = useCallback(() => {
+  const openProfileUpdateModal = useCallback(() => {
     overlay.open(({ isOpen, close }) => (
-      <UpdateProfileModal isOpen={isOpen} onClose={close} />
+      <ProfileUpdateModal isOpen={isOpen} onClose={close} />
     ));
   }, [overlay]);
 
   useEffect(() => {
     if (userInformation.isGraduate) {
       if (userInformation.company === undefined) {
-        openUpdateProfileModal();
+        openProfileUpdateModal();
       }
     }
-  }, [openUpdateProfileModal, userInformation.company, userInformation.isGraduate]);
+  }, [openProfileUpdateModal, userInformation.company, userInformation.isGraduate]);
 
   return (
     <Box
@@ -65,7 +65,7 @@ const LoginBox = () => {
                 </Text>
               </Flex>
               <TextButton
-                onClick={openUpdateProfileModal}
+                onClick={openProfileUpdateModal}
                 fontSize="16px"
                 color="gray.500"
                 _hover={{ cursor: 'pointer' }}
