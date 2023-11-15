@@ -1,5 +1,5 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
-import { getUserProfileImage } from '@/utils/common';
+import { getUserProfileImage } from '@/utils/user';
 
 type SeniorCardProps = {
   id: number;
