@@ -30,9 +30,10 @@ const UpdateProfileModal = ({ isOpen, onClose }: UpdateProfileModalProps) => {
 
   const { mutate: updateProfileMutate } = useUpdateProfileMutation();
 
-  const onUpdateProfileSubmit: SubmitHandler<UpdateProfileFormInput> = (data) => {
-    const { email, githubId } = data;
-
+  const onUpdateProfileSubmit: SubmitHandler<UpdateProfileFormInput> = ({
+    email,
+    githubId,
+  }) => {
     updateProfileMutate({ email, githubId });
     onClose();
   };
