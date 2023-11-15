@@ -9,4 +9,4 @@ export const POSITION_LIST = [
   { queryParams: 'devops', name: '데브옵스' },
   { queryParams: 'app', name: '앱' },
   { queryParams: 'designer', name: '디자이너' },
-];
+] as const;
