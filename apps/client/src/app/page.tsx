@@ -1,5 +1,6 @@
 'use client';
 
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Box, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { Header } from '@/components/common';
@@ -31,13 +32,8 @@ const MainPage = () => {
           </Box>
           {/* 직군별 리스트 */}
           <Flex flexDirection="column" gap="18px">
-            <Text
-              onClick={() => router.push('/senior?position=all')}
-              fontSize="20px"
-              fontWeight="bold"
-              _hover={{ cursor: 'pointer' }}
-            >
-              # 직군별 선배
+            <Text fontSize="22px" fontWeight="bold">
+              포지션 별 선배
             </Text>
             <Box display="flex" justifyContent="space-between" marginBottom="64px">
               {POSITION_LIST.map((position) => (
@@ -58,15 +54,32 @@ const MainPage = () => {
             </Box>
           </Flex>
           {/* 협약 회사 목록 */}
-          <Box display="flex" flexDirection="column" gap="18px">
-            <Text
-              onClick={() => router.push('/mou-company')}
-              fontSize="20px"
-              fontWeight="bold"
-              _hover={{ cursor: 'pointer' }}
-            >
-              # 협약 회사
+          <Flex flexDirection="column" gap="18px">
+            <Text fontSize="22px" fontWeight="bold">
+              우리 학교 협약 회사가 궁금하다면?
             </Text>
+            <Box
+              onClick={() => router.push('/mou-company')}
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+              padding="0px 24px"
+              backgroundColor="gray.50"
+              borderRadius="8px"
+              _hover={{ cursor: 'pointer' }}
+              width="100%"
+              height="56px"
+            >
+              <Text fontSize="14px" fontWeight="semibold">
+                🏢 부산소프트웨어마이스터고등학교의 협약 회사를 알아보러 가세요!
+              </Text>
+              <Flex alignItems="center">
+                <Text fontSize="14px" color="gray.700">
+                  협약 회사 알아보러가기
+                </Text>
+                <ChevronRightIcon color="gray.700" />
+              </Flex>
+            </Box>
             <Grid templateColumns="repeat(3, 2fr)" gap="16px">
               {Array(6)
                 .fill('')
@@ -74,7 +87,7 @@ const MainPage = () => {
                   <MouCompanyCard />
                 ))}
             </Grid>
-          </Box>
+          </Flex>
         </Box>
       </Box>
       <Footer />
