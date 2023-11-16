@@ -3,7 +3,6 @@ import { getUserProfileImage } from '@/utils/user';
 
 type SeniorCardProps = {
   onClick: () => void;
-  id: number;
   name: string;
   profileUrl?: string;
   cardinal: number;
@@ -14,7 +13,6 @@ type SeniorCardProps = {
 
 const SeniorCard = ({
   onClick,
-  id,
   name,
   cardinal,
   profileUrl,
@@ -22,8 +20,6 @@ const SeniorCard = ({
   bio,
   company,
 }: SeniorCardProps) => {
-  console.log(id);
-
   const profileImage = getUserProfileImage(profileUrl);
 
   return (

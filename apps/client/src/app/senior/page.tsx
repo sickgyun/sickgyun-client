@@ -33,9 +33,9 @@ const SeniorPage = () => {
     ));
   };
 
-  const openSeniorDetailModal = () => {
+  const openSeniorDetailModal = (userCode: number) => {
     overlay.open(({ isOpen, close }) => (
-      <SeniorDetailModal isOpen={isOpen} onClose={close} />
+      <SeniorDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
     ));
   };
 
@@ -71,8 +71,7 @@ const SeniorPage = () => {
           <Grid templateColumns="repeat(2, 1fr)" gap="32px">
             {seniorList.map((senior) => (
               <SeniorCard
-                onClick={openSeniorDetailModal}
-                id={senior.id}
+                onClick={() => openSeniorDetailModal(senior.id)}
                 name={senior.name}
                 profileUrl={senior.profileUrl}
                 cardinal={senior.cardinal}
