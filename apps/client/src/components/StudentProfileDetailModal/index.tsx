@@ -12,27 +12,27 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
-import { useGetSeniorProfile } from '@/hooks/api/senior/useGetSeniorProfile';
+import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 import { getUserProfileImage } from '@/utils/user';
 
-type SeniorProfileDetailModalProps = {
+type StudentProfileDetailModalProps = {
   userCode: number;
 } & ModalProps;
 
-const SeniorProfileDetailModal = ({
+const StudentProfileDetailModal = ({
   isOpen,
   onClose,
   userCode,
-}: SeniorProfileDetailModalProps) => {
-  const { seniorProfile } = useGetSeniorProfile(userCode);
+}: StudentProfileDetailModalProps) => {
+  const { studentProfile } = useGetStudentProfile(userCode);
 
-  const profileImage = getUserProfileImage(seniorProfile.profileUrl);
+  const profileImage = getUserProfileImage(studentProfile.profileUrl);
 
-  const handleGoSeniorGithub = (githubId?: string) => {
+  const handleGoGithub = (githubId?: string) => {
     window.open(`https://github.com/${githubId}`);
   };
 
-  const handleGoSeniorEmail = (email?: string) => {
+  const handleGoEmail = (email?: string) => {
     window.open(`mailto: ${email}`);
   };
 
@@ -51,18 +51,18 @@ const SeniorProfileDetailModal = ({
                 src={profileImage}
                 borderRadius="8px"
                 height="100%"
-                alt="Senior Profile"
+                alt="Student Profile"
               />
               <Flex flexDirection="column" gap="4px">
                 <Flex alignItems="center" gap="6px">
                   <Text fontSize="20px" fontWeight="semibold">
-                    {seniorProfile.name}
+                    {studentProfile.name}
                   </Text>
                   <Text fontSize="14px" color="gray.600" fontWeight="medium">
-                    {seniorProfile.cardinal} • {seniorProfile.position}
+                    {studentProfile.cardinal} • {studentProfile.position}
                   </Text>
                 </Flex>
-                {seniorProfile.bio && (
+                {studentProfile.bio && (
                   <Text
                     maxWidth="95%"
                     overflow="hidden"
@@ -71,10 +71,10 @@ const SeniorProfileDetailModal = ({
                     color="gray.600"
                     fontSize="14px"
                   >
-                    {seniorProfile.bio}
+                    {studentProfile.bio}
                   </Text>
                 )}
-                {seniorProfile.company && (
+                {studentProfile.company && (
                   <Flex gap="6px" alignItems="center">
                     <Image src="/assets/company.svg" height="16px" alt="Company" />
                     <Text fontSize="14px" color="gray.600">
@@ -86,9 +86,9 @@ const SeniorProfileDetailModal = ({
             </Flex>
             <Flex flexDirection="column" gap="16px">
               {/* 깃허브 */}
-              {seniorProfile.githubId && (
+              {studentProfile.githubId && (
                 <Box
-                  onClick={() => handleGoSeniorGithub(seniorProfile.githubId)}
+                  onClick={() => handleGoGithub(studentProfile.githubId)}
                   display="flex"
                   alignItems="center"
                   justifyContent="space-between"
@@ -111,9 +111,9 @@ const SeniorProfileDetailModal = ({
                 </Box>
               )}
               {/* 이메일 */}
-              {seniorProfile.email && (
+              {studentProfile.email && (
                 <Box
-                  onClick={() => handleGoSeniorEmail(seniorProfile.email)}
+                  onClick={() => handleGoEmail(studentProfile.email)}
                   display="flex"
                   alignItems="center"
                   justifyContent="space-between"
@@ -144,4 +144,4 @@ const SeniorProfileDetailModal = ({
   );
 };
 
-export default SeniorProfileDetailModal;
+export default StudentProfileDetailModal;

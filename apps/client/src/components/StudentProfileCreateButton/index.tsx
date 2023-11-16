@@ -1,11 +1,11 @@
 import { AddIcon } from '@chakra-ui/icons';
 import { Box, Text } from '@chakra-ui/react';
 
-type SeniorProfileRegisterButtonProps = {
+type StudentProfileCreateButtonProps = {
   onClick: () => void;
 };
 
-const SeniorProfileRegisterButton = ({ onClick }: SeniorProfileRegisterButtonProps) => {
+const StudentProfileCreateButton = ({ onClick }: StudentProfileCreateButtonProps) => {
   return (
     <Box
       onClick={onClick}
@@ -31,4 +31,4 @@ const SeniorProfileRegisterButton = ({ onClick }: SeniorProfileRegisterButtonPro
   );
 };
 
-export default SeniorProfileRegisterButton;
+export default StudentProfileCreateButton;

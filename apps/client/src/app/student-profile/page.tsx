@@ -5,14 +5,14 @@ import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
-import SeniorProfileCard from '@/components/SeniorProfileCard';
-import SeniorProfileDetailModal from '@/components/SeniorProfileDetailModal';
-import SeniorProfileRegisterButton from '@/components/SeniorProfileRegisterButton';
-import SeniorProfileRegisterModal from '@/components/SeniorProfileRegisterModal';
+import StudentProfileCard from '@/components/StudentProfileCard';
+import StudentProfileCreateButton from '@/components/StudentProfileCreateButton';
+import StudentProfileCreateModal from '@/components/StudentProfileCreateModal';
+import StudentProfileDetailModal from '@/components/StudentProfileDetailModal';
 import { POSITION_LIST } from '@/constants/common';
-import { useGetSeniorProfileList } from '@/hooks/api/senior/useGetSeniorProfileList';
+import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
 
-const SeniorPage = () => {
+const StudentProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const overlay = useOverlay();
@@ -23,17 +23,17 @@ const SeniorPage = () => {
     throw new Error('잘못된 접근 방식입니다.');
   }
 
-  const { seniorProfileList } = useGetSeniorProfileList(positionQueryParams);
+  const { studentProfileList } = useGetStudentProfileList(positionQueryParams);
 
-  const openSeniorProfileRegisterModal = () => {
+  const openStudentProfileCreateModal = () => {
     overlay.open(({ isOpen, close }) => (
-      <SeniorProfileRegisterModal isOpen={isOpen} onClose={close} />
+      <StudentProfileCreateModal isOpen={isOpen} onClose={close} />
     ));
   };
 
-  const openSeniorProfileDetailModal = (userCode: number) => {
+  const openStudentProfileDetailModal = (userCode: number) => {
     overlay.open(({ isOpen, close }) => (
-      <SeniorProfileDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
+      <StudentProfileDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
     ));
   };
 
@@ -53,7 +53,9 @@ const SeniorPage = () => {
           <Box display="flex" alignItems="center" gap="8px" marginBottom="48px">
             {POSITION_LIST.map((position) => (
               <Button
-                onClick={() => router.replace(`/senior?position=${position.queryParams}`)}
+                onClick={() =>
+                  router.replace(`/student-profile?position=${position.queryParams}`)
+                }
                 variant="ghost"
                 fontWeight="medium"
                 backgroundColor="white"
@@ -67,24 +69,24 @@ const SeniorPage = () => {
             ))}
           </Box>
           <Grid templateColumns="repeat(2, 1fr)" gap="32px">
-            {seniorProfileList.map((seniorProfile) => (
-              <SeniorProfileCard
-                onClick={() => openSeniorProfileDetailModal(seniorProfile.userCode)}
-                name={seniorProfile.name}
-                profileUrl={seniorProfile.profileUrl}
-                cardinal={seniorProfile.cardinal}
-                position={seniorProfile.position}
-                bio={seniorProfile.bio}
-                company={seniorProfile.company}
+            {studentProfileList.map((studentProfile) => (
+              <StudentProfileCard
+                onClick={() => openStudentProfileDetailModal(studentProfile.userCode)}
+                name={studentProfile.name}
+                profileUrl={studentProfile.profileUrl}
+                cardinal={studentProfile.cardinal}
+                position={studentProfile.position}
+                bio={studentProfile.bio}
+                company={studentProfile.company}
               />
             ))}
           </Grid>
         </Box>
       </Box>
       <Footer />
-      <SeniorProfileRegisterButton onClick={openSeniorProfileRegisterModal} />
+      <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />
     </>
   );
 };
 
-export default SeniorPage;
+export default StudentProfilePage;
