@@ -14,10 +14,8 @@ import {
 } from '@chakra-ui/react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
-import { useUserInformation } from '@/store/UserInformation';
 
-type StudentProfileCreateFormInput = {
+type StudentProfileUpdateFormInput = {
   githubId?: string;
   email?: string;
   bio?: string;
@@ -25,35 +23,19 @@ type StudentProfileCreateFormInput = {
   company?: string;
 };
 
-type StudentProfileCreateModalProps = ModalProps;
+type StudentProfileUpdateModalProps = ModalProps;
 
-const StudentProfileCreateModal = ({
+const StudentProfileUpdateModal = ({
   isOpen,
   onClose,
-}: StudentProfileCreateModalProps) => {
-  const { userInformation } = useUserInformation();
-  const { register, handleSubmit: handleCreateStudentProfileSubmit } =
-    useForm<StudentProfileCreateFormInput>();
+}: StudentProfileUpdateModalProps) => {
+  const { register, handleSubmit: handleUpdateStudentProfileSubmit } =
+    useForm<StudentProfileUpdateFormInput>();
 
-  const { mutate: createStudentProfileMutate } = useCreateStudentProfileMutation();
-
-  const onCreateStudentProfileSubmit: SubmitHandler<StudentProfileCreateFormInput> = (
+  const onUpdateStudentProfileSubmit: SubmitHandler<StudentProfileUpdateFormInput> = (
     data
   ) => {
-    const createStudentProfileRequstData = {
-      userCode: userInformation.userCode,
-      profileUrl: userInformation.profileUrl,
-      name: userInformation.name,
-      cardinal: userInformation.cardinal,
-      isGraduate: userInformation.isGraduate,
-      bio: data.bio,
-      githubId: data.githubId,
-      email: data.email,
-      position: data.position,
-      company: data.company,
-    };
-
-    createStudentProfileMutate(createStudentProfileRequstData);
+    console.log(data);
     onClose();
   };
 
@@ -62,10 +44,10 @@ const StudentProfileCreateModal = ({
       <ModalOverlay />
       <ModalContent
         as="form"
-        onSubmit={handleCreateStudentProfileSubmit(onCreateStudentProfileSubmit)}
+        onSubmit={handleUpdateStudentProfileSubmit(onUpdateStudentProfileSubmit)}
       >
         <ModalHeader>
-          <Text as="span">선배 프로필 등록</Text>
+          <Text as="span">선배 프로필 수정</Text>
           <ModalCloseButton />
         </ModalHeader>
         <ModalBody>
@@ -101,6 +83,9 @@ const StudentProfileCreateModal = ({
           </Flex>
         </ModalBody>
         <ModalFooter>
+          <Button type="submit" color="red.700" variant="outline">
+            삭제
+          </Button>
           <Button type="submit">등록</Button>
         </ModalFooter>
       </ModalContent>
@@ -108,4 +93,4 @@ const StudentProfileCreateModal = ({
   );
 };
 
-export default StudentProfileCreateModal;
+export default StudentProfileUpdateModal;

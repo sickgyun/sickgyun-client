@@ -3,8 +3,8 @@
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Box, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 import LoginBox from '@/components/LoginBox';
 import MouCompanyCard from '@/components/MouCompanyCard';
 import { POSITION_LIST } from '@/constants/common';

@@ -3,12 +3,13 @@
 import { Box, Button, Grid, Image, Text } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 import StudentProfileCard from '@/components/StudentProfileCard';
 import StudentProfileCreateButton from '@/components/StudentProfileCreateButton';
 import StudentProfileCreateModal from '@/components/StudentProfileCreateModal';
 import StudentProfileDetailModal from '@/components/StudentProfileDetailModal';
+import StudentProfileUpdateModal from '@/components/StudentProfileUpdateModal';
 import { POSITION_LIST } from '@/constants/common';
 import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
 
@@ -34,6 +35,12 @@ const StudentProfilePage = () => {
   const openStudentProfileDetailModal = (userCode: number) => {
     overlay.open(({ isOpen, close }) => (
       <StudentProfileDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
+    ));
+  };
+
+  const openStudentProfileUpdateModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <StudentProfileUpdateModal isOpen={isOpen} onClose={close} />
     ));
   };
 
@@ -90,7 +97,7 @@ const StudentProfilePage = () => {
         </Box>
       </Box>
       <Footer />
-      <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />
+      <StudentProfileCreateButton onClick={openStudentProfileUpdateModal} />
     </>
   );
 };
