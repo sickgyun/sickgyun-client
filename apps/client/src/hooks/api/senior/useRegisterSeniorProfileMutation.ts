@@ -28,7 +28,7 @@ export const useRegisterSeniorProfileMutation = () => {
       registerSeniorProfileRequestData: RegisterSeniorProfileMutationRequest
     ) =>
       post<RegisterSeniorProfileMutationResponse>(
-        '/senior',
+        '/student/profile',
         registerSeniorProfileRequestData
       ),
     onSuccess: () => {

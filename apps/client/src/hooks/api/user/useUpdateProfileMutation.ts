@@ -20,7 +20,7 @@ export const useUpdateProfileMutation = () => {
     UpdateProfileMutationRequest
   >({
     mutationFn: ({ email, githubId }: UpdateProfileMutationRequest) =>
-      put<UpdateProfileMutationResponse>('/user/update', { email, githubId }),
+      put<UpdateProfileMutationResponse>('/user', { email, githubId }),
     onSuccess: () => {
       alert('프로필 업데이트 성공');
       queryClient.invalidateQueries({ queryKey: [USER_INFORMATION_QUERY_KEY] });

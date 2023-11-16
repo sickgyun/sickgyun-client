@@ -25,7 +25,9 @@ export const useGetSeniorProfileList = (positionQueryParams: string) => {
   const seniorProfileListQuery = useQuery<SeniorProfileListResponse>({
     queryKey: [SENIOR_PROFILE_LIST_QUERY_KEY, positionQueryParams],
     queryFn: async () =>
-      await get<SeniorProfileListResponse>(`/senior?position=${positionQueryParams}`),
+      await get<SeniorProfileListResponse>(
+        `/student/profile/?position=${positionQueryParams}`
+      ),
   });
 
   useEffect(() => {

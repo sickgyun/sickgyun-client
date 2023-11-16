@@ -34,7 +34,7 @@ export const useGetSeniorProfile = (userCode: number) => {
 
   const seniorProfileQuery = useQuery<SeniorProfileResponse>({
     queryKey: [SENIOR_PROFILE_QUERY_KEY, userCode],
-    queryFn: async () => await get<SeniorProfileResponse>(`/senior/${userCode}`),
+    queryFn: async () => await get<SeniorProfileResponse>(`/student/profile/${userCode}`),
   });
 
   useEffect(() => {

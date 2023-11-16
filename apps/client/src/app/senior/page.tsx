@@ -11,7 +11,6 @@ import SeniorProfileRegisterButton from '@/components/SeniorProfileRegisterButto
 import SeniorProfileRegisterModal from '@/components/SeniorProfileRegisterModal';
 import { POSITION_LIST } from '@/constants/common';
 import { useGetSeniorProfileList } from '@/hooks/api/senior/useGetSeniorProfileList';
-import { useUserInformation } from '@/store/UserInformation';
 
 const SeniorPage = () => {
   const router = useRouter();
@@ -24,7 +23,6 @@ const SeniorPage = () => {
     throw new Error('잘못된 접근 방식입니다.');
   }
 
-  const { userInformation } = useUserInformation();
   const { seniorProfileList } = useGetSeniorProfileList(positionQueryParams);
 
   const openSeniorProfileRegisterModal = () => {
@@ -84,9 +82,7 @@ const SeniorPage = () => {
         </Box>
       </Box>
       <Footer />
-      {userInformation.isGraduate && (
-        <SeniorProfileRegisterButton onClick={openSeniorProfileRegisterModal} />
-      )}
+      <SeniorProfileRegisterButton onClick={openSeniorProfileRegisterModal} />
     </>
   );
 };

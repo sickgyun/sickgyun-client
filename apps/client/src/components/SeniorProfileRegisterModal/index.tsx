@@ -53,11 +53,6 @@ const SeniorProfileRegisterModal = ({
       company: data.company,
     };
 
-    if (registerSeniorProfileRequstData.isGraduate === false) {
-      alert('졸업생이 아닙니다.');
-      return;
-    }
-
     registerSeniorProfileMutate(registerSeniorProfileRequstData);
     onClose();
   };
