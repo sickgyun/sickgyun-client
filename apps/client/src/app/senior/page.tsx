@@ -71,7 +71,7 @@ const SeniorPage = () => {
           <Grid templateColumns="repeat(2, 1fr)" gap="32px">
             {seniorList.map((senior) => (
               <SeniorCard
-                onClick={() => openSeniorDetailModal(senior.id)}
+                onClick={() => openSeniorDetailModal(senior.userCode)}
                 name={senior.name}
                 profileUrl={senior.profileUrl}
                 cardinal={senior.cardinal}

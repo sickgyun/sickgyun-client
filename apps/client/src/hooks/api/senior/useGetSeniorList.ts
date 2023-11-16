@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { get } from '@/libs/api/client';
 
 export type SeniorData = {
-  id: number;
+  userCode: number;
   name: string;
   bio?: string;
   profileUrl?: string;

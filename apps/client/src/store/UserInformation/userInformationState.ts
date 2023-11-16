@@ -4,7 +4,7 @@ import type { UserInformationData } from '@/hooks/api/user/useGetUserInformation
 export const userInformationState = atom<UserInformationData>({
   key: 'userInformationState',
   default: {
-    id: 0,
+    userCode: 0,
     email: '',
     githubId: '',
     profileUrl: '',

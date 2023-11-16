@@ -36,7 +36,7 @@ const SeniorRegisterModal = ({ isOpen, onClose }: SeniorRegisterModalProps) => {
 
   const onRegisterSeniorSubmit: SubmitHandler<SeniorRegisterFormInput> = (data) => {
     const registerSeniorRequstData = {
-      id: userInformation.id,
+      userCode: userInformation.userCode,
       profileUrl: userInformation.profileUrl,
       name: userInformation.name,
       cardinal: userInformation.cardinal,

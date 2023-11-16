@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { post } from '@/libs/api/client';
 
 type RegisterSeniorMutationRequest = {
-  id: number;
+  userCode: number;
   name: string;
   profileUrl?: string;
   bio?: string;
