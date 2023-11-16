@@ -10,7 +10,7 @@ import {
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
-import ProfileUpdateModal from '../ProfileUpdateModal';
+import UserInformationUpdateModal from '../UserInformationUpdateModal';
 import { useUserInformation } from '@/store/UserInformation';
 
 const LoginBox = () => {
@@ -31,19 +31,23 @@ const LoginBox = () => {
     window.open('https://www.wanted.co.kr');
   };
 
-  const openProfileUpdateModal = useCallback(() => {
+  const openUserInformationUpdateModal = useCallback(() => {
     overlay.open(({ isOpen, close }) => (
-      <ProfileUpdateModal isOpen={isOpen} onClose={close} />
+      <UserInformationUpdateModal isOpen={isOpen} onClose={close} />
     ));
   }, [overlay]);
 
   useEffect(() => {
     if (userInformation.isGraduate) {
       if (!userInformation.company) {
-        openProfileUpdateModal();
+        openUserInformationUpdateModal();
       }
     }
-  }, [openProfileUpdateModal, userInformation.company, userInformation.isGraduate]);
+  }, [
+    openUserInformationUpdateModal,
+    userInformation.company,
+    userInformation.isGraduate,
+  ]);
 
   return (
     <Box
@@ -75,7 +79,7 @@ const LoginBox = () => {
                 </Text>
               </Flex>
               <TextButton
-                onClick={openProfileUpdateModal}
+                onClick={openUserInformationUpdateModal}
                 fontSize="16px"
                 color="gray.500"
                 _hover={{ cursor: 'pointer' }}

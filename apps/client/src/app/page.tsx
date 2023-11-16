@@ -38,7 +38,9 @@ const MainPage = () => {
             <Box display="flex" justifyContent="space-between" marginBottom="64px">
               {POSITION_LIST.map((position) => (
                 <Center
-                  onClick={() => router.push(`/senior?position=${position.queryParams}`)}
+                  onClick={() =>
+                    router.push(`/student-profile?position=${position.queryParams}`)
+                  }
                   display="flex"
                   flexDirection="column"
                   gap="12px"

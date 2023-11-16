@@ -14,10 +14,10 @@ import {
 } from '@chakra-ui/react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useRegisterSeniorProfileMutation } from '@/hooks/api/senior/useRegisterSeniorProfileMutation';
+import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
 import { useUserInformation } from '@/store/UserInformation';
 
-type SeniorProfileRegisterFormInput = {
+type StudentProfileCreateFormInput = {
   githubId: string;
   email: string;
   bio: string;
@@ -25,22 +25,22 @@ type SeniorProfileRegisterFormInput = {
   company: string;
 };
 
-type SeniorProfileRegisterModalProps = ModalProps;
+type StudentProfileCreateModalProps = ModalProps;
 
-const SeniorProfileRegisterModal = ({
+const StudentProfileCreateModal = ({
   isOpen,
   onClose,
-}: SeniorProfileRegisterModalProps) => {
+}: StudentProfileCreateModalProps) => {
   const { userInformation } = useUserInformation();
-  const { register, handleSubmit: handleRegisterSeniorSubmit } =
-    useForm<SeniorProfileRegisterFormInput>();
+  const { register, handleSubmit: handleCreateStudentSubmit } =
+    useForm<StudentProfileCreateFormInput>();
 
-  const { mutate: registerSeniorProfileMutate } = useRegisterSeniorProfileMutation();
+  const { mutate: createStudentProfileMutate } = useCreateStudentProfileMutation();
 
-  const onRegisterSeniorProfileSubmit: SubmitHandler<SeniorProfileRegisterFormInput> = (
+  const onCreateStudentProfileSubmit: SubmitHandler<StudentProfileCreateFormInput> = (
     data
   ) => {
-    const registerSeniorProfileRequstData = {
+    const createStudentProfileRequstData = {
       userCode: userInformation.userCode,
       profileUrl: userInformation.profileUrl,
       name: userInformation.name,
@@ -53,12 +53,7 @@ const SeniorProfileRegisterModal = ({
       company: data.company,
     };
 
-    if (registerSeniorProfileRequstData.isGraduate === false) {
-      alert('졸업생이 아닙니다.');
-      return;
-    }
-
-    registerSeniorProfileMutate(registerSeniorProfileRequstData);
+    createStudentProfileMutate(createStudentProfileRequstData);
     onClose();
   };
 
@@ -67,7 +62,7 @@ const SeniorProfileRegisterModal = ({
       <ModalOverlay />
       <ModalContent
         as="form"
-        onSubmit={handleRegisterSeniorSubmit(onRegisterSeniorProfileSubmit)}
+        onSubmit={handleCreateStudentSubmit(onCreateStudentProfileSubmit)}
       >
         <ModalHeader>
           <Text as="span">선배 프로필 등록</Text>
@@ -111,4 +106,4 @@ const SeniorProfileRegisterModal = ({
   );
 };
 
-export default SeniorProfileRegisterModal;
+export default StudentProfileCreateModal;
