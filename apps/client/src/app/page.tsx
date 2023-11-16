@@ -33,7 +33,7 @@ const MainPage = () => {
           {/* 직군별 리스트 */}
           <Flex flexDirection="column" gap="18px">
             <Text fontSize="22px" fontWeight="bold">
-              포지션 별 선배
+              우리 학교에는 어떤 사람들이 있을까?
             </Text>
             <Box display="flex" justifyContent="space-between" marginBottom="64px">
               {POSITION_LIST.map((position) => (
