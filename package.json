@@ -5,7 +5,8 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "commit": "cz"
+    "commit": "cz",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
