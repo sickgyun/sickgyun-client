@@ -2,6 +2,7 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { getUserProfileImage } from '@/utils/user';
 
 type SeniorCardProps = {
+  onClick: () => void;
   id: number;
   name: string;
   profileUrl?: string;
@@ -12,6 +13,7 @@ type SeniorCardProps = {
 };
 
 const SeniorCard = ({
+  onClick,
   id,
   name,
   cardinal,
@@ -26,6 +28,7 @@ const SeniorCard = ({
 
   return (
     <Box
+      onClick={onClick}
       transition="all 0.25s ease"
       padding="16px"
       borderRadius="8px"
@@ -35,39 +38,37 @@ const SeniorCard = ({
       }}
       height="120px"
     >
-      <Flex gap="24px" alignItems="center" height="100%">
+      <Flex gap="24px" alignItems="flex-start" height="100%">
         <Image src={profileImage} borderRadius="8px" height="100%" alt="Senior Profile" />
-        <Flex flexDirection="column" justifyContent="flex-start" height="100%">
-          <Flex flexDirection="column" gap="4px">
-            <Flex alignItems="center" gap="6px">
-              <Text fontSize="18px" fontWeight="semibold">
-                {name}
-              </Text>
-              <Text fontSize="12px" color="gray.600" fontWeight="medium">
-                {cardinal}기 • {position}
+        <Flex flexDirection="column" gap="4px">
+          <Flex alignItems="center" gap="6px">
+            <Text fontSize="18px" fontWeight="semibold">
+              {name}
+            </Text>
+            <Text fontSize="12px" color="gray.600" fontWeight="medium">
+              {cardinal}기 • {position}
+            </Text>
+          </Flex>
+          {bio && (
+            <Text
+              maxWidth="95%"
+              overflow="hidden"
+              textOverflow="ellipsis"
+              whiteSpace="nowrap"
+              color="gray.600"
+              fontSize="14px"
+            >
+              {bio}
+            </Text>
+          )}
+          {company && (
+            <Flex gap="6px" alignItems="center">
+              <Image src="/assets/company.svg" height="16px" alt="Company" />
+              <Text fontSize="14px" color="gray.600">
+                {company}
               </Text>
             </Flex>
-            {bio && (
-              <Text
-                maxWidth="95%"
-                overflow="hidden"
-                textOverflow="ellipsis"
-                whiteSpace="nowrap"
-                color="gray.600"
-                fontSize="14px"
-              >
-                {bio}
-              </Text>
-            )}
-            {company && (
-              <Flex gap="6px" alignItems="center">
-                <Image src="/assets/company.svg" height="16px" alt="Company" />
-                <Text fontSize="14px" color="gray.600">
-                  {company}
-                </Text>
-              </Flex>
-            )}
-          </Flex>
+          )}
         </Flex>
       </Flex>
     </Box>
