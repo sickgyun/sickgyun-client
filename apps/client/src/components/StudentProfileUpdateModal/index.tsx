@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import { useDeleteStudentProfileMutation } from '@/hooks/api/student-profile/useDeleteStudentProfileMutation';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 import { useUpdateStudentProfileMutation } from '@/hooks/api/student-profile/useUpdateStudentProfileMutation';
 import { useUserInformation } from '@/store/UserInformation';
@@ -36,7 +37,9 @@ const StudentProfileUpdateModal = ({
   const { register, handleSubmit: handleUpdateStudentProfileSubmit } =
     useForm<StudentProfileUpdateFormInput>();
 
+  const { studentProfile } = useGetStudentProfile(userInformation.userCode);
   const { mutate: updateStudentProfileMutate } = useUpdateStudentProfileMutation();
+  const { mutate: deleteStudentProfileMutate } = useDeleteStudentProfileMutation();
 
   const onUpdateStudentProfileSubmit: SubmitHandler<StudentProfileUpdateFormInput> = (
     data
@@ -53,7 +56,10 @@ const StudentProfileUpdateModal = ({
     onClose();
   };
 
-  const { studentProfile } = useGetStudentProfile(userInformation.userCode);
+  const handleDeleteStudentProfile = () => {
+    deleteStudentProfileMutate();
+    onClose();
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
@@ -104,13 +110,7 @@ const StudentProfileUpdateModal = ({
         </ModalBody>
         <ModalFooter>
           <Flex gap="12px">
-            <Button
-              type="submit"
-              color="red.500"
-              borderColor="red.500"
-              variant="outline"
-              _hover={{ backgroundColor: 'red.500', color: 'white' }}
-            >
+            <Button onClick={handleDeleteStudentProfile} color="white" colorScheme="red">
               내 프로필 삭제
             </Button>
             <Button type="submit">수정</Button>
