@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button, Grid, Image } from '@chakra-ui/react';
+import { Box, Button, Grid, Image, Text } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/common';
@@ -68,19 +68,25 @@ const StudentProfilePage = () => {
               </Button>
             ))}
           </Box>
-          <Grid templateColumns="repeat(2, 1fr)" gap="32px">
-            {studentProfileList.map((studentProfile) => (
-              <StudentProfileCard
-                onClick={() => openStudentProfileDetailModal(studentProfile.userCode)}
-                name={studentProfile.name}
-                profileUrl={studentProfile.profileUrl}
-                cardinal={studentProfile.cardinal}
-                position={studentProfile.position}
-                bio={studentProfile.bio}
-                company={studentProfile.company}
-              />
-            ))}
-          </Grid>
+          {studentProfileList.length > 0 ? (
+            <Grid templateColumns="repeat(2, 1fr)" gap="32px">
+              {studentProfileList.map((studentProfile) => (
+                <StudentProfileCard
+                  onClick={() => openStudentProfileDetailModal(studentProfile.userCode)}
+                  name={studentProfile.name}
+                  profileUrl={studentProfile.profileUrl}
+                  cardinal={studentProfile.cardinal}
+                  position={studentProfile.position}
+                  bio={studentProfile.bio}
+                  company={studentProfile.company}
+                />
+              ))}
+            </Grid>
+          ) : (
+            <Text fontSize="20px" fontWeight="semibold">
+              앗! 해당 분야의 학생이 없어요..
+            </Text>
+          )}
         </Box>
       </Box>
       <Footer />

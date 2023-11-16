@@ -89,7 +89,7 @@ const StudentProfileDetailModal = ({
                   borderRadius="8px"
                   _hover={{ cursor: 'pointer' }}
                   width="100%"
-                  min-height="56px"
+                  minHeight="56px"
                 >
                   <Text color="gray.600" fontSize="14px">
                     {studentProfile.bio}
