@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { getUserProfileImage } from '@/utils/user';
 
-type SeniorCardProps = {
+type SeniorProfileCardProps = {
   onClick: () => void;
   name: string;
   profileUrl?: string;
@@ -11,7 +11,7 @@ type SeniorCardProps = {
   company?: string;
 };
 
-const SeniorCard = ({
+const SeniorProfileCard = ({
   onClick,
   name,
   cardinal,
@@ -19,7 +19,7 @@ const SeniorCard = ({
   position,
   bio,
   company,
-}: SeniorCardProps) => {
+}: SeniorProfileCardProps) => {
   const profileImage = getUserProfileImage(profileUrl);
 
   return (
@@ -71,4 +71,4 @@ const SeniorCard = ({
   );
 };
 
-export default SeniorCard;
+export default SeniorProfileCard;

@@ -14,10 +14,10 @@ import {
 } from '@chakra-ui/react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useRegisterSeniorMutation } from '@/hooks/api/senior/useRegisterSeniorMutation';
+import { useRegisterSeniorProfileMutation } from '@/hooks/api/senior/useRegisterSeniorProfileMutation';
 import { useUserInformation } from '@/store/UserInformation';
 
-type SeniorRegisterFormInput = {
+type SeniorProfileRegisterFormInput = {
   githubId: string;
   email: string;
   bio: string;
@@ -25,17 +25,22 @@ type SeniorRegisterFormInput = {
   company: string;
 };
 
-type SeniorRegisterModalProps = ModalProps;
+type SeniorProfileRegisterModalProps = ModalProps;
 
-const SeniorRegisterModal = ({ isOpen, onClose }: SeniorRegisterModalProps) => {
+const SeniorProfileRegisterModal = ({
+  isOpen,
+  onClose,
+}: SeniorProfileRegisterModalProps) => {
   const { userInformation } = useUserInformation();
   const { register, handleSubmit: handleRegisterSeniorSubmit } =
-    useForm<SeniorRegisterFormInput>();
+    useForm<SeniorProfileRegisterFormInput>();
 
-  const { mutate: registerSeniorMutate } = useRegisterSeniorMutation();
+  const { mutate: registerSeniorProfileMutate } = useRegisterSeniorProfileMutation();
 
-  const onRegisterSeniorSubmit: SubmitHandler<SeniorRegisterFormInput> = (data) => {
-    const registerSeniorRequstData = {
+  const onRegisterSeniorProfileSubmit: SubmitHandler<SeniorProfileRegisterFormInput> = (
+    data
+  ) => {
+    const registerSeniorProfileRequstData = {
       userCode: userInformation.userCode,
       profileUrl: userInformation.profileUrl,
       name: userInformation.name,
@@ -48,12 +53,12 @@ const SeniorRegisterModal = ({ isOpen, onClose }: SeniorRegisterModalProps) => {
       company: data.company,
     };
 
-    if (registerSeniorRequstData.isGraduate === false) {
+    if (registerSeniorProfileRequstData.isGraduate === false) {
       alert('졸업생이 아닙니다.');
       return;
     }
 
-    registerSeniorMutate(registerSeniorRequstData);
+    registerSeniorProfileMutate(registerSeniorProfileRequstData);
     onClose();
   };
 
@@ -62,7 +67,7 @@ const SeniorRegisterModal = ({ isOpen, onClose }: SeniorRegisterModalProps) => {
       <ModalOverlay />
       <ModalContent
         as="form"
-        onSubmit={handleRegisterSeniorSubmit(onRegisterSeniorSubmit)}
+        onSubmit={handleRegisterSeniorSubmit(onRegisterSeniorProfileSubmit)}
       >
         <ModalHeader>
           <Text as="span">선배 프로필 등록</Text>
@@ -106,4 +111,4 @@ const SeniorRegisterModal = ({ isOpen, onClose }: SeniorRegisterModalProps) => {
   );
 };
 
-export default SeniorRegisterModal;
+export default SeniorProfileRegisterModal;
