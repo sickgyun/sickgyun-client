@@ -12,8 +12,10 @@ import {
   Select,
   Text,
 } from '@chakra-ui/react';
+import { useOverlay } from '@toss/use-overlay';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import StudentProfileDeleteDialog from '../StudentProfileDeleteDialog';
 import { useDeleteStudentProfileMutation } from '@/hooks/api/student-profile/useDeleteStudentProfileMutation';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 import { useUpdateStudentProfileMutation } from '@/hooks/api/student-profile/useUpdateStudentProfileMutation';
@@ -33,6 +35,7 @@ const StudentProfileUpdateModal = ({
   isOpen,
   onClose,
 }: StudentProfileUpdateModalProps) => {
+  const overlay = useOverlay();
   const { userInformation } = useUserInformation();
   const { register, handleSubmit: handleUpdateStudentProfileSubmit } =
     useForm<StudentProfileUpdateFormInput>();
@@ -58,7 +61,22 @@ const StudentProfileUpdateModal = ({
 
   const handleDeleteStudentProfile = () => {
     deleteStudentProfileMutate();
-    onClose();
+  };
+
+  const openStudentProfileDeleteDialog = () => {
+    overlay.open(({ isOpen, close }) => (
+      <StudentProfileDeleteDialog
+        isOpen={isOpen}
+        onClose={close}
+        onDelete={() => {
+          handleDeleteStudentProfile();
+          // 다이로그 닫기
+          close();
+          // 모달 닫기
+          onClose();
+        }}
+      />
+    ));
   };
 
   return (
@@ -110,7 +128,11 @@ const StudentProfileUpdateModal = ({
         </ModalBody>
         <ModalFooter>
           <Flex gap="12px">
-            <Button onClick={handleDeleteStudentProfile} color="white" colorScheme="red">
+            <Button
+              onClick={openStudentProfileDeleteDialog}
+              color="white"
+              colorScheme="red"
+            >
               내 프로필 삭제
             </Button>
             <Button type="submit">수정</Button>
