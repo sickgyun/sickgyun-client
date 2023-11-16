@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
 import SeniorCard from '@/components/SeniorCard';
+import SeniorDetailModal from '@/components/SeniorDetailModal';
 import SeniorRegisterButton from '@/components/SeniorRegisterButton';
 import SeniorRegisterModal from '@/components/SeniorRegisterModal';
 import { POSITION_LIST } from '@/constants/common';
@@ -29,6 +30,12 @@ const SeniorPage = () => {
   const openSeniorRegisterModal = () => {
     overlay.open(({ isOpen, close }) => (
       <SeniorRegisterModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
+  const openSeniorDetailModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <SeniorDetailModal isOpen={isOpen} onClose={close} />
     ));
   };
 
@@ -64,6 +71,7 @@ const SeniorPage = () => {
           <Grid templateColumns="repeat(2, 1fr)" gap="32px">
             {seniorList.map((senior) => (
               <SeniorCard
+                onClick={openSeniorDetailModal}
                 id={senior.id}
                 name={senior.name}
                 profileUrl={senior.profileUrl}
