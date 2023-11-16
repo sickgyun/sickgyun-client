@@ -95,7 +95,9 @@ const StudentProfileCreateModal = ({
               <option value="APP">앱</option>
               <option value="DESIGNER">디자이너</option>
             </Select>
-            <Input placeholder="회사명을 입력해주세요." {...register('company')} />
+            {userInformation.isGraduate && (
+              <Input placeholder="회사명을 입력해주세요." {...register('company')} />
+            )}
           </Flex>
         </ModalBody>
         <ModalFooter>

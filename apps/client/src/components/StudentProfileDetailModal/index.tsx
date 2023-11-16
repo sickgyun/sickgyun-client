@@ -59,7 +59,7 @@ const StudentProfileDetailModal = ({
                     {studentProfile.name}
                   </Text>
                   <Text fontSize="14px" color="gray.600" fontWeight="medium">
-                    {studentProfile.cardinal} • {studentProfile.position}
+                    {studentProfile.cardinal}기 • {studentProfile.position}
                   </Text>
                 </Flex>
                 {studentProfile.bio && (
@@ -74,14 +74,14 @@ const StudentProfileDetailModal = ({
                     {studentProfile.bio}
                   </Text>
                 )}
-                {studentProfile.company && (
-                  <Flex gap="6px" alignItems="center">
-                    <Image src="/assets/company.svg" height="16px" alt="Company" />
-                    <Text fontSize="14px" color="gray.600">
-                      토스
-                    </Text>
-                  </Flex>
-                )}
+                <Flex gap="6px" alignItems="center">
+                  <Image src="/assets/company.svg" height="16px" alt="Company" />
+                  <Text fontSize="14px" color="gray.600">
+                    {studentProfile.company
+                      ? studentProfile.company
+                      : '부산소프트웨어마이스터고등학교'}
+                  </Text>
+                </Flex>
               </Flex>
             </Flex>
             <Flex flexDirection="column" gap="16px">

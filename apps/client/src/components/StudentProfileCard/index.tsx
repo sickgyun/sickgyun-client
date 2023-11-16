@@ -62,14 +62,13 @@ const StudentProfileCard = ({
               {bio}
             </Text>
           )}
-          {company && (
-            <Flex gap="6px" alignItems="center">
-              <Image src="/assets/company.svg" height="16px" alt="Company" />
-              <Text fontSize="14px" color="gray.600">
-                {company}
-              </Text>
-            </Flex>
-          )}
+
+          <Flex gap="6px" alignItems="center">
+            <Image src="/assets/company.svg" height="16px" alt="Company" />
+            <Text fontSize="14px" color="gray.600">
+              {company ? company : '부산소프트웨어마이스터고등학교'}
+            </Text>
+          </Flex>
         </Flex>
       </Flex>
     </Box>
