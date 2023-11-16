@@ -42,7 +42,7 @@ const SeniorPage = () => {
   return (
     <>
       <Header />
-      <Box width="100vw" backgroundColor="white">
+      <Box backgroundColor="white" width="100vw" minHeight="100vh">
         <Box margin="0 auto" paddingTop="48px" paddingBottom="64px" width="80%">
           <Image
             src="/assets/mock_banner.jpeg"
