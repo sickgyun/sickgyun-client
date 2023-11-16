@@ -5,12 +5,12 @@ import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
-import SeniorCard from '@/components/SeniorCard';
-import SeniorDetailModal from '@/components/SeniorDetailModal';
-import SeniorRegisterButton from '@/components/SeniorRegisterButton';
-import SeniorRegisterModal from '@/components/SeniorRegisterModal';
+import SeniorProfileCard from '@/components/SeniorProfileCard';
+import SeniorProfileDetailModal from '@/components/SeniorProfileDetailModal';
+import SeniorProfileRegisterButton from '@/components/SeniorProfileRegisterButton';
+import SeniorProfileRegisterModal from '@/components/SeniorProfileRegisterModal';
 import { POSITION_LIST } from '@/constants/common';
-import { useGetSeniorList } from '@/hooks/api/senior/useGetSeniorList';
+import { useGetSeniorProfileList } from '@/hooks/api/senior/useGetSeniorProfileList';
 import { useUserInformation } from '@/store/UserInformation';
 
 const SeniorPage = () => {
@@ -25,17 +25,17 @@ const SeniorPage = () => {
   }
 
   const { userInformation } = useUserInformation();
-  const { seniorList } = useGetSeniorList(positionQueryParams);
+  const { seniorProfileList } = useGetSeniorProfileList(positionQueryParams);
 
-  const openSeniorRegisterModal = () => {
+  const openSeniorProfileRegisterModal = () => {
     overlay.open(({ isOpen, close }) => (
-      <SeniorRegisterModal isOpen={isOpen} onClose={close} />
+      <SeniorProfileRegisterModal isOpen={isOpen} onClose={close} />
     ));
   };
 
-  const openSeniorDetailModal = (userCode: number) => {
+  const openSeniorProfileDetailModal = (userCode: number) => {
     overlay.open(({ isOpen, close }) => (
-      <SeniorDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
+      <SeniorProfileDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
     ));
   };
 
@@ -69,15 +69,15 @@ const SeniorPage = () => {
             ))}
           </Box>
           <Grid templateColumns="repeat(2, 1fr)" gap="32px">
-            {seniorList.map((senior) => (
-              <SeniorCard
-                onClick={() => openSeniorDetailModal(senior.id)}
-                name={senior.name}
-                profileUrl={senior.profileUrl}
-                cardinal={senior.cardinal}
-                position={senior.position}
-                bio={senior.bio}
-                company={senior.company}
+            {seniorProfileList.map((seniorProfile) => (
+              <SeniorProfileCard
+                onClick={() => openSeniorProfileDetailModal(seniorProfile.userCode)}
+                name={seniorProfile.name}
+                profileUrl={seniorProfile.profileUrl}
+                cardinal={seniorProfile.cardinal}
+                position={seniorProfile.position}
+                bio={seniorProfile.bio}
+                company={seniorProfile.company}
               />
             ))}
           </Grid>
@@ -85,7 +85,7 @@ const SeniorPage = () => {
       </Box>
       <Footer />
       {!userInformation.isGraduate && (
-        <SeniorRegisterButton onClick={openSeniorRegisterModal} />
+        <SeniorProfileRegisterButton onClick={openSeniorProfileRegisterModal} />
       )}
     </>
   );

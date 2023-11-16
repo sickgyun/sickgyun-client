@@ -15,11 +15,15 @@ import {
 import { useGetSeniorProfile } from '@/hooks/api/senior/useGetSeniorProfile';
 import { getUserProfileImage } from '@/utils/user';
 
-type SeniorDetailModalProps = {
+type SeniorProfileDetailModalProps = {
   userCode: number;
 } & ModalProps;
 
-const SeniorDetailModal = ({ isOpen, onClose, userCode }: SeniorDetailModalProps) => {
+const SeniorProfileDetailModal = ({
+  isOpen,
+  onClose,
+  userCode,
+}: SeniorProfileDetailModalProps) => {
   const { seniorProfile } = useGetSeniorProfile(userCode);
 
   const profileImage = getUserProfileImage(seniorProfile.profileUrl);
@@ -140,4 +144,4 @@ const SeniorDetailModal = ({ isOpen, onClose, userCode }: SeniorDetailModalProps
   );
 };
 
-export default SeniorDetailModal;
+export default SeniorProfileDetailModal;

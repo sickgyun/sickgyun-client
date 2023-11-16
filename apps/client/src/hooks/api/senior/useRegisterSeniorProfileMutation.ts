@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { post } from '@/libs/api/client';
 
-type RegisterSeniorMutationRequest = {
-  id: number;
+type RegisterSeniorProfileMutationRequest = {
+  userCode: number;
   name: string;
   profileUrl?: string;
   bio?: string;
@@ -14,18 +14,23 @@ type RegisterSeniorMutationRequest = {
   isGraduate: boolean;
 };
 
-type RegisterSeniorMutationResponse = {
+type RegisterSeniorProfileMutationResponse = {
   message: string;
 };
 
-export const useRegisterSeniorMutation = () => {
+export const useRegisterSeniorProfileMutation = () => {
   return useMutation<
-    RegisterSeniorMutationResponse,
+    RegisterSeniorProfileMutationResponse,
     { message?: string },
-    RegisterSeniorMutationRequest
+    RegisterSeniorProfileMutationRequest
   >({
-    mutationFn: (registerSeniorRequestData: RegisterSeniorMutationRequest) =>
-      post<RegisterSeniorMutationResponse>('/senior', registerSeniorRequestData),
+    mutationFn: (
+      registerSeniorProfileRequestData: RegisterSeniorProfileMutationRequest
+    ) =>
+      post<RegisterSeniorProfileMutationResponse>(
+        '/senior',
+        registerSeniorProfileRequestData
+      ),
     onSuccess: () => {
       alert('프로필 등록 성공');
     },
