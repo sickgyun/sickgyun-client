@@ -94,23 +94,23 @@ const StudentProfileUpdateModal = ({
           <Flex flexDirection="column" gap="16px">
             <Flex gap="8px">
               <Input
-                value={studentProfile.name}
+                value={studentProfile?.name}
                 placeholder="이름을 입력해주세요."
                 disabled
               />
               <Input
-                defaultValue={studentProfile.githubId}
+                defaultValue={studentProfile?.githubId}
                 placeholder="깃허브 아이디를 입력해주세요."
                 {...register('githubId')}
               />
             </Flex>
             <Input
-              defaultValue={studentProfile.email}
+              defaultValue={studentProfile?.email}
               placeholder="이메일을 적어주세요."
               {...register('email')}
             />
             <Input
-              defaultValue={studentProfile.bio}
+              defaultValue={studentProfile?.bio}
               placeholder="소개 말을 적어주세요."
               {...register('bio')}
             />
@@ -121,7 +121,7 @@ const StudentProfileUpdateModal = ({
               <option value="APP">앱</option>
               <option value="DESIGNER">디자이너</option>
             </Select>
-            {studentProfile.isGraduate && (
+            {studentProfile?.isGraduate && (
               <Input placeholder="회사명을 입력해주세요." {...register('company')} />
             )}
           </Flex>

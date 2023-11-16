@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { STUDENT_PROFILE_QUERY_KEY } from './useGetStudentProfile';
 import { STUDENT_PROFILE_LIST_QUERY_KEY } from './useGetStudentProfileList';
 import { post } from '@/libs/api/client';
 
@@ -35,6 +36,7 @@ export const useCreateStudentProfileMutation = () => {
     onSuccess: () => {
       alert('프로필 등록 성공');
       queryClient.invalidateQueries({ queryKey: [STUDENT_PROFILE_LIST_QUERY_KEY] });
+      queryClient.invalidateQueries({ queryKey: [STUDENT_PROFILE_QUERY_KEY] });
     },
     onError: () => {
       alert('프로필 등록 실패');

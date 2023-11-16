@@ -102,7 +102,7 @@ const StudentProfilePage = () => {
         </Box>
       </Box>
       <Footer />
-      {studentProfile.name ? (
+      {studentProfile?.name ? (
         <StudentProfileUpdateButton onClick={openStudentProfileUpdateModal} />
       ) : (
         <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />
