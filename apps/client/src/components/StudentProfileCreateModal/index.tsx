@@ -18,11 +18,11 @@ import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/use
 import { useUserInformation } from '@/store/UserInformation';
 
 type StudentProfileCreateFormInput = {
-  githubId: string;
-  email: string;
-  bio: string;
+  githubId?: string;
+  email?: string;
+  bio?: string;
   position: string;
-  company: string;
+  company?: string;
 };
 
 type StudentProfileCreateModalProps = ModalProps;
@@ -32,7 +32,7 @@ const StudentProfileCreateModal = ({
   onClose,
 }: StudentProfileCreateModalProps) => {
   const { userInformation } = useUserInformation();
-  const { register, handleSubmit: handleCreateStudentSubmit } =
+  const { register, handleSubmit: handleCreateStudentProfileSubmit } =
     useForm<StudentProfileCreateFormInput>();
 
   const { mutate: createStudentProfileMutate } = useCreateStudentProfileMutation();
@@ -62,7 +62,7 @@ const StudentProfileCreateModal = ({
       <ModalOverlay />
       <ModalContent
         as="form"
-        onSubmit={handleCreateStudentSubmit(onCreateStudentProfileSubmit)}
+        onSubmit={handleCreateStudentProfileSubmit(onCreateStudentProfileSubmit)}
       >
         <ModalHeader>
           <Text as="span">선배 프로필 등록</Text>

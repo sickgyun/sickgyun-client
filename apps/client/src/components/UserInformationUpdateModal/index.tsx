@@ -33,11 +33,15 @@ const UserInformationUpdateModal = ({
 
   const { mutate: updateUserInformationMutate } = useUpdateUserInformationMutation();
 
-  const onUpdateUserInformationSubmit: SubmitHandler<UserInformationUpdateFormInput> = ({
-    email,
-    githubId,
-  }) => {
-    updateUserInformationMutate({ email, githubId });
+  const onUpdateUserInformationSubmit: SubmitHandler<UserInformationUpdateFormInput> = (
+    data
+  ) => {
+    const updateUserInformationRequestData = {
+      email: data.email,
+      githubId: data.githubId,
+    };
+
+    updateUserInformationMutate(updateUserInformationRequestData);
     onClose();
   };
 

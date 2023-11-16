@@ -11,6 +11,7 @@ type StudentProfileData = {
   githubId?: string;
   company?: string;
   position: string;
+  isGraduate: boolean;
 };
 
 type StudentProfileResponse = {
@@ -30,6 +31,7 @@ export const useGetStudentProfile = (userCode: number) => {
     githubId: '',
     company: '',
     position: '',
+    isGraduate: false,
   });
 
   const studentProfileQuery = useQuery<StudentProfileResponse>({

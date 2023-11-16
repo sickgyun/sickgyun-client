@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { USER_INFORMATION_QUERY_KEY } from './useGetUserInformation';
-import { put } from '@/libs/api/client';
+import { patch } from '@/libs/api/client';
 
 type UpdateUserInformationMutationRequest = {
   email: string;
@@ -20,7 +20,7 @@ export const useUpdateUserInformationMutation = () => {
     UpdateUserInformationMutationRequest
   >({
     mutationFn: ({ email, githubId }: UpdateUserInformationMutationRequest) =>
-      put<UpdateUserInformationMutationResponse>('/user', { email, githubId }),
+      patch<UpdateUserInformationMutationResponse>('/user', { email, githubId }),
     onSuccess: () => {
       alert('프로필 업데이트 성공');
       queryClient.invalidateQueries({ queryKey: [USER_INFORMATION_QUERY_KEY] });

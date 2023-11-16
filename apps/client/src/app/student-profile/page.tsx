@@ -3,14 +3,18 @@
 import { Box, Button, Grid, Image, Text } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Header } from '@/components/common';
 import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 import StudentProfileCard from '@/components/StudentProfileCard';
 import StudentProfileCreateButton from '@/components/StudentProfileCreateButton';
 import StudentProfileCreateModal from '@/components/StudentProfileCreateModal';
 import StudentProfileDetailModal from '@/components/StudentProfileDetailModal';
+import StudentProfileUpdateButton from '@/components/StudentProfileUpdateButton';
+import StudentProfileUpdateModal from '@/components/StudentProfileUpdateModal';
 import { POSITION_LIST } from '@/constants/common';
+import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
+import { useUserInformation } from '@/store/UserInformation';
 
 const StudentProfilePage = () => {
   const router = useRouter();
@@ -23,7 +27,9 @@ const StudentProfilePage = () => {
     throw new Error('잘못된 접근 방식입니다.');
   }
 
+  const { userInformation } = useUserInformation();
   const { studentProfileList } = useGetStudentProfileList(positionQueryParams);
+  const { studentProfile } = useGetStudentProfile(userInformation.userCode);
 
   const openStudentProfileCreateModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -34,6 +40,12 @@ const StudentProfilePage = () => {
   const openStudentProfileDetailModal = (userCode: number) => {
     overlay.open(({ isOpen, close }) => (
       <StudentProfileDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
+    ));
+  };
+
+  const openStudentProfileUpdateModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <StudentProfileUpdateModal isOpen={isOpen} onClose={close} />
     ));
   };
 
@@ -90,7 +102,11 @@ const StudentProfilePage = () => {
         </Box>
       </Box>
       <Footer />
-      <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />
+      {studentProfile?.name ? (
+        <StudentProfileUpdateButton onClick={openStudentProfileUpdateModal} />
+      ) : (
+        <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />
+      )}
     </>
   );
 };
