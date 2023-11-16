@@ -84,7 +84,7 @@ const SeniorPage = () => {
         </Box>
       </Box>
       <Footer />
-      {!userInformation.isGraduate && (
+      {userInformation.isGraduate && (
         <SeniorProfileRegisterButton onClick={openSeniorProfileRegisterModal} />
       )}
     </>
