@@ -59,21 +59,12 @@ const StudentProfileDetailModal = ({
                     {studentProfile.name}
                   </Text>
                   <Text fontSize="14px" color="gray.600" fontWeight="medium">
-                    {studentProfile.cardinal}기 • {studentProfile.position}
+                    {studentProfile.cardinal}기
                   </Text>
                 </Flex>
-                {studentProfile.bio && (
-                  <Text
-                    maxWidth="95%"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    whiteSpace="nowrap"
-                    color="gray.600"
-                    fontSize="14px"
-                  >
-                    {studentProfile.bio}
-                  </Text>
-                )}
+                <Text fontSize="14px" color="gray.600" fontWeight="medium">
+                  관심 있는 분야: {studentProfile.position}
+                </Text>
                 <Flex gap="6px" alignItems="center">
                   <Image src="/assets/company.svg" height="16px" alt="Company" />
                   <Text fontSize="14px" color="gray.600">
@@ -84,57 +75,84 @@ const StudentProfileDetailModal = ({
                 </Flex>
               </Flex>
             </Flex>
+            {studentProfile.bio && (
+              <Flex flexDirection="column" gap="16px">
+                <Text fontSize="20px" fontWeight="semibold">
+                  한 마디
+                </Text>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  padding="12px 24px"
+                  backgroundColor="gray.100"
+                  borderRadius="8px"
+                  _hover={{ cursor: 'pointer' }}
+                  width="100%"
+                  min-height="56px"
+                >
+                  <Text color="gray.600" fontSize="14px">
+                    {studentProfile.bio}
+                  </Text>
+                </Box>
+              </Flex>
+            )}
             <Flex flexDirection="column" gap="16px">
+              <Text fontSize="20px" fontWeight="semibold">
+                정보
+              </Text>
               {/* 깃허브 */}
-              {studentProfile.githubId && (
-                <Box
-                  onClick={() => handleGoGithub(studentProfile.githubId)}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  padding="0px 24px"
-                  backgroundColor="gray.50"
-                  borderRadius="8px"
-                  _hover={{ cursor: 'pointer' }}
-                  width="100%"
-                  height="56px"
-                >
-                  <Text fontSize="14px" fontWeight="semibold">
-                    👀 선배들의 깃허브는 어떻게 되어 있을까요?
-                  </Text>
-                  <Flex alignItems="center">
-                    <Text fontSize="12px" color="gray.700">
-                      깃허브 바로가기
+              <Flex flexDirection="column" gap="12px">
+                {studentProfile.githubId && (
+                  <Box
+                    onClick={() => handleGoGithub(studentProfile.githubId)}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    padding="0px 24px"
+                    backgroundColor="gray.50"
+                    borderRadius="8px"
+                    _hover={{ cursor: 'pointer' }}
+                    width="100%"
+                    height="56px"
+                  >
+                    <Text fontSize="14px" fontWeight="semibold">
+                      👀 선배의 깃허브는 어떻게 되어 있을까요?
                     </Text>
-                    <ChevronRightIcon color="gray.700" />
-                  </Flex>
-                </Box>
-              )}
-              {/* 이메일 */}
-              {studentProfile.email && (
-                <Box
-                  onClick={() => handleGoEmail(studentProfile.email)}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  padding="0px 24px"
-                  backgroundColor="gray.50"
-                  borderRadius="8px"
-                  _hover={{ cursor: 'pointer' }}
-                  width="100%"
-                  height="56px"
-                >
-                  <Text fontSize="14px" fontWeight="semibold">
-                    📨 커피챗, 코드리뷰, 조언 요청하러가기
-                  </Text>
-                  <Flex alignItems="center">
-                    <Text fontSize="12px" color="gray.700">
-                      이메일 바로가기
+                    <Flex alignItems="center">
+                      <Text fontSize="12px" color="gray.700">
+                        깃허브 바로가기
+                      </Text>
+                      <ChevronRightIcon color="gray.700" />
+                    </Flex>
+                  </Box>
+                )}
+                {/* 이메일 */}
+                {studentProfile.email && (
+                  <Box
+                    onClick={() => handleGoEmail(studentProfile.email)}
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    padding="0px 24px"
+                    backgroundColor="gray.50"
+                    borderRadius="8px"
+                    _hover={{ cursor: 'pointer' }}
+                    width="100%"
+                    height="56px"
+                  >
+                    <Text fontSize="14px" fontWeight="semibold">
+                      📨 커피챗, 코드리뷰, 조언 요청하러가기
                     </Text>
-                    <ChevronRightIcon color="gray.700" />
-                  </Flex>
-                </Box>
-              )}
+                    <Flex alignItems="center">
+                      <Text fontSize="12px" color="gray.700">
+                        이메일 바로가기
+                      </Text>
+                      <ChevronRightIcon color="gray.700" />
+                    </Flex>
+                  </Box>
+                )}
+              </Flex>
             </Flex>
           </Flex>
         </ModalBody>
