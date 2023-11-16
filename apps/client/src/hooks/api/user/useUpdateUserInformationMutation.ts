@@ -2,25 +2,25 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { USER_INFORMATION_QUERY_KEY } from './useGetUserInformation';
 import { put } from '@/libs/api/client';
 
-type UpdateProfileMutationRequest = {
+type UpdateUserInformationMutationRequest = {
   email: string;
   githubId: string;
 };
 
-type UpdateProfileMutationResponse = {
+type UpdateUserInformationMutationResponse = {
   message: string;
 };
 
-export const useUpdateProfileMutation = () => {
+export const useUpdateUserInformationMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation<
-    UpdateProfileMutationResponse,
+    UpdateUserInformationMutationResponse,
     { message?: string },
-    UpdateProfileMutationRequest
+    UpdateUserInformationMutationRequest
   >({
-    mutationFn: ({ email, githubId }: UpdateProfileMutationRequest) =>
-      put<UpdateProfileMutationResponse>('/user', { email, githubId }),
+    mutationFn: ({ email, githubId }: UpdateUserInformationMutationRequest) =>
+      put<UpdateUserInformationMutationResponse>('/user', { email, githubId }),
     onSuccess: () => {
       alert('프로필 업데이트 성공');
       queryClient.invalidateQueries({ queryKey: [USER_INFORMATION_QUERY_KEY] });
