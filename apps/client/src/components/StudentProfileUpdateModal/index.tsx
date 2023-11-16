@@ -15,6 +15,7 @@ import {
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
+import { useUpdateStudentProfileMutation } from '@/hooks/api/student-profile/useUpdateStudentProfileMutation';
 import { useUserInformation } from '@/store/UserInformation';
 
 type StudentProfileUpdateFormInput = {
@@ -35,10 +36,20 @@ const StudentProfileUpdateModal = ({
   const { register, handleSubmit: handleUpdateStudentProfileSubmit } =
     useForm<StudentProfileUpdateFormInput>();
 
+  const { mutate: updateStudentProfileMutate } = useUpdateStudentProfileMutation();
+
   const onUpdateStudentProfileSubmit: SubmitHandler<StudentProfileUpdateFormInput> = (
     data
   ) => {
-    console.log(data);
+    const updateStudentProfileRequstData = {
+      githubId: data.githubId,
+      email: data.email,
+      bio: data.bio,
+      position: data.position,
+      company: data.company,
+    };
+
+    updateStudentProfileMutate(updateStudentProfileRequstData);
     onClose();
   };
 
@@ -93,7 +104,13 @@ const StudentProfileUpdateModal = ({
         </ModalBody>
         <ModalFooter>
           <Flex gap="12px">
-            <Button type="submit" colorScheme="red" variant="outline">
+            <Button
+              type="submit"
+              color="red.500"
+              borderColor="red.500"
+              variant="outline"
+              _hover={{ backgroundColor: 'red.500', color: 'white' }}
+            >
               내 프로필 삭제
             </Button>
             <Button type="submit">수정</Button>
