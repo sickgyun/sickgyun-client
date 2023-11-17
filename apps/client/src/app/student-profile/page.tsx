@@ -12,8 +12,8 @@ import StudentProfileDetailModal from '@/components/StudentProfileDetailModal';
 import StudentProfileUpdateButton from '@/components/StudentProfileUpdateButton';
 import StudentProfileUpdateModal from '@/components/StudentProfileUpdateModal';
 import { POSITION_LIST } from '@/constants/common';
-import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
+import { useStudentProfile } from '@/store/StudentProfile';
 import { useUserInformation } from '@/store/UserInformation';
 
 const StudentProfilePage = () => {
@@ -27,9 +27,9 @@ const StudentProfilePage = () => {
     throw new Error('잘못된 접근 방식입니다.');
   }
 
-  const { isLogin, userInformation } = useUserInformation();
+  const { isLogin } = useUserInformation();
+  const { hasStudentProfile } = useStudentProfile();
   const { studentProfileList } = useGetStudentProfileList(positionQueryParams);
-  const { studentProfile } = useGetStudentProfile(userInformation.userCode);
 
   const openStudentProfileCreateModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -102,7 +102,7 @@ const StudentProfilePage = () => {
         </Box>
       </Box>
       <Footer />
-      {isLogin && studentProfile?.name ? (
+      {isLogin && hasStudentProfile ? (
         <StudentProfileUpdateButton onClick={openStudentProfileUpdateModal} />
       ) : (
         <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />

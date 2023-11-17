@@ -17,9 +17,8 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import StudentProfileDeleteDialog from '../StudentProfileDeleteDialog';
 import { useDeleteStudentProfileMutation } from '@/hooks/api/student-profile/useDeleteStudentProfileMutation';
-import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 import { useUpdateStudentProfileMutation } from '@/hooks/api/student-profile/useUpdateStudentProfileMutation';
-import { useUserInformation } from '@/store/UserInformation';
+import { useStudentProfile } from '@/store/StudentProfile';
 
 type StudentProfileUpdateFormInput = {
   githubId?: string;
@@ -36,11 +35,10 @@ const StudentProfileUpdateModal = ({
   onClose,
 }: StudentProfileUpdateModalProps) => {
   const overlay = useOverlay();
-  const { userInformation } = useUserInformation();
   const { register, handleSubmit: handleUpdateStudentProfileSubmit } =
     useForm<StudentProfileUpdateFormInput>();
 
-  const { studentProfile } = useGetStudentProfile(userInformation.userCode);
+  const { studentProfile } = useStudentProfile();
   const { mutate: updateStudentProfileMutate } = useUpdateStudentProfileMutation();
   const { mutate: deleteStudentProfileMutate } = useDeleteStudentProfileMutation();
 

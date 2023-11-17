@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { get } from '@/libs/api/client';
 
-export type StudentProfileData = {
+export type StudentProfileListData = {
   userCode: number;
   name: string;
   bio?: string;
@@ -14,13 +14,15 @@ export type StudentProfileData = {
 
 export type StudentProfileListResponse = {
   message: string;
-  dataList: StudentProfileData[];
+  dataList: StudentProfileListData[];
 };
 
 export const STUDENT_PROFILE_LIST_QUERY_KEY = 'studentProfileList';
 
 export const useGetStudentProfileList = (positionQueryParams: string) => {
-  const [studentProfileList, setStudentProfileList] = useState<StudentProfileData[]>([]);
+  const [studentProfileList, setStudentProfileList] = useState<StudentProfileListData[]>(
+    []
+  );
 
   const studentProfileListQuery = useQuery<StudentProfileListResponse>({
     queryKey: [STUDENT_PROFILE_LIST_QUERY_KEY, positionQueryParams],

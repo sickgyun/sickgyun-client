@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { get } from '@/libs/api/client';
 
-type StudentProfileData = {
+export type StudentProfileData = {
   name: string;
   bio?: string;
   email?: string;
