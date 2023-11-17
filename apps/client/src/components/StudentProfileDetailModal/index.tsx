@@ -78,7 +78,7 @@ const StudentProfileDetailModal = ({
             {studentProfile.bio && (
               <Flex flexDirection="column" gap="16px">
                 <Text fontSize="20px" fontWeight="semibold">
-                  한 마디
+                  소개 말
                 </Text>
                 <Box
                   display="flex"
