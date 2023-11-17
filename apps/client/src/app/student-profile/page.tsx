@@ -27,7 +27,7 @@ const StudentProfilePage = () => {
     throw new Error('잘못된 접근 방식입니다.');
   }
 
-  const { userInformation } = useUserInformation();
+  const { isLogin, userInformation } = useUserInformation();
   const { studentProfileList } = useGetStudentProfileList(positionQueryParams);
   const { studentProfile } = useGetStudentProfile(userInformation.userCode);
 
@@ -102,7 +102,7 @@ const StudentProfilePage = () => {
         </Box>
       </Box>
       <Footer />
-      {studentProfile?.name ? (
+      {isLogin && studentProfile?.name ? (
         <StudentProfileUpdateButton onClick={openStudentProfileUpdateModal} />
       ) : (
         <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />
