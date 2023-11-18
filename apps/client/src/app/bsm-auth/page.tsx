@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useLoginBsmMutation } from '@/hooks/api/auth/useLoginBsmMutation';
-import { Storage } from '@/libs/localStorage/storage';
+import { LocalStorage } from '@/libs/localStorage';
 
 const BsmAuthPage = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const BsmAuthPage = () => {
     onSuccess: (data) => {
       const { accessToken, isGraduate } = data.data;
 
-      Storage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
+      LocalStorage.setItem(LOCAL_STORAGE_KEY.accessToken, accessToken);
 
       const redirectPath = isGraduate === 'GRADUATE' ? '/user/info' : '/';
 
