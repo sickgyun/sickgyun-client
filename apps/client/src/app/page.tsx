@@ -33,7 +33,7 @@ const MainPage = () => {
           {/* 직군별 리스트 */}
           <Flex flexDirection="column" gap="18px">
             <Text fontSize="22px" fontWeight="bold">
-              진로, 취업 관련 고민을 같이 말할 친구, 선배를 찾아봐요!
+              진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
             </Text>
             <Box display="flex" justifyContent="space-between" marginBottom="64px">
               {POSITION_LIST.map((position) => (
