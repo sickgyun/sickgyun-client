@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import { get } from '@/libs/api/client';
+import { studentProfileState } from '@/store/StudentProfile';
 
 export type StudentProfileData = {
   name: string;
@@ -22,17 +24,7 @@ type StudentProfileResponse = {
 export const STUDENT_PROFILE_QUERY_KEY = 'studentProfile';
 
 export const useGetStudentProfile = (userCode: number) => {
-  const [studentProfile, setStudentProfile] = useState<StudentProfileData>({
-    name: '',
-    bio: '',
-    email: '',
-    profileUrl: '',
-    cardinal: 0,
-    githubId: '',
-    company: '',
-    position: '',
-    isGraduate: false,
-  });
+  const [studentProfile, setStudentProfile] = useRecoilState(studentProfileState);
 
   const studentProfileQuery = useQuery<StudentProfileResponse>({
     queryKey: [STUDENT_PROFILE_QUERY_KEY, userCode],
@@ -46,7 +38,7 @@ export const useGetStudentProfile = (userCode: number) => {
     if (studentProfileQueryData) {
       setStudentProfile(studentProfileQueryData.data);
     }
-  }, [studentProfileQuery, studentProfileQuery.data]);
+  }, [setStudentProfile, studentProfileQuery]);
 
   return { studentProfile };
 };
