@@ -102,7 +102,7 @@ const MainPage = () => {
                 <ChevronRightIcon color="gray.700" />
               </Flex>
             </Box>
-            <Grid templateColumns="repeat(3, 2fr)" gap="16px">
+            <Grid templateColumns="repeat(3, 1fr)" gap="16px">
               {Array(6)
                 .fill('')
                 .map(() => (
@@ -113,11 +113,11 @@ const MainPage = () => {
           <Flex flexDirection="column" gap="18px" marginBottom="64px">
             <Flex alignItems="center" justifyContent="space-between">
               <Text fontSize="22px" fontWeight="bold">
-                채용중인 회사에요!
+                채용 중인 회사에요!
               </Text>
               <Link onClick={handleGoFullViewJobPosting}>전체 보기</Link>
             </Flex>
-            <Grid templateColumns="repeat(4, 2fr)" gap="24px">
+            <Grid templateColumns="repeat(3, 1fr)" gap="32px">
               {jobPostingList.map((jobPosting) => (
                 <JobPostingCard
                   title={jobPosting.title}

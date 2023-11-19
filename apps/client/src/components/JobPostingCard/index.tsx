@@ -21,29 +21,32 @@ const JobPostingCard = ({
     <Box
       onClick={handleGoComapnyDetailPage}
       display="flex"
-      flexDirection="column"
-      flexShrink={0}
-      gap="12px"
-      borderRadius="8px"
-      transition="all 0.3s ease-in-out 0s"
+      alignItems="center"
+      gap="24px"
+      borderRadius="16px"
+      border="1px solid"
+      borderColor="gray.200"
+      padding="24px"
       width="100%"
-      height="200px"
-      _hover={{ cursor: 'pointer', transform: 'translateY(-8px)' }}
+      height="150px"
+      _hover={{ cursor: 'pointer' }}
     >
       <Image
         src={imageUrl}
+        border="1px solid"
+        borderColor="gray.100"
         borderRadius="8px"
         objectFit="cover"
-        width="100%"
-        height="140px"
+        width="100px"
+        height="100px"
         alt="Job Posting"
       />
-      <Flex flexDirection="column">
+      <Flex flexDirection="column" gap="4px">
+        <Text fontSize="18px" fontWeight="semibold">
+          {title}
+        </Text>
         <Text fontSize="14px" fontWeight="medium" color="gray.600">
           {companyName}
-        </Text>
-        <Text fontSize="16px" fontWeight="semibold">
-          {title}
         </Text>
       </Flex>
     </Box>
