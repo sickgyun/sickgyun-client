@@ -33,11 +33,12 @@ const JobPostingCard = ({
       <Image
         src={imageUrl}
         borderRadius="8px"
+        objectFit="cover"
         width="100%"
         height="140px"
         alt="Job Posting"
       />
-      <Flex flexDirection="column" gap="12p">
+      <Flex flexDirection="column">
         <Text fontSize="14px" fontWeight="medium" color="gray.600">
           {companyName}
         </Text>

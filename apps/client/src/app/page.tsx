@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Grid, Image, Link, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -15,6 +15,12 @@ const MainPage = () => {
   const router = useRouter();
 
   const { jobPostingList } = useGetJobPostingList();
+
+  const handleGoFullViewJobPosting = () => {
+    window.open(
+      'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1'
+    );
+  };
 
   return (
     <>
@@ -105,9 +111,12 @@ const MainPage = () => {
             </Grid>
           </Flex>
           <Flex flexDirection="column" gap="18px" marginBottom="64px">
-            <Text fontSize="22px" fontWeight="bold">
-              채용중인 회사에요!
-            </Text>
+            <Flex alignItems="center" justifyContent="space-between">
+              <Text fontSize="22px" fontWeight="bold">
+                채용중인 회사에요!
+              </Text>
+              <Link onClick={handleGoFullViewJobPosting}>전체 보기</Link>
+            </Flex>
             <Grid templateColumns="repeat(4, 2fr)" gap="24px">
               {jobPostingList.map((jobPosting) => (
                 <JobPostingCard
