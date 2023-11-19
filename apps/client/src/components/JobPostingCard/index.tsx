@@ -1,8 +1,25 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 
-const JobPostingCard = () => {
+type JobPostingCardProps = {
+  title: string;
+  imageUrl?: string;
+  companyName: string;
+  detailLink: string;
+};
+
+const JobPostingCard = ({
+  title,
+  imageUrl,
+  companyName,
+  detailLink,
+}: JobPostingCardProps) => {
+  const handleGoComapnyDetailPage = () => {
+    window.open(detailLink);
+  };
+
   return (
     <Box
+      onClick={handleGoComapnyDetailPage}
       display="flex"
       flexDirection="column"
       flexShrink={0}
@@ -14,7 +31,7 @@ const JobPostingCard = () => {
       _hover={{ cursor: 'pointer', transform: 'translateY(-8px)' }}
     >
       <Image
-        src="https://cdn.rallit.com/image/2023-06-28/sG7SdtYWahcPAZOkcascd.jpg?w=384"
+        src={imageUrl}
         borderRadius="8px"
         width="100%"
         height="140px"
@@ -22,10 +39,10 @@ const JobPostingCard = () => {
       />
       <Flex flexDirection="column" gap="12p">
         <Text fontSize="14px" fontWeight="medium" color="gray.600">
-          드림어스컴퍼니
+          {companyName}
         </Text>
         <Text fontSize="16px" fontWeight="semibold">
-          iOS 개발자(2년 이상)
+          {title}
         </Text>
       </Flex>
     </Box>

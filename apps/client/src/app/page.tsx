@@ -9,9 +9,12 @@ import JobPostingCard from '@/components/JobPostingCard';
 import LoginBox from '@/components/LoginBox';
 import MouCompanyCard from '@/components/MouCompanyCard';
 import { POSITION_LIST } from '@/constants/common';
+import { useGetJobPostingList } from '@/hooks/api/job-posting/useGetJobPostingList';
 
 const MainPage = () => {
   const router = useRouter();
+
+  const { jobPostingList } = useGetJobPostingList();
 
   return (
     <>
@@ -106,11 +109,14 @@ const MainPage = () => {
               채용중인 회사에요!
             </Text>
             <Grid templateColumns="repeat(4, 2fr)" gap="24px">
-              {Array(8)
-                .fill('')
-                .map(() => (
-                  <JobPostingCard />
-                ))}
+              {jobPostingList.map((jobPosting) => (
+                <JobPostingCard
+                  title={jobPosting.title}
+                  imageUrl={jobPosting.imageUrl}
+                  companyName={jobPosting.companyName}
+                  detailLink={jobPosting.detailLink}
+                />
+              ))}
             </Grid>
           </Flex>
         </Box>
