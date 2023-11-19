@@ -61,6 +61,7 @@ const StudentProfilePage = () => {
             objectFit="cover"
             width="100%"
             height="250px"
+            alt="Banner"
           />
           <Box display="flex" alignItems="center" gap="8px" marginBottom="48px">
             {POSITION_LIST.map((position) => (
