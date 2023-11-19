@@ -36,7 +36,9 @@ export const useGetStudentProfile = (userCode: number) => {
     const { data: studentProfileQueryData } = studentProfileQuery;
 
     if (studentProfileQueryData) {
-      setStudentProfile(studentProfileQueryData.data);
+      if (studentProfileQueryData.data) {
+        setStudentProfile(studentProfileQueryData.data);
+      }
     }
   }, [setStudentProfile, studentProfileQuery]);
 
