@@ -103,11 +103,14 @@ const StudentProfilePage = () => {
         </Box>
       </Box>
       <Footer />
-      {isLogin && hasStudentProfile ? (
-        <StudentProfileUpdateButton onClick={openStudentProfileUpdateModal} />
-      ) : (
-        <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />
-      )}
+      {isLogin ? (
+        // 프로필을 등록했으면 프로필 수정을 보여주고 아니면 프로필 추가를 보여줌
+        hasStudentProfile ? (
+          <StudentProfileUpdateButton onClick={openStudentProfileUpdateModal} />
+        ) : (
+          <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />
+        )
+      ) : null}
     </>
   );
 };
