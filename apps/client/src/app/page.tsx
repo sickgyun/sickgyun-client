@@ -5,6 +5,7 @@ import { Box, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
+import JobPostingCard from '@/components/JobPostingCard';
 import LoginBox from '@/components/LoginBox';
 import MouCompanyCard from '@/components/MouCompanyCard';
 import { POSITION_LIST } from '@/constants/common';
@@ -31,11 +32,11 @@ const MainPage = () => {
             <LoginBox />
           </Box>
           {/* 직군별 리스트 */}
-          <Flex flexDirection="column" gap="18px">
+          <Flex flexDirection="column" gap="18px" marginBottom="64px">
             <Text fontSize="22px" fontWeight="bold">
               진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
             </Text>
-            <Box display="flex" justifyContent="space-between" marginBottom="64px">
+            <Box display="flex" justifyContent="space-between">
               {POSITION_LIST.map((position) => (
                 <Center
                   onClick={() =>
@@ -66,7 +67,7 @@ const MainPage = () => {
             </Box>
           </Flex>
           {/* 협약 회사 목록 */}
-          <Flex flexDirection="column" gap="18px">
+          <Flex flexDirection="column" gap="18px" marginBottom="64px">
             <Text fontSize="22px" fontWeight="bold">
               우리 학교 협약 회사가 궁금하다면?
             </Text>
@@ -97,6 +98,18 @@ const MainPage = () => {
                 .fill('')
                 .map(() => (
                   <MouCompanyCard />
+                ))}
+            </Grid>
+          </Flex>
+          <Flex flexDirection="column" gap="18px" marginBottom="64px">
+            <Text fontSize="22px" fontWeight="bold">
+              채용중인 회사에요!
+            </Text>
+            <Grid templateColumns="repeat(4, 2fr)" gap="24px">
+              {Array(8)
+                .fill('')
+                .map(() => (
+                  <JobPostingCard />
                 ))}
             </Grid>
           </Flex>
