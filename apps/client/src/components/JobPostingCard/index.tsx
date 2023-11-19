@@ -26,9 +26,9 @@ const JobPostingCard = ({
       borderRadius="16px"
       border="1px solid"
       borderColor="gray.200"
-      padding="24px"
+      padding="16px"
       width="100%"
-      height="150px"
+      height="120px"
       _hover={{ cursor: 'pointer' }}
     >
       <Image
@@ -37,8 +37,8 @@ const JobPostingCard = ({
         borderColor="gray.100"
         borderRadius="8px"
         objectFit="cover"
-        width="100px"
-        height="100px"
+        width="85px"
+        height="85px"
         alt="Job Posting"
       />
       <Flex flexDirection="column" gap="4px">
