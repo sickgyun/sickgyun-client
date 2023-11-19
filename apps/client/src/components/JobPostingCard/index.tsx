@@ -1,31 +1,52 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
 
-const JobPostingCard = () => {
+type JobPostingCardProps = {
+  title: string;
+  imageUrl?: string;
+  companyName: string;
+  detailLink: string;
+};
+
+const JobPostingCard = ({
+  title,
+  imageUrl,
+  companyName,
+  detailLink,
+}: JobPostingCardProps) => {
+  const handleGoComapnyDetailPage = () => {
+    window.open(detailLink);
+  };
+
   return (
     <Box
+      onClick={handleGoComapnyDetailPage}
       display="flex"
-      flexDirection="column"
-      flexShrink={0}
-      gap="12px"
-      borderRadius="8px"
-      transition="all 0.3s ease-in-out 0s"
+      alignItems="center"
+      gap="24px"
+      borderRadius="16px"
+      border="1px solid"
+      borderColor="gray.200"
+      padding="24px"
       width="100%"
-      height="200px"
-      _hover={{ cursor: 'pointer', transform: 'translateY(-8px)' }}
+      height="150px"
+      _hover={{ cursor: 'pointer' }}
     >
       <Image
-        src="https://cdn.rallit.com/image/2023-06-28/sG7SdtYWahcPAZOkcascd.jpg?w=384"
+        src={imageUrl}
+        border="1px solid"
+        borderColor="gray.100"
         borderRadius="8px"
-        width="100%"
-        height="140px"
+        objectFit="cover"
+        width="100px"
+        height="100px"
         alt="Job Posting"
       />
-      <Flex flexDirection="column" gap="12p">
-        <Text fontSize="14px" fontWeight="medium" color="gray.600">
-          드림어스컴퍼니
+      <Flex flexDirection="column" gap="4px">
+        <Text fontSize="18px" fontWeight="semibold">
+          {title}
         </Text>
-        <Text fontSize="16px" fontWeight="semibold">
-          iOS 개발자(2년 이상)
+        <Text fontSize="14px" fontWeight="medium" color="gray.600">
+          {companyName}
         </Text>
       </Flex>
     </Box>

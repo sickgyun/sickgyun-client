@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Center, Flex, Grid, Image, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Grid, Image, Link, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -9,9 +9,18 @@ import JobPostingCard from '@/components/JobPostingCard';
 import LoginBox from '@/components/LoginBox';
 import MouCompanyCard from '@/components/MouCompanyCard';
 import { POSITION_LIST } from '@/constants/common';
+import { useGetJobPostingList } from '@/hooks/api/job-posting/useGetJobPostingList';
 
 const MainPage = () => {
   const router = useRouter();
+
+  const { jobPostingList } = useGetJobPostingList();
+
+  const handleGoFullViewJobPosting = () => {
+    window.open(
+      'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1'
+    );
+  };
 
   return (
     <>
@@ -93,7 +102,7 @@ const MainPage = () => {
                 <ChevronRightIcon color="gray.700" />
               </Flex>
             </Box>
-            <Grid templateColumns="repeat(3, 2fr)" gap="16px">
+            <Grid templateColumns="repeat(3, 1fr)" gap="16px">
               {Array(6)
                 .fill('')
                 .map(() => (
@@ -102,15 +111,21 @@ const MainPage = () => {
             </Grid>
           </Flex>
           <Flex flexDirection="column" gap="18px" marginBottom="64px">
-            <Text fontSize="22px" fontWeight="bold">
-              채용중인 회사에요!
-            </Text>
-            <Grid templateColumns="repeat(4, 2fr)" gap="24px">
-              {Array(8)
-                .fill('')
-                .map(() => (
-                  <JobPostingCard />
-                ))}
+            <Flex alignItems="center" justifyContent="space-between">
+              <Text fontSize="22px" fontWeight="bold">
+                채용 중인 회사에요!
+              </Text>
+              <Link onClick={handleGoFullViewJobPosting}>전체 보기</Link>
+            </Flex>
+            <Grid templateColumns="repeat(3, 1fr)" gap="32px">
+              {jobPostingList.map((jobPosting) => (
+                <JobPostingCard
+                  title={jobPosting.title}
+                  imageUrl={jobPosting.imageUrl}
+                  companyName={jobPosting.companyName}
+                  detailLink={jobPosting.detailLink}
+                />
+              ))}
             </Grid>
           </Flex>
         </Box>
