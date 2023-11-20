@@ -1,8 +1,9 @@
 'use client';
 
-import { Box, Button, Grid, Image, Text } from '@chakra-ui/react';
+import { Box, Button, Grid, Image, Spinner, Text } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import StudentProfileCard from '@/components/StudentProfileCard';
@@ -83,17 +84,19 @@ const StudentProfilePage = () => {
           </Box>
           {studentProfileList.length > 0 ? (
             <Grid templateColumns="repeat(2, 1fr)" gap="32px">
-              {studentProfileList.map((studentProfile) => (
-                <StudentProfileCard
-                  onClick={() => openStudentProfileDetailModal(studentProfile.userCode)}
-                  name={studentProfile.name}
-                  profileUrl={studentProfile.profileUrl}
-                  cardinal={studentProfile.cardinal}
-                  position={studentProfile.position}
-                  bio={studentProfile.bio}
-                  company={studentProfile.company}
-                />
-              ))}
+              <Suspense fallback={<Spinner color="primary" />}>
+                {studentProfileList.map((studentProfile) => (
+                  <StudentProfileCard
+                    onClick={() => openStudentProfileDetailModal(studentProfile.userCode)}
+                    name={studentProfile.name}
+                    profileUrl={studentProfile.profileUrl}
+                    cardinal={studentProfile.cardinal}
+                    position={studentProfile.position}
+                    bio={studentProfile.bio}
+                    company={studentProfile.company}
+                  />
+                ))}
+              </Suspense>
             </Grid>
           ) : (
             <Text fontSize="20px" fontWeight="semibold">
