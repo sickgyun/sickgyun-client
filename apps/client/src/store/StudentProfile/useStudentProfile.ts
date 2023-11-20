@@ -7,13 +7,15 @@ import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentP
 export const useStudentProfile = () => {
   const [hasStudentProfile, setHasStudentProfile] =
     useRecoilState(hasStudentProfileState);
-
   const { userInformation } = useUserInformation();
-  const { studentProfile } = useGetStudentProfile(userInformation.userCode);
+
+  const { studentProfileData } = useGetStudentProfile(userInformation.userCode);
 
   useEffect(() => {
-    setHasStudentProfile(Boolean(studentProfile?.name));
-  }, [setHasStudentProfile, studentProfile?.name]);
+    if (studentProfileData) {
+      setHasStudentProfile(Boolean(studentProfileData.name));
+    }
+  }, [setHasStudentProfile, studentProfileData]);
 
-  return { hasStudentProfile, studentProfile };
+  return { hasStudentProfile, studentProfileData };
 };

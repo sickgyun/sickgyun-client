@@ -30,7 +30,7 @@ const StudentProfilePage = () => {
 
   const { isLogin } = useUserInformation();
   const { hasStudentProfile } = useStudentProfile();
-  const { studentProfileList } = useGetStudentProfileList(positionQueryParams);
+  const { studentProfileListData } = useGetStudentProfileList(positionQueryParams);
 
   const openStudentProfileCreateModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -82,10 +82,10 @@ const StudentProfilePage = () => {
               </Button>
             ))}
           </Box>
-          {studentProfileList.length > 0 ? (
+          {studentProfileListData.length > 0 ? (
             <Grid templateColumns="repeat(2, 1fr)" gap="32px">
               <Suspense fallback={<Spinner color="primary" />}>
-                {studentProfileList.map((studentProfile) => (
+                {studentProfileListData.map((studentProfile) => (
                   <StudentProfileCard
                     onClick={() => openStudentProfileDetailModal(studentProfile.userCode)}
                     name={studentProfile.name}

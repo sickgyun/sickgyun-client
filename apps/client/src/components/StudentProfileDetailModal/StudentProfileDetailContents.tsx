@@ -8,9 +8,9 @@ type StudnetProfileDetailContentProps = {
 };
 
 const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentProps) => {
-  const { studentProfile } = useGetStudentProfile(userCode);
+  const { studentProfileData } = useGetStudentProfile(userCode);
 
-  const profileImage = getUserProfileImage(studentProfile.profileUrl);
+  const profileImage = getUserProfileImage(studentProfileData?.profileUrl);
 
   const handleGoGithub = (githubId?: string) => {
     window.open(`https://github.com/${githubId}`);
@@ -32,26 +32,26 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
         <Flex flexDirection="column" gap="4px">
           <Flex alignItems="center" gap="6px">
             <Text fontSize="20px" fontWeight="semibold">
-              {studentProfile.name}
+              {studentProfileData?.name}
             </Text>
             <Text fontSize="14px" color="gray.600" fontWeight="medium">
-              {studentProfile.cardinal}기
+              {studentProfileData?.cardinal}기
             </Text>
           </Flex>
           <Text fontSize="14px" color="gray.600" fontWeight="medium">
-            관심 있는 분야: {studentProfile.position}
+            관심 있는 분야: {studentProfileData?.position}
           </Text>
           <Flex gap="6px" alignItems="center">
             <Image src="/assets/company.svg" height="16px" alt="Company" />
             <Text fontSize="14px" color="gray.600">
-              {studentProfile.company
-                ? studentProfile.company
+              {studentProfileData?.company
+                ? studentProfileData?.company
                 : '부산소프트웨어마이스터고등학교'}
             </Text>
           </Flex>
         </Flex>
       </Flex>
-      {studentProfile.bio && (
+      {studentProfileData?.bio && (
         <Flex flexDirection="column" gap="16px">
           <Text fontSize="20px" fontWeight="semibold">
             소개 말
@@ -68,7 +68,7 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
             minHeight="56px"
           >
             <Text color="gray.600" fontSize="14px">
-              {studentProfile.bio}
+              {studentProfileData?.bio}
             </Text>
           </Box>
         </Flex>
@@ -79,9 +79,9 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
         </Text>
         {/* 깃허브 */}
         <Flex flexDirection="column" gap="12px">
-          {studentProfile.githubId && (
+          {studentProfileData?.githubId && (
             <Box
-              onClick={() => handleGoGithub(studentProfile.githubId)}
+              onClick={() => handleGoGithub(studentProfileData?.githubId)}
               display="flex"
               alignItems="center"
               justifyContent="space-between"
@@ -104,9 +104,9 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
             </Box>
           )}
           {/* 이메일 */}
-          {studentProfile.email && (
+          {studentProfileData?.email && (
             <Box
-              onClick={() => handleGoEmail(studentProfile.email)}
+              onClick={() => handleGoEmail(studentProfileData?.email)}
               display="flex"
               alignItems="center"
               justifyContent="space-between"

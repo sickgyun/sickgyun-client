@@ -15,7 +15,7 @@ import { useGetJobPostingList } from '@/hooks/api/job-posting/useGetJobPostingLi
 const MainPage = () => {
   const router = useRouter();
 
-  const { jobPostingList } = useGetJobPostingList();
+  const { jobPostingListData } = useGetJobPostingList();
 
   const handleGoFullViewJobPosting = () => {
     window.open(
@@ -120,7 +120,7 @@ const MainPage = () => {
             </Flex>
             <Grid templateColumns="repeat(3, 1fr)" gap="32px">
               <Suspense fallback={<Spinner color="priamry" />}>
-                {jobPostingList.map((jobPosting) => (
+                {jobPostingListData.map((jobPosting) => (
                   <JobPostingCard
                     title={jobPosting.title}
                     imageUrl={jobPosting.imageUrl}
