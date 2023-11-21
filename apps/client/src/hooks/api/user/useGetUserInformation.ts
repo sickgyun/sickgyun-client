@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { get } from '@/libs/api/client';
+import { LocalStorage } from '@/libs/localStorage';
 
 export type UserInformationData = {
   userCode: number;
@@ -21,9 +23,12 @@ export type UserInformationResponse = {
 export const USER_INFORMATION_QUERY_KEY = 'userInformation';
 
 export const useGetUserInformation = () => {
+  const accessToken = LocalStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
+
   const userInformationQuery = useQuery<UserInformationResponse>({
     queryKey: [USER_INFORMATION_QUERY_KEY],
     queryFn: async () => await get<UserInformationResponse>('/user'),
+    enabled: Boolean(accessToken),
   });
 
   return { userInformationData: userInformationQuery.data?.data };
