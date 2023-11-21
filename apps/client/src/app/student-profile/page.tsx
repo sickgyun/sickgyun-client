@@ -1,18 +1,17 @@
 'use client';
 
-import { Box, Button, Grid, Image, Text } from '@chakra-ui/react';
+import { Box, Button, Image, Spinner } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import StudentProfileCard from '@/components/StudentProfileCard';
 import StudentProfileCreateButton from '@/components/StudentProfileCreateButton';
 import StudentProfileCreateModal from '@/components/StudentProfileCreateModal';
-import StudentProfileDetailModal from '@/components/StudentProfileDetailModal';
+import StudentProfileList from '@/components/StudentProfileList';
 import StudentProfileUpdateButton from '@/components/StudentProfileUpdateButton';
 import StudentProfileUpdateModal from '@/components/StudentProfileUpdateModal';
 import { POSITION_LIST } from '@/constants/common';
-import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
 import { useStudentProfile } from '@/store/StudentProfile';
 import { useUserInformation } from '@/store/UserInformation';
 
@@ -29,17 +28,10 @@ const StudentProfilePage = () => {
 
   const { isLogin } = useUserInformation();
   const { hasStudentProfile } = useStudentProfile();
-  const { studentProfileList } = useGetStudentProfileList(positionQueryParams);
 
   const openStudentProfileCreateModal = () => {
     overlay.open(({ isOpen, close }) => (
       <StudentProfileCreateModal isOpen={isOpen} onClose={close} />
-    ));
-  };
-
-  const openStudentProfileDetailModal = (userCode: number) => {
-    overlay.open(({ isOpen, close }) => (
-      <StudentProfileDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
     ));
   };
 
@@ -81,25 +73,9 @@ const StudentProfilePage = () => {
               </Button>
             ))}
           </Box>
-          {studentProfileList.length > 0 ? (
-            <Grid templateColumns="repeat(2, 1fr)" gap="32px">
-              {studentProfileList.map((studentProfile) => (
-                <StudentProfileCard
-                  onClick={() => openStudentProfileDetailModal(studentProfile.userCode)}
-                  name={studentProfile.name}
-                  profileUrl={studentProfile.profileUrl}
-                  cardinal={studentProfile.cardinal}
-                  position={studentProfile.position}
-                  bio={studentProfile.bio}
-                  company={studentProfile.company}
-                />
-              ))}
-            </Grid>
-          ) : (
-            <Text fontSize="20px" fontWeight="semibold">
-              앗! 해당 분야의 학생이 없어요..
-            </Text>
-          )}
+          <Suspense fallback={<Spinner color="primary" />}>
+            <StudentProfileList positionQueryParams={positionQueryParams} />
+          </Suspense>
         </Box>
       </Box>
       <Footer />

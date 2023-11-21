@@ -1,5 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
 
 export type StudentProfileListData = {
@@ -20,11 +19,7 @@ export type StudentProfileListResponse = {
 export const STUDENT_PROFILE_LIST_QUERY_KEY = 'studentProfileList';
 
 export const useGetStudentProfileList = (positionQueryParams: string) => {
-  const [studentProfileList, setStudentProfileList] = useState<StudentProfileListData[]>(
-    []
-  );
-
-  const studentProfileListQuery = useQuery<StudentProfileListResponse>({
+  const studentProfileListQuery = useSuspenseQuery<StudentProfileListResponse>({
     queryKey: [STUDENT_PROFILE_LIST_QUERY_KEY, positionQueryParams],
     queryFn: async () =>
       await get<StudentProfileListResponse>(
@@ -32,13 +27,8 @@ export const useGetStudentProfileList = (positionQueryParams: string) => {
       ),
   });
 
-  useEffect(() => {
-    const { data: studentProfileListQueryData } = studentProfileListQuery;
-
-    if (studentProfileListQueryData) {
-      setStudentProfileList(studentProfileListQueryData.dataList);
-    }
-  }, [studentProfileListQuery]);
-
-  return { studentProfileList };
+  return {
+    studentProfileListData: studentProfileListQuery.data.dataList,
+    ...studentProfileListQuery,
+  };
 };

@@ -5,7 +5,7 @@ import ApiException from '@/exceptions/ApiException';
 import CustomException from '@/exceptions/CustomException';
 import { errorMessage } from '@/exceptions/messages';
 import type { ApiErrorScheme } from '@/exceptions/type';
-import { LocalStorage } from '@/libs/localStorage';
+import { Storage } from '@/libs/storage';
 import { isProd } from '@/utils/common';
 
 const DEVELOPMENT_API_URL = 'http://localhost:8088';
@@ -19,7 +19,7 @@ const instance = axios.create({
 const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
   if (typeof window === 'undefined') return config;
 
-  const accessToken = LocalStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
   if (!config.headers) return config;
   if (!accessToken) return config;
 

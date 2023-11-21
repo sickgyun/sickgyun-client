@@ -1,10 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { get } from '@/libs/api/client';
-import { LocalStorage } from '@/libs/localStorage';
-import { userInformationState } from '@/store/UserInformation/userInformationState';
+import { Storage } from '@/libs/storage';
 
 export type UserInformationData = {
   userCode: number;
@@ -26,8 +23,7 @@ export type UserInformationResponse = {
 export const USER_INFORMATION_QUERY_KEY = 'userInformation';
 
 export const useGetUserInformation = () => {
-  const [userInformation, setUserInformation] = useRecoilState(userInformationState);
-  const accessToken = LocalStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
 
   const userInformationQuery = useQuery<UserInformationResponse>({
     queryKey: [USER_INFORMATION_QUERY_KEY],
@@ -35,15 +31,8 @@ export const useGetUserInformation = () => {
     enabled: Boolean(accessToken),
   });
 
-  useEffect(() => {
-    const { data: userInformationQueryData } = userInformationQuery;
-
-    if (userInformationQueryData) {
-      if (userInformationQueryData.data) {
-        setUserInformation(userInformationQueryData.data);
-      }
-    }
-  }, [setUserInformation, userInformationQuery]);
-
-  return { userInformation };
+  return {
+    userInformationData: userInformationQuery.data?.data,
+    ...userInformationQuery,
+  };
 };

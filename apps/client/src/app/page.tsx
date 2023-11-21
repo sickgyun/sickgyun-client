@@ -5,16 +5,13 @@ import { Box, Center, Flex, Grid, Image, Link, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import JobPostingCard from '@/components/JobPostingCard';
+import JobPostingList from '@/components/JobPostingList';
 import LoginBox from '@/components/LoginBox';
 import MouCompanyCard from '@/components/MouCompanyCard';
 import { POSITION_LIST } from '@/constants/common';
-import { useGetJobPostingList } from '@/hooks/api/job-posting/useGetJobPostingList';
 
 const MainPage = () => {
   const router = useRouter();
-
-  const { jobPostingList } = useGetJobPostingList();
 
   const handleGoFullViewJobPosting = () => {
     window.open(
@@ -117,16 +114,7 @@ const MainPage = () => {
               </Text>
               <Link onClick={handleGoFullViewJobPosting}>전체 보기</Link>
             </Flex>
-            <Grid templateColumns="repeat(3, 1fr)" gap="32px">
-              {jobPostingList.map((jobPosting) => (
-                <JobPostingCard
-                  title={jobPosting.title}
-                  imageUrl={jobPosting.imageUrl}
-                  companyName={jobPosting.companyName}
-                  detailLink={jobPosting.detailLink}
-                />
-              ))}
-            </Grid>
+            <JobPostingList />
           </Flex>
         </Box>
       </Box>
