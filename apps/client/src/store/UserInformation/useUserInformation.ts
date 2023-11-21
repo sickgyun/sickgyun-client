@@ -4,7 +4,7 @@ import { isLoginState } from './isLoginState';
 import { userInformationState } from './userInformationState';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUserInformation } from '@/hooks/api/user/useGetUserInformation';
-import { LocalStorage } from '@/libs/localStorage';
+import { Storage } from '@/libs/storage';
 
 export const useUserInformation = () => {
   const [userInformation, setUserInformation] = useRecoilState(userInformationState);
@@ -13,7 +13,7 @@ export const useUserInformation = () => {
   const { userInformationData } = useGetUserInformation();
 
   useEffect(() => {
-    const accessToken = LocalStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
+    const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
 
     // 로그인 상태 저장
     setIsLogin(Boolean(accessToken));
