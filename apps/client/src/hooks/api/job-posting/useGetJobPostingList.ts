@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
 
 export type JobPostingListData = {
@@ -16,13 +16,13 @@ export type JobPostingListResponse = {
 export const JOB_POSTING_LIST_QUERY_KEY = 'jobPostingList';
 
 export const useGetJobPostingList = () => {
-  const jobPostingListQuery = useSuspenseQuery<JobPostingListResponse>({
+  const jobPostingListQuery = useQuery<JobPostingListResponse>({
     queryKey: [JOB_POSTING_LIST_QUERY_KEY],
     queryFn: async () => await get<JobPostingListResponse>(`/job-posting`),
   });
 
   return {
-    jobPostingListData: jobPostingListQuery.data.dataList,
+    jobPostingListData: jobPostingListQuery.data?.dataList,
     ...jobPostingListQuery,
   };
 };

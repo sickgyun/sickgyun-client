@@ -1,9 +1,8 @@
 'use client';
 
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Center, Flex, Grid, Image, Link, Spinner, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Grid, Image, Link, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { Suspense } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import JobPostingList from '@/components/JobPostingList';
@@ -115,9 +114,7 @@ const MainPage = () => {
               </Text>
               <Link onClick={handleGoFullViewJobPosting}>전체 보기</Link>
             </Flex>
-            <Suspense fallback={<Spinner color="priamry" />}>
-              <JobPostingList />
-            </Suspense>
+            <JobPostingList />
           </Flex>
         </Box>
       </Box>

@@ -6,7 +6,9 @@ import { isLoginState, useUserInformation } from '@/store/UserInformation';
 
 const Header = () => {
   const router = useRouter();
+
   const setIsLogin = useSetRecoilState(isLoginState);
+
   const { isLogin } = useUserInformation();
 
   const handleLogin = () => {
