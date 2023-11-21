@@ -38,7 +38,7 @@ const StudentProfileUpdateModal = ({
   const { register, handleSubmit: handleUpdateStudentProfileSubmit } =
     useForm<StudentProfileUpdateFormInput>();
 
-  const { studentProfileData } = useStudentProfile();
+  const { studnetProfile } = useStudentProfile();
 
   const { mutate: updateStudentProfileMutate } = useUpdateStudentProfileMutation();
   const { mutate: deleteStudentProfileMutate } = useDeleteStudentProfileMutation();
@@ -93,23 +93,23 @@ const StudentProfileUpdateModal = ({
           <Flex flexDirection="column" gap="16px">
             <Flex gap="8px">
               <Input
-                value={studentProfileData?.name}
+                value={studnetProfile.name}
                 placeholder="이름을 입력해주세요."
                 disabled
               />
               <Input
-                defaultValue={studentProfileData?.githubId}
+                defaultValue={studnetProfile.githubId}
                 placeholder="깃허브 아이디를 입력해주세요."
                 {...register('githubId')}
               />
             </Flex>
             <Input
-              defaultValue={studentProfileData?.email}
+              defaultValue={studnetProfile.email}
               placeholder="이메일을 적어주세요."
               {...register('email')}
             />
             <Input
-              defaultValue={studentProfileData?.bio}
+              defaultValue={studnetProfile.bio}
               placeholder="소개 말을 적어주세요."
               {...register('bio')}
             />
@@ -120,7 +120,7 @@ const StudentProfileUpdateModal = ({
               <option value="APP">앱</option>
               <option value="DESIGNER">디자이너</option>
             </Select>
-            {studentProfileData?.isGraduate && (
+            {studnetProfile.isGraduate && (
               <Input placeholder="회사명을 입력해주세요." {...register('company')} />
             )}
           </Flex>

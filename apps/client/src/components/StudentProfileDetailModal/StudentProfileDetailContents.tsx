@@ -45,7 +45,7 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
             <Image src="/assets/company.svg" height="16px" alt="Company" />
             <Text fontSize="14px" color="gray.600">
               {studentProfileData?.company
-                ? studentProfileData?.company
+                ? studentProfileData.company
                 : '부산소프트웨어마이스터고등학교'}
             </Text>
           </Flex>
@@ -68,7 +68,7 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
             minHeight="56px"
           >
             <Text color="gray.600" fontSize="14px">
-              {studentProfileData?.bio}
+              {studentProfileData.bio}
             </Text>
           </Box>
         </Flex>
@@ -81,7 +81,7 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
         <Flex flexDirection="column" gap="12px">
           {studentProfileData?.githubId && (
             <Box
-              onClick={() => handleGoGithub(studentProfileData?.githubId)}
+              onClick={() => handleGoGithub(studentProfileData.githubId)}
               display="flex"
               alignItems="center"
               justifyContent="space-between"
@@ -106,7 +106,7 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
           {/* 이메일 */}
           {studentProfileData?.email && (
             <Box
-              onClick={() => handleGoEmail(studentProfileData?.email)}
+              onClick={() => handleGoEmail(studentProfileData.email)}
               display="flex"
               alignItems="center"
               justifyContent="space-between"

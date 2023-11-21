@@ -21,5 +21,8 @@ export const useGetJobPostingList = () => {
     queryFn: async () => await get<JobPostingListResponse>(`/job-posting`),
   });
 
-  return { jobPostingListData: jobPostingListQuery.data.dataList };
+  return {
+    jobPostingListData: jobPostingListQuery.data.dataList,
+    ...jobPostingListQuery,
+  };
 };

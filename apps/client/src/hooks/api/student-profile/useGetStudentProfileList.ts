@@ -27,5 +27,8 @@ export const useGetStudentProfileList = (positionQueryParams: string) => {
       ),
   });
 
-  return { studentProfileListData: studentProfileListQuery.data.dataList };
+  return {
+    studentProfileListData: studentProfileListQuery.data.dataList,
+    ...studentProfileListQuery,
+  };
 };

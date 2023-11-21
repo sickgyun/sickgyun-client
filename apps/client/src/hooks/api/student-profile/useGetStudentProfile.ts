@@ -27,5 +27,5 @@ export const useGetStudentProfile = (userCode: number) => {
       await get<StudentProfileResponse>(`/student/profile/${userCode}`),
   });
 
-  return { studentProfileData: studentProfileQuery.data?.data };
+  return { studentProfileData: studentProfileQuery.data?.data, ...studentProfileQuery };
 };

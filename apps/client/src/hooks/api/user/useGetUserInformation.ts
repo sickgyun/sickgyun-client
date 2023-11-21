@@ -31,5 +31,8 @@ export const useGetUserInformation = () => {
     enabled: Boolean(accessToken),
   });
 
-  return { userInformationData: userInformationQuery.data?.data };
+  return {
+    userInformationData: userInformationQuery.data?.data,
+    ...userInformationQuery,
+  };
 };
