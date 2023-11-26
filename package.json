@@ -6,17 +6,23 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "commit": "cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:jest": "jest --passWithNoTests --updateSnapshot --coverage"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
+    "@types/jest": "^29.5.10",
     "commitizen": "^4.3.0",
     "eslint": "^8.48.0",
     "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.0.2",
     "prettier": "^3.0.3",
-    "turbo": "latest"
+    "ts-jest": "^29.1.1",
+    "turbo": "latest",
+    "typescript": "^5"
   },
   "packageManager": "pnpm@8.6.10",
   "name": "cheerup"
