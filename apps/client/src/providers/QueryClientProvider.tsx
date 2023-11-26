@@ -1,26 +1,11 @@
 'use client';
 
-import {
-  QueryClientProvider as CheerUpQueryClientProvider,
-  QueryClient,
-} from '@tanstack/react-query';
+import { QueryClientProvider as CheerUpQueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { PropsWithChildren } from 'react';
-import { useState } from 'react';
+import { queryClient } from '@/libs/api/queryClient';
 
 const QueryClientProvider = ({ children }: PropsWithChildren) => {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            retry: false,
-            refetchOnWindowFocus: false,
-          },
-        },
-      })
-  );
-
   return (
     <CheerUpQueryClientProvider client={queryClient}>
       {children}
