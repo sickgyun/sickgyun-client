@@ -17,11 +17,18 @@ const instance = axios.create({
 });
 
 const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
-  if (typeof window === 'undefined') return config;
+  if (typeof window === 'undefined') {
+    return config;
+  }
 
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
-  if (!config.headers) return config;
-  if (!accessToken) return config;
+  if (!config.headers) {
+    return config;
+  }
+
+  if (!accessToken) {
+    return config;
+  }
 
   config.headers.Authorization = `Bearer ${accessToken}`;
 
