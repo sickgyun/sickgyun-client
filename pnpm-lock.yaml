@@ -75,6 +75,9 @@ importers:
       '@cheerup/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
+      '@cheerup/tsconfig':
+        specifier: workspace:*
+        version: link:../../configs/tsconfig
       '@types/node':
         specifier: ^20
         version: 20.8.9
@@ -142,6 +145,9 @@ importers:
       '@cheerup/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
+      '@cheerup/tsconfig':
+        specifier: workspace:*
+        version: link:../../configs/tsconfig
       '@tanstack/react-query-devtools':
         specifier: ^5.7.2
         version: 5.7.2(@tanstack/react-query@5.7.2)(react-dom@18.2.0)(react@18.2.0)
