@@ -1,13 +1,11 @@
 'use client';
 
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Center, Flex, Grid, Image, Link, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Image, Link, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import JobPostingList from '@/components/job-posting/JobPostingList';
 import LoginBox from '@/components/main/LoginBox';
-import MouCompanyCard from '@/components/mou-company/MouCompanyCard';
 import { POSITION_LIST } from '@/constants/common';
 
 const MainPage = () => {
@@ -71,41 +69,6 @@ const MainPage = () => {
                 </Center>
               ))}
             </Box>
-          </Flex>
-          {/* 협약 회사 목록 */}
-          <Flex flexDirection="column" gap="18px" marginBottom="64px">
-            <Text fontSize="22px" fontWeight="bold">
-              우리 학교 협약 회사가 궁금하다면?
-            </Text>
-            <Box
-              onClick={() => router.push('/mou-company')}
-              display="flex"
-              alignItems="center"
-              justifyContent="space-between"
-              padding="0px 24px"
-              backgroundColor="gray.50"
-              borderRadius="8px"
-              _hover={{ cursor: 'pointer' }}
-              width="100%"
-              height="56px"
-            >
-              <Text fontSize="14px" fontWeight="semibold">
-                🏢 부산소프트웨어마이스터고등학교의 협약 회사를 알아보러 가세요!
-              </Text>
-              <Flex alignItems="center">
-                <Text fontSize="12px" color="gray.700">
-                  협약 회사 알아보러가기
-                </Text>
-                <ChevronRightIcon color="gray.700" />
-              </Flex>
-            </Box>
-            <Grid templateColumns="repeat(3, 1fr)" gap="16px">
-              {Array(6)
-                .fill('')
-                .map(() => (
-                  <MouCompanyCard />
-                ))}
-            </Grid>
           </Flex>
           <Flex flexDirection="column" gap="18px" marginBottom="64px">
             <Flex alignItems="center" justifyContent="space-between">
