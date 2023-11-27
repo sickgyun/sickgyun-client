@@ -1,9 +1,9 @@
 import { ApiException, CustomException, Storage, errorMessage } from '@cheerup/libs';
 import type { ApiErrorScheme } from '@cheerup/libs';
+import { isProd } from '@cheerup/utils';
 import axios from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
-import { isProd } from '@/utils/common';
 
 const DEVELOPMENT_API_URL = 'http://localhost:8088';
 const PRODUCTION_API_URL = 'http://localhost:8088';

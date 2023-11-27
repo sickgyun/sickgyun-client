@@ -1,4 +1,4 @@
-import { isProd } from './common';
+import { isProd } from './isProd';
 
 describe('isProd', () => {
   it(`인자가 'production'이면 반환 값은 'true'를 반환해야 합니다.`, () => {

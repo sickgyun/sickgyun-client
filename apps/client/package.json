@@ -11,6 +11,8 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@cheerup/libs": "workspace:*",
+    "@cheerup/utils": "workspace:*",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/next-js": "^2.1.5",
     "@chakra-ui/react": "^2.8.1",
@@ -27,7 +29,6 @@
     "recoil": "^0.7.7"
   },
   "devDependencies": {
-    "@cheerup/libs": "workspace:*",
     "@cheerup/eslint-config": "workspace:*",
     "@cheerup/tsconfig": "workspace:*",
     "@tanstack/react-query-devtools": "^5.7.2",
