@@ -22,4 +22,10 @@ module.exports = {
     'jsdoc/require-jsdoc': 'off',
     'jsdoc/check-param-names': 'error',
   },
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
+  ],
 };
