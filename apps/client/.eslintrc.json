@@ -1,3 +1,0 @@
-{
-  "extends": ["@cheerup/eslint-config/react-ts"]
-}

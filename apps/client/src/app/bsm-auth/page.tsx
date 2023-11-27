@@ -1,11 +1,11 @@
 'use client';
 
 import { Box, Spinner } from '@chakra-ui/react';
+import { Storage } from '@cheerup/libs';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useLoginBsmMutation } from '@/hooks/api/auth/useLoginBsmMutation';
-import { Storage } from '@/libs/storage';
 
 const BsmAuthPage = () => {
   const router = useRouter();

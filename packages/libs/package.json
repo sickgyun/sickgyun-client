@@ -1,0 +1,14 @@
+{
+  "name": "@cheerup/libs",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@cheerup/eslint-config": "workspace:*",
+    "@cheerup/tsconfig": "workspace:*"
+  }
+}

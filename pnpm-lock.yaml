@@ -160,6 +160,9 @@ importers:
       '@cheerup/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
+      '@cheerup/libs':
+        specifier: workspace:*
+        version: link:../../packages/libs
       '@cheerup/tsconfig':
         specifier: workspace:*
         version: link:../../configs/tsconfig
@@ -239,6 +242,9 @@ importers:
       eslint-plugin-prettier:
         specifier: ^5.0.0
         version: 5.0.0(eslint-config-prettier@8.10.0)(eslint@8.48.0)(prettier@3.0.3)
+      eslint-plugin-testing-library:
+        specifier: ^6.2.0
+        version: 6.2.0(eslint@8.48.0)(typescript@5.2.2)
 
   configs/eslint-config-ts:
     dependencies:
@@ -275,6 +281,15 @@ importers:
       '@types/react':
         specifier: 18.2.13
         version: 18.2.13
+
+  packages/libs:
+    devDependencies:
+      '@cheerup/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint-config
+      '@cheerup/tsconfig':
+        specifier: workspace:*
+        version: link:../../configs/tsconfig
 
 packages:
 
@@ -4849,6 +4864,19 @@ packages:
       semver: 6.3.1
       string.prototype.matchall: 4.0.10
     dev: true
+
+  /eslint-plugin-testing-library@6.2.0(eslint@8.48.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-+LCYJU81WF2yQ+Xu4A135CgK8IszcFcyMF4sWkbiu6Oj+Nel0TrkZq/HvDw0/1WuO3dhDQsZA/OpEMGd0NfcUw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6'}
+    peerDependencies:
+      eslint: ^7.5.0 || ^8.0.0
+    dependencies:
+      '@typescript-eslint/utils': 5.62.0(eslint@8.48.0)(typescript@5.2.2)
+      eslint: 8.48.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: false
 
   /eslint-scope@5.1.1:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
