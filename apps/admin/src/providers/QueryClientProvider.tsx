@@ -5,10 +5,9 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import type { PropsWithChildren } from 'react';
 import { useState } from 'react';
 
-const QueryClientProvider = ({ children }: PropsWithChildren) => {
+const QueryClientProvider = ({ children }: StrictPropsWithChildren) => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
