@@ -160,6 +160,9 @@ importers:
       '@cheerup/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
+      '@cheerup/libs':
+        specifier: workspace:*
+        version: link:../../packages/libs
       '@cheerup/tsconfig':
         specifier: workspace:*
         version: link:../../configs/tsconfig
@@ -275,6 +278,15 @@ importers:
       '@types/react':
         specifier: 18.2.13
         version: 18.2.13
+
+  packages/libs:
+    devDependencies:
+      '@cheerup/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint-config
+      '@cheerup/tsconfig':
+        specifier: workspace:*
+        version: link:../../configs/tsconfig
 
 packages:
 

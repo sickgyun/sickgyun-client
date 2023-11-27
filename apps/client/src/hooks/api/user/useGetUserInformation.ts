@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { get } from '@/libs/api/client';
-import { Storage } from '@/libs/storage';
+import { Storage } from '@cheerup/libs';
 
 export type UserInformationData = {
   userCode: number;

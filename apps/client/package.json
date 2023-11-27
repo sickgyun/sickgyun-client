@@ -27,6 +27,7 @@
     "recoil": "^0.7.7"
   },
   "devDependencies": {
+    "@cheerup/libs": "workspace:*",
     "@cheerup/eslint-config": "workspace:*",
     "@cheerup/tsconfig": "workspace:*",
     "@tanstack/react-query-devtools": "^5.7.2",

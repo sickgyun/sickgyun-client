@@ -4,7 +4,7 @@ import { isLoginState } from './isLoginState';
 import { userInformationState } from './userInformationState';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUserInformation } from '@/hooks/api/user/useGetUserInformation';
-import { Storage } from '@/libs/storage';
+import { Storage } from '@cheerup/libs';
 
 export const useUserInformation = () => {
   const [userInformation, setUserInformation] = useRecoilState(userInformationState);
