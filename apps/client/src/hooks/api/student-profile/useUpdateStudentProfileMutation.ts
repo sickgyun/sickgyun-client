@@ -25,7 +25,7 @@ export const useUpdateStudentProfileMutation = () => {
   >({
     mutationFn: (updateStudentProfileRequestData: UpdateStudentProfileMutationRequest) =>
       patch<UpdateStudentProfileMutationResponse>(
-        '/student/profile',
+        '/student-profile',
         updateStudentProfileRequestData
       ),
     onSuccess: () => {

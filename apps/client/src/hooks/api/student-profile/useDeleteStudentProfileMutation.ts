@@ -11,7 +11,7 @@ export const useDeleteStudentProfileMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation<DeleteStudentProfileMutationResponse, { message?: string }>({
-    mutationFn: () => del<DeleteStudentProfileMutationResponse>('/student/profile'),
+    mutationFn: () => del<DeleteStudentProfileMutationResponse>('/student-profile'),
     onSuccess: () => {
       alert('프로필 삭제 성공');
       queryClient.invalidateQueries({ queryKey: [STUDENT_PROFILE_LIST_QUERY_KEY] });

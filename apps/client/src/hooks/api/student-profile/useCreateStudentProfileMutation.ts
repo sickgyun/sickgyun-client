@@ -30,7 +30,7 @@ export const useCreateStudentProfileMutation = () => {
   >({
     mutationFn: (createStudentProfileRequestData: CreateStudentProfileMutationRequest) =>
       post<CreateStudentProfileMutationResponse>(
-        '/student/profile',
+        '/student-profile',
         createStudentProfileRequestData
       ),
     onSuccess: () => {

@@ -24,7 +24,7 @@ export const useGetStudentProfile = (userCode: number) => {
   const studentProfileQuery = useQuery<StudentProfileResponse>({
     queryKey: [STUDENT_PROFILE_QUERY_KEY, userCode],
     queryFn: async () =>
-      await get<StudentProfileResponse>(`/student/profile/${userCode}`),
+      await get<StudentProfileResponse>(`/student-profile/${userCode}`),
   });
 
   return { studentProfileData: studentProfileQuery.data?.data, ...studentProfileQuery };

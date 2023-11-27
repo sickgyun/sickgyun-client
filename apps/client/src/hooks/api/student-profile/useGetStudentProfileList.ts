@@ -23,7 +23,7 @@ export const useGetStudentProfileList = (positionQueryParams: string) => {
     queryKey: [STUDENT_PROFILE_LIST_QUERY_KEY, positionQueryParams],
     queryFn: async () =>
       await get<StudentProfileListResponse>(
-        `/student/profile/?position=${positionQueryParams}`
+        `/student-profile/?position=${positionQueryParams}`
       ),
   });
 
