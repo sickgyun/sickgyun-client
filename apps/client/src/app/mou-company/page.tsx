@@ -4,7 +4,7 @@ import { Box, Button, Grid } from '@chakra-ui/react';
 import { useState } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import MouCompanyCard from '@/components/MouCompanyCard';
+import MouCompanyCard from '@/components/mou-company/MouCompanyCard';
 import { DEPARTMENT_LIST } from '@/constants/common';
 import type { Department } from '@/types';
 

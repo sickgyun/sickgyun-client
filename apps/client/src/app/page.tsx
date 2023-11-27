@@ -5,9 +5,9 @@ import { Box, Center, Flex, Grid, Image, Link, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import JobPostingList from '@/components/JobPostingList';
-import LoginBox from '@/components/LoginBox';
-import MouCompanyCard from '@/components/MouCompanyCard';
+import JobPostingList from '@/components/job-posting/JobPostingList';
+import LoginBox from '@/components/main/LoginBox';
+import MouCompanyCard from '@/components/mou-company/MouCompanyCard';
 import { POSITION_LIST } from '@/constants/common';
 
 const MainPage = () => {
