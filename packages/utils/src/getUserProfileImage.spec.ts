@@ -1,4 +1,4 @@
-import { getUserProfileImage } from './user';
+import { getUserProfileImage } from './getUserProfileImage';
 
 describe('getUserProfileImage', () => {
   it(`인자가 제공되었을 떄 'profileUrl'을 반환해야 합니다.`, () => {
