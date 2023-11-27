@@ -1,4 +1,4 @@
-import { Storage } from '@cheerup/libs';
+import { Storage } from '@connect/libs';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { isLoginState } from './isLoginState';

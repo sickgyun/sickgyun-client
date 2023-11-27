@@ -1,5 +1,5 @@
 {
-  "name": "@cheerup/eslint-config-js",
+  "name": "@connect/eslint-config-js",
   "version": "0.0.0",
   "private": true,
   "main": "javascript.js",

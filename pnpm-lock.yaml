@@ -87,10 +87,10 @@ importers:
         specifier: ^7.48.2
         version: 7.48.2(react@18.2.0)
     devDependencies:
-      '@cheerup/eslint-config':
+      '@connect/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@cheerup/tsconfig':
+      '@connect/tsconfig':
         specifier: workspace:*
         version: link:../../configs/tsconfig
       '@types/node':
@@ -123,10 +123,10 @@ importers:
       '@chakra-ui/react':
         specifier: ^2.8.1
         version: 2.8.1(@emotion/react@11.11.1)(@emotion/styled@11.11.0)(@types/react@18.2.13)(framer-motion@10.16.4)(react-dom@18.2.0)(react@18.2.0)
-      '@cheerup/libs':
+      '@connect/libs':
         specifier: workspace:*
         version: link:../../packages/libs
-      '@cheerup/utils':
+      '@connect/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       '@emotion/react':
@@ -163,10 +163,10 @@ importers:
         specifier: ^0.7.7
         version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
-      '@cheerup/eslint-config':
+      '@connect/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@cheerup/tsconfig':
+      '@connect/tsconfig':
         specifier: workspace:*
         version: link:../../configs/tsconfig
       '@tanstack/react-query-devtools':
@@ -208,10 +208,10 @@ importers:
 
   configs/eslint-config:
     dependencies:
-      '@cheerup/eslint-config-js':
+      '@connect/eslint-config-js':
         specifier: workspace:*
         version: link:../eslint-config-js
-      '@cheerup/eslint-config-ts':
+      '@connect/eslint-config-ts':
         specifier: workspace:*
         version: link:../eslint-config-ts
       eslint-plugin-import:
@@ -251,7 +251,7 @@ importers:
 
   configs/eslint-config-ts:
     dependencies:
-      '@cheerup/eslint-config-js':
+      '@connect/eslint-config-js':
         specifier: workspace:*
         version: link:../eslint-config-js
       '@typescript-eslint/eslint-plugin':
@@ -287,19 +287,19 @@ importers:
 
   packages/libs:
     devDependencies:
-      '@cheerup/eslint-config':
+      '@connect/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@cheerup/tsconfig':
+      '@connect/tsconfig':
         specifier: workspace:*
         version: link:../../configs/tsconfig
 
   packages/utils:
     devDependencies:
-      '@cheerup/eslint-config':
+      '@connect/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@cheerup/tsconfig':
+      '@connect/tsconfig':
         specifier: workspace:*
         version: link:../../configs/tsconfig
       '@testing-library/jest-dom':

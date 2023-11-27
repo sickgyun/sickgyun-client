@@ -1,5 +1,5 @@
 {
-  "name": "@cheerup/utils",
+  "name": "@connect/utils",
   "version": "0.0.0",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -10,8 +10,8 @@
     "test:ci": "jest --ci"
   },
   "devDependencies": {
-    "@cheerup/eslint-config": "workspace:*",
-    "@cheerup/tsconfig": "workspace:*",
+    "@connect/eslint-config": "workspace:*",
+    "@connect/tsconfig": "workspace:*",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.10",

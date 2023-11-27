@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@cheerup/libs', '@cheerup/utils'],
+  transpilePackages: ['@connect/libs', '@connect/utils'],
 };
 
 module.exports = nextConfig;

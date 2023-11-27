@@ -23,8 +23,8 @@
     "react-hook-form": "^7.48.2"
   },
   "devDependencies": {
-    "@cheerup/tsconfig":"workspace:*",
-    "@cheerup/eslint-config": "workspace:*",
+    "@connect/tsconfig":"workspace:*",
+    "@connect/eslint-config": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -25,5 +25,5 @@
     "typescript": "^5"
   },
   "packageManager": "pnpm@8.6.10",
-  "name": "cheerup"
+  "name": "connect"
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  QueryClientProvider as CheerUpQueryClientProvider,
+  QueryClientProvider as ConnectQueryClientProvider,
   QueryClient,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -21,10 +21,10 @@ const QueryClientProvider = ({ children }: StrictPropsWithChildren) => {
   );
 
   return (
-    <CheerUpQueryClientProvider client={queryClient}>
+    <ConnectQueryClientProvider client={queryClient}>
       {children}
       <ReactQueryDevtools />
-    </CheerUpQueryClientProvider>
+    </ConnectQueryClientProvider>
   );
 };
 

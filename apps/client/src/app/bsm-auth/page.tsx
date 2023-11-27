@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Spinner } from '@chakra-ui/react';
-import { Storage } from '@cheerup/libs';
+import { Storage } from '@connect/libs';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';

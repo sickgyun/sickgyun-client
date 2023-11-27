@@ -1,5 +1,5 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
-  extends: ['@cheerup/eslint-config-js'],
+  extends: ['@connect/eslint-config-js'],
 };

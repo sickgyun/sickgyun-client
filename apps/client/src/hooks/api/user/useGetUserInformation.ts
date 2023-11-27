@@ -1,4 +1,4 @@
-import { Storage } from '@cheerup/libs';
+import { Storage } from '@connect/libs';
 import { useQuery } from '@tanstack/react-query';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { get } from '@/libs/api/client';

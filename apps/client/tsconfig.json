@@ -1,5 +1,5 @@
 {
-  "extends": "@cheerup/tsconfig/nextjs.json",
+  "extends": "@connect/tsconfig/nextjs.json",
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]
