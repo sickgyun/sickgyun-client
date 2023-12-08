@@ -1,0 +1,6 @@
+coverage:
+  status:
+    patch: off
+
+comment:
+  layout: 'header, reach, diff, flags'

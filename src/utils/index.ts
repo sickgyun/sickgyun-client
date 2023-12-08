@@ -1,0 +1,1 @@
+export { isProd } from './isProd';
