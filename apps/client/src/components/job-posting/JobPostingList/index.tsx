@@ -1,13 +1,11 @@
-import { Grid, Spinner } from '@chakra-ui/react';
+import { Grid } from '@chakra-ui/react';
 import JobPostingCard from '../JobPostingCard';
-import { useGetJobPostingList } from '@/hooks/api/job-posting/useGetJobPostingList';
+import { JOB_POSTING } from '@/constants/job-posting';
 
 const JobPostingList = () => {
-  const { jobPostingListData } = useGetJobPostingList();
-
-  return jobPostingListData ? (
+  return (
     <Grid templateColumns="repeat(3, 1fr)" gap="32px">
-      {jobPostingListData.map((jobPosting) => (
+      {JOB_POSTING.map((jobPosting) => (
         <JobPostingCard
           title={jobPosting.title}
           imageUrl={jobPosting.imageUrl}
@@ -16,8 +14,6 @@ const JobPostingList = () => {
         />
       ))}
     </Grid>
-  ) : (
-    <Spinner color="primary" />
   );
 };
 
