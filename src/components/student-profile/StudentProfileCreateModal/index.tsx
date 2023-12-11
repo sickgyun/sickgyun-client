@@ -1,3 +1,5 @@
+import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
+import { useUserInformation } from '@/store/UserInformation';
 import {
   Button,
   Flex,
@@ -14,8 +16,6 @@ import {
 } from '@chakra-ui/react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
-import { useUserInformation } from '@/store/UserInformation';
 
 type StudentProfileCreateFormInput = {
   githubId?: string;

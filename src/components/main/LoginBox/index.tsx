@@ -1,9 +1,10 @@
+import { useCallback, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useUserInformation } from '@/store/UserInformation';
 import { Box, Button, Center, Flex, Image, Text, Text as TextButton } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
-import { useRouter } from 'next/navigation';
-import { useCallback, useEffect } from 'react';
+
 import UserInformationUpdateModal from '../UserInformationUpdateModal';
-import { useUserInformation } from '@/store/UserInformation';
 
 const LoginBox = () => {
   const router = useRouter();

@@ -1,7 +1,7 @@
 'use client';
 
-import type { PropsWithChildren } from 'react';
 import { ChakraProvider, QueryClientProvider } from '@/providers';
+import type { PropsWithChildren } from 'react';
 
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (

@@ -1,5 +1,5 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { getUserProfileImage } from '@/utils';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 
 type StudentProfileCardProps = {
   onClick: () => void;

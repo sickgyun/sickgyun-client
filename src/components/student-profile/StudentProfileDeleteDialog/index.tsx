@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import {
   AlertDialog,
   AlertDialogBody,
@@ -8,11 +9,10 @@ import {
   Button,
   Flex,
 } from '@chakra-ui/react';
-import { useRef } from 'react';
 
 type StudentProfileDeleteDialogProps = {
   onDelete: () => void;
-} & DialogProps;
+} & ModalProps;
 
 const StudentProfileDeleteDialog = ({
   isOpen,

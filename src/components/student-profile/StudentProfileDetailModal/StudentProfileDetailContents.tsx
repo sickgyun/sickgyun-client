@@ -1,7 +1,7 @@
+import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
+import { getUserProfileImage } from '@/utils';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
-import { getUserProfileImage } from '@/utils';
-import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 
 type StudnetProfileDetailContentProps = {
   userCode: number;

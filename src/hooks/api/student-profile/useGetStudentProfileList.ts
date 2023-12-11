@@ -1,5 +1,5 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export type StudentProfileListData = {
   userCode: number;

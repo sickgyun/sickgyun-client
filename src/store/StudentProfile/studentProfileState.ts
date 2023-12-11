@@ -1,5 +1,5 @@
-import { atom } from 'recoil';
 import type { StudentProfileData } from '@/hooks/api/student-profile/useGetStudentProfile';
+import { atom } from 'recoil';
 
 export const studentProfileState = atom<StudentProfileData>({
   key: 'studentProfileState',

@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
+import { useQuery } from '@tanstack/react-query';
 
 export type JobPostingListData = {
   title: string;

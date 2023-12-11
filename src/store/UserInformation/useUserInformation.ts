@@ -1,10 +1,11 @@
-import { Storage } from '@/libs/storage';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { isLoginState } from './isLoginState';
-import { userInformationState } from './userInformationState';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUserInformation } from '@/hooks/api/user/useGetUserInformation';
+import { Storage } from '@/libs/storage';
+import { useRecoilState } from 'recoil';
+
+import { isLoginState } from './isLoginState';
+import { userInformationState } from './userInformationState';
 
 export const useUserInformation = () => {
   const [userInformation, setUserInformation] = useRecoilState(userInformationState);

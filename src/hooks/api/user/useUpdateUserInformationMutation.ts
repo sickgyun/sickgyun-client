@@ -1,6 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { USER_INFORMATION_QUERY_KEY } from './useGetUserInformation';
 import { patch } from '@/libs/api/client';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { USER_INFORMATION_QUERY_KEY } from './useGetUserInformation';
 
 type UpdateUserInformationMutationRequest = {
   email: string;

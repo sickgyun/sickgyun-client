@@ -1,12 +1,12 @@
 'use client';
 
-import { Box, Center, Flex, Image, Link, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import JobPostingList from '@/components/job-posting/JobPostingList';
 import LoginBox from '@/components/main/LoginBox';
 import { POSITION_LIST } from '@/constants/common';
+import { Box, Center, Flex, Image, Link, Text } from '@chakra-ui/react';
 
 const MainPage = () => {
   const router = useRouter();

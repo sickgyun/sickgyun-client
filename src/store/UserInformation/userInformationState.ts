@@ -1,5 +1,5 @@
-import { atom } from 'recoil';
 import type { UserInformationData } from '@/hooks/api/user/useGetUserInformation';
+import { atom } from 'recoil';
 
 export const userInformationState = atom<UserInformationData>({
   key: 'userInformationState',

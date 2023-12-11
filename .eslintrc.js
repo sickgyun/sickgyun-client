@@ -45,6 +45,7 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/jsx-key': 'off',
 
     'no-console': [
       'warn',
@@ -106,7 +107,7 @@ module.exports = {
         fixStyle: 'inline-type-imports',
       },
     ],
-    '@typescript-eslint/no-shadow': 'error',
+    '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import {
   Modal,
   ModalBody,
@@ -8,7 +9,7 @@ import {
   ModalOverlay,
   Spinner,
 } from '@chakra-ui/react';
-import { Suspense } from 'react';
+
 import StudentProfileDetailContents from './StudentProfileDetailContents';
 
 type StudentProfileDetailModalProps = {

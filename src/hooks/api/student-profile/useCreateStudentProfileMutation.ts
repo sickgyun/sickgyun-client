@@ -1,7 +1,8 @@
+import { post } from '@/libs/api/client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { STUDENT_PROFILE_QUERY_KEY } from './useGetStudentProfile';
 import { STUDENT_PROFILE_LIST_QUERY_KEY } from './useGetStudentProfileList';
-import { post } from '@/libs/api/client';
 
 type CreateStudentProfileMutationRequest = {
   userCode: number;

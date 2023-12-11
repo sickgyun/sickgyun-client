@@ -1,3 +1,5 @@
+import { useUpdateUserInformationMutation } from '@/hooks/api/user/useUpdateUserInformationMutation';
+import { useUserInformation } from '@/store/UserInformation';
 import {
   Button,
   Flex,
@@ -13,8 +15,6 @@ import {
 } from '@chakra-ui/react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useUpdateUserInformationMutation } from '@/hooks/api/user/useUpdateUserInformationMutation';
-import { useUserInformation } from '@/store/UserInformation';
 
 type UserInformationUpdateFormInput = {
   email: string;

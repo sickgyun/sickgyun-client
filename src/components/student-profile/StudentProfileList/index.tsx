@@ -1,8 +1,9 @@
+import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
 import { Grid, Text } from '@chakra-ui/react';
 import { useOverlay } from '@toss/use-overlay';
+
 import StudentProfileCard from '../StudentProfileCard';
 import StudentProfileDetailModal from '../StudentProfileDetailModal';
-import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
 
 type StudentProfileListProps = {
   positionQueryParams: string;

@@ -1,9 +1,7 @@
 'use client';
 
-import { Box, Button, Image, Spinner } from '@chakra-ui/react';
-import { useOverlay } from '@toss/use-overlay';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import StudentProfileCreateButton from '@/components/student-profile/StudentProfileCreateButton';
@@ -14,6 +12,8 @@ import StudentProfileUpdateModal from '@/components/student-profile/StudentProfi
 import { POSITION_LIST } from '@/constants/common';
 import { useStudentProfile } from '@/store/StudentProfile';
 import { useUserInformation } from '@/store/UserInformation';
+import { Box, Button, Image, Spinner } from '@chakra-ui/react';
+import { useOverlay } from '@toss/use-overlay';
 
 const StudentProfilePage = () => {
   const router = useRouter();
