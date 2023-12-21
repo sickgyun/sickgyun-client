@@ -1,4 +1,4 @@
-import { Storage } from '@connect/libs';
+import { Storage } from '@sickgyun/libs';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { isLoginState } from './isLoginState';

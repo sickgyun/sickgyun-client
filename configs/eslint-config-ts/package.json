@@ -1,5 +1,5 @@
 {
-  "name": "@connect/eslint-config-ts",
+  "name": "@sickgyun/eslint-config-ts",
   "version": "0.0.0",
   "private": true,
   "main": "typescript.js",
@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@connect/eslint-config-js": "workspace:*",
+    "@sickgyun/eslint-config-js": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "eslint-config-prettier": "^8.3.0",

@@ -1,6 +1,6 @@
-import { ApiException, CustomException, Storage, errorMessage } from '@connect/libs';
-import type { ApiErrorScheme } from '@connect/libs';
-import { isProd } from '@connect/utils';
+import { ApiException, CustomException, Storage, errorMessage } from '@sickgyun/libs';
+import type { ApiErrorScheme } from '@sickgyun/libs';
+import { isProd } from '@sickgyun/utils';
 import axios from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';

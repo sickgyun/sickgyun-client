@@ -1,4 +1,4 @@
-import { Storage } from '@connect/libs';
+import { Storage } from '@sickgyun/libs';
 import { useQuery } from '@tanstack/react-query';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { get } from '@/libs/api/client';

@@ -1,5 +1,5 @@
 {
-  "name": "@connect/eslint-config",
+  "name": "@sickgyun/eslint-config",
   "version": "0.0.0",
   "private": true,
   "files": [
@@ -11,8 +11,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@connect/eslint-config-js": "workspace:*",
-    "@connect/eslint-config-ts": "workspace:*",
+    "@sickgyun/eslint-config-js": "workspace:*",
+    "@sickgyun/eslint-config-ts": "workspace:*",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0"

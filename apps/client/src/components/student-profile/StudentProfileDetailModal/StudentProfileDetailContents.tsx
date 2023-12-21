@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
-import { getUserProfileImage } from '@connect/utils';
+import { getUserProfileImage } from '@sickgyun/utils';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 
 type StudnetProfileDetailContentProps = {

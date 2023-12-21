@@ -38,7 +38,7 @@ const Header = () => {
           fontWeight="semibold"
           _hover={{ cursor: 'pointer' }}
         >
-          Connect
+          sickgyun
         </Text>
         {isLogin ? (
           <Button onClick={handleLogout} size="sm" variant="ghost">

@@ -1,5 +1,5 @@
 {
-  "name": "@connect/libs",
+  "name": "@sickgyun/libs",
   "version": "0.0.0",
   "license": "MIT",
   "main": "./src/index.ts",
@@ -8,7 +8,7 @@
     "lint": "eslint \"**/*.ts*\""
   },
   "devDependencies": {
-    "@connect/eslint-config": "workspace:*",
-    "@connect/tsconfig": "workspace:*"
+    "@sickgyun/eslint-config": "workspace:*",
+    "@sickgyun/tsconfig": "workspace:*"
   }
 }
