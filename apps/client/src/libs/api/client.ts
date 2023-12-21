@@ -6,7 +6,7 @@ import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axio
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 
 const DEVELOPMENT_API_URL = 'http://localhost:8088';
-const PRODUCTION_API_URL = 'http://localhost:8088';
+const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const instance = axios.create({
   baseURL: isProd(process.env.NODE_ENV) ? PRODUCTION_API_URL : DEVELOPMENT_API_URL,
