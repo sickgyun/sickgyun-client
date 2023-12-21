@@ -1,0 +1,19 @@
+{
+  "name": "@sickgyun/design-token",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint \"**/*.ts*\""
+  },
+  "devDependencies": {
+    "@sickgyun/eslint-config": "workspace:*",
+    "@sickgyun/tsconfig": "workspace:*",
+    "@types/react": "^18.2.45"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "react": "^18"
+  }
+}
