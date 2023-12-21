@@ -2,7 +2,7 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import { getUserProfileImage } from '@connect/utils';
 
 type StudentProfileCardProps = {
-  onClick: () => void;
+  onClick: VoidFunction;
   name: string;
   profileUrl?: string;
   cardinal: number;

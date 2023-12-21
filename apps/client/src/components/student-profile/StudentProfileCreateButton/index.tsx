@@ -2,7 +2,7 @@ import { AddIcon } from '@chakra-ui/icons';
 import { Box, Text } from '@chakra-ui/react';
 
 type StudentProfileCreateButtonProps = {
-  onClick: () => void;
+  onClick: VoidFunction;
 };
 
 const StudentProfileCreateButton = ({ onClick }: StudentProfileCreateButtonProps) => {

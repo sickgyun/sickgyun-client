@@ -1,9 +1,9 @@
 type ModalProps = {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: VoidFunction;
 };
 
 type DialogProps = {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: VoidFunction;
 };

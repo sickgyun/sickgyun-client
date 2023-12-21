@@ -11,7 +11,7 @@ import {
 import { useRef } from 'react';
 
 type StudentProfileDeleteDialogProps = {
-  onDelete: () => void;
+  onDelete: VoidFunction;
 } & DialogProps;
 
 const StudentProfileDeleteDialog = ({
