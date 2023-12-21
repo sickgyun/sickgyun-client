@@ -4,10 +4,10 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "test": "jest --passWithNoTests --updateSnapshot --coverage",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "commit": "cz",
-    "prepare": "husky install",
-    "test:jest": "jest --passWithNoTests --updateSnapshot --coverage"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
