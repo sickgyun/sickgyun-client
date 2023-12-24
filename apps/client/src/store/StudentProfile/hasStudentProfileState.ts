@@ -1,6 +1,3 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-export const hasStudentProfileState = atom({
-  key: 'hasStudentProfileState',
-  default: false,
-});
+export const hasStudentProfileState = atom(false);
