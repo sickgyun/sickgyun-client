@@ -1,5 +1,5 @@
 import { Box, Button, Text } from '@chakra-ui/react';
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { isLoginState, useUserInformation } from '@/store/UserInformation';
@@ -7,7 +7,7 @@ import { isLoginState, useUserInformation } from '@/store/UserInformation';
 const Header = () => {
   const router = useRouter();
 
-  const [, setIsLogin] = useAtom(isLoginState);
+  const setIsLogin = useSetAtom(isLoginState);
 
   const { isLogin } = useUserInformation();
 
