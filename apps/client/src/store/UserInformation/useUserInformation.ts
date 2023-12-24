@@ -1,14 +1,14 @@
 import { Storage } from '@sickgyun/libs';
+import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import { isLoginState } from './isLoginState';
 import { userInformationState } from './userInformationState';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUserInformation } from '@/hooks/api/user/useGetUserInformation';
 
 export const useUserInformation = () => {
-  const [userInformation, setUserInformation] = useRecoilState(userInformationState);
-  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+  const [userInformation, setUserInformation] = useAtom(userInformationState);
+  const [isLogin, setIsLogin] = useAtom(isLoginState);
 
   const { userInformationData } = useGetUserInformation();
 

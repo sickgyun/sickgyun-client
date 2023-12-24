@@ -1,13 +1,13 @@
 import { Box, Button, Text } from '@chakra-ui/react';
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
-import { useSetRecoilState } from 'recoil';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { isLoginState, useUserInformation } from '@/store/UserInformation';
 
 const Header = () => {
   const router = useRouter();
 
-  const setIsLogin = useSetRecoilState(isLoginState);
+  const [, setIsLogin] = useAtom(isLoginState);
 
   const { isLogin } = useUserInformation();
 
