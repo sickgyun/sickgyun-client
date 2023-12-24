@@ -30,6 +30,7 @@
     "recoil": "^0.7.7"
   },
   "devDependencies": {
+    "@sickgyun/design-token": "workspace:*",
     "@sickgyun/eslint-config": "workspace:*",
     "@sickgyun/tsconfig": "workspace:*",
     "@tanstack/react-query-devtools": "^5.7.2",
