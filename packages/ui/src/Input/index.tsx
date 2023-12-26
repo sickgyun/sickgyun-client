@@ -7,10 +7,11 @@ type InputProps = {
   label?: string;
   bottomText?: string;
   width?: string;
+  hasError?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = forwardRef(function Input(
-  { label, bottomText, width = '100%', onChange, ...props }: InputProps,
+  { label, bottomText, hasError = false, width = '100%', onChange, ...props }: InputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
@@ -20,9 +21,19 @@ export const Input = forwardRef(function Input(
           {label}
         </Text>
       )}
-      <StyledInput ref={ref} label={label} onChange={onChange} {...props} />
+      <StyledInput
+        ref={ref}
+        label={label}
+        hasError={hasError}
+        onChange={onChange}
+        {...props}
+      />
       {bottomText && (
-        <Text color="gray600" styleType="p2" style={{ marginTop: '4px' }}>
+        <Text
+          color={hasError ? 'red' : 'gray600'}
+          styleType="p2"
+          style={{ marginTop: '4px' }}
+        >
           {bottomText}
         </Text>
       )}
@@ -43,8 +54,9 @@ const StyledInput = styled.input<InputProps>`
   border-radius: 16px;
   padding-left: 16px;
   padding-right: 16px;
-  ${({ theme }) => css`
-    border: 1px solid ${theme.colors.gray400};
+  outline: none;
+  ${({ theme, hasError }) => css`
+    border: 1.5px solid ${hasError ? theme.colors.red : theme.colors.gray400};
     background-color: ${theme.colors.white};
     color: ${theme.colors.black};
     caret-color: ${theme.colors.primary};
@@ -53,7 +65,7 @@ const StyledInput = styled.input<InputProps>`
       color: ${theme.colors.gray500};
     }
     &:focus {
-      border: 1px solid ${theme.colors.primary};
+      border: 1.5px solid ${hasError ? theme.colors.red : theme.colors.primary};
     }
   `}
 `;

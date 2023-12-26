@@ -4,6 +4,11 @@ import { Input as InputComponent } from '.';
 type Input = typeof InputComponent;
 
 const meta: Meta<Input> = {
+  argTypes: {
+    hasError: {
+      control: 'boolean',
+    },
+  },
   component: InputComponent,
   title: 'Components/Input',
 };
