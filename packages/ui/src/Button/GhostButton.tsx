@@ -30,11 +30,11 @@ const StyledGhostButton = styled.button<GhostButtonProps>`
   border-radius: 16px;
   cursor: 'pointer';
   color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.gray400};
+  background-color: ${({ theme }) => theme.colors.gray900};
   width: ${({ width }) => width};
   ${({ size }) => size && getButtonSize[size]}
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.gray300};
+    background-color: ${({ theme }) => theme.colors.gray800};
   }
 `;

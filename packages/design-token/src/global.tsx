@@ -11,7 +11,6 @@ const globalStyle = css`
     font-family: WantedSansVariable;
     font-weight: normal;
     color: ${colors.white};
-    background-color: ${colors.gray900};
   }
 `;
 
