@@ -1,6 +1,6 @@
 import { type EffectCallback, useEffect, useRef } from 'react';
 
-const useDidMount = (callback: EffectCallback) => {
+export const useDidMount = (callback: EffectCallback) => {
   const didMountRef = useRef(false);
 
   useEffect(() => {
@@ -10,5 +10,3 @@ const useDidMount = (callback: EffectCallback) => {
     callback();
   }, []);
 };
-
-export default useDidMount;
