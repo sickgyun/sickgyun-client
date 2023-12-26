@@ -6,6 +6,9 @@ export const colors = {
   white: '#ffffff',
   yellow: '#FEE500',
 
+  primary: '#166AEA',
+  primaryHover: '#3978F3',
+
   gray900: '#16181E',
   gray800: '#20242D',
   gray700: '#2B303B',
