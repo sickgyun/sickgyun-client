@@ -1,1 +1,1 @@
-console.log('ci 통과용');
+export * from './Text';
