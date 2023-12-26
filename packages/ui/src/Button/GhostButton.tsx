@@ -1,22 +1,22 @@
 import styled from '@emotion/styled';
-import {
-  type ButtonHTMLAttributes,
-  type ForwardedRef,
-  type ReactNode,
-  forwardRef,
-} from 'react';
+import { type ForwardedRef, forwardRef } from 'react';
+import { type ButtonProps, getButtonSize } from '.';
 
-type GhostButtonProps = {
-  width?: string;
-  children: ReactNode;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+type GhostButtonProps = ButtonProps;
 
 export const GhostButton = forwardRef(function Button(
-  { width = '100%', children, ...props }: GhostButtonProps,
+  {
+    width = '100%',
+    disabled = false,
+    size = 'medium',
+    children,
+    ...props
+  }: GhostButtonProps,
+
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   return (
-    <StyledGhostButton ref={ref} width={width} {...props}>
+    <StyledGhostButton ref={ref} disabled={disabled} size={size} width={width} {...props}>
       {children}
     </StyledGhostButton>
   );
@@ -27,14 +27,14 @@ const StyledGhostButton = styled.button<GhostButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.gray200};
-  width: ${({ width }) => width};
-  height: 56px;
-  cursor: 'pointer';
   border-radius: 16px;
+  cursor: 'pointer';
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.gray400};
+  width: ${({ width }) => width};
+  ${({ size }) => size && getButtonSize[size]}
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.gray100};
+    background-color: ${({ theme }) => theme.colors.gray300};
   }
 `;
