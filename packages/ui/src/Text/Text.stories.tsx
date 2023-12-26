@@ -30,7 +30,7 @@ export default meta;
 
 export const Default: StoryObj<Text> = {
   args: {
-    children: 'chitchat',
+    children: '안녕하세요, 해당 서비스의 이름은 식견입니다.',
     color: 'white',
     styleType: 'p1',
   },
