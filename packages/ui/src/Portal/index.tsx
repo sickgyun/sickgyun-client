@@ -1,4 +1,5 @@
-import { type PropsWithChildren, useState } from 'react';
+import type { PropsWithChildren } from 'react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import useDidMount from './useDidMount';
 
@@ -17,5 +18,3 @@ export const Portal = ({ children }: PortalProps) => {
 
   return createPortal(children, container);
 };
-
-export default Portal;
