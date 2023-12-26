@@ -20,8 +20,8 @@
     "@storybook/react": "^7.6.6",
     "@storybook/react-vite": "^7.6.6",
     "@storybook/test": "^7.6.6",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "eslint-plugin-storybook": "^0.6.15",
     "storybook": "^7.6.6",
     "typescript": "^5"
@@ -30,7 +30,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@sickgyun/design-token": "workspace:*",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

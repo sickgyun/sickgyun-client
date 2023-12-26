@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import type { ForwardedRef, ReactNode } from 'react';
-import { forwardRef, useEffect } from 'react';
+import { forwardRef } from 'react';
+import Portal from '../Portal';
 
 type ModalProps = {
   isOpen: boolean;
@@ -13,31 +14,23 @@ export const Modal = forwardRef(function Modal(
   { isOpen, width = '600px', height = '350px', children, ...props }: ModalProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    }
-
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
-
   return (
-    <StyledDIM isOpen={isOpen}>
-      <StyledModal ref={ref} width={width} height={height} {...props}>
-        {children}
-      </StyledModal>
-    </StyledDIM>
+    <Portal isOpen={isOpen}>
+      <StyledDIM>
+        <StyledModal ref={ref} width={width} height={height} {...props}>
+          {children}
+        </StyledModal>
+      </StyledDIM>
+    </Portal>
   );
 });
 
-const StyledDIM = styled.div<{ isOpen: boolean }>`
+const StyledDIM = styled.div`
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
