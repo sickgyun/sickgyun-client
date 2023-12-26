@@ -1,5 +1,5 @@
-import type { Theme } from '@emotion/react';
 import { css } from '@emotion/react';
+import { fonts } from '@sickgyun/design-token';
 import {
   type ButtonHTMLAttributes,
   type ForwardedRef,
@@ -48,16 +48,16 @@ export const Button = forwardRef(function Button(
 });
 
 export const getButtonSize = {
-  large: (theme: Theme) => css`
-    ${theme.fonts.body1}
+  large: css`
+    ${fonts.body1}
     height: 54px;
   `,
-  medium: (theme: Theme) => css`
-    ${theme.fonts.body1}
+  medium: css`
+    ${fonts.body1}
     height: 48px;
   `,
-  small: (theme: Theme) => css`
-    ${theme.fonts.body2}
+  small: css`
+    ${fonts.body2}
     height: 40px;
   `,
 };

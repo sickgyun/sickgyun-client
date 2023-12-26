@@ -49,6 +49,7 @@ const StyledDIM = styled.div<{ isOpen: boolean }>`
 const StyledModal = styled.div<{ width: string; height: string }>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 36px;
   border-radius: 16px;
 `;
