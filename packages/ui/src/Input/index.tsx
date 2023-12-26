@@ -16,13 +16,13 @@ export const Input = forwardRef(function Input(
   return (
     <StyledInputWrapper width={width}>
       {label && (
-        <Text color="gray500" styleType="p2">
+        <Text color="gray600" styleType="p2">
           {label}
         </Text>
       )}
       <StyledInput ref={ref} label={label} onChange={onChange} {...props} />
       {bottomText && (
-        <Text color="gray500" styleType="p2" style={{ marginTop: '4px' }}>
+        <Text color="gray600" styleType="p2" style={{ marginTop: '4px' }}>
           {bottomText}
         </Text>
       )}
