@@ -11,6 +11,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@sickgyun/design-token": "workspace:*",
     "@sickgyun/libs": "workspace:*",
     "@sickgyun/utils": "workspace:*",
     "@chakra-ui/icons": "^2.1.1",
@@ -31,7 +32,6 @@
   "devDependencies": {
     "@sickgyun/eslint-config": "workspace:*",
     "@sickgyun/tsconfig": "workspace:*",
-    "@sickgyun/design-token": "workspace:*",
     "@tanstack/react-query-devtools": "^5.7.2",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
