@@ -10,7 +10,7 @@
   "devDependencies": {
     "@sickgyun/eslint-config": "workspace:*",
     "@sickgyun/tsconfig": "workspace:*",
-    "@types/react": "^18.2.45"
+    "@types/react": "^18"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

@@ -1,5 +1,5 @@
 {
-  "extends": "@sickgyun/tsconfig/nextjs.json",
+  "extends": "@sickgyun/tsconfig/react-library.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }
