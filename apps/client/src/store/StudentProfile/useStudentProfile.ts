@@ -1,14 +1,13 @@
+import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import { useUserInformation } from '../UserInformation';
 import { hasStudentProfileState } from './hasStudentProfileState';
 import { studentProfileState } from './studentProfileState';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 
 export const useStudentProfile = () => {
-  const [studnetProfile, setStudentProfile] = useRecoilState(studentProfileState);
-  const [hasStudentProfile, setHasStudentProfile] =
-    useRecoilState(hasStudentProfileState);
+  const [studentProfile, setStudentProfile] = useAtom(studentProfileState);
+  const [hasStudentProfile, setHasStudentProfile] = useAtom(hasStudentProfileState);
 
   const { userInformation } = useUserInformation();
   const { studentProfileData } = useGetStudentProfile(userInformation.userCode);
@@ -20,5 +19,5 @@ export const useStudentProfile = () => {
     }
   }, [setHasStudentProfile, setStudentProfile, studentProfileData]);
 
-  return { hasStudentProfile, studnetProfile };
+  return { hasStudentProfile, studentProfile };
 };
