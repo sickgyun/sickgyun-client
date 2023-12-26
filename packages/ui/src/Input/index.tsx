@@ -15,10 +15,14 @@ export const Input = forwardRef(function Input(
 ) {
   return (
     <StyledInputWrapper width={width}>
-      {label && <Text color="gray400">{label}</Text>}
+      {label && (
+        <Text color="gray500" styleType="p2">
+          {label}
+        </Text>
+      )}
       <StyledInput ref={ref} label={label} onChange={onChange} {...props} />
       {bottomText && (
-        <Text color="gray400" style={{ marginTop: '4px' }}>
+        <Text color="gray500" styleType="p2" style={{ marginTop: '4px' }}>
           {bottomText}
         </Text>
       )}
@@ -39,15 +43,17 @@ const StyledInput = styled.input<InputProps>`
   border-radius: 16px;
   padding-left: 16px;
   padding-right: 16px;
-  border: none;
-  outline: none;
   ${({ theme }) => css`
-    background-color: ${theme.colors.gray800};
-    color: ${theme.colors.white};
+    border: 1px solid ${theme.colors.gray400};
+    background-color: ${theme.colors.white};
+    color: ${theme.colors.black};
     caret-color: ${theme.colors.primary};
     ::placeholder {
       ${theme.fonts.body1}
       color: ${theme.colors.gray500};
+    }
+    &:focus {
+      border: 1px solid ${theme.colors.primary};
     }
   `}
 `;

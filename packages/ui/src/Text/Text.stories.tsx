@@ -31,7 +31,6 @@ export default meta;
 export const Default: StoryObj<Text> = {
   args: {
     children: '안녕하세요, 해당 서비스의 이름은 식견입니다.',
-    color: 'white',
     styleType: 'p1',
   },
   render: (args) => <TextComponent {...args} />,
