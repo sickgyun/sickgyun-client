@@ -1,6 +1,8 @@
 'use client';
 
-import { Box, Button, Image, Spinner } from '@chakra-ui/react';
+import { Button, Spinner } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import { Stack } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
@@ -44,19 +46,17 @@ const StudentProfilePage = () => {
   return (
     <>
       <Header />
-      <Box backgroundColor="white" width="100vw" minHeight="100vh">
-        <Box margin="0 auto" paddingTop="48px" paddingBottom="64px" width="80%">
-          <Image
-            src="/assets/mock_banner.jpeg"
-            marginBottom="48px"
-            borderRadius="8px"
-            objectFit="cover"
-            width="100%"
-            height="250px"
-            alt="Banner"
-          />
-          <Box display="flex" alignItems="center" gap="8px" marginBottom="48px">
+      <StyledStudentProfilePageLayout>
+        <StyledStudentProfilePage>
+          <StyledBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
+          <Stack
+            direction="horizontal"
+            align="center"
+            spacing={8}
+            style={{ marginBottom: '48px' }}
+          >
             {POSITION_LIST.map((position) => (
+              // TODO: Button 만들기
               <Button
                 onClick={() =>
                   router.replace(`/student-profile?position=${position.queryParams}`)
@@ -72,12 +72,12 @@ const StudentProfilePage = () => {
                 {position.name}
               </Button>
             ))}
-          </Box>
+          </Stack>
           <Suspense fallback={<Spinner color="primary" />}>
             <StudentProfileList positionQueryParams={positionQueryParams} />
           </Suspense>
-        </Box>
-      </Box>
+        </StyledStudentProfilePage>
+      </StyledStudentProfilePageLayout>
       <Footer />
       {isLogin ? (
         // 프로필을 등록했으면 프로필 수정을 보여주고 아니면 프로필 추가를 보여줌
@@ -92,3 +92,24 @@ const StudentProfilePage = () => {
 };
 
 export default StudentProfilePage;
+
+const StyledStudentProfilePageLayout = styled.div`
+  background-color: ${({ theme }) => theme.colors.white};
+  width: 100vw;
+  min-height: 100vh;
+`;
+
+const StyledStudentProfilePage = styled.div`
+  margin: 0 auto;
+  padding-top: 48px;
+  padding-bottom: 64px;
+  width: 80%;
+`;
+
+const StyledBannerImage = styled.img`
+  margin-bottom: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+  height: 250px;
+`;

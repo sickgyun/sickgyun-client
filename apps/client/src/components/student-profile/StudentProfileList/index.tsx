@@ -42,6 +42,7 @@ const StudentProfileList = ({ positionQueryParams }: StudentProfileListProps) =>
 export default StudentProfileList;
 
 const StyledStudentProfileList = styled.div`
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 `;
