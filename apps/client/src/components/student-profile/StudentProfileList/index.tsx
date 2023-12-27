@@ -1,4 +1,5 @@
-import { Grid, Text } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import { Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import StudentProfileCard from '../StudentProfileCard';
 import StudentProfileDetailModal from '../StudentProfileDetailModal';
@@ -20,7 +21,7 @@ const StudentProfileList = ({ positionQueryParams }: StudentProfileListProps) =>
   };
 
   return studentProfileListData.length > 0 ? (
-    <Grid templateColumns="repeat(2, 1fr)" gap="32px">
+    <StyledStudentProfileList>
       {studentProfileListData.map((studentProfile) => (
         <StudentProfileCard
           onClick={() => openStudentProfileDetailModal(studentProfile.userCode)}
@@ -32,12 +33,16 @@ const StudentProfileList = ({ positionQueryParams }: StudentProfileListProps) =>
           company={studentProfile.company}
         />
       ))}
-    </Grid>
+    </StyledStudentProfileList>
   ) : (
-    <Text fontSize="20px" fontWeight="semibold">
-      앗! 해당 분야의 학생이 없어요..
-    </Text>
+    <Text styleType="h3">앗! 해당 분야의 학생이 없어요..</Text>
   );
 };
 
 export default StudentProfileList;
+
+const StyledStudentProfileList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+`;

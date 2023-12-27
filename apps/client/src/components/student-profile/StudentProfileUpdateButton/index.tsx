@@ -1,4 +1,5 @@
-import { Box, Text } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import { Text } from '@sickgyun/ui';
 
 type StudentProfileUpdateButtonProps = {
   onClick: VoidFunction;
@@ -6,27 +7,28 @@ type StudentProfileUpdateButtonProps = {
 
 const StudentProfileUpdateButton = ({ onClick }: StudentProfileUpdateButtonProps) => {
   return (
-    <Box
-      onClick={onClick}
-      display="flex"
-      gap="8px"
-      alignItems="center"
-      justifyContent="center"
-      position="fixed"
-      bottom="40px"
-      right="35px"
-      cursor="pointer"
-      backgroundColor="primary"
-      borderRadius="45px"
-      boxShadow="md"
-      width="165px"
-      height="60px"
-    >
-      <Text fontSize="20px" fontWeight="bold" color="white">
+    <StyledStudentProfileUpdateButton onClick={onClick}>
+      <Text styleType="h3" color="white">
         내 프로필 수정
       </Text>
-    </Box>
+    </StyledStudentProfileUpdateButton>
   );
 };
 
 export default StudentProfileUpdateButton;
+
+const StyledStudentProfileUpdateButton = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 40px;
+  right: 35px;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 45px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 165px;
+  height: 60px;
+`;

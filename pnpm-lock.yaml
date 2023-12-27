@@ -135,6 +135,9 @@ importers:
       '@sickgyun/libs':
         specifier: workspace:*
         version: link:../../packages/libs
+      '@sickgyun/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@sickgyun/utils':
         specifier: workspace:*
         version: link:../../packages/utils

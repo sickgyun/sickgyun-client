@@ -1,6 +1,7 @@
 'use client';
 
-import { Box, Spinner } from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 import { Storage } from '@sickgyun/libs';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
@@ -38,23 +39,32 @@ const BsmAuthPage = () => {
   }, [loginBsmMutate, params]);
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      width="100vw"
-      height="100vh"
-      backgroundColor="white"
-    >
-      <Spinner
-        thickness="4px"
-        speed="0.65s"
-        emptyColor="gray.200"
-        color="primary"
-        size="xl"
-      />
-    </Box>
+    <StyledBsmAuthPageLayout>
+      <StyledBsmAuthPage>
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="primary"
+          size="xl"
+        />
+      </StyledBsmAuthPage>
+    </StyledBsmAuthPageLayout>
   );
 };
 
 export default BsmAuthPage;
+
+const StyledBsmAuthPageLayout = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.white};
+`;
+
+const StyledBsmAuthPage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;

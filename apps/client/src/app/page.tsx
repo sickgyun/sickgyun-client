@@ -1,6 +1,9 @@
 'use client';
 
-import { Box, Center, Flex, Image, Link, Text } from '@chakra-ui/react';
+import { Link } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import { Flex, Stack, Text } from '@sickgyun/ui';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -17,73 +20,96 @@ const MainPage = () => {
     );
   };
 
+  const hanldeGoStudentProfilePage = (queryParams: string) => {
+    router.push(`/student-profile?position=${queryParams}`);
+  };
+
   return (
     <>
       <Header />
-      <Box width="100vw" backgroundColor="white">
-        <Box margin="0 auto" paddingTop="48px" paddingBottom="64px" width="80%">
+      <StyledMainPageLayout>
+        <StyledMainPage>
           {/* 로그인 & 배너 섹션 */}
-          <Box display="flex" gap="36px" alignItems="center" marginBottom="64px">
-            <Image
-              src="/assets/mock_banner.jpeg"
-              objectFit="cover"
-              borderRadius="8px"
-              width="100%"
-              height="250px"
-              alt="Banner"
-            />
+          <Stack
+            direction="horizontal"
+            align="center"
+            spacing={36}
+            style={{ marginBottom: '64px' }}
+          >
+            <StyledBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
             {/* 로그인 박스 */}
             <LoginBox />
-          </Box>
+          </Stack>
           {/* 직군별 리스트 */}
-          <Flex flexDirection="column" gap="18px" marginBottom="64px">
-            <Text fontSize="22px" fontWeight="bold">
+          <Stack spacing={18} style={{ marginBottom: '64px' }}>
+            <Text styleType="h3">
               진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
             </Text>
-            <Box display="flex" justifyContent="space-between">
+            <Flex justify="space-between">
               {POSITION_LIST.map((position) => (
-                <Center
-                  onClick={() =>
-                    router.push(`/student-profile?position=${position.queryParams}`)
-                  }
-                  display="flex"
-                  flexDirection="column"
-                  gap="12px"
-                  transition="all 0.25s ease"
-                  borderRadius="8px"
-                  width="200px"
-                  height="120px"
-                  _hover={{
-                    backgroundColor: 'gray.50',
-                    cursor: 'pointer',
-                  }}
+                <StyledStudentProfileRedirectButton
+                  onClick={() => hanldeGoStudentProfilePage(position.queryParams)}
                 >
                   <Image
                     src={`/assets/position/${position.queryParams}.png`}
-                    height="48px"
+                    height={48}
+                    width={48}
                     alt="Position"
                   />
-                  <Text fontSize="16px" fontWeight="semibold">
-                    {position.name}
-                  </Text>
-                </Center>
+                  <Text styleType="body1">{position.name}</Text>
+                </StyledStudentProfileRedirectButton>
               ))}
-            </Box>
-          </Flex>
-          <Flex flexDirection="column" gap="18px" marginBottom="64px">
-            <Flex alignItems="center" justifyContent="space-between">
-              <Text fontSize="22px" fontWeight="bold">
-                채용 중인 회사에요!
-              </Text>
+            </Flex>
+          </Stack>
+          <Stack direction="vertical" spacing={18} style={{ marginBottom: '64px' }}>
+            <Flex align="center" justify="space-between">
+              <Text styleType="h3">채용 중인 회사에요!</Text>
+              {/* TODO: Link 컴포넌트 개발 */}
               <Link onClick={handleGoFullViewJobPosting}>전체 보기</Link>
             </Flex>
             <JobPostingList />
-          </Flex>
-        </Box>
-      </Box>
+          </Stack>
+        </StyledMainPage>
+      </StyledMainPageLayout>
       <Footer />
     </>
   );
 };
 
 export default MainPage;
+
+const StyledMainPageLayout = styled.div`
+  width: 100vw;
+  background-color: ${({ theme }) => theme.colors.white};
+`;
+
+const StyledMainPage = styled.div`
+  margin: 0 auto;
+  padding-top: 48px;
+  padding-bottom: 64px;
+  width: 80%;
+`;
+
+const StyledBannerImage = styled.img`
+  object-fit: cover;
+  border-radius: 8px;
+  height: 250px;
+  width: 100%;
+`;
+
+// TODO: Center로 갈아끼우기
+const StyledStudentProfileRedirectButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.25s ease;
+  border-radius: 8px;
+  width: 200px;
+  height: 120px;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray50};
+    cursor: pointer;
+  }
+`;

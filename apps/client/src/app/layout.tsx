@@ -1,6 +1,7 @@
 'use client';
 
 import { StyleProvider } from '@sickgyun/design-token';
+import { OverlayProvider } from '@toss/use-overlay';
 import type { PropsWithChildren } from 'react';
 import { ChakraProvider, QueryClientProvider } from '@/providers';
 
@@ -9,9 +10,11 @@ const RootLayout = ({ children }: PropsWithChildren) => {
     <html lang="en">
       <body>
         <QueryClientProvider>
-          <ChakraProvider>
-            <StyleProvider>{children}</StyleProvider>
-          </ChakraProvider>
+          <OverlayProvider>
+            <ChakraProvider>
+              <StyleProvider>{children}</StyleProvider>
+            </ChakraProvider>
+          </OverlayProvider>
         </QueryClientProvider>
       </body>
     </html>
