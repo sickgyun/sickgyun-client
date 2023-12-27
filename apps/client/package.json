@@ -11,6 +11,7 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@sickgyun/ui": "workspace:*",
     "@sickgyun/design-token": "workspace:*",
     "@sickgyun/libs": "workspace:*",
     "@sickgyun/utils": "workspace:*",
@@ -31,7 +32,6 @@
     "recoil": "^0.7.7"
   },
   "devDependencies": {
-    "@sickgyun/design-token": "workspace:*",
     "@sickgyun/eslint-config": "workspace:*",
     "@sickgyun/tsconfig": "workspace:*",
     "@tanstack/react-query-devtools": "^5.7.2",

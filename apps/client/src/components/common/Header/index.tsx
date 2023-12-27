@@ -1,4 +1,6 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import { Flex, Text } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
@@ -23,23 +25,16 @@ const Header = () => {
   };
 
   return (
-    <Box borderBottom="1px solid" borderColor="gray.100" width="100%" height="54px">
-      <Box
-        margin="0 auto"
-        display="flex"
-        alignItems="center"
-        justifyContent="space-between"
-        width="80%"
-        height="100%"
+    <StyledHeader>
+      <Flex
+        align="center"
+        justify="space-between"
+        style={{ margin: '0 auto', width: '80%', height: '100%' }}
       >
-        <Text
-          onClick={() => router.push('/')}
-          fontSize="18px"
-          fontWeight="semibold"
-          _hover={{ cursor: 'pointer' }}
-        >
+        <Text onClick={() => router.push('/')} styleType="h4" color="black">
           sickgyun
         </Text>
+        {/* TODO: Text Button 개발 */}
         {isLogin ? (
           <Button onClick={handleLogout} size="sm" variant="ghost">
             로그아웃
@@ -49,9 +44,15 @@ const Header = () => {
             로그인
           </Button>
         )}
-      </Box>
-    </Box>
+      </Flex>
+    </StyledHeader>
   );
 };
 
 export default Header;
+
+const StyledHeader = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray200};
+  width: 100%;
+  height: 54px;
+`;

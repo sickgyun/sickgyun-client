@@ -1,20 +1,23 @@
-import { Box, Text } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import { Text } from '@sickgyun/ui';
 
 const Footer = () => {
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      backgroundColor="blackAlpha.50"
-      width="100vw"
-      height="80px"
-    >
-      <Text color="blackAlpha.700" fontSize="16px">
-        Copyright (c) 김석진 X 백서진. All rights reserved.
+    <StyledFooter>
+      <Text styleType="body1" color="gray800">
+        Copyright (c) sickgyun. All rights reserved.
       </Text>
-    </Box>
+    </StyledFooter>
   );
 };
 
 export default Footer;
+
+const StyledFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.colors.gray100};
+  width: 100%;
+  height: 80px;
+`;
