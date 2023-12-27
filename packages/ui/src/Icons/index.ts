@@ -1,3 +1,3 @@
 export * from './Close';
 export * from './Add';
-export * from './Arrowback';
+export * from './ArrowBack';
