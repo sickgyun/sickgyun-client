@@ -5,7 +5,7 @@ import axios from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 
-const DEVELOPMENT_API_URL = 'http://localhost:8088';
+const DEVELOPMENT_API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const instance = axios.create({

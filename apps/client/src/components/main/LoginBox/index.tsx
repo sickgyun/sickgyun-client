@@ -49,7 +49,7 @@ const LoginBox = () => {
     <StyledLoginBox>
       {isLogin ? (
         <StyledLoginSuccessBox>
-          <Stack direction="vertical" spacing={6}>
+          <Stack spacing={6}>
             <Stack direction="horizontal" align="center" spacing={2}>
               <Text styleType="p3" color="gray500">
                 {userInformation.cardinal}기
@@ -93,7 +93,6 @@ const LoginBox = () => {
       ) : (
         <StyledNotLoginBox>
           <Stack
-            direction="vertical"
             justify="space-between"
             spacing={48}
             style={{ width: '100%', height: '100%' }}

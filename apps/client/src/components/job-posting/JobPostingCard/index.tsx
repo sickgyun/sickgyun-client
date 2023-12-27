@@ -22,7 +22,7 @@ const JobPostingCard = ({
   return (
     <StyledJobPostingCard onClick={handleGoComapnyDetailPage}>
       <StyledThumnailImage src={thumbnail} width={85} height={85} alt="Job Posting" />
-      <Stack direction="vertical" spacing={4}>
+      <Stack spacing={4}>
         <Text styleType="h4">{title}</Text>
         <Text styleType="p2" color="gray600">
           {companyName}

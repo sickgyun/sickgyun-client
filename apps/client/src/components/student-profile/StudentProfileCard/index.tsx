@@ -1,5 +1,7 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import { Stack, Text } from '@sickgyun/ui';
 import { getUserProfileImage } from '@sickgyun/utils';
+import Image from 'next/image';
 
 type StudentProfileCardProps = {
   onClick: VoidFunction;
@@ -23,56 +25,67 @@ const StudentProfileCard = ({
   const profileImage = getUserProfileImage(profileUrl);
 
   return (
-    <Box
-      onClick={onClick}
-      transition="all 0.25s ease"
-      padding="16px"
-      borderRadius="8px"
-      _hover={{
-        backgroundColor: 'gray.50',
-        cursor: 'pointer',
-      }}
-      height="120px"
-    >
-      <Flex gap="24px" alignItems="flex-start" height="100%">
-        <Image
+    <StyledStudentProfileCard onClick={onClick}>
+      <Stack
+        direction="horizontal"
+        align="flex-start"
+        spacing={24}
+        style={{ height: '100%' }}
+      >
+        <StyledProfileImage
           src={profileImage}
-          borderRadius="8px"
-          height="100%"
+          width={88}
+          height={88}
           alt="Student Profile"
         />
-        <Flex flexDirection="column" gap="4px">
-          <Flex alignItems="center" gap="6px">
-            <Text fontSize="18px" fontWeight="semibold">
-              {name}
-            </Text>
-            <Text fontSize="12px" color="gray.600" fontWeight="medium">
+        <Stack spacing={4}>
+          <Stack direction="horizontal" align="center" spacing={6}>
+            <Text styleType="h4">{name}</Text>
+            <Text styleType="body3" color="gray600">
               {cardinal}기 • {position}
             </Text>
-          </Flex>
+          </Stack>
           {bio && (
             <Text
-              maxWidth="95%"
-              overflow="hidden"
-              textOverflow="ellipsis"
-              whiteSpace="nowrap"
-              color="gray.600"
-              fontSize="14px"
+              styleType="body2"
+              color="gray600"
+              style={{
+                maxWidth: '95%',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
             >
               {bio}
             </Text>
           )}
-
-          <Flex gap="6px" alignItems="center">
-            <Image src="/assets/company.svg" height="16px" alt="Company" />
-            <Text fontSize="14px" color="gray.600">
+          <Stack direction="horizontal" spacing={6} align="center">
+            <Image src="/assets/company.svg" width={16} height={16} alt="Company" />
+            <Text styleType="body2" color="gray600">
               {company ? company : '부산소프트웨어마이스터고등학교'}
             </Text>
-          </Flex>
-        </Flex>
-      </Flex>
-    </Box>
+          </Stack>
+        </Stack>
+      </Stack>
+    </StyledStudentProfileCard>
   );
 };
 
 export default StudentProfileCard;
+
+const StyledStudentProfileCard = styled.div`
+  transition: all 0.25s ease;
+  padding: 16px;
+  border-radius: 8px;
+  height: 120px;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray50};
+    cursor: pointer;
+  }
+`;
+
+const StyledProfileImage = styled(Image)`
+  border-radius: 8px;
+  height: 100%;
+`;
