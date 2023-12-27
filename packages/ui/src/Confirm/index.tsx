@@ -9,33 +9,53 @@ import { Text } from '../Text';
 
 type ConfirmProps = {
   isOpen: boolean;
+  onClose: VoidFunction;
+  onConfirm: VoidFunction;
+  closeButtonText?: string;
+  confirmButtonText?: string;
+  title: string;
+  description?: string;
   width?: string;
   height?: string;
   children: ReactNode;
 };
 
 export const Confirm = forwardRef(function Confirm(
-  { isOpen, width = '600px', height = 'auto', children, ...props }: ConfirmProps,
+  {
+    isOpen,
+    onClose,
+    onConfirm,
+    closeButtonText = '취소',
+    confirmButtonText = '확인',
+    title,
+    description,
+    width = '600px',
+    height = 'auto',
+    children,
+    ...props
+  }: ConfirmProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
     <StyledConfirm ref={ref} isOpen={isOpen} width={width} height={height} {...props}>
-      <StyledConfirmHeader>
+      <StyledConfirmHeader hasContent={Boolean(children)}>
         <Stack spacing={8}>
-          <Text styleType="h2">타이틀</Text>
-          <Text styleType="p3" color="gray600">
-            설명입니다.
-          </Text>
+          <Text styleType="h2">{title}</Text>
+          {description && (
+            <Text styleType="p3" color="gray600">
+              {description}
+            </Text>
+          )}
         </Stack>
       </StyledConfirmHeader>
-      <StyledConfirmContent>{children}</StyledConfirmContent>
+      {children && <StyledConfirmContent>{children}</StyledConfirmContent>}
       <StyledConfirmFooter>
-        <Stack spacing={16}>
-          <Button styleType="ghost" size="small">
-            취소
+        <Stack direction="horizontal" spacing={16}>
+          <Button onClick={onClose} styleType="ghost" size="small">
+            {closeButtonText}
           </Button>
-          <Button styleType="primary" size="small">
-            확인
+          <Button onClick={onConfirm} styleType="primary" size="small">
+            {confirmButtonText}
           </Button>
         </Stack>
       </StyledConfirmFooter>
@@ -49,13 +69,13 @@ const StyledConfirm = styled(Modal)`
   justify-content: space-between;
 `;
 
-const StyledConfirmHeader = styled.div`
+const StyledConfirmHeader = styled.div<{ hasContent: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-bottom: 20px;
-  ${({ theme }) => css`
-    border-bottom: 1px solid ${theme.colors.gray200};
+  ${({ theme, hasContent }) => css`
+    border-bottom: 1px solid ${hasContent && theme.colors.gray200};
   `}
 `;
 
