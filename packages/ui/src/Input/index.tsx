@@ -56,7 +56,7 @@ const StyledInput = styled.input<InputProps>`
   padding-right: 16px;
   outline: none;
   ${({ theme, hasError }) => css`
-    border: 1.5px solid ${hasError ? theme.colors.red : theme.colors.gray400};
+    border: 1px solid ${hasError ? theme.colors.red : theme.colors.gray400};
     background-color: ${theme.colors.white};
     color: ${theme.colors.black};
     caret-color: ${theme.colors.primary};
@@ -65,7 +65,7 @@ const StyledInput = styled.input<InputProps>`
       color: ${theme.colors.gray500};
     }
     &:focus {
-      border: 1.5px solid ${hasError ? theme.colors.red : theme.colors.primary};
+      border: 1px solid ${hasError ? theme.colors.red : theme.colors.primary};
     }
   `}
 `;
