@@ -6,13 +6,8 @@ type Center = typeof CenterComponent;
 const meta: Meta<Center> = {
   argTypes: {
     tag: {
-      control: 'text',
-    },
-    width: {
-      control: 'text',
-    },
-    height: {
-      control: 'text',
+      control: 'select',
+      option: ['div', 'span', 'button'],
     },
   },
   component: CenterComponent,

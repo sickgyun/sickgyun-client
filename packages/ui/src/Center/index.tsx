@@ -9,11 +9,11 @@ export type CenterProps = {
 } & HTMLAttributes<HTMLDivElement>;
 
 export const Center = forwardRef(function Center(
-  { tag = 'div', children, width = '100%', height = '100%', ...attributes }: CenterProps,
+  { tag = 'div', children, width = '100%', height = '100%', ...props }: CenterProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
-    <StyledCenter as={tag} ref={ref} width={width} height={height} {...attributes}>
+    <StyledCenter ref={ref} as={tag} width={width} height={height} {...props}>
       {children}
     </StyledCenter>
   );
