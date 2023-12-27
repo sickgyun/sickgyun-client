@@ -38,15 +38,13 @@ export const Confirm = forwardRef(function Confirm(
 ) {
   return (
     <StyledConfirm ref={ref} isOpen={isOpen} width={width} height={height} {...props}>
-      <StyledConfirmHeader hasContent={Boolean(children)}>
-        <Stack spacing={8}>
-          <Text styleType="h2">{title}</Text>
-          {description && (
-            <Text styleType="p3" color="gray600">
-              {description}
-            </Text>
-          )}
-        </Stack>
+      <StyledConfirmHeader spacing={8} hasContent={Boolean(children)}>
+        <Text styleType="h2">{title}</Text>
+        {description && (
+          <Text styleType="p3" color="gray600">
+            {description}
+          </Text>
+        )}
       </StyledConfirmHeader>
       {children && <StyledConfirmContent>{children}</StyledConfirmContent>}
       <StyledConfirmFooter>
@@ -69,9 +67,7 @@ const StyledConfirm = styled(Modal)`
   justify-content: space-between;
 `;
 
-const StyledConfirmHeader = styled.div<{ hasContent: boolean }>`
-  display: flex;
-  flex-direction: column;
+const StyledConfirmHeader = styled(Stack)<{ hasContent: boolean }>`
   align-items: flex-start;
   padding-bottom: 20px;
   ${({ theme, hasContent }) => css`
