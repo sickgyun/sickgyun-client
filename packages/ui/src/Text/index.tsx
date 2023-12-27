@@ -19,7 +19,7 @@ export const Text = forwardRef(function Text(
     tag = 'span',
     children,
     styleType: textStyle = 'p1',
-    color = 'gray900',
+    color = 'black',
     ...props
   }: TextProps,
   ref: ForwardedRef<HTMLSpanElement>
