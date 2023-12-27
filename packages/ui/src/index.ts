@@ -2,3 +2,8 @@ export * from './Text';
 export * from './Flex';
 export * from './Button';
 export * from './Stack';
+export * from './Modal';
+export * from './Center';
+export * from './Confirm';
+export * from './Input';
+export * from './Portal';
