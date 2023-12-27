@@ -11,7 +11,7 @@ type ModalProps = {
 };
 
 export const Modal = forwardRef(function Modal(
-  { isOpen, width = '600px', height = 'auto', children, ...props }: ModalProps,
+  { isOpen, width = '450px', height = 'auto', children, ...props }: ModalProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -42,7 +42,7 @@ const StyledDIM = styled.div`
 const StyledModal = styled.div<{ width: string; height: string }>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
-  min-height: 350px;
+  min-height: 250px;
   background-color: ${({ theme }) => theme.colors.white};
   padding: 36px;
   border-radius: 16px;
