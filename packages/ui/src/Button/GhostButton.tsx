@@ -27,14 +27,15 @@ const StyledGhostButton = styled.button<GhostButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 16px;
+  padding: 0px 16px;
+  border-radius: 8px;
   cursor: 'pointer';
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.gray500};
+  color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.gray200};
   width: ${({ width }) => width};
   ${({ size }) => size && getButtonSize[size]}
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.gray400};
+    background-color: ${({ theme }) => theme.colors.gray300};
   }
 `;

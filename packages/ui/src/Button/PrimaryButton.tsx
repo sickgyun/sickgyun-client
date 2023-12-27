@@ -32,7 +32,8 @@ const StyledPrimaryButton = styled.button<PrimaryButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 16px;
+  padding: 0px 16px;
+  border-radius: 8px;
   color: ${({ theme, disabled }) =>
     disabled ? theme.colors.gray400 : theme.colors.white};
   background-color: ${({ theme, disabled }) =>
