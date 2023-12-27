@@ -7,3 +7,4 @@ export * from './Center';
 export * from './Confirm';
 export * from './Input';
 export * from './Portal';
+export * from './Icons';
