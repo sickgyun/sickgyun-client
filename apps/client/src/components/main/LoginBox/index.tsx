@@ -1,13 +1,9 @@
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Image,
-  Text,
-  Text as TextButton,
-} from '@chakra-ui/react';
+import { Text as TextButton } from '@chakra-ui/react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 import UserInformationUpdateModal from '../UserInformationUpdateModal';
@@ -50,34 +46,26 @@ const LoginBox = () => {
   ]);
 
   return (
-    <Box
-      padding="32px"
-      borderRadius="8px"
-      border="1px solid"
-      borderColor="gray.200"
-      width="500px"
-      height="250px"
-    >
+    <StyledLoginBox>
       {isLogin ? (
-        <Flex flexDirection="column" gap="24px" width="100%" height="100%">
-          <Flex flexDirection="column" gap="6px">
-            <Flex alignItems="center" gap="2px">
-              <Text fontSize="12px" color="gray.500">
+        <StyledLoginSuccessBox>
+          <Stack direction="vertical" spacing={6}>
+            <Stack direction="horizontal" align="center" spacing={2}>
+              <Text styleType="p3" color="gray500">
                 {userInformation.cardinal}기
               </Text>
-              <Text fontSize="12px" color="gray.500">
+              <Text styleType="p3" color="gray500">
                 {userInformation.isGraduate ? '졸업생' : '학생'}
               </Text>
-            </Flex>
-            <Flex alignItems="center" gap="8px">
-              <Flex alignItems="center" gap="4px">
-                <Text fontSize="18px" fontWeight="medium">
-                  {userInformation.name}님
-                </Text>
-                <Text fontSize="18px" fontWeight="medium">
+            </Stack>
+            <Stack direction="horizontal" align="center" spacing={8}>
+              <Stack direction="horizontal" align="center" spacing={4}>
+                <Text styleType="h4">{userInformation.name}님</Text>
+                <Text styleType="h4">
                   {userInformation.isGraduate ? '알려주셔야죠?' : '취업하셔야죠?'}
                 </Text>
-              </Flex>
+              </Stack>
+              {/* TODO: Text Button 개발 */}
               <TextButton
                 onClick={openUserInformationUpdateModal}
                 fontSize="16px"
@@ -86,71 +74,88 @@ const LoginBox = () => {
               >
                 설정
               </TextButton>
-            </Flex>
-            <Text fontSize="16px" color="gray.500">
+            </Stack>
+            <Text styleType="p1" color="gray500">
               {userInformation.email}
             </Text>
+          </Stack>
+          <Flex align="center" justify="space-between" style={{ width: '100%' }}>
+            <StyledNavigationLinkButton onClick={handleGoJumpit}>
+              <Image src="/assets/jumpit.png" width={24} height={24} alt="Jumpit" />
+              <Text styleType="body2">점핏 바로가기</Text>
+            </StyledNavigationLinkButton>
+            <StyledNavigationLinkButton onClick={handleGoWanted}>
+              <Image src="/assets/wanted.png" width={24} height={24} alt="Wanted" />
+              <Text styleType="p2">원티드 바로가기</Text>
+            </StyledNavigationLinkButton>
           </Flex>
-          <Flex alignItems="center" justifyContent="space-between">
-            <Center
-              onClick={handleGoJumpit}
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              gap="6px"
-              padding="12px"
-              border="1px solid"
-              borderColor="gray.200"
-              borderRadius="8px"
-              _hover={{ cursor: 'pointer', color: 'primary' }}
-              width="48%"
-              height="79px"
-            >
-              <Image src="/assets/jumpit.png" height="24px" alt="Jumpit" />
-              <Text fontSize="14px" fontWeight="medium">
-                점핏 바로가기
-              </Text>
-            </Center>
-            <Center
-              onClick={handleGoWanted}
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              gap="6px"
-              padding="12px"
-              border="1px solid"
-              borderColor="gray.200"
-              borderRadius="8px"
-              _hover={{ cursor: 'pointer', color: 'primary' }}
-              width="48%"
-              height="79px"
-            >
-              <Image src="/assets/wanted.png" height="24px" alt="Wanted" />
-              <Text fontSize="14px" fontWeight="medium">
-                원티드 바로가기
-              </Text>
-            </Center>
-          </Flex>
-        </Flex>
+        </StyledLoginSuccessBox>
       ) : (
-        <Flex alignItems="center" width="100%" height="100%">
-          <Flex flexDirection="column" gap="48px" width="100%">
-            <Box>
-              <Text fontSize="20px" fontWeight="medium">
-                로그인하고
-              </Text>
-              <Text fontSize="20px" fontWeight="medium">
-                다양한 취업 정보를 얻어봐요!
-              </Text>
-            </Box>
-            <Button onClick={handleLogin} width="100%">
+        <StyledNotLoginBox>
+          <Stack
+            direction="vertical"
+            justify="space-between"
+            spacing={48}
+            style={{ width: '100%', height: '100%' }}
+          >
+            <Flex direction="column">
+              <Text styleType="h3">로그인하고 식견에서</Text>
+              <Text styleType="h3">다양한 취업 정보를 얻어봐요!</Text>
+            </Flex>
+            <Button onClick={handleLogin} styleType="ghost">
               로그인
             </Button>
-          </Flex>
-        </Flex>
+          </Stack>
+        </StyledNotLoginBox>
       )}
-    </Box>
+    </StyledLoginBox>
   );
 };
 
 export default LoginBox;
+
+const StyledLoginBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.gray200};
+  width: 500px;
+  height: 250px;
+`;
+
+const StyledLoginSuccessBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+`;
+
+const StyledNotLoginBox = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
+const StyledNavigationLinkButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 8px;
+  width: 48%;
+  height: 79px;
+
+  ${({ theme }) => css`
+    border: 1px solid ${theme.colors.gray200};
+
+    &:hover {
+      cursor: pointer;
+    }
+  `}
+`;
