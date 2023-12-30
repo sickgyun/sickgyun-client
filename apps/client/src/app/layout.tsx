@@ -10,11 +10,11 @@ const RootLayout = ({ children }: PropsWithChildren) => {
     <html lang="en">
       <body>
         <QueryClientProvider>
-          <OverlayProvider>
-            <ChakraProvider>
-              <StyleProvider>{children}</StyleProvider>
-            </ChakraProvider>
-          </OverlayProvider>
+          <ChakraProvider>
+            <StyleProvider>
+              <OverlayProvider>{children}</OverlayProvider>
+            </StyleProvider>
+          </ChakraProvider>
         </QueryClientProvider>
       </body>
     </html>

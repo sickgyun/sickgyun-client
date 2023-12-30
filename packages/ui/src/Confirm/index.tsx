@@ -37,8 +37,15 @@ export const Confirm = forwardRef(function Confirm(
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
-    <StyledConfirm ref={ref} isOpen={isOpen} width={width} height={height} {...props}>
-      <ModalHeader hasContent={Boolean(children)}>
+    <StyledConfirm
+      ref={ref}
+      isOpen={isOpen}
+      onClose={onClose}
+      width={width}
+      height={height}
+      {...props}
+    >
+      <ModalHeader>
         <Text styleType="h2">{title}</Text>
         {description && (
           <Text styleType="p3" color="gray600">

@@ -1,12 +1,18 @@
 import styled from '@emotion/styled';
-import type { PropsWithChildren } from 'react';
+import type { ElementType, HTMLAttributes, PropsWithChildren } from 'react';
 
-type ModalContentProps = PropsWithChildren;
+type ModalContentProps = PropsWithChildren<{ tag?: ElementType }> &
+  HTMLAttributes<HTMLDivElement>;
 
-export const ModalContent = ({ children }: ModalContentProps) => {
-  return <StyledModalContent>{children}</StyledModalContent>;
+export const ModalContent = ({ children, tag = 'div', ...props }: ModalContentProps) => {
+  return (
+    <StyledModalContent as={tag} {...props}>
+      {children}
+    </StyledModalContent>
+  );
 };
 
 const StyledModalContent = styled.div`
-  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
 `;

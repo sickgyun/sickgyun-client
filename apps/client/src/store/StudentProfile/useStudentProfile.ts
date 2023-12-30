@@ -14,7 +14,7 @@ export const useStudentProfile = () => {
 
   useEffect(() => {
     if (studentProfileData) {
-      setHasStudentProfile(Boolean(studentProfileData.name));
+      setHasStudentProfile(Boolean(studentProfileData));
       setStudentProfile(studentProfileData);
     }
   }, [setHasStudentProfile, setStudentProfile, studentProfileData]);
