@@ -29,7 +29,7 @@ const QnaPostingCard = ({
             <Text>{question_type_emoji}</Text>
             <Text styleType="body2">{question_type}</Text>
           </StyledQnaCategory>
-          <Text styleType="h4">{title}</Text>
+          <EllipsisText styleType="h4">{title}</EllipsisText>
         </StyledPopularQnaContent>
         <StyledPopularInfo>
           <Text>{name}</Text>
@@ -62,9 +62,6 @@ const StyledPopularQnaContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  white-space: no-wrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const StyledQnaCategory = styled.div`
@@ -86,4 +83,11 @@ const StyledPopularInfo = styled.div`
   height: 40px;
   border-top: 1px solid ${({ theme }) => theme.colors.white};
   border-radius: 0 0 12px 12px;
+`;
+
+const EllipsisText = styled(Text)`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
