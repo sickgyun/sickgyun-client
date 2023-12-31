@@ -24,6 +24,10 @@ const MainPage = () => {
     router.push(`/student-profile?position=${queryParams}`);
   };
 
+  const handleGoCareerQnaPage = () => {
+    router.push('/career-qna');
+  };
+
   return (
     <>
       <Header />
@@ -42,9 +46,14 @@ const MainPage = () => {
           </Stack>
           {/* 직군별 리스트 */}
           <Stack spacing={18} style={{ marginBottom: '64px' }}>
-            <Text styleType="h3">
-              진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
-            </Text>
+            <Flex justify="space-between">
+              <Text styleType="h3">
+                진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
+              </Text>
+              <Text style={{ cursor: 'pointer' }} onClick={handleGoCareerQnaPage}>
+                QNA 바로가기
+              </Text>
+            </Flex>
             <Flex justify="space-between">
               {POSITION_LIST.map((position) => (
                 <StyledStudentProfileRedirectButton
@@ -79,7 +88,7 @@ const MainPage = () => {
 export default MainPage;
 
 const StyledMainPageLayout = styled.div`
-  width: 100vw;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
