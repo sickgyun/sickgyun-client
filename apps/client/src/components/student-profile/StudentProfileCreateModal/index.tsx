@@ -102,7 +102,7 @@ const StudentProfileCreateModal = ({
             </Select>
             {userInformation.isGraduate && (
               <Input
-                label="회사 명"
+                label="회사"
                 placeholder="회사명을 입력해주세요."
                 {...register('company')}
               />
