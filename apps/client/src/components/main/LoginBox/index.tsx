@@ -1,4 +1,3 @@
-import { Text as TextButton } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button, Flex, Stack, Text } from '@sickgyun/ui';
@@ -65,15 +64,14 @@ const LoginBox = () => {
                   {userInformation.isGraduate ? '알려주셔야죠?' : '취업하셔야죠?'}
                 </Text>
               </Stack>
-              {/* TODO: Text Button 개발 */}
-              <TextButton
+              <Text
                 onClick={openUserInformationUpdateModal}
-                fontSize="16px"
-                color="gray.500"
-                _hover={{ cursor: 'pointer' }}
+                styleType="body1"
+                color="gray500"
+                style={{ cursor: 'pointer' }}
               >
                 설정
-              </TextButton>
+              </Text>
             </Stack>
             <Text styleType="p1" color="gray500">
               {userInformation.email}
@@ -101,7 +99,7 @@ const LoginBox = () => {
               <Text styleType="h3">로그인하고 식견에서</Text>
               <Text styleType="h3">다양한 취업 정보를 얻어봐요!</Text>
             </Flex>
-            <Button onClick={handleLogin} styleType="ghost">
+            <Button onClick={handleLogin} styleType="secondary">
               로그인
             </Button>
           </Stack>

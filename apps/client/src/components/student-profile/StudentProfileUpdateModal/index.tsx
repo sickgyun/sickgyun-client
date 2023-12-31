@@ -134,7 +134,7 @@ const StudentProfileUpdateModal = ({
         </ModalBody>
         <ModalFooter>
           <Stack direction="horizontal" spacing={8} style={{ width: '100%' }}>
-            <Button styleType="ghost" onClick={openStudentProfileDeleteConfirm}>
+            <Button styleType="secondary" onClick={openStudentProfileDeleteConfirm}>
               내 프로필 삭제
             </Button>
             <Button type="submit">수정</Button>

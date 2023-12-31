@@ -97,7 +97,6 @@ const StyledBannerImage = styled.img`
   width: 100%;
 `;
 
-// TODO: Center로 갈아끼우기
 const StyledStudentProfileRedirectButton = styled.div`
   display: flex;
   flex-direction: column;

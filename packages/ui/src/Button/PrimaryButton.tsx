@@ -28,7 +28,6 @@ export const PrimaryButton = forwardRef(function PrimaryButton(
 });
 
 const StyledPrimaryButton = styled.button<PrimaryButtonProps>`
-  ${({ theme }) => theme.fonts.h4}
   display: flex;
   justify-content: center;
   align-items: center;

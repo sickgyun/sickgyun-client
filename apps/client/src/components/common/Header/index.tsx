@@ -1,6 +1,5 @@
-import { Button } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { Flex, Text } from '@sickgyun/ui';
+import { Button, Flex, Text } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
@@ -34,13 +33,12 @@ const Header = () => {
         <Text onClick={() => router.push('/')} styleType="h4" color="black">
           sickgyun
         </Text>
-        {/* TODO: Text Button 개발 */}
         {isLogin ? (
-          <Button onClick={handleLogout} size="sm" variant="ghost">
+          <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
             로그아웃
           </Button>
         ) : (
-          <Button onClick={handleLogin} size="sm" variant="ghost">
+          <Button onClick={handleLogin} styleType="ghost" size="small" width="90px">
             로그인
           </Button>
         )}

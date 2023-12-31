@@ -61,7 +61,7 @@ const StudentProfilePage = () => {
                 onClick={() =>
                   router.replace(`/student-profile?position=${position.queryParams}`)
                 }
-                variant="ghost"
+                variant="secondary"
                 fontWeight="medium"
                 backgroundColor="white"
                 color={

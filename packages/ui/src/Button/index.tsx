@@ -8,9 +8,11 @@ import {
 } from 'react';
 import { GhostButton } from './GhostButton';
 import { PrimaryButton } from './PrimaryButton';
+import { SecondaryButton } from './SecondaryButton';
 
 export const BUTTON_STYLE_KEYS = {
   PRIMARY: 'primary',
+  SECONDARY: 'secondary',
   GHOST: 'ghost',
 } as const;
 
@@ -40,6 +42,8 @@ export const Button = forwardRef(function Button(
   switch (styleType) {
     case 'primary':
       return <PrimaryButton {...buttonProps} />;
+    case 'secondary':
+      return <SecondaryButton {...buttonProps} />;
     case 'ghost':
       return <GhostButton {...buttonProps} />;
     default:
