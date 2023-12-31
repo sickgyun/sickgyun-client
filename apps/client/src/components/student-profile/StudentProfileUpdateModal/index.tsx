@@ -124,7 +124,7 @@ const StudentProfileUpdateModal = ({
               <option value="DESIGNER">디자이너</option>
             </Select>
             {studentProfile.isGraduate && (
-              <Input placeholder="회사명을 입력해주세요." {...register('company')} />
+              <Input label="회사" placeholder="회사명을 입력해주세요." {...register('company')} />
             )}
           </Stack>
         </ModalBody>
