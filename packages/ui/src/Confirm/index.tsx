@@ -58,7 +58,7 @@ export const Confirm = forwardRef(function Confirm(
       {children && <ModalContent>{children}</ModalContent>}
       <ModalFooter>
         <Stack direction="horizontal" spacing={16}>
-          <Button onClick={onClose} styleType="ghost" size="small">
+          <Button onClick={onClose} styleType="secondary" size="small">
             {closeButtonText}
           </Button>
           <Button onClick={onConfirm} styleType="primary" size="small">
