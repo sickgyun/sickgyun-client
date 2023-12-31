@@ -1,22 +1,28 @@
 import styled from '@emotion/styled';
-import type { ForwardedRef, ReactNode } from 'react';
+import type { ForwardedRef, MouseEventHandler, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import Portal from '../Portal';
 
 type ModalProps = {
   isOpen: boolean;
+  onClose: VoidFunction;
   width?: string;
   height?: string;
   children: ReactNode;
 };
 
 export const Modal = forwardRef(function Modal(
-  { isOpen, width = '450px', height = 'auto', children, ...props }: ModalProps,
+  { isOpen, onClose, width = '450px', height = 'auto', children, ...props }: ModalProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
+  const onClickOutside: MouseEventHandler<HTMLDivElement> = (e) => {
+    if (e.target !== e.currentTarget) return;
+    if (onClose) onClose();
+  };
+
   return (
     <Portal isOpen={isOpen}>
-      <StyledDIM>
+      <StyledDIM onClick={onClickOutside}>
         <StyledModal ref={ref} width={width} height={height} {...props}>
           {children}
         </StyledModal>
@@ -27,16 +33,17 @@ export const Modal = forwardRef(function Modal(
 
 const StyledDIM = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 900;
   top: 0;
   left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  overflow: hidden;
+  width: 100vw;
   height: 100%;
-  background-color: #d8e3ff99;
-  backdrop-filter: blur(12.5px);
+  background-color: rgba(0, 0, 0, 0.6);
 `;
 
 const StyledModal = styled.div<{ width: string; height: string }>`

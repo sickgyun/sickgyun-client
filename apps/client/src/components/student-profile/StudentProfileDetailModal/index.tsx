@@ -1,13 +1,12 @@
+import { Spinner } from '@chakra-ui/react';
 import {
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
-  ModalOverlay,
-  Spinner,
-} from '@chakra-ui/react';
+  Text,
+} from '@sickgyun/ui';
 import { Suspense } from 'react';
 import StudentProfileDetailContents from './StudentProfileDetailContents';
 
@@ -21,19 +20,17 @@ const StudentProfileDetailModal = ({
   userCode,
 }: StudentProfileDetailModalProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="lg">
-      <ModalOverlay />
+    <Modal isOpen={isOpen} onClose={onClose} width="580px">
       <ModalContent>
         <ModalHeader>
-          프로필 정보
-          <ModalCloseButton />
+          <Text styleType="h2">프로필 정보</Text>
+          <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
           <Suspense fallback={<Spinner color="primary" />}>
             <StudentProfileDetailContents userCode={userCode} />
           </Suspense>
         </ModalBody>
-        <ModalFooter />
       </ModalContent>
     </Modal>
   );

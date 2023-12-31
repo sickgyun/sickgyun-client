@@ -1,6 +1,5 @@
 import {
   Button,
-  Flex,
   Input,
   Modal,
   ModalBody,
@@ -8,9 +7,9 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay,
+  Stack,
   Text,
-} from '@chakra-ui/react';
+} from '@sickgyun/ui';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useUpdateUserInformationMutation } from '@/hooks/api/user/useUpdateUserInformationMutation';
@@ -45,31 +44,31 @@ const UserInformationUpdateModal = ({
     onClose();
   };
 
-  // TODO: ModalHeader, ModalFooter 개발
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay />
+    <Modal isOpen={isOpen} onClose={onClose} width="500px">
       <ModalContent
-        as="form"
+        tag="form"
         onSubmit={handleUpdateUserInformationSubmit(onUpdateUserInformationSubmit)}
       >
         <ModalHeader>
-          <Text as="span">프로필 설정</Text>
-          <ModalCloseButton />
+          <Text styleType="h2">프로필 설정</Text>
+          <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
-          <Flex flexDirection="column" gap="16px">
+          <Stack direction="vertical" spacing={16} style={{ width: '100%' }}>
             <Input
+              label="이메일"
               defaultValue={userInformation.email}
               placeholder="이메일을 입력해주세요."
               {...register('email')}
             />
             <Input
+              label="깃허브 아이디"
               defaultValue={userInformation.githubId}
               placeholder="깃허브 아이디를 입력해주세요."
               {...register('githubId')}
             />
-          </Flex>
+          </Stack>
         </ModalBody>
         <ModalFooter>
           <Button type="submit">저장</Button>

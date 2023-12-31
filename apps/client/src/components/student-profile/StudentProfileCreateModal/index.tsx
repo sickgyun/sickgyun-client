@@ -1,6 +1,6 @@
+import { Select } from '@chakra-ui/react';
 import {
   Button,
-  Flex,
   Input,
   Modal,
   ModalBody,
@@ -8,10 +8,9 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay,
-  Select,
+  Stack,
   Text,
-} from '@chakra-ui/react';
+} from '@sickgyun/ui';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
@@ -58,36 +57,42 @@ const StudentProfileCreateModal = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="lg">
-      <ModalOverlay />
+    <Modal isOpen={isOpen} onClose={onClose} width="550px">
       <ModalContent
-        as="form"
+        tag="form"
         onSubmit={handleCreateStudentProfileSubmit(onCreateStudentProfileSubmit)}
       >
         <ModalHeader>
-          <Text as="span">프로필 등록</Text>
-          <ModalCloseButton />
+          <Text styleType="h2">프로필 등록</Text>
+          <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
-          <Flex flexDirection="column" gap="16px">
-            <Flex gap="8px">
+          <Stack spacing={16} style={{ width: '100%' }}>
+            <Stack direction="horizontal" spacing={8}>
               <Input
+                label="이름"
                 value={userInformation.name}
                 placeholder="이름을 입력해주세요."
                 disabled
               />
               <Input
+                label="깃허브 아이디"
                 defaultValue={userInformation.githubId}
                 placeholder="깃허브 아이디를 입력해주세요."
                 {...register('githubId')}
               />
-            </Flex>
+            </Stack>
             <Input
+              label="이메일"
               defaultValue={userInformation.email}
               placeholder="이메일을 적어주세요."
               {...register('email')}
             />
-            <Input placeholder="소개 말을 적어주세요." {...register('bio')} />
+            <Input
+              label="소개 말"
+              placeholder="소개 말을 적어주세요."
+              {...register('bio')}
+            />
             <Select size="md" {...register('position')}>
               <option value="FRONTEND">프론트엔드</option>
               <option value="BACKEND">백엔드</option>
@@ -96,9 +101,13 @@ const StudentProfileCreateModal = ({
               <option value="DESIGNER">디자이너</option>
             </Select>
             {userInformation.isGraduate && (
-              <Input placeholder="회사명을 입력해주세요." {...register('company')} />
+              <Input
+                label="회사"
+                placeholder="회사명을 입력해주세요."
+                {...register('company')}
+              />
             )}
-          </Flex>
+          </Stack>
         </ModalBody>
         <ModalFooter>
           <Button type="submit">등록</Button>

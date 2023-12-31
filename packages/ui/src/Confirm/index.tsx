@@ -17,7 +17,7 @@ type ConfirmProps = {
   description?: string;
   width?: string;
   height?: string;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export const Confirm = forwardRef(function Confirm(
@@ -37,14 +37,23 @@ export const Confirm = forwardRef(function Confirm(
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
-    <StyledConfirm ref={ref} isOpen={isOpen} width={width} height={height} {...props}>
-      <ModalHeader hasContent={Boolean(children)}>
-        <Text styleType="h2">{title}</Text>
-        {description && (
-          <Text styleType="p3" color="gray600">
-            {description}
-          </Text>
-        )}
+    <StyledConfirm
+      ref={ref}
+      isOpen={isOpen}
+      onClose={onClose}
+      width={width}
+      height={height}
+      {...props}
+    >
+      <ModalHeader>
+        <Stack spacing={8}>
+          <Text styleType="h2">{title}</Text>
+          {description && (
+            <Text styleType="p3" color="gray600">
+              {description}
+            </Text>
+          )}
+        </Stack>
       </ModalHeader>
       {children && <ModalContent>{children}</ModalContent>}
       <ModalFooter>

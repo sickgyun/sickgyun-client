@@ -1,6 +1,8 @@
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import styled from '@emotion/styled';
+import { Flex, Stack, Text } from '@sickgyun/ui';
 import { getUserProfileImage } from '@sickgyun/utils';
+import Image from 'next/image';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 
 type StudnetProfileDetailContentProps = {
@@ -12,126 +14,122 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
 
   const profileImage = getUserProfileImage(studentProfileData?.profileUrl);
 
-  const handleGoGithub = (githubId?: string) => {
-    window.open(`https://github.com/${githubId}`);
+  const handleGoGithub = () => {
+    window.open(`https://github.com/${studentProfileData.githubId}`);
   };
 
-  const handleGoEmail = (email?: string) => {
-    window.open(`mailto: ${email}`);
+  const handleGoEmail = () => {
+    window.open(`mailto: ${studentProfileData.email}`);
   };
 
   return (
-    <Flex flexDirection="column" gap="24px">
-      <Flex gap="24px" alignItems="flex-start" height="94px">
+    <StyledStudentProfileDetailContents>
+      <Stack
+        direction="horizontal"
+        spacing={24}
+        align="flex-start"
+        style={{ height: '94px' }}
+      >
         <Image
           src={profileImage}
-          borderRadius="8px"
-          height="100%"
+          width={94}
+          height={94}
+          style={{ borderRadius: '8px' }}
           alt="Student Profile"
         />
-        <Flex flexDirection="column" gap="4px">
-          <Flex alignItems="center" gap="6px">
-            <Text fontSize="20px" fontWeight="semibold">
-              {studentProfileData?.name}
-            </Text>
-            <Text fontSize="14px" color="gray.600" fontWeight="medium">
+        <Stack spacing={4}>
+          <Stack direction="horizontal" align="center" spacing={6}>
+            <Text styleType="h3">{studentProfileData?.name}</Text>
+            <Text styleType="body2" color="gray600">
               {studentProfileData?.cardinal}기
             </Text>
-          </Flex>
-          <Text fontSize="14px" color="gray.600" fontWeight="medium">
+          </Stack>
+          <Text styleType="body2" color="gray600">
             관심 있는 분야: {studentProfileData?.position}
           </Text>
-          <Flex gap="6px" alignItems="center">
-            <Image src="/assets/company.svg" height="16px" alt="Company" />
-            <Text fontSize="14px" color="gray.600">
+          <Stack direction="horizontal" spacing={6} align="center">
+            <Image src="/assets/company.svg" height={16} width={16} alt="Company" />
+            <Text styleType="body2" color="gray600">
               {studentProfileData?.company
                 ? studentProfileData.company
                 : '부산소프트웨어마이스터고등학교'}
             </Text>
-          </Flex>
-        </Flex>
-      </Flex>
+          </Stack>
+        </Stack>
+      </Stack>
       {studentProfileData?.bio && (
-        <Flex flexDirection="column" gap="16px">
-          <Text fontSize="20px" fontWeight="semibold">
-            소개 말
-          </Text>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            padding="12px 24px"
-            backgroundColor="gray.50"
-            borderRadius="8px"
-            _hover={{ cursor: 'pointer' }}
-            width="100%"
-            minHeight="56px"
-          >
-            <Text color="gray.600" fontSize="14px">
+        <Stack spacing={16}>
+          <Text styleType="h3">소개 말</Text>
+          <StyledIntroduceBox>
+            <Text styleType="body2" color="gray600">
               {studentProfileData.bio}
             </Text>
-          </Box>
-        </Flex>
+          </StyledIntroduceBox>
+        </Stack>
       )}
-      <Flex flexDirection="column" gap="16px">
-        <Text fontSize="20px" fontWeight="semibold">
-          정보
-        </Text>
+      <Stack spacing={16}>
+        <Text styleType="h3">정보</Text>
         {/* 깃허브 */}
-        <Flex flexDirection="column" gap="12px">
+        <Stack spacing={12}>
           {studentProfileData?.githubId && (
-            <Box
-              onClick={() => handleGoGithub(studentProfileData.githubId)}
-              display="flex"
-              alignItems="center"
-              justifyContent="space-between"
-              padding="0px 24px"
-              backgroundColor="gray.50"
-              borderRadius="8px"
-              _hover={{ cursor: 'pointer' }}
-              width="100%"
-              height="56px"
-            >
-              <Text fontSize="14px" fontWeight="semibold">
-                👀 선배의 깃허브는 어떻게 되어 있을까요?
-              </Text>
-              <Flex alignItems="center">
-                <Text fontSize="12px" color="gray.700">
+            <StyledNavigationLinkButton onClick={handleGoGithub}>
+              <Text styleType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
+              <Flex align="center">
+                <Text styleType="body3" color="gray700">
                   깃허브 바로가기
                 </Text>
                 <ChevronRightIcon color="gray.700" />
               </Flex>
-            </Box>
+            </StyledNavigationLinkButton>
           )}
           {/* 이메일 */}
           {studentProfileData?.email && (
-            <Box
-              onClick={() => handleGoEmail(studentProfileData.email)}
-              display="flex"
-              alignItems="center"
-              justifyContent="space-between"
-              padding="0px 24px"
-              backgroundColor="gray.50"
-              borderRadius="8px"
-              _hover={{ cursor: 'pointer' }}
-              width="100%"
-              height="56px"
-            >
-              <Text fontSize="14px" fontWeight="semibold">
-                📨 커피챗, 코드리뷰, 조언 요청하러가기
-              </Text>
-              <Flex alignItems="center">
-                <Text fontSize="12px" color="gray.700">
+            <StyledNavigationLinkButton onClick={handleGoEmail}>
+              <Text styleType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
+              <Flex align="center">
+                <Text styleType="body3" color="gray700">
                   이메일 바로가기
                 </Text>
+                {/* TODO: RightIcon 컴포넌트 추가 */}
                 <ChevronRightIcon color="gray.700" />
               </Flex>
-            </Box>
+            </StyledNavigationLinkButton>
           )}
-        </Flex>
-      </Flex>
-    </Flex>
+        </Stack>
+      </Stack>
+    </StyledStudentProfileDetailContents>
   );
 };
 
 export default StudentProfileDetailContents;
+
+const StyledStudentProfileDetailContents = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+`;
+
+const StyledIntroduceBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background-color: ${({ theme }) => theme.colors.gray50};
+  border-radius: 8px;
+  width: 100%;
+  min-height: 56px;
+  cursor: pointer;
+`;
+
+const StyledNavigationLinkButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 24px;
+  background-color: ${({ theme }) => theme.colors.gray50};
+  border-radius: 8px;
+  width: 100%;
+  height: 56px;
+  cursor: pointer;
+`;
