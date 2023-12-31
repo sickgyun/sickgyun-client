@@ -2,6 +2,7 @@
 
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
+import QnaCategory from '../QnaCategory';
 
 type QnaPostingCardProps = {
   title: string;
@@ -18,17 +19,11 @@ const QnaPostingCard = ({
   heart,
   comment_count,
 }: QnaPostingCardProps) => {
-  const question_type_emoji =
-    question_type === '취업' ? '👔' : question_type === '커리어' ? '💼' : '🚀';
-
   return (
     <StyledQnaPostingCard>
       <Stack direction="vertical" spacing={0}>
         <StyledPopularQnaContent>
-          <StyledQnaCategory>
-            <Text>{question_type_emoji}</Text>
-            <Text styleType="body2">{question_type}</Text>
-          </StyledQnaCategory>
+          <QnaCategory question_type={question_type} />
           <EllipsisText styleType="h4">{title}</EllipsisText>
         </StyledPopularQnaContent>
         <StyledPopularInfo>
@@ -62,17 +57,6 @@ const StyledPopularQnaContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-`;
-
-const StyledQnaCategory = styled.div`
-  width: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  padding: 6px 14px;
-  background-color: ${({ theme }) => theme.colors.gray300};
-  border-radius: 30px;
 `;
 
 const StyledPopularInfo = styled.div`
