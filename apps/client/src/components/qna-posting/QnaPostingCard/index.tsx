@@ -24,7 +24,7 @@ const QnaPostingCard = ({
       <Stack direction="vertical" spacing={0}>
         <StyledPopularQnaContent>
           <QnaCategory question_type={question_type} />
-          <EllipsisText styleType="h4">{title}</EllipsisText>
+          <StyledEllipsisText styleType="h4">{title}</StyledEllipsisText>
         </StyledPopularQnaContent>
         <StyledPopularInfo>
           <Text>{name}</Text>
@@ -41,7 +41,7 @@ const QnaPostingCard = ({
 export default QnaPostingCard;
 
 const StyledQnaPostingCard = styled.div`
-  width: calc((100% - 24px) / 3);
+  width: calc((100% / 3) - 10px);
   height: 185px;
   background-color: ${({ theme }) => theme.colors.gray100};
   flex: 0 0 auto;
@@ -69,7 +69,7 @@ const StyledPopularInfo = styled.div`
   border-radius: 0 0 12px 12px;
 `;
 
-const EllipsisText = styled(Text)`
+const StyledEllipsisText = styled(Text)`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
