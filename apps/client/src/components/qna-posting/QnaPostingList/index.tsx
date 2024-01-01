@@ -35,9 +35,7 @@ const StyledQnaPostingListContainer = styled.div`
 const StyledQnaPostingList = styled.div<StyledQnaPostingListProps>`
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
   transition: transform 0.5s;
   transform: ${({ currentQna }) => `translateX(${-currentQna * (100 / 3)}%)`};
-  gap: 10px;
+  gap: 12px;
 `;

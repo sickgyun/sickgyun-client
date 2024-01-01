@@ -5,6 +5,8 @@ import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
+import QnaAskBox from '@/components/qna-posting/QnaAskBox';
+import QnaListBox from '@/components/qna-posting/QnaListBox';
 import QnaPostingList from '@/components/qna-posting/QnaPostingList';
 import { QNA_LIST } from '@/constants/qna-list';
 
@@ -16,7 +18,7 @@ const CareerQna = () => {
   };
 
   const nextCareerQna = () => {
-    setCurrentQna((nextQna) => (nextQna < QNA_LIST.length - 4 ? nextQna + 1 : nextQna));
+    setCurrentQna((nextQna) => (nextQna < QNA_LIST.length - 3 ? nextQna + 1 : nextQna));
   };
 
   return (
@@ -24,7 +26,7 @@ const CareerQna = () => {
       <Header />
       <StyledCareerQnaLayout>
         <StyledCareerQna>
-          <Stack direction="vertical" spacing={15}>
+          <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>
             <Flex justify="space-between">
               <Text styleType="h3">🏅 인기글</Text>
               <Stack direction="horizontal" spacing={10}>
@@ -38,6 +40,10 @@ const CareerQna = () => {
             </Flex>
             <QnaPostingList currentQna={currentQna} />
           </Stack>
+          <StyledCareerQnaAsk>
+            <QnaAskBox />
+            <QnaListBox />
+          </StyledCareerQnaAsk>
         </StyledCareerQna>
       </StyledCareerQnaLayout>
       <Footer />
@@ -50,6 +56,7 @@ export default CareerQna;
 const StyledCareerQnaLayout = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.white};
+  min-height: 100vh;
 `;
 
 const StyledCareerQna = styled.div`
@@ -69,4 +76,11 @@ const StyledArrowImage = styled.img`
     background-color: ${({ theme }) => theme.colors.gray300};
     border-radius: 50%;
   }
+`;
+
+const StyledCareerQnaAsk = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 35px;
+  background-color: skyblue;
 `;
