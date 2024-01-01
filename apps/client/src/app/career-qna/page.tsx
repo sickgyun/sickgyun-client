@@ -28,8 +28,12 @@ const CareerQna = () => {
             <Flex justify="space-between">
               <Text styleType="h3">🏅 인기글</Text>
               <Stack direction="horizontal" spacing={10}>
-                <StyledCareerArrow onClick={prevCareerQna}>{'<'}</StyledCareerArrow>
-                <StyledCareerArrow onClick={nextCareerQna}>{'>'}</StyledCareerArrow>
+                <Stack onClick={prevCareerQna}>
+                  <StyledArrowImage src="/assets/arrow_left.png" />
+                </Stack>
+                <Stack onClick={nextCareerQna}>
+                  <StyledArrowImage src="/assets/arrow_right.png" />
+                </Stack>
               </Stack>
             </Flex>
             <QnaPostingList currentQna={currentQna} />
@@ -55,6 +59,14 @@ const StyledCareerQna = styled.div`
   padding-bottom: 64px;
 `;
 
-const StyledCareerArrow = styled.div`
+const StyledArrowImage = styled.img`
+  width: 25px;
+  height: 25px;
   cursor: pointer;
+
+  &:hover {
+    transition: 0.3s ease-in-out;
+    background-color: ${({ theme }) => theme.colors.gray300};
+    border-radius: 50%;
+  }
 `;
