@@ -11,14 +11,16 @@ import QnaPostingList from '@/components/qna-posting/QnaPostingList';
 import { QNA_LIST } from '@/constants/qna-list';
 
 const CareerQna = () => {
-  const [currentQna, setCurrentQna] = useState(0);
+  const [currentQnaPage, setCurrentQnaPage] = useState(0);
 
   const handlePrevCareerQna = () => {
-    setCurrentQna((prevQna) => (prevQna > 0 ? prevQna - 1 : 0));
+    setCurrentQnaPage((prevQna) => (prevQna > 0 ? prevQna - 1 : 0));
   };
 
   const handleNextCarrerQna = () => {
-    setCurrentQna((nextQna) => (nextQna < QNA_LIST.length - 3 ? nextQna + 1 : nextQna));
+    setCurrentQnaPage((nextQna) =>
+      nextQna < QNA_LIST.length - 3 ? nextQna + 1 : nextQna
+    );
   };
 
   return (
@@ -38,7 +40,7 @@ const CareerQna = () => {
                 </Stack>
               </Stack>
             </Flex>
-            <QnaPostingList currentQna={currentQna} />
+            <QnaPostingList currentQnaPage={currentQnaPage} />
           </Stack>
           <StyledCareerQnaAsk>
             <QnaAskBox />
