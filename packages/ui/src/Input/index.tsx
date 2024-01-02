@@ -17,7 +17,7 @@ export const Input = forwardRef(function Input(
   return (
     <StyledInputWrapper width={width}>
       {label && (
-        <Text color="gray600" styleType="p3">
+        <Text color="gray600" fontType="p3">
           {label}
         </Text>
       )}
@@ -31,7 +31,7 @@ export const Input = forwardRef(function Input(
       {bottomText && (
         <Text
           color={hasError ? 'red' : 'gray600'}
-          styleType="p3"
+          fontType="p3"
           style={{ marginTop: '4px' }}
         >
           {bottomText}

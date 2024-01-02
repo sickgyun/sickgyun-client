@@ -1,8 +1,7 @@
 'use client';
 
-import { Link } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { Flex, Stack, Text } from '@sickgyun/ui';
+import { Flex, Link, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
@@ -11,14 +10,11 @@ import JobPostingList from '@/components/job-posting/JobPostingList';
 import LoginBox from '@/components/main/LoginBox';
 import { POSITION_LIST } from '@/constants/common';
 
+const JOB_POSTING_FULL_VIEW_LINK =
+  'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1';
+
 const MainPage = () => {
   const router = useRouter();
-
-  const handleGoFullViewJobPosting = () => {
-    window.open(
-      'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1'
-    );
-  };
 
   const hanldeGoStudentProfilePage = (queryParams: string) => {
     router.push(`/student-profile?position=${queryParams}`);
@@ -42,7 +38,7 @@ const MainPage = () => {
           </Stack>
           {/* 직군별 리스트 */}
           <Stack spacing={18} style={{ marginBottom: '64px' }}>
-            <Text styleType="h3">
+            <Text fontType="h3">
               진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
             </Text>
             <Flex justify="space-between">
@@ -56,16 +52,17 @@ const MainPage = () => {
                     width={48}
                     alt="Position"
                   />
-                  <Text styleType="body1">{position.name}</Text>
+                  <Text fontType="body1">{position.name}</Text>
                 </StyledStudentProfileRedirectButton>
               ))}
             </Flex>
           </Stack>
           <Stack direction="vertical" spacing={18} style={{ marginBottom: '64px' }}>
             <Flex align="center" justify="space-between">
-              <Text styleType="h3">채용 중인 회사에요!</Text>
-              {/* TODO: Link 컴포넌트 개발 */}
-              <Link onClick={handleGoFullViewJobPosting}>전체 보기</Link>
+              <Text fontType="h3">채용 중인 회사에요!</Text>
+              <Link href={JOB_POSTING_FULL_VIEW_LINK} fontType="p1" color="gray750">
+                전체 보기
+              </Link>
             </Flex>
             <JobPostingList />
           </Stack>

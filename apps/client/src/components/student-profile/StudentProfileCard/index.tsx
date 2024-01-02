@@ -40,14 +40,14 @@ const StudentProfileCard = ({
         />
         <Stack spacing={4}>
           <Stack direction="horizontal" align="center" spacing={6}>
-            <Text styleType="h4">{name}</Text>
-            <Text styleType="body3" color="gray600">
+            <Text fontType="h4">{name}</Text>
+            <Text fontType="body3" color="gray600">
               {cardinal}기 • {position}
             </Text>
           </Stack>
           {bio && (
             <Text
-              styleType="body2"
+              fontType="body2"
               color="gray600"
               style={{
                 maxWidth: '95%',
@@ -61,7 +61,7 @@ const StudentProfileCard = ({
           )}
           <Stack direction="horizontal" spacing={6} align="center">
             <Image src="/assets/company.svg" width={16} height={16} alt="Company" />
-            <Text styleType="body2" color="gray600">
+            <Text fontType="body2" color="gray600">
               {company ? company : '부산소프트웨어마이스터고등학교'}
             </Text>
           </Stack>

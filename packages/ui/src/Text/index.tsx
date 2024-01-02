@@ -8,7 +8,7 @@ import {
 } from 'react';
 
 export type TextProps = {
-  styleType?: FontKeys;
+  fontType?: FontKeys;
   tag?: 'p' | 'span';
   color?: ColorKeys;
   children: ReactNode;
@@ -18,20 +18,20 @@ export const Text = forwardRef(function Text(
   {
     tag = 'span',
     children,
-    styleType: textStyle = 'p1',
+    fontType: textStyle = 'p1',
     color = 'black',
     ...props
   }: TextProps,
   ref: ForwardedRef<HTMLSpanElement>
 ) {
   return (
-    <StyledText ref={ref} as={tag} color={color} styleType={textStyle} {...props}>
+    <StyledText ref={ref} as={tag} color={color} fontType={textStyle} {...props}>
       {children}
     </StyledText>
   );
 });
 
-const StyledText = styled.span<{ color: ColorKeys; styleType: FontKeys }>`
+const StyledText = styled.span<{ color: ColorKeys; fontType: FontKeys }>`
   color: ${({ color, theme }) => color && theme.colors[color]};
-  ${({ theme, styleType }) => theme.fonts[styleType]};
+  ${({ theme, fontType }) => theme.fonts[fontType]};
 `;

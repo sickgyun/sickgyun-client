@@ -9,7 +9,7 @@ type StudentProfileCreateButtonProps = {
 const StudentProfileCreateButton = ({ onClick }: StudentProfileCreateButtonProps) => {
   return (
     <StyledStudentProfileCreateButton onClick={onClick}>
-      <Text styleType="h3" color="white">
+      <Text fontType="h3" color="white">
         프로필 등록
       </Text>
       <AddIcon color="white" width="20px" height="20px" />

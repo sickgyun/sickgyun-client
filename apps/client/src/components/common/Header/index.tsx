@@ -30,7 +30,7 @@ const Header = () => {
         justify="space-between"
         style={{ margin: '0 auto', width: '80%', height: '100%' }}
       >
-        <Text onClick={() => router.push('/')} styleType="h4" color="black">
+        <Text onClick={() => router.push('/')} fontType="h4" color="black">
           sickgyun
         </Text>
         {isLogin ? (

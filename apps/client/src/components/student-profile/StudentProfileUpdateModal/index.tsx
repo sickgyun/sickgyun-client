@@ -84,7 +84,7 @@ const StudentProfileUpdateModal = ({
         onSubmit={handleUpdateStudentProfileSubmit(onUpdateStudentProfileSubmit)}
       >
         <ModalHeader>
-          <Text styleType="h3">프로필 수정</Text>
+          <Text fontType="h3">프로필 수정</Text>
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
