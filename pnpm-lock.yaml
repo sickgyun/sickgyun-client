@@ -333,6 +333,9 @@ importers:
       '@sickgyun/design-token':
         specifier: workspace:*
         version: link:../design-token
+      next:
+        specifier: 14.0.2
+        version: 14.0.2(@babel/core@7.23.6)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0

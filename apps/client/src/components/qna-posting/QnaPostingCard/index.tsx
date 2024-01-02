@@ -25,18 +25,18 @@ const QnaPostingCard = ({
       <Flex direction="column">
         <StyledPopularQnaContent>
           <QnaCategory questionType={questionType} />
-          <StyledEllipsisText styleType="h4">{title}</StyledEllipsisText>
+          <StyledQnaContent fontType="h4">{title}</StyledQnaContent>
         </StyledPopularQnaContent>
         <StyledPopularInfo>
           <Text>{name}</Text>
           <Stack direction="horizontal" spacing={12}>
             <Flex alignItems="center" gap="3px">
               <StyledIconImage src="/assets/heart.png" alt="Banner" />
-              <Text styleType="body2">{heart}</Text>
+              <Text fontType="body2">{heart}</Text>
             </Flex>
             <Flex alignItems="center" gap="3px">
               <StyledIconImage src="/assets/heart.png" alt="Banner" />
-              <Text styleType="body2">{commentCount}</Text>
+              <Text fontType="body2">{commentCount}</Text>
             </Flex>
           </Stack>
         </StyledPopularInfo>
@@ -76,7 +76,7 @@ const StyledPopularInfo = styled.div`
   border-radius: 0 0 12px 12px;
 `;
 
-const StyledEllipsisText = styled(Text)`
+const StyledQnaContent = styled(Text)`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

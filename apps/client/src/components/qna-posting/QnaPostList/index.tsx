@@ -2,13 +2,9 @@
 
 import styled from '@emotion/styled';
 import QnaPostingCard from '../QnaPostingCard';
-import { QNA_LIST } from '@/constants/qna-list';
+import { QNA_LIST } from '@/constants/qna';
 
-type StyledQnaPostingListProps = {
-  currentQnaPage: number;
-};
-
-const QnaPostingList = ({ currentQnaPage }) => {
+const QnaPostList = ({ currentQnaPage }) => {
   return (
     <StyledQnaPostingListContainer>
       <StyledQnaPostingList currentQnaPage={currentQnaPage}>
@@ -26,13 +22,13 @@ const QnaPostingList = ({ currentQnaPage }) => {
   );
 };
 
-export default QnaPostingList;
+export default QnaPostList;
 
 const StyledQnaPostingListContainer = styled.div`
   overflow: hidden;
 `;
 
-const StyledQnaPostingList = styled.div<StyledQnaPostingListProps>`
+const StyledQnaPostingList = styled.div<{ currentQnaPage: number }>`
   width: 100%;
   display: flex;
   transition: transform 0.5s;

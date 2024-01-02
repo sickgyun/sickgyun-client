@@ -9,7 +9,7 @@ const meta: Meta<Text> = {
     children: {
       control: { type: 'text' },
     },
-    styleType: {
+    fontType: {
       control: { type: 'select' },
       options: [...Object.keys(fonts)],
     },
@@ -31,7 +31,7 @@ export default meta;
 export const Default: StoryObj<Text> = {
   args: {
     children: '안녕하세요, 해당 서비스의 이름은 식견입니다.',
-    styleType: 'p1',
+    fontType: 'p1',
   },
   render: (args) => <TextComponent {...args} />,
 };

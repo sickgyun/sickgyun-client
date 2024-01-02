@@ -23,7 +23,7 @@ const StudentProfileDetailModal = ({
     <Modal isOpen={isOpen} onClose={onClose} width="580px">
       <ModalContent>
         <ModalHeader>
-          <Text styleType="h2">프로필 정보</Text>
+          <Text fontType="h2">프로필 정보</Text>
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>

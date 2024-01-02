@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
-import { QNA_LIST } from '@/constants/qna-list';
+import { QNA_LIST } from '@/constants/qna';
 import { QNA_SORT } from '@/constants/qna-sort';
 
 const QnaListBox = () => {
@@ -14,7 +14,7 @@ const QnaListBox = () => {
       {QNA_SORT.map((qna) => (
         <Text
           key={qna.id}
-          styleType="p1"
+          fontType="p1"
           onClick={() => setSelectedTitle(qna.id)}
           style={{
             marginRight: '7px',
@@ -31,21 +31,21 @@ const QnaListBox = () => {
             <Stack direction="vertical" spacing={0}>
               <StyledPopularQnaContent>
                 <QnaCategory questionType={qna.question_type} />
-                <Text styleType="h4">{qna.title}</Text>
-                <StyledEllipsisText>{qna.detail_content}</StyledEllipsisText>
+                <Text fontType="h4">{qna.title}</Text>
+                <StyledQnaContent>{qna.detail_content}</StyledQnaContent>
                 <Flex justifyContent="space-between" style={{ width: '100%' }}>
                   <Stack spacing={12} direction="horizontal">
-                    <Text styleType="body2">{qna.name}</Text>
-                    <Text styleType="body2">6일 전</Text>
+                    <Text fontType="body2">{qna.name}</Text>
+                    <Text fontType="body2">6일 전</Text>
                   </Stack>
                   <Stack spacing={12} direction="horizontal">
                     <Flex alignItems="center" gap="3px">
                       <StyledIconImage src="/assets/heart.png" alt="Banner" />
-                      <Text styleType="body2">{qna.heart}</Text>
+                      <Text fontType="body2">{qna.heart}</Text>
                     </Flex>
                     <Flex alignItems="center" gap="3px">
                       <StyledIconImage src="/assets/comment.png" alt="Banner" />
-                      <Text styleType="body2">{qna.comment_count}</Text>
+                      <Text fontType="body2">{qna.comment_count}</Text>
                     </Flex>
                   </Stack>
                 </Flex>
@@ -93,7 +93,7 @@ const StyledPopularQnaContent = styled.div`
   gap: 10px;
 `;
 
-const StyledEllipsisText = styled(Text)`
+const StyledQnaContent = styled(Text)`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

@@ -3,11 +3,7 @@ import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import { QNA_CATEGORY } from '@/constants/qna-category';
 
-type StyledAskCategoryProps = {
-  active: boolean;
-};
-
-const QnaAskBox = () => {
+const QnaBox = () => {
   const [activeCategory, setActiveCategory] = useState(0);
 
   return (
@@ -26,11 +22,11 @@ const QnaAskBox = () => {
         {QNA_CATEGORY.map((category) => (
           <StyledAskCategory
             onClick={() => setActiveCategory(category.id)}
-            active={category.id === activeCategory}
+            isActive={category.id === activeCategory}
           >
             <Stack direction="horizontal" spacing={10}>
-              <Text styleType="body1">{category.thumbnail}</Text>
-              <Text styleType="body1">{category.title}</Text>
+              <Text fontType="body1">{category.thumbnail}</Text>
+              <Text fontType="body1">{category.title}</Text>
             </Stack>
           </StyledAskCategory>
         ))}
@@ -39,7 +35,7 @@ const QnaAskBox = () => {
   );
 };
 
-export default QnaAskBox;
+export default QnaBox;
 
 const StyledQnaAskBox = styled.div`
   width: 100%;
@@ -48,7 +44,7 @@ const StyledQnaAskBox = styled.div`
   border-radius: 12px;
 `;
 
-const StyledAskCategory = styled.div<StyledAskCategoryProps>`
+const StyledAskCategory = styled.div<{ isActive: boolean }>`
   display: flex;
   align-items: center;
   height: 48px;
@@ -65,6 +61,6 @@ const StyledAskCategory = styled.div<StyledAskCategoryProps>`
     position: absolute;
     left: 0px;
     border-left: 3px solid
-      ${({ theme, active }) => (active ? theme.colors.primary : 'transparent')};
+      ${({ theme, isActive }) => (isActive ? theme.colors.primary : 'transparent')};
   }
 `;

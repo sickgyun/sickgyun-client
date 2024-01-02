@@ -8,7 +8,7 @@ type StudentProfileUpdateButtonProps = {
 const StudentProfileUpdateButton = ({ onClick }: StudentProfileUpdateButtonProps) => {
   return (
     <StyledStudentProfileUpdateButton onClick={onClick}>
-      <Text styleType="h3" color="white">
+      <Text fontType="h3" color="white">
         내 프로필 수정
       </Text>
     </StyledStudentProfileUpdateButton>

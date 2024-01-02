@@ -6,13 +6,13 @@ type QnaCategoryProps = {
 };
 
 const QnaCategory = ({ questionType }: QnaCategoryProps) => {
-  const question_type_emoji =
+  const questionTypeEmoji =
     questionType === '취업' ? '👔' : questionType === '개발' ? '💻' : '🤔';
 
   return (
     <StyledQnaCategory>
-      <Text>{question_type_emoji}</Text>
-      <Text styleType="body2">{questionType}</Text>
+      <Text>{questionTypeEmoji}</Text>
+      <Text fontType="body2">{questionType}</Text>
     </StyledQnaCategory>
   );
 };
@@ -20,7 +20,6 @@ const QnaCategory = ({ questionType }: QnaCategoryProps) => {
 export default QnaCategory;
 
 const StyledQnaCategory = styled.div`
-  width: auto;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -5,22 +5,24 @@ import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import QnaAskBox from '@/components/qna-posting/QnaAskBox';
+import QnaBox from '@/components/qna-posting/QnaBox';
 import QnaListBox from '@/components/qna-posting/QnaListBox';
-import QnaPostingList from '@/components/qna-posting/QnaPostingList';
-import { QNA_LIST } from '@/constants/qna-list';
+import QnaPostingList from '@/components/qna-posting/QnaPostList';
+import { QNA_LIST } from '@/constants/qna';
 
 const CareerQna = () => {
   const [currentQnaPage, setCurrentQnaPage] = useState(0);
 
   const handlePrevCareerQna = () => {
-    setCurrentQnaPage((prevQna) => (prevQna > 0 ? prevQna - 1 : 0));
+    if (currentQnaPage > 0) {
+      setCurrentQnaPage((prev) => prev - 1);
+    }
   };
 
   const handleNextCarrerQna = () => {
-    setCurrentQnaPage((nextQna) =>
-      nextQna < QNA_LIST.length - 3 ? nextQna + 1 : nextQna
-    );
+    if (currentQnaPage < QNA_LIST.length - 3) {
+      setCurrentQnaPage((prev) => prev + 1);
+    }
   };
 
   return (
@@ -30,7 +32,7 @@ const CareerQna = () => {
         <StyledCareerQna>
           <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>
             <Flex justify="space-between">
-              <Text styleType="h3">🔥 인기글</Text>
+              <Text fontType="h3">🔥 인기글</Text>
               <Stack direction="horizontal" spacing={10}>
                 <Stack onClick={handlePrevCareerQna}>
                   <StyledArrowImage src="/assets/arrow_left.png" />
@@ -42,10 +44,10 @@ const CareerQna = () => {
             </Flex>
             <QnaPostingList currentQnaPage={currentQnaPage} />
           </Stack>
-          <StyledCareerQnaAsk>
-            <QnaAskBox />
+          <StyledCareerQnaContent>
+            <QnaBox />
             <QnaListBox />
-          </StyledCareerQnaAsk>
+          </StyledCareerQnaContent>
         </StyledCareerQna>
       </StyledCareerQnaLayout>
       <Footer />
@@ -80,7 +82,7 @@ const StyledArrowImage = styled.img`
   }
 `;
 
-const StyledCareerQnaAsk = styled.div`
+const StyledCareerQnaContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 35px;
