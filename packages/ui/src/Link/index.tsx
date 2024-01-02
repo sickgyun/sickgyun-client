@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { FontKeys, type ColorKeys } from '@sickgyun/design-token';
+import type { ColorKeys, FontKeys } from '@sickgyun/design-token';
 import NextLink from 'next/link';
 import type { ReactNode } from 'react';
 
