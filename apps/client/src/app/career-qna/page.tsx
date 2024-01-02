@@ -13,11 +13,11 @@ import { QNA_LIST } from '@/constants/qna-list';
 const CareerQna = () => {
   const [currentQna, setCurrentQna] = useState(0);
 
-  const prevCareerQna = () => {
+  const handlePrevCareerQna = () => {
     setCurrentQna((prevQna) => (prevQna > 0 ? prevQna - 1 : 0));
   };
 
-  const nextCareerQna = () => {
+  const handleNextCarrerQna = () => {
     setCurrentQna((nextQna) => (nextQna < QNA_LIST.length - 3 ? nextQna + 1 : nextQna));
   };
 
@@ -30,10 +30,10 @@ const CareerQna = () => {
             <Flex justify="space-between">
               <Text styleType="h3">🔥 인기글</Text>
               <Stack direction="horizontal" spacing={10}>
-                <Stack onClick={prevCareerQna}>
+                <Stack onClick={handlePrevCareerQna}>
                   <StyledArrowImage src="/assets/arrow_left.png" />
                 </Stack>
-                <Stack onClick={nextCareerQna}>
+                <Stack onClick={handleNextCarrerQna}>
                   <StyledArrowImage src="/assets/arrow_right.png" />
                 </Stack>
               </Stack>

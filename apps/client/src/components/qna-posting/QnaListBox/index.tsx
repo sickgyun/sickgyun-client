@@ -7,11 +7,7 @@ import { QNA_LIST } from '@/constants/qna-list';
 import { QNA_SORT } from '@/constants/qna-sort';
 
 const QnaListBox = () => {
-  const [selectedId, setSelectedId] = useState(0);
-
-  const handleClick = (id: number) => {
-    setSelectedId(id);
-  };
+  const [selectedTitle, setSelectedTitle] = useState(0);
 
   return (
     <StyledQnaListBox>
@@ -19,11 +15,11 @@ const QnaListBox = () => {
         <Text
           key={qna.id}
           styleType="p1"
-          onClick={() => handleClick(qna.id)}
+          onClick={() => setSelectedTitle(qna.id)}
           style={{
             marginRight: '7px',
             cursor: 'pointer',
-            fontWeight: selectedId === qna.id ? 'bold' : 'normal',
+            fontWeight: selectedTitle === qna.id ? 'bold' : 'normal',
           }}
         >
           {qna.title}
@@ -34,7 +30,7 @@ const QnaListBox = () => {
           <StyledQnaBox>
             <Stack direction="vertical" spacing={0}>
               <StyledPopularQnaContent>
-                <QnaCategory question_type={qna.question_type} />
+                <QnaCategory questionType={qna.question_type} />
                 <Text styleType="h4">{qna.title}</Text>
                 <StyledEllipsisText>{qna.detail_content}</StyledEllipsisText>
                 <Flex justifyContent="space-between" style={{ width: '100%' }}>

@@ -1,19 +1,18 @@
 import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
-import React from 'react';
 
 type QnaCategoryProps = {
-  question_type: string;
+  questionType: string;
 };
 
-const QnaCategory = ({ question_type }: QnaCategoryProps) => {
+const QnaCategory = ({ questionType }: QnaCategoryProps) => {
   const question_type_emoji =
-    question_type === '취업' ? '👔' : question_type === '개발' ? '💻' : '🤔';
+    questionType === '취업' ? '👔' : questionType === '개발' ? '💻' : '🤔';
 
   return (
     <StyledQnaCategory>
       <Text>{question_type_emoji}</Text>
-      <Text styleType="body2">{question_type}</Text>
+      <Text styleType="body2">{questionType}</Text>
     </StyledQnaCategory>
   );
 };

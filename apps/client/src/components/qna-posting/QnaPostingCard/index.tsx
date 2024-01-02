@@ -7,24 +7,24 @@ import QnaCategory from '../QnaCategory';
 
 type QnaPostingCardProps = {
   title: string;
-  question_type: string;
+  questionType: string;
   name: string;
   heart: number;
-  comment_count: number;
+  commentCount: number;
 };
 
 const QnaPostingCard = ({
   title,
-  question_type,
+  questionType,
   name,
   heart,
-  comment_count,
+  commentCount,
 }: QnaPostingCardProps) => {
   return (
     <StyledQnaPostingCard>
-      <Stack direction="vertical" spacing={0}>
+      <Flex direction="column">
         <StyledPopularQnaContent>
-          <QnaCategory question_type={question_type} />
+          <QnaCategory questionType={questionType} />
           <StyledEllipsisText styleType="h4">{title}</StyledEllipsisText>
         </StyledPopularQnaContent>
         <StyledPopularInfo>
@@ -36,11 +36,11 @@ const QnaPostingCard = ({
             </Flex>
             <Flex alignItems="center" gap="3px">
               <StyledIconImage src="/assets/heart.png" alt="Banner" />
-              <Text styleType="body2">{comment_count}</Text>
+              <Text styleType="body2">{commentCount}</Text>
             </Flex>
           </Stack>
         </StyledPopularInfo>
-      </Stack>
+      </Flex>
     </StyledQnaPostingCard>
   );
 };

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Button, Stack, Text } from '@sickgyun/ui';
+import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import { QNA_CATEGORY } from '@/constants/qna-category';
 
@@ -9,10 +9,6 @@ type StyledAskCategoryProps = {
 
 const QnaAskBox = () => {
   const [activeCategory, setActiveCategory] = useState(0);
-
-  const handleCategoryNumber = (index: number) => {
-    setActiveCategory(index);
-  };
 
   return (
     <StyledQnaAskBox>
@@ -26,19 +22,19 @@ const QnaAskBox = () => {
           질문하기
         </Button>
       </Stack>
-      <Stack flex-direction="virtical" spacing={0}>
+      <Flex direction="column">
         {QNA_CATEGORY.map((category) => (
           <StyledAskCategory
-            onClick={() => handleCategoryNumber(category.id)}
+            onClick={() => setActiveCategory(category.id)}
             active={category.id === activeCategory}
           >
             <Stack direction="horizontal" spacing={10}>
-              <Text styleType="body1">{category.titleImage}</Text>
+              <Text styleType="body1">{category.thumbnail}</Text>
               <Text styleType="body1">{category.title}</Text>
             </Stack>
           </StyledAskCategory>
         ))}
-      </Stack>
+      </Flex>
     </StyledQnaAskBox>
   );
 };
