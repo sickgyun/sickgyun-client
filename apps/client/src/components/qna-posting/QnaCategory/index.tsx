@@ -8,7 +8,7 @@ type QnaCategoryProps = {
 
 const QnaCategory = ({ question_type }: QnaCategoryProps) => {
   const question_type_emoji =
-    question_type === '취업' ? '👔' : question_type === '커리어' ? '💼' : '🚀';
+    question_type === '취업' ? '👔' : question_type === '개발' ? '💻' : '🤔';
 
   return (
     <StyledQnaCategory>

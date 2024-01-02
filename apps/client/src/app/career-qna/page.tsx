@@ -28,7 +28,7 @@ const CareerQna = () => {
         <StyledCareerQna>
           <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>
             <Flex justify="space-between">
-              <Text styleType="h3">🏅 인기글</Text>
+              <Text styleType="h3">🔥 인기글</Text>
               <Stack direction="horizontal" spacing={10}>
                 <Stack onClick={prevCareerQna}>
                   <StyledArrowImage src="/assets/arrow_left.png" />

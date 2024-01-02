@@ -2,12 +2,12 @@ export const QNA_CATEGORY = [
   {
     id: 0,
     title: '전체',
-    titleImage: '💻',
+    titleImage: '🖥️',
   },
   {
     id: 1,
-    title: '커리어',
-    titleImage: '💼',
+    title: '개발',
+    titleImage: '💻',
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ export const QNA_CATEGORY = [
   },
   {
     id: 3,
-    title: '기술스택',
-    titleImage: '🚀',
+    title: '고민',
+    titleImage: '🤔',
   },
 ];

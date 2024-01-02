@@ -1,7 +1,7 @@
 export const QNA_LIST = [
   {
     title: '실수 줄이는 팁 있을까요?',
-    question_type: '기술스택',
+    question_type: '개발',
     name: 'weekend',
     heart: 15,
     comment_count: 3,
@@ -10,7 +10,7 @@ export const QNA_LIST = [
   },
   {
     title: '포트 폴리오 관련 질문 있습니다.',
-    question_type: '커리어',
+    question_type: '고민',
     name: 'wave123',
     heart: 10,
     comment_count: 3,
@@ -38,7 +38,7 @@ export const QNA_LIST = [
   },
   {
     title: '코틀린으로 취직 되나요?',
-    question_type: '커리어',
+    question_type: '고민',
     name: 'jwc5252',
     heart: 0,
     comment_count: 1,
@@ -47,7 +47,7 @@ export const QNA_LIST = [
   },
   {
     title: '노드 못해도 취직 되나요?',
-    question_type: '커리어',
+    question_type: '고민',
     name: 'ulh1212',
     heart: 0,
     comment_count: 3,
@@ -56,7 +56,7 @@ export const QNA_LIST = [
   },
   {
     title: '노드 못해도 취직 되나요?',
-    question_type: '커리어',
+    question_type: '고민',
     name: 'ulh1212',
     heart: 0,
     comment_count: 3,
