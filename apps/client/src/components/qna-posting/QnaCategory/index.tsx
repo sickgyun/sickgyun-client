@@ -26,7 +26,7 @@ const StyledQnaCategory = styled.div`
   align-items: center;
   justify-content: center;
   gap: 7px;
-  padding: 6px 14px;
+  padding: 5px 13px;
   background-color: ${({ theme }) => theme.colors.gray300};
   border-radius: 30px;
 `;

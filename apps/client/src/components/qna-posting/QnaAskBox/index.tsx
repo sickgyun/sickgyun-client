@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Button, Stack, Text } from '@sickgyun/ui';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { QNA_CATEGORY } from '@/constants/qna-category';
 
 type StyledAskCategoryProps = {
@@ -55,8 +55,8 @@ const StyledQnaAskBox = styled.div`
 const StyledAskCategory = styled.div<StyledAskCategoryProps>`
   display: flex;
   align-items: center;
-  height: 50px;
-  padding: 5% 10%;
+  height: 48px;
+  padding: 0 10%;
   position: relative;
   gap: 5px;
   cursor: pointer;

@@ -82,5 +82,4 @@ const StyledCareerQnaAsk = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 35px;
-  background-color: skyblue;
 `;

@@ -37,5 +37,5 @@ const StyledQnaPostingList = styled.div<StyledQnaPostingListProps>`
   display: flex;
   transition: transform 0.5s;
   transform: ${({ currentQna }) => `translateX(${-currentQna * (100 / 3)}%)`};
-  gap: 12px;
+  gap: 10px;
 `;

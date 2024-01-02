@@ -1,5 +1,6 @@
 'use client';
 
+import { Flex } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import QnaCategory from '../QnaCategory';
@@ -28,9 +29,15 @@ const QnaPostingCard = ({
         </StyledPopularQnaContent>
         <StyledPopularInfo>
           <Text>{name}</Text>
-          <Stack direction="horizontal" spacing={8}>
-            <Text>{heart}</Text>
-            <Text>{comment_count}</Text>
+          <Stack direction="horizontal" spacing={12}>
+            <Flex alignItems="center" gap="3px">
+              <StyledIconImage src="/assets/heart.png" alt="Banner" />
+              <Text styleType="body2">{heart}</Text>
+            </Flex>
+            <Flex alignItems="center" gap="3px">
+              <StyledIconImage src="/assets/heart.png" alt="Banner" />
+              <Text styleType="body2">{comment_count}</Text>
+            </Flex>
           </Stack>
         </StyledPopularInfo>
       </Stack>
@@ -74,4 +81,9 @@ const StyledEllipsisText = styled(Text)`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+`;
+
+const StyledIconImage = styled.img`
+  height: 12px;
+  width: 12px;
 `;
