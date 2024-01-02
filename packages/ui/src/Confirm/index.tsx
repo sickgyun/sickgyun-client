@@ -47,9 +47,9 @@ export const Confirm = forwardRef(function Confirm(
     >
       <ModalHeader>
         <Stack spacing={8}>
-          <Text styleType="h2">{title}</Text>
+          <Text fontType="h2">{title}</Text>
           {description && (
-            <Text styleType="p3" color="gray600">
+            <Text fontType="p3" color="gray600">
               {description}
             </Text>
           )}

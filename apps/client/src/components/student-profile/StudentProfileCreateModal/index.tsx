@@ -63,7 +63,7 @@ const StudentProfileCreateModal = ({
         onSubmit={handleCreateStudentProfileSubmit(onCreateStudentProfileSubmit)}
       >
         <ModalHeader>
-          <Text styleType="h2">프로필 등록</Text>
+          <Text fontType="h2">프로필 등록</Text>
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>

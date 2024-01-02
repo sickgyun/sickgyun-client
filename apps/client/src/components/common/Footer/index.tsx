@@ -4,7 +4,7 @@ import { Text } from '@sickgyun/ui';
 const Footer = () => {
   return (
     <StyledFooter>
-      <Text styleType="body1" color="gray800">
+      <Text fontType="body1" color="gray800">
         Copyright (c) sickgyun. All rights reserved.
       </Text>
     </StyledFooter>

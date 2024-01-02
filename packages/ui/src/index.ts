@@ -8,3 +8,4 @@ export * from './Confirm';
 export * from './Input';
 export * from './Portal';
 export * from './Icons';
+export * from './Link';

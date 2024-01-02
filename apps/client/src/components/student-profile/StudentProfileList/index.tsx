@@ -35,7 +35,7 @@ const StudentProfileList = ({ positionQueryParams }: StudentProfileListProps) =>
       ))}
     </StyledStudentProfileList>
   ) : (
-    <Text styleType="h3">앗! 해당 분야의 학생이 없어요..</Text>
+    <Text fontType="h3">앗! 해당 분야의 학생이 없어요..</Text>
   );
 };
 

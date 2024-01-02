@@ -50,41 +50,41 @@ const LoginBox = () => {
         <StyledLoginSuccessBox>
           <Stack spacing={6}>
             <Stack direction="horizontal" align="center" spacing={2}>
-              <Text styleType="p3" color="gray500">
+              <Text fontType="p3" color="gray500">
                 {userInformation.cardinal}기
               </Text>
-              <Text styleType="p3" color="gray500">
+              <Text fontType="p3" color="gray500">
                 {userInformation.isGraduate ? '졸업생' : '학생'}
               </Text>
             </Stack>
             <Stack direction="horizontal" align="center" spacing={8}>
               <Stack direction="horizontal" align="center" spacing={4}>
-                <Text styleType="h4">{userInformation.name}님</Text>
-                <Text styleType="h4">
+                <Text fontType="h4">{userInformation.name}님</Text>
+                <Text fontType="h4">
                   {userInformation.isGraduate ? '알려주셔야죠?' : '취업하셔야죠?'}
                 </Text>
               </Stack>
               <Text
                 onClick={openUserInformationUpdateModal}
-                styleType="body1"
+                fontType="body1"
                 color="gray500"
                 style={{ cursor: 'pointer' }}
               >
                 설정
               </Text>
             </Stack>
-            <Text styleType="p1" color="gray500">
+            <Text fontType="p1" color="gray500">
               {userInformation.email}
             </Text>
           </Stack>
           <Flex align="center" justify="space-between" style={{ width: '100%' }}>
             <StyledNavigationLinkButton onClick={handleGoJumpit}>
               <Image src="/assets/jumpit.png" width={24} height={24} alt="Jumpit" />
-              <Text styleType="body2">점핏 바로가기</Text>
+              <Text fontType="body2">점핏 바로가기</Text>
             </StyledNavigationLinkButton>
             <StyledNavigationLinkButton onClick={handleGoWanted}>
               <Image src="/assets/wanted.png" width={24} height={24} alt="Wanted" />
-              <Text styleType="p2">원티드 바로가기</Text>
+              <Text fontType="p2">원티드 바로가기</Text>
             </StyledNavigationLinkButton>
           </Flex>
         </StyledLoginSuccessBox>
@@ -96,8 +96,8 @@ const LoginBox = () => {
             style={{ width: '100%', height: '100%' }}
           >
             <Flex direction="column">
-              <Text styleType="h3">로그인하고 식견에서</Text>
-              <Text styleType="h3">다양한 취업 정보를 얻어봐요!</Text>
+              <Text fontType="h3">로그인하고 식견에서</Text>
+              <Text fontType="h3">다양한 취업 정보를 얻어봐요!</Text>
             </Flex>
             <Button onClick={handleLogin} styleType="secondary">
               로그인

@@ -51,7 +51,7 @@ const UserInformationUpdateModal = ({
         onSubmit={handleUpdateUserInformationSubmit(onUpdateUserInformationSubmit)}
       >
         <ModalHeader>
-          <Text styleType="h2">프로필 설정</Text>
+          <Text fontType="h2">프로필 설정</Text>
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
