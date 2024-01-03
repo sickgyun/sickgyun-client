@@ -67,5 +67,8 @@ const StyledSelect = styled.select`
         ${theme.fonts.body1}
         color: ${theme.colors.gray500};
       }
+      &:focus {
+        border: 1.5px solid ${theme.colors.primary};
+      }
     `};
 `;
