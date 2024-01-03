@@ -1,8 +1,8 @@
 'use client';
 
-import { Flex } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { Stack, Text } from '@sickgyun/ui';
+import { colors } from '@sickgyun/design-token';
+import { CommentIcon, Flex, HeartIcon, Stack, Text } from '@sickgyun/ui';
 import QnaCategory from '../QnaCategory';
 
 type QnaPostingCardProps = {
@@ -13,7 +13,7 @@ type QnaPostingCardProps = {
   commentCount: number;
 };
 
-const QnaPostingCard = ({
+const QnaPostCard = ({
   title,
   questionType,
   name,
@@ -21,7 +21,7 @@ const QnaPostingCard = ({
   commentCount,
 }: QnaPostingCardProps) => {
   return (
-    <StyledQnaPostingCard>
+    <StyledQnaPostCard>
       <Flex direction="column">
         <StyledPopularQnaContent>
           <QnaCategory questionType={questionType} />
@@ -30,24 +30,28 @@ const QnaPostingCard = ({
         <StyledPopularInfo>
           <Text>{name}</Text>
           <Stack direction="horizontal" spacing={12}>
-            <Flex alignItems="center" gap="3px">
-              <StyledIconImage src="/assets/heart.png" alt="Banner" />
-              <Text fontType="body2">{heart}</Text>
-            </Flex>
-            <Flex alignItems="center" gap="3px">
-              <StyledIconImage src="/assets/heart.png" alt="Banner" />
-              <Text fontType="body2">{commentCount}</Text>
-            </Flex>
+            <Stack direction="horizontal" align="center" spacing={3}>
+              <HeartIcon width={16} height={16} color={colors.black} />
+              <Text fontType="body2" style={{ marginTop: '2px' }}>
+                {heart}
+              </Text>
+            </Stack>
+            <Stack direction="horizontal" align="center" spacing={3}>
+              <CommentIcon width={16} height={16} color={colors.black} />
+              <Text fontType="body2" style={{ marginTop: '2px' }}>
+                {commentCount}
+              </Text>
+            </Stack>
           </Stack>
         </StyledPopularInfo>
       </Flex>
-    </StyledQnaPostingCard>
+    </StyledQnaPostCard>
   );
 };
 
-export default QnaPostingCard;
+export default QnaPostCard;
 
-const StyledQnaPostingCard = styled.div`
+const StyledQnaPostCard = styled.div`
   width: calc((100% / 3) - 10px);
   height: 185px;
   background-color: ${({ theme }) => theme.colors.gray100};
@@ -81,9 +85,4 @@ const StyledQnaContent = styled(Text)`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-`;
-
-const StyledIconImage = styled.img`
-  height: 12px;
-  width: 12px;
 `;

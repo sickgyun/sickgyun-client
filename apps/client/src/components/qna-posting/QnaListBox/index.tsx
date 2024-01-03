@@ -1,9 +1,9 @@
-import { Flex } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { Stack, Text } from '@sickgyun/ui';
+import { colors } from '@sickgyun/design-token';
+import { CommentIcon, Flex, HeartIcon, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
-import { QNA_LIST } from '@/constants/qna';
+import { QNA } from '@/constants/qna';
 import { QNA_SORT } from '@/constants/qna-sort';
 
 const QnaListBox = () => {
@@ -26,31 +26,35 @@ const QnaListBox = () => {
         </Text>
       ))}
       <StyledQnaBoxWrapper>
-        {QNA_LIST.map((qna) => (
+        {QNA.map((qna) => (
           <StyledQnaBox>
-            <Stack direction="vertical" spacing={0}>
-              <StyledPopularQnaContent>
-                <QnaCategory questionType={qna.question_type} />
+            <Flex direction="column">
+              <StyledPopularQna>
+                <QnaCategory questionType={qna.questionType} />
                 <Text fontType="h4">{qna.title}</Text>
-                <StyledQnaContent>{qna.detail_content}</StyledQnaContent>
-                <Flex justifyContent="space-between" style={{ width: '100%' }}>
+                <StyledQnaContent>{qna.detailContent}</StyledQnaContent>
+                <Flex justify="space-between" style={{ width: '100%' }}>
                   <Stack spacing={12} direction="horizontal">
                     <Text fontType="body2">{qna.name}</Text>
                     <Text fontType="body2">6일 전</Text>
                   </Stack>
                   <Stack spacing={12} direction="horizontal">
-                    <Flex alignItems="center" gap="3px">
-                      <StyledIconImage src="/assets/heart.png" alt="Banner" />
-                      <Text fontType="body2">{qna.heart}</Text>
-                    </Flex>
-                    <Flex alignItems="center" gap="3px">
-                      <StyledIconImage src="/assets/comment.png" alt="Banner" />
-                      <Text fontType="body2">{qna.comment_count}</Text>
-                    </Flex>
+                    <Stack direction="horizontal" align="center" spacing={3}>
+                      <HeartIcon width={16} height={16} color={colors.black} />
+                      <Text fontType="body2" style={{ marginTop: '2px' }}>
+                        {qna.heart}
+                      </Text>
+                    </Stack>
+                    <Stack direction="horizontal" align="center" spacing={3}>
+                      <CommentIcon width={16} height={16} color={colors.black} />
+                      <Text fontType="body2" style={{ marginTop: '2px' }}>
+                        {qna.commentCount}
+                      </Text>
+                    </Stack>
                   </Stack>
                 </Flex>
-              </StyledPopularQnaContent>
-            </Stack>
+              </StyledPopularQna>
+            </Flex>
           </StyledQnaBox>
         ))}
       </StyledQnaBoxWrapper>
@@ -85,7 +89,7 @@ const StyledQnaBox = styled.div`
   }
 `;
 
-const StyledPopularQnaContent = styled.div`
+const StyledPopularQna = styled.div`
   height: 170px;
   display: inline-flex;
   flex-direction: column;
@@ -98,9 +102,4 @@ const StyledQnaContent = styled(Text)`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-`;
-
-const StyledIconImage = styled.img`
-  height: 12px;
-  width: 12px;
 `;

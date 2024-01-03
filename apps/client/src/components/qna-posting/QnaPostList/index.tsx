@@ -1,37 +1,38 @@
 'use client';
 
 import styled from '@emotion/styled';
-import QnaPostingCard from '../QnaPostingCard';
-import { QNA_LIST } from '@/constants/qna';
+import QnaPostCard from '../QnaPostCard';
+import { QNA } from '@/constants/qna';
 
-const QnaPostList = ({ currentQnaPage }) => {
+const QnaPostList = ({ currentQnaPageIndex }) => {
   return (
-    <StyledQnaPostingListContainer>
-      <StyledQnaPostingList currentQnaPage={currentQnaPage}>
-        {QNA_LIST.map((qnaPosting) => (
-          <QnaPostingCard
+    <StyledQnaPostListContainer>
+      <StyledQnaPostList currentQnaPageIndex={currentQnaPageIndex}>
+        {QNA.map((qnaPosting) => (
+          <QnaPostCard
             title={qnaPosting.title}
-            questionType={qnaPosting.question_type}
+            questionType={qnaPosting.questionType}
             name={qnaPosting.name}
             heart={qnaPosting.heart}
-            commentCount={qnaPosting.comment_count}
+            commentCount={qnaPosting.commentCount}
           />
         ))}
-      </StyledQnaPostingList>
-    </StyledQnaPostingListContainer>
+      </StyledQnaPostList>
+    </StyledQnaPostListContainer>
   );
 };
 
 export default QnaPostList;
 
-const StyledQnaPostingListContainer = styled.div`
+const StyledQnaPostListContainer = styled.div`
   overflow: hidden;
 `;
 
-const StyledQnaPostingList = styled.div<{ currentQnaPage: number }>`
+const StyledQnaPostList = styled.div<{ currentQnaPageIndex: number }>`
   width: 100%;
   display: flex;
   transition: transform 0.5s;
-  transform: ${({ currentQnaPage }) => `translateX(${-currentQnaPage * (100 / 3)}%)`};
+  transform: ${({ currentQnaPageIndex }) =>
+    `translateX(${-currentQnaPageIndex * (100 / 3)}%)`};
   gap: 10px;
 `;

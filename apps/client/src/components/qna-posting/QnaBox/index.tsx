@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { QNA_CATEGORY } from '@/constants/qna-category';
 
 const QnaBox = () => {
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
 
   return (
-    <StyledQnaAskBox>
+    <StyledQnaBox>
       <Stack
         direction="horizontal"
         align="center"
@@ -20,31 +20,31 @@ const QnaBox = () => {
       </Stack>
       <Flex direction="column">
         {QNA_CATEGORY.map((category) => (
-          <StyledAskCategory
-            onClick={() => setActiveCategory(category.id)}
-            isActive={category.id === activeCategory}
+          <StyledQnaCategory
+            onClick={() => setActiveCategoryIndex(category.id)}
+            isActive={category.id === activeCategoryIndex}
           >
             <Stack direction="horizontal" spacing={10}>
               <Text fontType="body1">{category.thumbnail}</Text>
               <Text fontType="body1">{category.title}</Text>
             </Stack>
-          </StyledAskCategory>
+          </StyledQnaCategory>
         ))}
       </Flex>
-    </StyledQnaAskBox>
+    </StyledQnaBox>
   );
 };
 
 export default QnaBox;
 
-const StyledQnaAskBox = styled.div`
+const StyledQnaBox = styled.div`
   width: 100%;
   height: 300px;
   background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 12px;
 `;
 
-const StyledAskCategory = styled.div<{ isActive: boolean }>`
+const StyledQnaCategory = styled.div<{ isActive: boolean }>`
   display: flex;
   align-items: center;
   height: 48px;

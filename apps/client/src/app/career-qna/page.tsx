@@ -1,28 +1,49 @@
 'use client';
 
 import styled from '@emotion/styled';
+import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
+import LeftArrowIcon from '@sickgyun/ui/src/Icons/LeftArrow';
+import RightArrowIcon from '@sickgyun/ui/src/Icons/RightArrow';
 import { useState } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import QnaBox from '@/components/qna-posting/QnaBox';
 import QnaListBox from '@/components/qna-posting/QnaListBox';
-import QnaPostingList from '@/components/qna-posting/QnaPostList';
-import { QNA_LIST } from '@/constants/qna';
+import QnaPostList from '@/components/qna-posting/QnaPostList';
+import { QNA } from '@/constants/qna';
 
 const CareerQna = () => {
-  const [currentQnaPage, setCurrentQnaPage] = useState(0);
+  const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
+  const [leftArrowIconColor, setLeftArrowIconColor] = useState<string>(colors.gray600);
+  const [rightArrowIconColor, setRightArrowIconColor] = useState<string>(colors.gray600);
 
-  const handlePrevCareerQna = () => {
-    if (currentQnaPage > 0) {
-      setCurrentQnaPage((prev) => prev - 1);
+  const handlePrevPopularQna = () => {
+    if (currentQnaPageIndex > 0) {
+      setCurrentQnaPageIndex((prev) => prev - 1);
     }
   };
 
-  const handleNextCarrerQna = () => {
-    if (currentQnaPage < QNA_LIST.length - 3) {
-      setCurrentQnaPage((prev) => prev + 1);
+  const handleNextPopularQna = () => {
+    if (currentQnaPageIndex < QNA.length - 3) {
+      setCurrentQnaPageIndex((prev) => prev + 1);
     }
+  };
+
+  const handleLeftIconHover = () => {
+    setLeftArrowIconColor(colors.gray400);
+  };
+
+  const handleLeftIconLeave = () => {
+    setLeftArrowIconColor(colors.gray600);
+  };
+
+  const handleRightIconHover = () => {
+    setRightArrowIconColor(colors.gray400);
+  };
+
+  const handleRightIconLeave = () => {
+    setRightArrowIconColor(colors.gray600);
   };
 
   return (
@@ -33,16 +54,34 @@ const CareerQna = () => {
           <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>
             <Flex justify="space-between">
               <Text fontType="h3">🔥 인기글</Text>
-              <Stack direction="horizontal" spacing={10}>
-                <Stack onClick={handlePrevCareerQna}>
-                  <StyledArrowImage src="/assets/arrow_left.png" />
+              <Stack direction="horizontal" spacing={6}>
+                <Stack
+                  onClick={handlePrevPopularQna}
+                  onMouseEnter={handleLeftIconHover}
+                  onMouseLeave={handleLeftIconLeave}
+                >
+                  <LeftArrowIcon
+                    width={30}
+                    height={30}
+                    color={leftArrowIconColor}
+                    cursor="pointer"
+                  />
                 </Stack>
-                <Stack onClick={handleNextCarrerQna}>
-                  <StyledArrowImage src="/assets/arrow_right.png" />
+                <Stack
+                  onClick={handleNextPopularQna}
+                  onMouseEnter={handleRightIconHover}
+                  onMouseLeave={handleRightIconLeave}
+                >
+                  <RightArrowIcon
+                    width={30}
+                    height={30}
+                    color={rightArrowIconColor}
+                    cursor="pointer"
+                  />
                 </Stack>
               </Stack>
             </Flex>
-            <QnaPostingList currentQnaPage={currentQnaPage} />
+            <QnaPostList currentQnaPageIndex={currentQnaPageIndex} />
           </Stack>
           <StyledCareerQnaContent>
             <QnaBox />
@@ -68,18 +107,6 @@ const StyledCareerQna = styled.div`
   width: 80%;
   padding-top: 48px;
   padding-bottom: 64px;
-`;
-
-const StyledArrowImage = styled.img`
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-
-  &:hover {
-    transition: 0.3s ease-in-out;
-    background-color: ${({ theme }) => theme.colors.gray300};
-    border-radius: 50%;
-  }
 `;
 
 const StyledCareerQnaContent = styled.div`
