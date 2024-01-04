@@ -1,6 +1,6 @@
 import { type SVGProps } from 'react';
 
-export const RightArrowIcon = (props: SVGProps<SVGSVGElement>) => {
+export const ArrowRightIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77 77" {...props}>
       <path
@@ -11,4 +11,4 @@ export const RightArrowIcon = (props: SVGProps<SVGSVGElement>) => {
   );
 };
 
-export default RightArrowIcon;
+export default ArrowRightIcon;

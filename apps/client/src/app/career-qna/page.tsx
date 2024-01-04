@@ -1,9 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Flex, Stack, Text } from '@sickgyun/ui';
-import LeftArrowIcon from '@sickgyun/ui/src/Icons/LeftArrow';
-import RightArrowIcon from '@sickgyun/ui/src/Icons/RightArrow';
+import { ArrowLeftIcon, ArrowRightIcon, Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -43,13 +41,13 @@ const CareerQna = () => {
                   onClick={handlePrevPopularQna}
                   firstOrLastPage={isFirstPage}
                 >
-                  <LeftArrowIcon width={30} height={30} />
+                  <ArrowLeftIcon width={30} height={30} />
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
                   firstOrLastPage={isLastPage}
                 >
-                  <RightArrowIcon width={30} height={30} />
+                  <ArrowRightIcon width={30} height={30} />
                 </StyledActiveButton>
               </Stack>
             </Flex>
