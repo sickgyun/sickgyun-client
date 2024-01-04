@@ -7,18 +7,18 @@ import { QNA } from '@/constants/qna';
 import { QNA_SORT } from '@/constants/qna-sort';
 
 const QnaListBox = () => {
-  const [selectedTitle, setSelectedTitle] = useState('최신순');
+  const [selectedQna, setSelectedQna] = useState(0);
 
   return (
     <StyledQnaListBox>
       {QNA_SORT.map((qna) => (
         <Text
           fontType="p1"
-          onClick={() => setSelectedTitle(qna.title)}
+          onClick={() => setSelectedQna(qna.id)}
           style={{
             marginRight: '7px',
             cursor: 'pointer',
-            fontWeight: selectedTitle === qna.title ? 'bold' : 'normal',
+            fontWeight: selectedQna === qna.id ? 'bold' : 'normal',
           }}
         >
           {qna.title}
