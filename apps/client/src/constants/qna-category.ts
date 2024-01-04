@@ -2,21 +2,21 @@ export const QNA_CATEGORY = [
   {
     id: 0,
     title: '전체',
-    thumbnail: '🖥️',
+    emoji: '🖥️',
   },
   {
     id: 1,
     title: '개발',
-    thumbnail: '💻',
+    emoji: '💻',
   },
   {
     id: 2,
     title: '취업',
-    thumbnail: '👔',
+    emoji: '👔',
   },
   {
     id: 3,
     title: '고민',
-    thumbnail: '🤔',
+    emoji: '🤔',
   },
 ];

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { colors } from '@sickgyun/design-token';
 import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import { QNA_CATEGORY } from '@/constants/qna-category';
@@ -12,7 +13,7 @@ const QnaBox = () => {
         direction="horizontal"
         align="center"
         justify="center"
-        style={{ height: '90px', borderBottom: '1px solid white' }}
+        style={{ height: '90px', borderBottom: `1px solid ${colors.white}` }}
       >
         <Button width="80%" styleType="primary">
           질문하기
@@ -25,7 +26,7 @@ const QnaBox = () => {
             isActive={category.id === activeCategoryIndex}
           >
             <Stack direction="horizontal" spacing={10}>
-              <Text fontType="body1">{category.thumbnail}</Text>
+              <Text>{category.emoji}</Text>
               <Text fontType="body1">{category.title}</Text>
             </Stack>
           </StyledQnaCategory>

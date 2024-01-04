@@ -1,7 +1,6 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import LeftArrowIcon from '@sickgyun/ui/src/Icons/LeftArrow';
 import RightArrowIcon from '@sickgyun/ui/src/Icons/RightArrow';
@@ -15,8 +14,6 @@ import { QNA } from '@/constants/qna';
 
 const CareerQna = () => {
   const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
-  const [leftArrowIconColor, setLeftArrowIconColor] = useState<string>(colors.gray600);
-  const [rightArrowIconColor, setRightArrowIconColor] = useState<string>(colors.gray600);
 
   const handlePrevPopularQna = () => {
     if (currentQnaPageIndex > 0) {
@@ -30,21 +27,8 @@ const CareerQna = () => {
     }
   };
 
-  const handleLeftIconHover = () => {
-    setLeftArrowIconColor(colors.gray400);
-  };
-
-  const handleLeftIconLeave = () => {
-    setLeftArrowIconColor(colors.gray600);
-  };
-
-  const handleRightIconHover = () => {
-    setRightArrowIconColor(colors.gray400);
-  };
-
-  const handleRightIconLeave = () => {
-    setRightArrowIconColor(colors.gray600);
-  };
+  const isFirstPage = currentQnaPageIndex == 0;
+  const isLastPage = currentQnaPageIndex == QNA.length - 3;
 
   return (
     <>
@@ -55,30 +39,18 @@ const CareerQna = () => {
             <Flex justify="space-between">
               <Text fontType="h3">🔥 인기글</Text>
               <Stack direction="horizontal" spacing={6}>
-                <Stack
+                <StyledActiveButton
                   onClick={handlePrevPopularQna}
-                  onMouseEnter={handleLeftIconHover}
-                  onMouseLeave={handleLeftIconLeave}
+                  firstOrLastPage={isFirstPage}
                 >
-                  <LeftArrowIcon
-                    width={30}
-                    height={30}
-                    color={leftArrowIconColor}
-                    cursor="pointer"
-                  />
-                </Stack>
-                <Stack
+                  <LeftArrowIcon width={30} height={30} />
+                </StyledActiveButton>
+                <StyledActiveButton
                   onClick={handleNextPopularQna}
-                  onMouseEnter={handleRightIconHover}
-                  onMouseLeave={handleRightIconLeave}
+                  firstOrLastPage={isLastPage}
                 >
-                  <RightArrowIcon
-                    width={30}
-                    height={30}
-                    color={rightArrowIconColor}
-                    cursor="pointer"
-                  />
-                </Stack>
+                  <RightArrowIcon width={30} height={30} />
+                </StyledActiveButton>
               </Stack>
             </Flex>
             <QnaPostList currentQnaPageIndex={currentQnaPageIndex} />
@@ -113,4 +85,15 @@ const StyledCareerQnaContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 35px;
+`;
+
+const StyledActiveButton = styled.button<{ firstOrLastPage: boolean }>`
+  cursor: ${({ firstOrLastPage }) => (firstOrLastPage ? 'default' : 'pointer')};
+  transition: color 0.2s;
+  color: ${({ theme, firstOrLastPage }) =>
+    firstOrLastPage ? theme.colors.gray400 : theme.colors.gray700};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.gray400};
+  }
 `;
