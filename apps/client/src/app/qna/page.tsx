@@ -39,13 +39,15 @@ const Qna = () => {
               <Stack direction="horizontal" spacing={6}>
                 <StyledActiveButton
                   onClick={handlePrevPopularQna}
-                  isFirstOrLastPage={isFirstPage}
+                  isFirstPage={isFirstPage}
+                  isLastPage={false}
                 >
                   <ArrowLeftIcon width={30} height={30} />
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
-                  isFirstOrLastPage={isLastPage}
+                  isFirstPage={false}
+                  isLastPage={isLastPage}
                 >
                   <ArrowRightIcon width={30} height={30} />
                 </StyledActiveButton>
@@ -85,13 +87,15 @@ const StyledQnaContent = styled.div`
   grid-gap: 35px;
 `;
 
-const StyledActiveButton = styled.button<{ isFirstOrLastPage: boolean }>`
-  cursor: ${({ isFirstOrLastPage }) => (isFirstOrLastPage ? 'default' : 'pointer')};
+const StyledActiveButton = styled.button<{ isFirstPage: boolean; isLastPage: boolean }>`
+  cursor: ${({ isFirstPage, isLastPage }) =>
+    isFirstPage || isLastPage ? 'default' : 'pointer'};
   transition: color 0.2s;
-  color: ${({ theme, isFirstOrLastPage }) =>
-    isFirstOrLastPage ? theme.colors.gray400 : theme.colors.gray700};
+  color: ${({ theme, isFirstPage, isLastPage }) =>
+    isFirstPage || isLastPage ? theme.colors.gray400 : theme.colors.gray700};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.gray400};
+    color: ${({ theme, isFirstPage, isLastPage }) =>
+      !(isFirstPage || isLastPage) && theme.colors.gray400};
   }
 `;
