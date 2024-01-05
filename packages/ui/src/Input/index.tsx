@@ -17,7 +17,7 @@ export const Input = forwardRef(function Input(
   return (
     <StyledInputWrapper width={width}>
       {label && (
-        <Text color="gray600" fontType="p3">
+        <Text color="gray600" fontType="p3" style={{ marginBottom: '8px' }}>
           {label}
         </Text>
       )}
@@ -48,7 +48,6 @@ const StyledInputWrapper = styled.div<{ width?: string }>`
 `;
 
 const StyledInput = styled.input<InputProps>`
-  margin-top: ${({ label }) => (label ? '8px' : '0px')};
   width: 100%;
   height: 48px;
   border-radius: 16px;
