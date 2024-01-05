@@ -40,13 +40,11 @@ const Qna = () => {
                 <StyledActiveButton
                   onClick={handlePrevPopularQna}
                   isFirstPage={isFirstPage}
-                  isLastPage={false}
                 >
                   <ArrowLeftIcon width={30} height={30} />
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
-                  isFirstPage={false}
                   isLastPage={isLastPage}
                 >
                   <ArrowRightIcon width={30} height={30} />
@@ -87,7 +85,7 @@ const StyledQnaContent = styled.div`
   grid-gap: 35px;
 `;
 
-const StyledActiveButton = styled.button<{ isFirstPage: boolean; isLastPage: boolean }>`
+const StyledActiveButton = styled.button<{ isFirstPage?: boolean; isLastPage?: boolean }>`
   cursor: ${({ isFirstPage, isLastPage }) =>
     isFirstPage || isLastPage ? 'default' : 'pointer'};
   transition: color 0.2s;
