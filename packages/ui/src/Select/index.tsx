@@ -42,10 +42,7 @@ export const Select = forwardRef(function Select(
 const StyledSelectWrapper = styled.div<{ width: string }>`
   display: inline-flex;
   flex-direction: column;
-
-  ${({ width }) => css`
-    width: ${width};
-  `}
+  width: ${({ width }) => width};
 `;
 
 const StyledSelect = styled.select`
