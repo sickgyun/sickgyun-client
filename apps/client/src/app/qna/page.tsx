@@ -10,7 +10,7 @@ import QnaListBox from '@/components/qna-posting/QnaListBox';
 import QnaPostList from '@/components/qna-posting/QnaPostList';
 import { QNA } from '@/constants/qna';
 
-const CareerQna = () => {
+const Qna = () => {
   const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
 
   const handlePrevPopularQna = () => {
@@ -31,21 +31,21 @@ const CareerQna = () => {
   return (
     <>
       <Header />
-      <StyledCareerQnaLayout>
-        <StyledCareerQna>
+      <StyledQnaLayout>
+        <StyledQna>
           <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>
             <Flex justify="space-between">
               <Text fontType="h3">🔥 인기글</Text>
               <Stack direction="horizontal" spacing={6}>
                 <StyledActiveButton
                   onClick={handlePrevPopularQna}
-                  firstOrLastPage={isFirstPage}
+                  isFirstOrLastPage={isFirstPage}
                 >
                   <ArrowLeftIcon width={30} height={30} />
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
-                  firstOrLastPage={isLastPage}
+                  isFirstOrLastPage={isLastPage}
                 >
                   <ArrowRightIcon width={30} height={30} />
                 </StyledActiveButton>
@@ -53,43 +53,43 @@ const CareerQna = () => {
             </Flex>
             <QnaPostList currentQnaPageIndex={currentQnaPageIndex} />
           </Stack>
-          <StyledCareerQnaContent>
+          <StyledQnaContent>
             <QnaBox />
             <QnaListBox />
-          </StyledCareerQnaContent>
-        </StyledCareerQna>
-      </StyledCareerQnaLayout>
+          </StyledQnaContent>
+        </StyledQna>
+      </StyledQnaLayout>
       <Footer />
     </>
   );
 };
 
-export default CareerQna;
+export default Qna;
 
-const StyledCareerQnaLayout = styled.div`
+const StyledQnaLayout = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.white};
   min-height: 100vh;
 `;
 
-const StyledCareerQna = styled.div`
+const StyledQna = styled.div`
   margin: 0 auto;
   width: 80%;
   padding-top: 48px;
   padding-bottom: 64px;
 `;
 
-const StyledCareerQnaContent = styled.div`
+const StyledQnaContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 35px;
 `;
 
-const StyledActiveButton = styled.button<{ firstOrLastPage: boolean }>`
-  cursor: ${({ firstOrLastPage }) => (firstOrLastPage ? 'default' : 'pointer')};
+const StyledActiveButton = styled.button<{ isFirstOrLastPage: boolean }>`
+  cursor: ${({ isFirstOrLastPage }) => (isFirstOrLastPage ? 'default' : 'pointer')};
   transition: color 0.2s;
-  color: ${({ theme, firstOrLastPage }) =>
-    firstOrLastPage ? theme.colors.gray400 : theme.colors.gray700};
+  color: ${({ theme, isFirstOrLastPage }) =>
+    isFirstOrLastPage ? theme.colors.gray400 : theme.colors.gray700};
 
   &:hover {
     color: ${({ theme }) => theme.colors.gray400};

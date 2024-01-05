@@ -21,7 +21,7 @@ const MainPage = () => {
   };
 
   const handleGoCareerQnaPage = () => {
-    router.push('/career-qna');
+    router.push('/qna');
   };
 
   return (
