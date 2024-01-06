@@ -1,8 +1,8 @@
 'use client';
 
-import { Button, Spinner } from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { Stack } from '@sickgyun/ui';
+import { Button, Stack } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
@@ -52,22 +52,16 @@ const StudentProfilePage = () => {
           <Stack
             direction="horizontal"
             align="center"
-            spacing={8}
+            spacing={24}
             style={{ marginBottom: '48px' }}
           >
             {POSITION_LIST.map((position) => (
-              // TODO: Button 만들기
               <Button
+                styleType="quaternary"
                 onClick={() =>
                   router.replace(`/student-profile?position=${position.queryParams}`)
                 }
-                variant="secondary"
-                fontWeight="medium"
-                backgroundColor="white"
-                color={
-                  position.queryParams === positionQueryParams ? 'primary' : 'gray.700'
-                }
-                _hover={{ color: 'primary', backgroundColor: 'gray.100' }}
+                isActive={position.queryParams === positionQueryParams}
               >
                 {position.name}
               </Button>
@@ -80,7 +74,6 @@ const StudentProfilePage = () => {
       </StyledStudentProfilePageLayout>
       <Footer />
       {isLogin ? (
-        // 프로필을 등록했으면 프로필 수정을 보여주고 아니면 프로필 추가를 보여줌
         hasStudentProfile ? (
           <StudentProfileUpdateButton onClick={openStudentProfileUpdateModal} />
         ) : (

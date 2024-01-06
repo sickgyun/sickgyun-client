@@ -8,12 +8,14 @@ import {
 } from 'react';
 import { GhostButton } from './GhostButton';
 import { PrimaryButton } from './PrimaryButton';
+import { QuaternaryButton } from './QuaternaryButton';
 import { SecondaryButton } from './SecondaryButton';
 
 export const BUTTON_STYLE_KEYS = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
   GHOST: 'ghost',
+  QUATERNARY: 'quaternary',
 } as const;
 
 export type ButtonStyleType = (typeof BUTTON_STYLE_KEYS)[keyof typeof BUTTON_STYLE_KEYS];
@@ -24,6 +26,7 @@ export type ButtonProps = {
   width?: string;
   size?: ButtonSize;
   children: ReactNode;
+  isActive?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = forwardRef(function Button(
@@ -46,6 +49,8 @@ export const Button = forwardRef(function Button(
       return <SecondaryButton {...buttonProps} />;
     case 'ghost':
       return <GhostButton {...buttonProps} />;
+    case 'quaternary':
+      return <QuaternaryButton {...buttonProps} />;
     default:
       return <PrimaryButton {...buttonProps} />;
   }

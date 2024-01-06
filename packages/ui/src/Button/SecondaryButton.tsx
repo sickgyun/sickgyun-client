@@ -5,24 +5,12 @@ import { type ButtonProps, getButtonSize } from '.';
 type SecondaryButtonProps = ButtonProps;
 
 export const SecondaryButton = forwardRef(function Button(
-  {
-    width = '100%',
-    disabled = false,
-    size = 'medium',
-    children,
-    ...props
-  }: SecondaryButtonProps,
+  { width = '100%', size = 'medium', children, ...props }: SecondaryButtonProps,
 
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   return (
-    <StyledSecondaryButton
-      ref={ref}
-      disabled={disabled}
-      size={size}
-      width={width}
-      {...props}
-    >
+    <StyledSecondaryButton ref={ref} size={size} width={width} {...props}>
       {children}
     </StyledSecondaryButton>
   );

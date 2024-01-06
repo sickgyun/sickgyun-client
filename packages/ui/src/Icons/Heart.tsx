@@ -10,5 +10,3 @@ export const HeartIcon = (props: SVGProps<SVGSVGElement>) => {
     </svg>
   );
 };
-
-export default HeartIcon;
