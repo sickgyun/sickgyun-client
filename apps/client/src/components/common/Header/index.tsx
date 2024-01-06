@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { Button, Flex, Text } from '@sickgyun/ui';
+import { Button, Flex } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { isLoginState, useUserInformation } from '@/store/UserInformation';
@@ -30,9 +31,13 @@ const Header = () => {
         justify="space-between"
         style={{ margin: '0 auto', width: '80%', height: '100%' }}
       >
-        <Text onClick={() => router.push('/')} fontType="h4" color="black">
-          sickgyun
-        </Text>
+        <Image
+          src="/assets/logo.svg"
+          onClick={() => router.replace('/')}
+          width={90}
+          height={32}
+          alt="Logo"
+        />
         {isLogin ? (
           <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
             로그아웃
