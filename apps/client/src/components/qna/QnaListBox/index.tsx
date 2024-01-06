@@ -3,8 +3,7 @@ import { colors } from '@sickgyun/design-token';
 import { CommentIcon, Flex, HeartIcon, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
-import { QNA } from '@/constants/qna';
-import { QNA_SORT } from '@/constants/qna-sort';
+import { QNA, QNA_SORT } from '@/constants/qna';
 
 const QnaListBox = () => {
   const [selectedQna, setSelectedQna] = useState(0);

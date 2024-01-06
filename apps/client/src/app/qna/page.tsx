@@ -5,14 +5,15 @@ import { ArrowLeftIcon, ArrowRightIcon, Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import QnaBox from '@/components/qna-posting/QnaBox';
-import QnaListBox from '@/components/qna-posting/QnaListBox';
-import QnaPostList from '@/components/qna-posting/QnaPostList';
+import QnaBox from '@/components/qna/QnaBox';
+import QnaListBox from '@/components/qna/QnaListBox';
+import QnaPostList from '@/components/qna/QnaPostList';
 import { QNA } from '@/constants/qna';
 
 const Qna = () => {
   const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
 
+  console.log('fsdsdfsdf');
   const handlePrevPopularQna = () => {
     if (currentQnaPageIndex > 0) {
       setCurrentQnaPageIndex((prev) => prev - 1);
