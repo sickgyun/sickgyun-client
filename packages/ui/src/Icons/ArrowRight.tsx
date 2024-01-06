@@ -10,5 +10,3 @@ export const ArrowRightIcon = (props: SVGProps<SVGSVGElement>) => {
     </svg>
   );
 };
-
-export default ArrowRightIcon;
