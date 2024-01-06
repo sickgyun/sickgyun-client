@@ -35,7 +35,7 @@ const StyledQuaternaryButton = styled.button<QuaternaryButtonProps>`
   align-items: center;
   padding: 0px 16px;
   border-radius: 8px;
-  cursor: 'pointer';
+  cursor: pointer;
   background-color: ${({ theme }) => theme.colors.white};
   width: ${({ width }) => width};
   ${({ size }) => size && getButtonSize[size]}
