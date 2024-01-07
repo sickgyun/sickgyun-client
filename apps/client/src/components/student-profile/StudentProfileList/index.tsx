@@ -41,7 +41,7 @@ const StudentProfileList = ({ positionQueryParams }: StudentProfileListProps) =>
   );
 };
 
-export default withSuspense<StudentProfileListProps>({ Component: StudentProfileList });
+export default withSuspense<StudentProfileListProps>(StudentProfileList);
 
 const StyledStudentProfileList = styled.div`
   display: grid;
