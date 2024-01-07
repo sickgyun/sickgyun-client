@@ -6,8 +6,9 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
+import { withLogin } from '@/hocs/withLogin';
 import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
-import { useUserInformation } from '@/store/UserInformation';
+import type { UserInformationData } from '@/hooks/api/user/useGetUserInformation';
 
 type StudentProfileCreateFormInput = {
   githubId?: string;
@@ -17,8 +18,11 @@ type StudentProfileCreateFormInput = {
   company?: string;
 };
 
-const StudentProfileCreatePage = () => {
-  const { userInformation } = useUserInformation();
+type StudentProfileCreatePageProps = {
+  userInformation: UserInformationData;
+};
+
+const StudentProfileCreatePage = ({ userInformation }: StudentProfileCreatePageProps) => {
   const { register, handleSubmit: handleCreateStudentProfileSubmit } =
     useForm<StudentProfileCreateFormInput>();
 
@@ -104,7 +108,7 @@ const StudentProfileCreatePage = () => {
   );
 };
 
-export default StudentProfileCreatePage;
+export default withLogin(StudentProfileCreatePage);
 
 const StyledStudentProfileCreatePageLayout = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
