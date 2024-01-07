@@ -104,8 +104,8 @@ export const QNA_CATEGORY = [
 ];
 
 export const QNA_POSITION_LIST = [
-  { queryParams: 'all', name: '전체' },
-  { queryParams: 'develop', name: '개발' },
-  { queryParams: 'work', name: '취업' },
-  { queryParams: 'worry', name: '고민' },
+  { queryParams: 'all', name: '# 전체', emoji: '🖥️' },
+  { queryParams: 'develop', name: '# 개발', emoji: '💻' },
+  { queryParams: 'work', name: '# 취업', emoji: '👔' },
+  { queryParams: 'worry', name: '# 고민', emoji: '🤔' },
 ];

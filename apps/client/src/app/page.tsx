@@ -22,7 +22,7 @@ const MainPage = () => {
   };
 
   const handleGoQnaPage = (queryParams: string) => {
-    router.push(`/qna?position=${queryParams}`);
+    router.push(`/qna?category=${queryParams}`);
   };
 
   return (
@@ -64,20 +64,15 @@ const MainPage = () => {
           </Stack>
           {/* QNA 리스트*/}
           <Stack spacing={18} style={{ marginBottom: '64px' }}>
-            <Text fontType="h3">진로, 취업 관련 고민을 QNA에 공유해 봐요!</Text>
-            <Flex justify="space-between">
+            <Text fontType="h3">개발, 취업 등의 고민을 QNA에서 알아봐요!</Text>
+            <Flex justify="space-between" style={{ width: '80%', margin: '0 auto' }}>
               {QNA_POSITION_LIST.map((position) => (
-                <StyledStudentProfileRedirectButton
+                <StyledQnaCategoryRedirectButton
                   onClick={() => handleGoQnaPage(position.queryParams)}
                 >
-                  <Image
-                    src={`/assets/position/${position.queryParams}.png`}
-                    height={48}
-                    width={48}
-                    alt="Position"
-                  />
+                  <Text fontType="h1">{position.emoji}</Text>
                   <Text fontType="body1">{position.name}</Text>
-                </StyledStudentProfileRedirectButton>
+                </StyledQnaCategoryRedirectButton>
               ))}
             </Flex>
           </Stack>
@@ -126,10 +121,26 @@ const StyledStudentProfileRedirectButton = styled.div`
   gap: 12px;
   transition: all 0.25s ease;
   border-radius: 8px;
-  width: 300px;
+  width: 200px;
   height: 120px;
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray50};
+    cursor: pointer;
+  }
+`;
+
+const StyledQnaCategoryRedirectButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 120px;
+  transition: all 0.25s ease;
+  &:hover {
+    & > * {
+      color: ${({ theme }) => theme.colors.primary};
+    }
     cursor: pointer;
   }
 `;
