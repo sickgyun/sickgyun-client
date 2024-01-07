@@ -3,13 +3,14 @@ import styled from '@emotion/styled';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import { getUserProfileImage } from '@sickgyun/utils';
 import Image from 'next/image';
+import { withSuspense } from '@/hocs/withSuspense';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 
-type StudnetProfileDetailContentProps = {
+type StudentProfileDetailContentProps = {
   userCode: number;
 };
 
-const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentProps) => {
+const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentProps) => {
   const { studentProfileData } = useGetStudentProfile(userCode);
 
   const profileImage = getUserProfileImage(studentProfileData?.profileUrl);
@@ -101,7 +102,7 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
   );
 };
 
-export default StudentProfileDetailContents;
+export default withSuspense(StudentProfileDetailContents);
 
 const StyledStudentProfileDetailContents = styled.div`
   display: flex;

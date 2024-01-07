@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
+import React from 'react';
 import StudentProfileCard from '../StudentProfileCard';
 import StudentProfileDetailModal from '../StudentProfileDetailModal';
+import { withSuspense } from '@/hocs/withSuspense';
 import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
 
 type StudentProfileListProps = {
@@ -39,7 +41,7 @@ const StudentProfileList = ({ positionQueryParams }: StudentProfileListProps) =>
   );
 };
 
-export default StudentProfileList;
+export default withSuspense(StudentProfileList);
 
 const StyledStudentProfileList = styled.div`
   display: grid;

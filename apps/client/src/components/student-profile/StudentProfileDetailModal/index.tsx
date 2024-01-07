@@ -1,4 +1,3 @@
-import { Spinner } from '@chakra-ui/react';
 import {
   Modal,
   ModalBody,
@@ -7,7 +6,6 @@ import {
   ModalHeader,
   Text,
 } from '@sickgyun/ui';
-import { Suspense } from 'react';
 import StudentProfileDetailContents from './StudentProfileDetailContents';
 
 type StudentProfileDetailModalProps = {
@@ -27,9 +25,7 @@ const StudentProfileDetailModal = ({
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
-          <Suspense fallback={<Spinner color="primary" />}>
-            <StudentProfileDetailContents userCode={userCode} />
-          </Suspense>
+          <StudentProfileDetailContents userCode={userCode} />
         </ModalBody>
       </ModalContent>
     </Modal>

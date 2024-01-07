@@ -1,11 +1,9 @@
 'use client';
 
-import { Spinner } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Button, Stack } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import StudentProfileCreateButton from '@/components/student-profile/StudentProfileCreateButton';
@@ -67,9 +65,7 @@ const StudentProfilePage = () => {
               </Button>
             ))}
           </Stack>
-          <Suspense fallback={<Spinner color="primary" />}>
-            <StudentProfileList positionQueryParams={positionQueryParams} />
-          </Suspense>
+          <StudentProfileList positionQueryParams={positionQueryParams} />
         </StyledStudentProfilePage>
       </StyledStudentProfilePageLayout>
       <Footer />
