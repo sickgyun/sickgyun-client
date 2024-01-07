@@ -2,10 +2,12 @@
 
 import styled from '@emotion/styled';
 import { Button, Input, Select, Stack, Text } from '@sickgyun/ui';
+import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
+import { withAuth } from '@/hocs/withAuth';
 import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
 import { useUserInformation } from '@/store/UserInformation';
 
@@ -18,6 +20,7 @@ type StudentProfileCreateFormInput = {
 };
 
 const StudentProfileCreatePage = () => {
+  const router = useRouter();
   const { userInformation } = useUserInformation();
   const { register, handleSubmit: handleCreateStudentProfileSubmit } =
     useForm<StudentProfileCreateFormInput>();
@@ -41,6 +44,7 @@ const StudentProfileCreatePage = () => {
     };
 
     createStudentProfileMutate(createStudentProfileRequstData);
+    router.replace('/student-profile');
   };
 
   return (
@@ -104,7 +108,7 @@ const StudentProfileCreatePage = () => {
   );
 };
 
-export default StudentProfileCreatePage;
+export default withAuth(StudentProfileCreatePage);
 
 const StyledStudentProfileCreatePageLayout = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
