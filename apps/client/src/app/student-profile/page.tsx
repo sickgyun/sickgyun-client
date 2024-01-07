@@ -2,15 +2,11 @@
 
 import styled from '@emotion/styled';
 import { Button, Stack } from '@sickgyun/ui';
-import { useOverlay } from '@toss/use-overlay';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import StudentProfileCreateButton from '@/components/student-profile/StudentProfileCreateButton';
-import StudentProfileCreateModal from '@/components/student-profile/StudentProfileCreateModal';
+import StudentProfileActionButton from '@/components/student-profile/StudentProfileActionButton';
 import StudentProfileList from '@/components/student-profile/StudentProfileList';
-import StudentProfileUpdateButton from '@/components/student-profile/StudentProfileUpdateButton';
-import StudentProfileUpdateModal from '@/components/student-profile/StudentProfileUpdateModal';
 import { POSITION_LIST } from '@/constants/common';
 import { useStudentProfile } from '@/store/StudentProfile';
 import { useUserInformation } from '@/store/UserInformation';
@@ -18,7 +14,6 @@ import { useUserInformation } from '@/store/UserInformation';
 const StudentProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const overlay = useOverlay();
 
   const positionQueryParams = params.get('position');
 
@@ -28,18 +23,6 @@ const StudentProfilePage = () => {
 
   const { isLogin } = useUserInformation();
   const { hasStudentProfile } = useStudentProfile();
-
-  const openStudentProfileCreateModal = () => {
-    overlay.open(({ isOpen, close }) => (
-      <StudentProfileCreateModal isOpen={isOpen} onClose={close} />
-    ));
-  };
-
-  const openStudentProfileUpdateModal = () => {
-    overlay.open(({ isOpen, close }) => (
-      <StudentProfileUpdateModal isOpen={isOpen} onClose={close} />
-    ));
-  };
 
   return (
     <>
@@ -70,11 +53,9 @@ const StudentProfilePage = () => {
       </StyledStudentProfilePageLayout>
       <Footer />
       {isLogin ? (
-        hasStudentProfile ? (
-          <StudentProfileUpdateButton onClick={openStudentProfileUpdateModal} />
-        ) : (
-          <StudentProfileCreateButton onClick={openStudentProfileCreateModal} />
-        )
+        <StudentProfileActionButton
+          actionType={hasStudentProfile ? 'update' : 'create'}
+        />
       ) : null}
     </>
   );
