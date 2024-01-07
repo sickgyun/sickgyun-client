@@ -103,7 +103,7 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
 };
 
 export default withSuspense<StudnetProfileDetailContentProps>({
-  Comp: StudentProfileDetailContents,
+  Component: StudentProfileDetailContents,
 });
 
 const StyledStudentProfileDetailContents = styled.div`
