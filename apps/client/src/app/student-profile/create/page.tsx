@@ -7,7 +7,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import { withLogin } from '@/hocs/withLogin';
+import { withAuth } from '@/hocs/withAuth';
 import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
 import { useUserInformation } from '@/store/UserInformation';
 
@@ -108,7 +108,7 @@ const StudentProfileCreatePage = () => {
   );
 };
 
-export default withLogin(StudentProfileCreatePage);
+export default withAuth(StudentProfileCreatePage);
 
 const StyledStudentProfileCreatePageLayout = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
