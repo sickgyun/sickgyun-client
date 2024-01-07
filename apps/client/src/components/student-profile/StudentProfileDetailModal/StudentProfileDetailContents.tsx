@@ -102,9 +102,7 @@ const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentP
   );
 };
 
-export default withSuspense<StudentProfileDetailContentProps>(
-  StudentProfileDetailContents
-);
+export default withSuspense(StudentProfileDetailContents);
 
 const StyledStudentProfileDetailContents = styled.div`
   display: flex;
