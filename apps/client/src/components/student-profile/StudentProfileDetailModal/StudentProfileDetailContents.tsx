@@ -6,11 +6,11 @@ import Image from 'next/image';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 
-type StudnetProfileDetailContentProps = {
+type StudentProfileDetailContentProps = {
   userCode: number;
 };
 
-const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentProps) => {
+const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentProps) => {
   const { studentProfileData } = useGetStudentProfile(userCode);
 
   const profileImage = getUserProfileImage(studentProfileData?.profileUrl);
@@ -102,7 +102,7 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
   );
 };
 
-export default withSuspense<StudnetProfileDetailContentProps>({
+export default withSuspense<StudentProfileDetailContentProps>({
   Component: StudentProfileDetailContents,
 });
 
