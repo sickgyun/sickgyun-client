@@ -2,13 +2,14 @@
 
 import styled from '@emotion/styled';
 import { Button, Input, Select, Stack, Text } from '@sickgyun/ui';
+import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { withLogin } from '@/hocs/withLogin';
 import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
-import type { UserInformationData } from '@/hooks/api/user/useGetUserInformation';
+import { useUserInformation } from '@/store/UserInformation';
 
 type StudentProfileCreateFormInput = {
   githubId?: string;
@@ -18,11 +19,9 @@ type StudentProfileCreateFormInput = {
   company?: string;
 };
 
-type StudentProfileCreatePageProps = {
-  userInformation: UserInformationData;
-};
-
-const StudentProfileCreatePage = ({ userInformation }: StudentProfileCreatePageProps) => {
+const StudentProfileCreatePage = () => {
+  const router = useRouter();
+  const { userInformation } = useUserInformation();
   const { register, handleSubmit: handleCreateStudentProfileSubmit } =
     useForm<StudentProfileCreateFormInput>();
 
@@ -45,6 +44,7 @@ const StudentProfileCreatePage = ({ userInformation }: StudentProfileCreatePageP
     };
 
     createStudentProfileMutate(createStudentProfileRequstData);
+    router.replace('/student-profile');
   };
 
   return (

@@ -2,13 +2,13 @@ import { useRouter } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { useUserInformation } from '@/store/UserInformation';
 
-export const withLogin = <Props,>(Component: (props: Props) => ReactNode) => {
-  const WrappedComponent = (props: Props) => {
+export const withLogin = (Component: () => ReactNode) => {
+  const WrappedComponent = () => {
     const router = useRouter();
-    const { isLogin, userInformation } = useUserInformation();
+    const { isLogin } = useUserInformation();
 
     if (isLogin) {
-      return <Component userInformation={userInformation} {...props} />;
+      return <Component />;
     } else {
       // TODO: Alert 모달
       alert('로그인 후 접근해주세요.');
