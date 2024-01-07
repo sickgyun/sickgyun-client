@@ -27,9 +27,7 @@ const StudentProfileDetailModal = ({
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
-          <Suspense fallback={<Spinner color="primary" />}>
-            <StudentProfileDetailContents userCode={userCode} />
-          </Suspense>
+          <StudentProfileDetailContents userCode={userCode} />
         </ModalBody>
       </ModalContent>
     </Modal>

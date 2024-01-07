@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import { getUserProfileImage } from '@sickgyun/utils';
 import Image from 'next/image';
+import { withSuspense } from '@/hocs/withSuspense';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 
 type StudnetProfileDetailContentProps = {
@@ -101,7 +102,9 @@ const StudentProfileDetailContents = ({ userCode }: StudnetProfileDetailContentP
   );
 };
 
-export default StudentProfileDetailContents;
+export default withSuspense<StudnetProfileDetailContentProps>({
+  Comp: StudentProfileDetailContents,
+});
 
 const StyledStudentProfileDetailContents = styled.div`
   display: flex;
