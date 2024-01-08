@@ -9,6 +9,7 @@ import Header from '@/components/common/Header';
 import JobPostingList from '@/components/job-posting/JobPostingList';
 import LoginBox from '@/components/main/LoginBox';
 import { POSITION_LIST } from '@/constants/common';
+import { QNA_POSITION_LIST } from '@/constants/qna';
 
 const JOB_POSTING_FULL_VIEW_LINK =
   'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1';
@@ -20,8 +21,8 @@ const MainPage = () => {
     router.push(`/student-profile?position=${queryParams}`);
   };
 
-  const handleGoCareerQnaPage = () => {
-    router.push('/qna');
+  const handleGoQnaPage = (queryParams: string) => {
+    router.push(`/qna?category=${queryParams}`);
   };
 
   return (
@@ -42,14 +43,9 @@ const MainPage = () => {
           </Stack>
           {/* 직군별 리스트 */}
           <Stack spacing={18} style={{ marginBottom: '64px' }}>
-            <Flex justify="space-between">
-              <Text fontType="h3">
-                진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
-              </Text>
-              <Text style={{ cursor: 'pointer' }} onClick={handleGoCareerQnaPage}>
-                QNA 바로가기
-              </Text>
-            </Flex>
+            <Text fontType="h3">
+              진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
+            </Text>
             <Flex justify="space-between">
               {POSITION_LIST.map((position) => (
                 <StyledStudentProfileRedirectButton
@@ -63,6 +59,20 @@ const MainPage = () => {
                   />
                   <Text fontType="body1">{position.name}</Text>
                 </StyledStudentProfileRedirectButton>
+              ))}
+            </Flex>
+          </Stack>
+          {/* QNA 리스트*/}
+          <Stack spacing={18} style={{ marginBottom: '64px' }}>
+            <Text fontType="h3">개발, 취업 등의 고민을 QNA에서 알아봐요!</Text>
+            <Flex justify="space-between" style={{ width: '80%', margin: '0 auto' }}>
+              {QNA_POSITION_LIST.map((position) => (
+                <StyledQnaCategoryRedirectButton
+                  onClick={() => handleGoQnaPage(position.queryParams)}
+                >
+                  <Text fontType="h1">{position.emoji}</Text>
+                  <Text fontType="body1">{position.name}</Text>
+                </StyledQnaCategoryRedirectButton>
               ))}
             </Flex>
           </Stack>
@@ -115,6 +125,22 @@ const StyledStudentProfileRedirectButton = styled.div`
   height: 120px;
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray50};
+    cursor: pointer;
+  }
+`;
+
+const StyledQnaCategoryRedirectButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 120px;
+  transition: all 0.25s ease;
+  &:hover {
+    & > * {
+      color: ${({ theme }) => theme.colors.primary};
+    }
     cursor: pointer;
   }
 `;

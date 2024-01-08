@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { colors } from '@sickgyun/design-token';
 import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
-import { QNA_CATEGORY } from '@/constants/qna-category';
+import { QNA_CATEGORY } from '@/constants/qna';
 
 const QnaBox = () => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
