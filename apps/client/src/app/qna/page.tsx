@@ -13,7 +13,6 @@ import { QNA } from '@/constants/qna';
 const Qna = () => {
   const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
 
-  console.log('fsdsdfsdf');
   const handlePrevPopularQna = () => {
     if (currentQnaPageIndex > 0) {
       setCurrentQnaPageIndex((prev) => prev - 1);
