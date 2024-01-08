@@ -24,7 +24,7 @@ const MainPage = () => {
   };
 
   return (
-    <Layout header footer>
+    <Layout isHeader isFooter>
       <StyledMainPageLayout>
         <StyledMainPage>
           {/* 로그인 & 배너 섹션 */}

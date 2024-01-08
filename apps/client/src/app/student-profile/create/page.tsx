@@ -47,7 +47,7 @@ const StudentProfileCreatePage = () => {
   };
 
   return (
-    <Layout header>
+    <Layout isHeader>
       <StyledStudentProfileCreatePageLayout>
         <StyledStudentProfileCreatePage>
           <StyledStudentProfileCreateForm

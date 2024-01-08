@@ -28,7 +28,7 @@ const Qna = () => {
   const isLastPage = currentQnaPageIndex == QNA.length - 3;
 
   return (
-    <Layout header footer>
+    <Layout isHeader isFooter>
       <StyledQnaLayout>
         <StyledQna>
           <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>

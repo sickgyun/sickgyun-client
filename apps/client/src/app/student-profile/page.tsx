@@ -25,7 +25,7 @@ const StudentProfilePage = () => {
   const { hasStudentProfile } = useStudentProfile();
 
   return (
-    <Layout header footer>
+    <Layout isHeader isFooter>
       <StyledStudentProfilePageLayout>
         <StyledStudentProfilePage>
           <StyledBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />

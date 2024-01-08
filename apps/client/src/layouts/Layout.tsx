@@ -3,17 +3,17 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 
 type LayoutProps = {
-  header?: boolean;
-  footer?: boolean;
+  isHeader?: boolean;
+  isFooter?: boolean;
   children: ReactNode;
 };
 
-const Layout = ({ children, header = false, footer = false }: LayoutProps) => {
+const Layout = ({ children, isHeader = false, isFooter = false }: LayoutProps) => {
   return (
     <>
-      {header && <Header />}
+      {isHeader && <Header />}
       <main>{children}</main>
-      {footer && <Footer />}
+      {isFooter && <Footer />}
     </>
   );
 };

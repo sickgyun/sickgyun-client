@@ -3,7 +3,6 @@
 import { StyleProvider } from '@sickgyun/design-token';
 import { OverlayProvider } from '@toss/use-overlay';
 import type { PropsWithChildren } from 'react';
-import Layout from '@/layouts/Layout';
 import { ChakraProvider, QueryClientProvider } from '@/providers';
 
 const RootLayout = ({ children }: PropsWithChildren) => {
@@ -13,9 +12,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
         <QueryClientProvider>
           <ChakraProvider>
             <StyleProvider>
-              <OverlayProvider>
-                <Layout>{children}</Layout>
-              </OverlayProvider>
+              <OverlayProvider>{children}</OverlayProvider>
             </StyleProvider>
           </ChakraProvider>
         </QueryClientProvider>
