@@ -3,12 +3,11 @@
 import styled from '@emotion/styled';
 import { ArrowLeftIcon, ArrowRightIcon, Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
 import QnaBox from '@/components/qna-posting/QnaBox';
 import QnaListBox from '@/components/qna-posting/QnaListBox';
 import QnaPostList from '@/components/qna-posting/QnaPostList';
 import { QNA } from '@/constants/qna';
+import Layout from '@/layouts/Layout';
 
 const Qna = () => {
   const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
@@ -29,8 +28,7 @@ const Qna = () => {
   const isLastPage = currentQnaPageIndex == QNA.length - 3;
 
   return (
-    <>
-      <Header />
+    <Layout isHeader isFooter>
       <StyledQnaLayout>
         <StyledQna>
           <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>
@@ -59,8 +57,7 @@ const Qna = () => {
           </StyledQnaContent>
         </StyledQna>
       </StyledQnaLayout>
-      <Footer />
-    </>
+    </Layout>
   );
 };
 

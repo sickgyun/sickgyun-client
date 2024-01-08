@@ -4,11 +4,10 @@ import styled from '@emotion/styled';
 import { Flex, Link, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
 import JobPostingList from '@/components/job-posting/JobPostingList';
 import LoginBox from '@/components/main/LoginBox';
 import { POSITION_LIST } from '@/constants/common';
+import Layout from '@/layouts/Layout';
 
 const JOB_POSTING_FULL_VIEW_LINK =
   'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1';
@@ -25,8 +24,7 @@ const MainPage = () => {
   };
 
   return (
-    <>
-      <Header />
+    <Layout isHeader isFooter>
       <StyledMainPageLayout>
         <StyledMainPage>
           {/* 로그인 & 배너 섹션 */}
@@ -77,8 +75,7 @@ const MainPage = () => {
           </Stack>
         </StyledMainPage>
       </StyledMainPageLayout>
-      <Footer />
-    </>
+    </Layout>
   );
 };
 

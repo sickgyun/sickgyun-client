@@ -5,10 +5,9 @@ import { Button, Input, Select, Stack, Text } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
 import { withAuth } from '@/hocs/withAuth';
 import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
+import Layout from '@/layouts/Layout';
 import { useUserInformation } from '@/store/UserInformation';
 
 type StudentProfileCreateFormInput = {
@@ -48,8 +47,7 @@ const StudentProfileCreatePage = () => {
   };
 
   return (
-    <>
-      <Header />
+    <Layout isHeader>
       <StyledStudentProfileCreatePageLayout>
         <StyledStudentProfileCreatePage>
           <StyledStudentProfileCreateForm
@@ -103,8 +101,7 @@ const StudentProfileCreatePage = () => {
           </StyledStudentProfileCreateForm>
         </StyledStudentProfileCreatePage>
       </StyledStudentProfileCreatePageLayout>
-      <Footer />
-    </>
+    </Layout>
   );
 };
 
