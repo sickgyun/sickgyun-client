@@ -2,17 +2,11 @@
 
 import { StyleProvider } from '@sickgyun/design-token';
 import { OverlayProvider } from '@toss/use-overlay';
-import { useAtom } from 'jotai';
 import type { PropsWithChildren } from 'react';
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
+import Layout from '@/layouts/Layout';
 import { ChakraProvider, QueryClientProvider } from '@/providers';
-import { isFooterState, isHeaderState } from '@/store/LayoutInformation';
 
 const RootLayout = ({ children }: PropsWithChildren) => {
-  const [isHeader] = useAtom(isHeaderState);
-  const [isFooter] = useAtom(isFooterState);
-
   return (
     <html lang="en">
       <body>
@@ -20,9 +14,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
           <ChakraProvider>
             <StyleProvider>
               <OverlayProvider>
-                {isHeader && <Header />}
-                {children}
-                {isFooter && <Footer />}
+                <Layout>{children}</Layout>
               </OverlayProvider>
             </StyleProvider>
           </ChakraProvider>

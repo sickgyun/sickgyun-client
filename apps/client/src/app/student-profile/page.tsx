@@ -7,6 +7,7 @@ import Footer from '@/components/common/Footer';
 import StudentProfileActionButton from '@/components/student-profile/StudentProfileActionButton';
 import StudentProfileList from '@/components/student-profile/StudentProfileList';
 import { POSITION_LIST } from '@/constants/common';
+import Layout from '@/layouts/Layout';
 import { useStudentProfile } from '@/store/StudentProfile';
 import { useUserInformation } from '@/store/UserInformation';
 
@@ -24,7 +25,7 @@ const StudentProfilePage = () => {
   const { hasStudentProfile } = useStudentProfile();
 
   return (
-    <>
+    <Layout header footer>
       <StyledStudentProfilePageLayout>
         <StyledStudentProfilePage>
           <StyledBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
@@ -55,7 +56,7 @@ const StudentProfilePage = () => {
           actionType={hasStudentProfile ? 'update' : 'create'}
         />
       ) : null}
-    </>
+    </Layout>
   );
 };
 

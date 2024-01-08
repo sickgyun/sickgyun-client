@@ -7,6 +7,7 @@ import QnaBox from '@/components/qna-posting/QnaBox';
 import QnaListBox from '@/components/qna-posting/QnaListBox';
 import QnaPostList from '@/components/qna-posting/QnaPostList';
 import { QNA } from '@/constants/qna';
+import Layout from '@/layouts/Layout';
 
 const Qna = () => {
   const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
@@ -27,31 +28,36 @@ const Qna = () => {
   const isLastPage = currentQnaPageIndex == QNA.length - 3;
 
   return (
-    <StyledQnaLayout>
-      <StyledQna>
-        <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>
-          <Flex justify="space-between">
-            <Text fontType="h3">🔥 인기글</Text>
-            <Stack direction="horizontal" spacing={6}>
-              <StyledActiveButton
-                onClick={handlePrevPopularQna}
-                isFirstPage={isFirstPage}
-              >
-                <ArrowLeftIcon width={30} height={30} />
-              </StyledActiveButton>
-              <StyledActiveButton onClick={handleNextPopularQna} isLastPage={isLastPage}>
-                <ArrowRightIcon width={30} height={30} />
-              </StyledActiveButton>
-            </Stack>
-          </Flex>
-          <QnaPostList currentQnaPageIndex={currentQnaPageIndex} />
-        </Stack>
-        <StyledQnaContent>
-          <QnaBox />
-          <QnaListBox />
-        </StyledQnaContent>
-      </StyledQna>
-    </StyledQnaLayout>
+    <Layout header footer>
+      <StyledQnaLayout>
+        <StyledQna>
+          <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>
+            <Flex justify="space-between">
+              <Text fontType="h3">🔥 인기글</Text>
+              <Stack direction="horizontal" spacing={6}>
+                <StyledActiveButton
+                  onClick={handlePrevPopularQna}
+                  isFirstPage={isFirstPage}
+                >
+                  <ArrowLeftIcon width={30} height={30} />
+                </StyledActiveButton>
+                <StyledActiveButton
+                  onClick={handleNextPopularQna}
+                  isLastPage={isLastPage}
+                >
+                  <ArrowRightIcon width={30} height={30} />
+                </StyledActiveButton>
+              </Stack>
+            </Flex>
+            <QnaPostList currentQnaPageIndex={currentQnaPageIndex} />
+          </Stack>
+          <StyledQnaContent>
+            <QnaBox />
+            <QnaListBox />
+          </StyledQnaContent>
+        </StyledQna>
+      </StyledQnaLayout>
+    </Layout>
   );
 };
 
