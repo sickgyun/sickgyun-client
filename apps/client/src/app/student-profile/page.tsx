@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import { Button, Stack } from '@sickgyun/ui';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
 import StudentProfileActionButton from '@/components/student-profile/StudentProfileActionButton';
 import StudentProfileList from '@/components/student-profile/StudentProfileList';
 import { POSITION_LIST } from '@/constants/common';
@@ -26,7 +25,6 @@ const StudentProfilePage = () => {
 
   return (
     <>
-      <Header />
       <StyledStudentProfilePageLayout>
         <StyledStudentProfilePage>
           <StyledBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
