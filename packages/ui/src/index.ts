@@ -10,3 +10,4 @@ export * from './Portal';
 export * from './Icons';
 export * from './Link';
 export * from './Select';
+export * from './Textarea';
