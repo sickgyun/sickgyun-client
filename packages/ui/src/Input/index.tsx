@@ -58,7 +58,7 @@ const StyledInput = styled.input<InputProps>`
     border: 1.5px solid ${hasError ? theme.colors.red : theme.colors.gray400};
     background-color: ${theme.colors.white};
     color: ${theme.colors.black};
-    caret-color: ${theme.colors.primary};
+    caret-color: ${hasError ? theme.colors.red : theme.colors.primary};
     ::placeholder {
       ${theme.fonts.body1}
       color: ${theme.colors.gray500};
