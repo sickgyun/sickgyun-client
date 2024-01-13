@@ -38,7 +38,7 @@ const StyledTextarea = styled.textarea<TextareaProps>`
   padding: 10px 16px;
   border-radius: 16px;
   width: 100%;
-  height: 400px;
+  height: 150px;
   ${({ theme }) => css`
     border: 1.5px solid ${theme.colors.gray400};
     background-color: ${theme.colors.white};
