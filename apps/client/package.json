@@ -27,12 +27,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
-<<<<<<< HEAD
     "recoil": "^0.7.7"
-=======
-    "recoil": "^0.7.7",
-    "yup": "^1.3.3"
->>>>>>> 49212c2 (chore(client): react-hook-form version 바꿈)
   },
   "devDependencies": {
     "@sickgyun/eslint-config": "workspace:*",
