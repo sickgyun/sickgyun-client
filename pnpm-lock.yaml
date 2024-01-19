@@ -113,9 +113,12 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.13)(react@18.2.0)
+<<<<<<< HEAD
       '@seed-design/icon':
         specifier: ^0.5.3
         version: 0.5.3(react@18.2.0)
+=======
+>>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
       '@sickgyun/design-token':
         specifier: workspace:*
         version: link:../../packages/design-token
@@ -155,9 +158,15 @@ importers:
       react-hook-form:
         specifier: ^7.48.2
         version: 7.49.2(react@18.2.0)
+<<<<<<< HEAD
       swiper:
         specifier: ^11.0.5
         version: 11.0.5
+=======
+      recoil:
+        specifier: ^0.7.7
+        version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+>>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
     devDependencies:
       '@sickgyun/eslint-config':
         specifier: workspace:*
@@ -3111,6 +3120,7 @@ packages:
       }
     dev: true
 
+<<<<<<< HEAD
   /@floating-ui/utils@0.2.1:
     resolution:
       {
@@ -3118,6 +3128,8 @@ packages:
       }
     dev: false
 
+=======
+>>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
   /@humanwhocodes/config-array@0.11.13:
     resolution:
       {
@@ -15854,11 +15866,16 @@ packages:
     dev: true
 
   /type-fest@2.19.0:
+<<<<<<< HEAD
     resolution:
       {
         integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==,
       }
     engines: { node: '>=12.20' }
+=======
+    resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
+    engines: {node: '>=12.20'}
+>>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
     dev: true
 
   /type-fest@3.13.1:
@@ -16684,8 +16701,13 @@ packages:
     dev: true
 
   /yocto-queue@0.1.0:
+<<<<<<< HEAD
     resolution:
       {
         integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==,
       }
     engines: { node: '>=10' }
+=======
+    resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
+    engines: {node: '>=10'}
+>>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
