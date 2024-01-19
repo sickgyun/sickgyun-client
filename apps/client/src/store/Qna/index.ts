@@ -1,0 +1,1 @@
+export { checkedCategory } from './checkedCategory';
