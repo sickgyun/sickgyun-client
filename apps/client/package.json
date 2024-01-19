@@ -14,7 +14,6 @@
     "@chakra-ui/icons": "^2.1.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@seed-design/icon": "^0.5.3",
     "@sickgyun/design-token": "workspace:*",
     "@sickgyun/libs": "workspace:*",
     "@sickgyun/ui": "workspace:*",
@@ -28,7 +27,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
-    "swiper": "^11.0.5"
+    "recoil": "^0.7.7"
   },
   "devDependencies": {
     "@sickgyun/eslint-config": "workspace:*",

@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
+import { useSetAtom } from 'jotai';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
 import { QNA_WRITE_CATEGORY } from '@/constants/qna-write';
+import { checkedCategory } from '@/store/Qna';
 
 const QnaWriteCategory = () => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(3);
+  const setActiveCategory = useSetAtom(checkedCategory);
 
   return (
     <StyledQnaWriteCategory>
@@ -18,7 +21,13 @@ const QnaWriteCategory = () => {
             questionType={category.title}
             isWriteCategory
             isActive={activeCategoryIndex === category.id}
-            onClick={() => setActiveCategoryIndex(category.id)}
+            onClick={() => {
+              setActiveCategoryIndex(category.id);
+              setActiveCategory({
+                id: category.id,
+                title: category.title,
+              });
+            }}
           />
         ))}
       </Stack>
