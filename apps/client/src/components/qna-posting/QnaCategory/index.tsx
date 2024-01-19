@@ -45,8 +45,11 @@ const StyledQnaCategory = styled.div<{ isWriteCategory: boolean; isActive: boole
   ${({ theme, isWriteCategory, isActive }) =>
     isWriteCategory &&
     css`
-      border: 1px solid ${theme.colors.gray300};
+      border: 1px solid ${isActive ? theme.colors.primary : theme.colors.gray300};
       cursor: pointer;
-      background-color: ${isActive ? theme.colors.gray300 : theme.colors.white};
+      background-color: ${isActive ? theme.colors.primary : theme.colors.white};
+      & > span {
+        color: ${isActive && theme.colors.white};
+      }
     `}
 `;
