@@ -5,7 +5,7 @@ import QnaCategory from '../QnaCategory';
 import { QNA_WRITE_CATEGORY } from '@/constants/qna-write';
 
 const QnaWriteCategory = () => {
-  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(3);
 
   return (
     <StyledQnaWriteCategory>
