@@ -7,10 +7,11 @@ import { Text } from '../Text';
 type TextareaProps = {
   label?: string;
   width?: string;
+  height?: string;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export const Textarea = forwardRef(function Textarea(
-  { label, width = '100%', onChange, ...props }: TextareaProps,
+  { label, width = '100%', height = '150px', onChange, ...props }: TextareaProps,
   ref: ForwardedRef<HTMLTextAreaElement>
 ) {
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -28,6 +29,7 @@ export const Textarea = forwardRef(function Textarea(
       <StyledTextarea
         ref={ref}
         label={label}
+        height={height}
         onChange={onChange}
         onInput={handleInput}
         {...props}
@@ -50,7 +52,7 @@ const StyledTextarea = styled.textarea<TextareaProps>`
   padding: 12px 16px;
   border-radius: 16px;
   width: 100%;
-  min-height: 300px;
+  min-height: ${({ height }) => height};
   font-size: 15px;
   ${({ theme }) => css`
     border: 1.5px solid ${theme.colors.gray400};
