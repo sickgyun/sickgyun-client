@@ -50,7 +50,7 @@ const StyledTextarea = styled.textarea<TextareaProps>`
   padding: 12px 16px;
   border-radius: 16px;
   width: 100%;
-  min-height: 150px;
+  min-height: 300px;
   font-size: 15px;
   ${({ theme }) => css`
     border: 1.5px solid ${theme.colors.gray400};
