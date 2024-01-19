@@ -1,11 +1,17 @@
 import styled from '@emotion/styled';
 import { colors } from '@sickgyun/design-token';
 import { Button, Flex, Stack, Text } from '@sickgyun/ui';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { QNA_CATEGORY } from '@/constants/qna-category';
+import { QNA_CATEGORY } from '@/constants/qna';
 
 const QnaBox = () => {
+  const router = useRouter();
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
+
+  const handleGoQnaWritePage = () => {
+    router.push('/qna/write');
+  };
 
   return (
     <StyledQnaBox>
@@ -15,7 +21,7 @@ const QnaBox = () => {
         justify="center"
         style={{ height: '90px', borderBottom: `1px solid ${colors.white}` }}
       >
-        <Button width="80%" styleType="primary">
+        <Button width="80%" styleType="primary" onClick={handleGoQnaWritePage}>
           질문하기
         </Button>
       </Stack>

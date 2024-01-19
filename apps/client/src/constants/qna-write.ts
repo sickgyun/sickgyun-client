@@ -1,21 +1,16 @@
-export const QNA_CATEGORY = [
+export const QNA_WRITE_CATEGORY = [
   {
     id: 0,
-    title: '전체',
-    emoji: '🖥️',
-  },
-  {
-    id: 1,
     title: '개발',
     emoji: '💻',
   },
   {
-    id: 2,
+    id: 1,
     title: '취업',
     emoji: '👔',
   },
   {
-    id: 3,
+    id: 2,
     title: '고민',
     emoji: '🤔',
   },

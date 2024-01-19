@@ -20,7 +20,7 @@ const MainPage = () => {
     router.push(`/student-profile?position=${queryParams}`);
   };
 
-  const handleGoCareerQnaPage = () => {
+  const handleGoQnaPage = () => {
     router.push('/qna');
   };
 
@@ -46,7 +46,7 @@ const MainPage = () => {
               <Text fontType="h3">
                 진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
               </Text>
-              <Text style={{ cursor: 'pointer' }} onClick={handleGoCareerQnaPage}>
+              <Text style={{ cursor: 'pointer' }} onClick={handleGoQnaPage}>
                 QNA 바로가기
               </Text>
             </Flex>
