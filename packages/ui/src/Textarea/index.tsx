@@ -17,7 +17,6 @@ export const Textarea = forwardRef(function Textarea(
 ) {
   const handleInput = useCallback(
     debounce((e: ChangeEvent<HTMLTextAreaElement>) => {
-      console.log('Input event debounced!');
       e.target.style.height = 'inherit';
       e.target.style.height = `${e.target.scrollHeight}px`;
     }, 300),
