@@ -1,23 +1,28 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { ForwardedRef, TextareaHTMLAttributes } from 'react';
-import { forwardRef } from 'react';
+import type { ChangeEvent, ForwardedRef, TextareaHTMLAttributes } from 'react';
+import { forwardRef, useCallback } from 'react';
 import { Text } from '../Text';
+import { debounce } from 'lodash';
 
 type TextareaProps = {
   label?: string;
   width?: string;
-  height?: string;
+  minHeight?: string;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export const Textarea = forwardRef(function Textarea(
-  { label, width = '100%', height = '150px', onChange, ...props }: TextareaProps,
+  { label, width = '100%', minHeight = '150px', onChange, ...props }: TextareaProps,
   ref: ForwardedRef<HTMLTextAreaElement>
 ) {
-  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    e.target.style.height = 'inherit';
-    e.target.style.height = `${e.target.scrollHeight}px`;
-  };
+  const handleInput = useCallback(
+    debounce((e: ChangeEvent<HTMLTextAreaElement>) => {
+      console.log('Input event debounced!');
+      e.target.style.height = 'inherit';
+      e.target.style.height = `${e.target.scrollHeight}px`;
+    }, 300),
+    []
+  );
 
   return (
     <StyledTextareaWrapper width={width}>
@@ -29,11 +34,10 @@ export const Textarea = forwardRef(function Textarea(
       <StyledTextarea
         ref={ref}
         label={label}
-        height={height}
+        minHeight={minHeight}
         onChange={onChange}
         onInput={handleInput}
         {...props}
-        rows={1}
       />
     </StyledTextareaWrapper>
   );
@@ -52,7 +56,7 @@ const StyledTextarea = styled.textarea<TextareaProps>`
   padding: 12px 16px;
   border-radius: 16px;
   width: 100%;
-  min-height: ${({ height }) => height};
+  min-height: ${({ minHeight }) => minHeight};
   font-size: 15px;
   ${({ theme }) => css`
     border: 1.5px solid ${theme.colors.gray400};
