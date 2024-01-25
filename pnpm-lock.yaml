@@ -75,7 +75,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-hook-form:
         specifier: ^7.48.2
-        version: 7.49.2(react@18.2.0)
+        version: 7.48.2(react@18.2.0)
     devDependencies:
       '@sickgyun/eslint-config':
         specifier: workspace:*
@@ -114,11 +114,17 @@ importers:
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.13)(react@18.2.0)
 <<<<<<< HEAD
+<<<<<<< HEAD
       '@seed-design/icon':
         specifier: ^0.5.3
         version: 0.5.3(react@18.2.0)
 =======
 >>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
+=======
+      '@hookform/resolvers':
+        specifier: ^3.3.4
+        version: 3.3.4(react-hook-form@7.48.2)
+>>>>>>> e7ebbde (chore(client): react-hook-form 버전 변경)
       '@sickgyun/design-token':
         specifier: workspace:*
         version: link:../../packages/design-token
@@ -157,6 +163,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-hook-form:
         specifier: ^7.48.2
+<<<<<<< HEAD
         version: 7.49.2(react@18.2.0)
 <<<<<<< HEAD
       swiper:
@@ -167,6 +174,15 @@ importers:
         specifier: ^0.7.7
         version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
 >>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
+=======
+        version: 7.48.2(react@18.2.0)
+      recoil:
+        specifier: ^0.7.7
+        version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+      yup:
+        specifier: ^1.3.3
+        version: 1.3.3
+>>>>>>> e7ebbde (chore(client): react-hook-form 버전 변경)
     devDependencies:
       '@sickgyun/eslint-config':
         specifier: workspace:*
@@ -3121,6 +3137,7 @@ packages:
     dev: true
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   /@floating-ui/utils@0.2.1:
     resolution:
       {
@@ -3130,6 +3147,16 @@ packages:
 
 =======
 >>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
+=======
+  /@hookform/resolvers@3.3.4(react-hook-form@7.48.2):
+    resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.48.2(react@18.2.0)
+    dev: false
+
+>>>>>>> e7ebbde (chore(client): react-hook-form 버전 변경)
   /@humanwhocodes/config-array@0.11.13:
     resolution:
       {
@@ -13827,6 +13854,10 @@ packages:
       object-assign: 4.1.1
       react-is: 16.13.1
 
+  /property-expr@2.0.6:
+    resolution: {integrity: sha512-SVtmxhRE/CGkn3eZY1T6pC8Nln6Fr/lu1mKSgRud0eC73whjGfoAogbn78LkD8aFL0zz3bAFerKSnOl7NlErBA==}
+    dev: false
+
   /proxy-addr@2.0.7:
     resolution:
       {
@@ -14090,9 +14121,14 @@ packages:
     engines: { node: '>=18', pnpm: '8' }
 =======
   /react-hook-form@7.48.2(react@18.2.0):
+<<<<<<< HEAD
     resolution: {integrity: sha512-TZcnSc17+LPPVpMRIDNVITY6w20deMdNi6iehTFLV1x8SqThXGwu93HjlUVU09pzFgZH7qZOvLMM7UYf2ShAHA==}
     engines: {node: '>=18', pnpm: '8'}
 >>>>>>> 49212c2 (chore(client): react-hook-form version 바꿈)
+=======
+    resolution: {integrity: sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==}
+    engines: {node: '>=12.22.0'}
+>>>>>>> e7ebbde (chore(client): react-hook-form 버전 변경)
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
@@ -15532,6 +15568,10 @@ packages:
       }
     dev: true
 
+  /tiny-case@1.0.3:
+    resolution: {integrity: sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==}
+    dev: false
+
   /tiny-invariant@1.3.1:
     resolution:
       {
@@ -15593,6 +15633,10 @@ packages:
       }
     engines: { node: '>=0.6' }
     dev: true
+
+  /toposort@2.0.2:
+    resolution: {integrity: sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==}
+    dev: false
 
   /tough-cookie@4.1.3:
     resolution:
@@ -15881,8 +15925,11 @@ packages:
 =======
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
+<<<<<<< HEAD
 >>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
     dev: true
+=======
+>>>>>>> e7ebbde (chore(client): react-hook-form 버전 변경)
 
   /type-fest@3.13.1:
     resolution:
@@ -16716,4 +16763,16 @@ packages:
 =======
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+<<<<<<< HEAD
 >>>>>>> f1a2699 (Revert "feat(client): react-hook-rom, yup 사용해서 검증코드 추가")
+=======
+
+  /yup@1.3.3:
+    resolution: {integrity: sha512-v8QwZSsHH2K3/G9WSkp6mZKO+hugKT1EmnMqLNUcfu51HU9MDyhlETT/JgtzprnrnQHPWsjc6MUDMBp/l9fNnw==}
+    dependencies:
+      property-expr: 2.0.6
+      tiny-case: 1.0.3
+      toposort: 2.0.2
+      type-fest: 2.19.0
+    dev: false
+>>>>>>> e7ebbde (chore(client): react-hook-form 버전 변경)
