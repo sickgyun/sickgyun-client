@@ -42,7 +42,7 @@ const QnaWritePage = () => {
   return (
     <>
       <Header />
-      <StyledQnaWrite>
+      <StyledQnaWritePage>
         <QnaWriteCategory />
         <form onSubmit={handleSubmit(handleQnaWriteSubmit)}>
           <input type="hidden" {...register('categoryTitle')} />
@@ -67,14 +67,14 @@ const QnaWritePage = () => {
             </Button>
           </Stack>
         </form>
-      </StyledQnaWrite>
+      </StyledQnaWritePage>
     </>
   );
 };
 
 export default QnaWritePage;
 
-export const StyledQnaWrite = styled.div`
+const StyledQnaWritePage = styled.div`
   background-color: ${({ theme }) => theme.colors.gray100};
   margin: 0 auto;
   margin-top: 24px;
@@ -84,7 +84,7 @@ export const StyledQnaWrite = styled.div`
   border-radius: 15px;
 `;
 
-export const StyledErrorMessage = styled.span`
+const StyledErrorMessage = styled.span`
   color: ${({ theme }) => theme.colors.red};
   padding-left: 7px;
 `;
