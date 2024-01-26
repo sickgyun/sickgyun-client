@@ -9,33 +9,40 @@ type TextareaProps = {
   label?: string;
   width?: string;
   minHeight?: string;
+  isAutoHeight?: boolean;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export const Textarea = forwardRef(function Textarea(
-  { label, width = '100%', minHeight = '150px', onChange, ...props }: TextareaProps,
+  {
+    label,
+    width = '100%',
+    minHeight = '150px',
+    isAutoHeight = false,
+    onChange,
+    ...props
+  }: TextareaProps,
   ref: ForwardedRef<HTMLTextAreaElement>
 ) {
-  const handleInput = useCallback(
+  const handleTextareaHeightChange = useCallback(
     debounce((e: ChangeEvent<HTMLTextAreaElement>) => {
       e.target.style.height = 'inherit';
       e.target.style.height = `${e.target.scrollHeight}px`;
     }, 300),
-    []
+    [debounce]
   );
 
   return (
     <StyledTextareaWrapper width={width}>
       {label && (
-        <Text color="gray600" fontType="body3" style={{ marginBottom: '8px' }}>
+        <Text color="gray600" fontType="p3" style={{ marginBottom: '8px' }}>
           {label}
         </Text>
       )}
       <StyledTextarea
         ref={ref}
-        label={label}
         minHeight={minHeight}
         onChange={onChange}
-        onInput={handleInput}
+        onInput={isAutoHeight ? handleTextareaHeightChange : undefined}
         {...props}
       />
     </StyledTextareaWrapper>
@@ -49,7 +56,7 @@ const StyledTextareaWrapper = styled.div<{ width?: string }>`
   width: ${({ width }) => width};
 `;
 
-const StyledTextarea = styled.textarea<TextareaProps>`
+const StyledTextarea = styled.textarea<{ minHeight?: string }>`
   resize: none;
   outline: none;
   padding: 12px 16px;
