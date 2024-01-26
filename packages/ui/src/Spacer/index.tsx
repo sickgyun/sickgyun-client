@@ -1,9 +1,9 @@
 import { isNumber } from 'lodash';
 
-interface SpacerProps {
+type SpacerProps = {
   width?: number;
   height?: number;
-}
+};
 
 export const Spacer = ({ width, height }: SpacerProps) => {
   return (
