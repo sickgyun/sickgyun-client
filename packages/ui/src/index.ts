@@ -11,3 +11,4 @@ export * from './Icons';
 export * from './Link';
 export * from './Select';
 export * from './Textarea';
+export * from './Spacer';
