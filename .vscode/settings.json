@@ -1,13 +1,6 @@
 {
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
-    },
-    "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-    },  
-    "workbench.settings.useSplitJSON": true 
+      "source.fixAll.eslint": true
+    }
   }

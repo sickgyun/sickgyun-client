@@ -1,18 +1,36 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { ForwardedRef, TextareaHTMLAttributes } from 'react';
-import { forwardRef } from 'react';
+import { debounce } from 'lodash';
+import type { ChangeEvent, ForwardedRef, TextareaHTMLAttributes } from 'react';
+import { forwardRef, useCallback } from 'react';
 import { Text } from '../Text';
 
 type TextareaProps = {
   label?: string;
   width?: string;
+  minHeight?: string;
+  isAutoHeight?: boolean;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export const Textarea = forwardRef(function Textarea(
-  { label, width = '100%', onChange, ...props }: TextareaProps,
+  {
+    label,
+    width = '100%',
+    minHeight = '150px',
+    isAutoHeight = false,
+    onChange,
+    ...props
+  }: TextareaProps,
   ref: ForwardedRef<HTMLTextAreaElement>
 ) {
+  const handleTextareaHeightChange = useCallback(
+    debounce((e: ChangeEvent<HTMLTextAreaElement>) => {
+      e.target.style.height = 'inherit';
+      e.target.style.height = `${e.target.scrollHeight}px`;
+    }, 300),
+    [debounce]
+  );
+
   return (
     <StyledTextareaWrapper width={width}>
       {label && (
@@ -20,7 +38,13 @@ export const Textarea = forwardRef(function Textarea(
           {label}
         </Text>
       )}
-      <StyledTextarea ref={ref} label={label} onChange={onChange} {...props} />
+      <StyledTextarea
+        ref={ref}
+        minHeight={minHeight}
+        onChange={onChange}
+        onInput={isAutoHeight ? handleTextareaHeightChange : undefined}
+        {...props}
+      />
     </StyledTextareaWrapper>
   );
 });
@@ -32,13 +56,14 @@ const StyledTextareaWrapper = styled.div<{ width?: string }>`
   width: ${({ width }) => width};
 `;
 
-const StyledTextarea = styled.textarea<TextareaProps>`
+const StyledTextarea = styled.textarea<{ minHeight?: string }>`
   resize: none;
   outline: none;
   padding: 10px 16px;
   border-radius: 16px;
   width: 100%;
-  height: 150px;
+  min-height: ${({ minHeight }) => minHeight};
+  font-size: 15px;
   ${({ theme }) => css`
     border: 1.5px solid ${theme.colors.gray400};
     background-color: ${theme.colors.white};
@@ -51,5 +76,5 @@ const StyledTextarea = styled.textarea<TextareaProps>`
     &:focus {
       border: 1.5px solid ${theme.colors.primary};
     }
-  `}
+  `};
 `;
