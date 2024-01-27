@@ -1,4 +1,4 @@
-import { Spinner } from '@chakra-ui/react';
+import { Spinner } from '@sickgyun/ui';
 import type { ReactNode } from 'react';
 import React, { Suspense } from 'react';
 

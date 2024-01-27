@@ -1,4 +1,3 @@
-import { Select } from '@chakra-ui/react';
 import {
   Button,
   Input,
@@ -8,6 +7,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Select,
   Stack,
   Text,
 } from '@sickgyun/ui';
@@ -93,7 +93,7 @@ const StudentProfileCreateModal = ({
               placeholder="소개 말을 적어주세요."
               {...register('bio')}
             />
-            <Select size="md" {...register('position')}>
+            <Select {...register('position')}>
               <option value="FRONTEND">프론트엔드</option>
               <option value="BACKEND">백엔드</option>
               <option value="DEVOPS">데브옵스</option>

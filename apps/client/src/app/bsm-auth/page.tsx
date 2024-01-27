@@ -1,8 +1,8 @@
 'use client';
 
-import { Spinner } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Storage } from '@sickgyun/libs';
+import { Spinner } from '@sickgyun/ui';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
@@ -41,13 +41,7 @@ const BsmAuthPage = () => {
   return (
     <StyledBsmAuthPageLayout>
       <StyledBsmAuthPage>
-        <Spinner
-          thickness="4px"
-          speed="0.65s"
-          emptyColor="gray.200"
-          color="primary"
-          size="xl"
-        />
+        <Spinner color="primary" size={70} />
       </StyledBsmAuthPage>
     </StyledBsmAuthPageLayout>
   );
