@@ -1,10 +1,8 @@
-import { type PropsWithChildren, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { EffectCallback, PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
-import { useDidMount } from './useDidMount';
 
-type PortalProps = PropsWithChildren<{ isOpen: boolean }>;
-
-export const Portal = ({ isOpen, children }: PortalProps) => {
+export const Portal = ({ isOpen, children }: PropsWithChildren<{ isOpen: boolean }>) => {
   const [container, setContainer] = useState<Element | null>(null);
 
   useDidMount(() => {
@@ -19,3 +17,14 @@ export const Portal = ({ isOpen, children }: PortalProps) => {
 };
 
 export default Portal;
+
+const useDidMount = (callback: EffectCallback) => {
+  const didMountRef = useRef(false);
+
+  useEffect(() => {
+    if (didMountRef.current) return;
+    didMountRef.current = true;
+
+    callback();
+  }, []);
+};

@@ -2,9 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { PropsWithChildren } from 'react';
 
-type ModalHeaderProps = PropsWithChildren;
-
-export const ModalHeader = ({ children }: ModalHeaderProps) => {
+export const ModalHeader = ({ children }: PropsWithChildren) => {
   return <StyledModalHeader>{children}</StyledModalHeader>;
 };
 
