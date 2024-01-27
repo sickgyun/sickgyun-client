@@ -46,16 +46,7 @@ const StudentProfileCard = ({
             </Text>
           </Stack>
           {bio && (
-            <Text
-              fontType="body2"
-              color="gray600"
-              style={{
-                maxWidth: '95%',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
+            <Text fontType="body2" color="gray600" isEllipsis={true}>
               {bio}
             </Text>
           )}
