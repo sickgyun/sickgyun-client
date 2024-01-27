@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button, Flex } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
@@ -55,7 +56,10 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray200};
   width: 100%;
   height: 54px;
+  ${({ theme }) => css`
+    border-bottom: 1px solid ${theme.colors.gray200};
+    background-color: ${theme.colors.white};
+  `}
 `;
