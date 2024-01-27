@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { debounce } from 'lodash';
 import type { ChangeEvent, ForwardedRef, TextareaHTMLAttributes } from 'react';
 import { forwardRef, useCallback } from 'react';
 import { Text } from '../Text';
