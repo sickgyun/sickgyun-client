@@ -66,7 +66,7 @@ const StyledQnaListBox = styled.div``;
 
 const StyledQnaBoxWrapper = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.gray100};
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 12px;
   margin-top: 8px;
   display: flex;
@@ -78,7 +78,7 @@ const StyledQnaBoxWrapper = styled.div`
 
 const StyledQnaBox = styled.div`
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray300};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray200};
   display: flex;
   flex-direction: column;
 
