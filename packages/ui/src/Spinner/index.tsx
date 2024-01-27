@@ -4,18 +4,17 @@ import { colors } from '@sickgyun/design-token';
 import { type ForwardedRef, forwardRef } from 'react';
 
 type SpinnerProps = {
-  width?: string;
-  height?: string;
+  size?: string;
   color?: string;
 };
 
 export const Spinner = forwardRef(function Spinner(
-  { width = '50px', height = '50px', color = colors.primary, ...props }: SpinnerProps,
+  { size = '50px', color = colors.primary, ...props }: SpinnerProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
     <StyledSpinnerWrapper>
-      <StyledSpinner ref={ref} color={color} width={width} height={height} {...props} />
+      <StyledSpinner ref={ref} color={color} size={size} {...props} />
     </StyledSpinnerWrapper>
   );
 });
@@ -36,8 +35,8 @@ const spin = keyframes`
 `;
 
 const StyledSpinner = styled.div<SpinnerProps>`
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
   border: 9px solid ${colors.gray100};
   border-top: 9px solid ${({ color }) => color};
   border-radius: 50%;
