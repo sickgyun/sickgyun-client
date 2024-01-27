@@ -33,7 +33,7 @@ export const Modal = forwardRef(function Modal(
 
 const StyledDIM = styled.div`
   position: fixed;
-  z-index: 900;
+  z-index: ${({ theme }) => theme.zIndex.page3};
   top: 0;
   left: 0;
   right: 0;
