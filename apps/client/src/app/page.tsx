@@ -20,8 +20,8 @@ const MainPage = () => {
     router.push(`/student-profile?position=${queryParams}`);
   };
 
-  const handleGoCareerQnaPage = () => {
-    router.push('/qna');
+  const handleGoQnaPage = () => {
+    router.push(`/qna`);
   };
 
   return (
@@ -36,20 +36,15 @@ const MainPage = () => {
             spacing={36}
             style={{ marginBottom: '64px' }}
           >
-            <StyledBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
+            <StyledMainBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
             {/* 로그인 박스 */}
             <LoginBox />
           </Stack>
           {/* 직군별 리스트 */}
           <Stack spacing={18} style={{ marginBottom: '64px' }}>
-            <Flex justify="space-between">
-              <Text fontType="h3">
-                진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
-              </Text>
-              <Text style={{ cursor: 'pointer' }} onClick={handleGoCareerQnaPage}>
-                QNA 바로가기
-              </Text>
-            </Flex>
+            <Text fontType="h3">
+              진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
+            </Text>
             <Flex justify="space-between">
               {POSITION_LIST.map((position) => (
                 <StyledStudentProfileRedirectButton
@@ -65,6 +60,15 @@ const MainPage = () => {
                 </StyledStudentProfileRedirectButton>
               ))}
             </Flex>
+          </Stack>
+          {/* QNA 리스트*/}
+          <Stack style={{ marginBottom: '64px' }}>
+            <Text fontType="h3">뭘 해야 할지 모르겠다고요? 조언을 구해봐요!</Text>
+            <StyledQnaBannerImage
+              onClick={handleGoQnaPage}
+              src="/assets/qna_banner.png"
+              alt="Qna Banner"
+            />
           </Stack>
           <Stack direction="vertical" spacing={18} style={{ marginBottom: '64px' }}>
             <Flex align="center" justify="space-between">
@@ -96,7 +100,7 @@ const StyledMainPage = styled.div`
   width: 80%;
 `;
 
-const StyledBannerImage = styled.img`
+const StyledMainBannerImage = styled.img`
   object-fit: cover;
   border-radius: 8px;
   height: 250px;
@@ -117,4 +121,12 @@ const StyledStudentProfileRedirectButton = styled.div`
     background-color: ${({ theme }) => theme.colors.gray50};
     cursor: pointer;
   }
+`;
+
+const StyledQnaBannerImage = styled.img`
+  cursor: pointer;
+  object-fit: cover;
+  border-radius: 16px;
+  height: 120px;
+  width: 100%;
 `;
