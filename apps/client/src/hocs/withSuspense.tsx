@@ -4,12 +4,10 @@ import React, { Suspense } from 'react';
 
 export const withSuspense = <Props,>(
   Component: (props: Props) => ReactNode,
-  FallbackComponent?: (props: unknown) => ReactNode | null
+  Fallback?: (props: unknown) => ReactNode | null
 ) => {
   const WrappedComponent = (props: Props) => (
-    <Suspense
-      fallback={FallbackComponent ? <FallbackComponent /> : <Spinner color="primary" />}
-    >
+    <Suspense fallback={Fallback ? <Fallback /> : <Spinner color="primary" />}>
       <Component {...props} />
     </Suspense>
   );
