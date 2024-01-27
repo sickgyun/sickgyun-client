@@ -124,7 +124,13 @@ export const Tooltip = ({
             style={floatingStyles}
             {...getFloatingProps()}
           >
-            {typeof content === 'string' ? <Text>{content}</Text> : content}
+            {typeof content === 'string' ? (
+              <Text fontType="body3" color="white">
+                {content}
+              </Text>
+            ) : (
+              content
+            )}
             <StyledArrow ref={arrowRef} context={context} />
           </StyledTooltipItem>
         </StyledTooltipItemWrapper>
