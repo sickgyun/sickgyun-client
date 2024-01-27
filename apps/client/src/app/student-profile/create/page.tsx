@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Button, Input, Select, Stack, Text } from '@sickgyun/ui';
+import { Button, Input, Select, Stack, Text, Textarea } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
@@ -84,9 +84,10 @@ const StudentProfileCreatePage = () => {
                 <option value="APP">앱</option>
                 <option value="DESIGNER">디자이너</option>
               </Select>
-              <Input
+              <Textarea
                 label="소개 말"
                 placeholder="소개 말을 적어주세요."
+                minHeight="100px"
                 {...register('bio')}
               />
               {userInformation.isGraduate && (
