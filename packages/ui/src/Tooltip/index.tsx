@@ -196,7 +196,7 @@ const PositionWrapper = ({
   strategy,
 }: PropsWithChildren<{ strategy?: Strategy; children: React.ReactNode }>) => {
   if (strategy === 'fixed') {
-    return <>{children}</> || null;
+    return <>{children}</>;
   }
   return <StyledRelativePositionWrapper>{children}</StyledRelativePositionWrapper>;
 };
@@ -238,7 +238,7 @@ const StyledTooltipItem = styled.div`
   display: flex;
   align-items: flex-start;
   width: max-content;
-  max-width: calc(100vw-32px);
+  max-width: calc(100vw - 32px);
   padding: 8px 12px;
   border-radius: 8px;
 `;
