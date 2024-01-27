@@ -78,7 +78,7 @@ const StyledQnaBoxWrapper = styled.div`
 
 const StyledQnaBox = styled.div`
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray200};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray100};
   display: flex;
   flex-direction: column;
 
