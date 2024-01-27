@@ -10,7 +10,7 @@ import QnaListBox from '@/components/qna/QnaListBox';
 import QnaPostList from '@/components/qna/QnaPostList';
 import { QNA } from '@/constants/qna';
 
-const Qna = () => {
+const QnaPage = () => {
   const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
 
   const handlePrevPopularQna = () => {
@@ -25,9 +25,6 @@ const Qna = () => {
     }
   };
 
-  const isFirstPage = currentQnaPageIndex == 0;
-  const isLastPage = currentQnaPageIndex == QNA.length - 3;
-
   return (
     <>
       <Header />
@@ -39,13 +36,13 @@ const Qna = () => {
               <Stack direction="horizontal" spacing={6}>
                 <StyledActiveButton
                   onClick={handlePrevPopularQna}
-                  isFirstPage={isFirstPage}
+                  isFirstPage={currentQnaPageIndex == 0}
                 >
                   <ArrowLeftIcon width={30} height={30} />
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
-                  isLastPage={isLastPage}
+                  isLastPage={currentQnaPageIndex == QNA.length - 3}
                 >
                   <ArrowRightIcon width={30} height={30} />
                 </StyledActiveButton>
@@ -64,7 +61,7 @@ const Qna = () => {
   );
 };
 
-export default Qna;
+export default QnaPage;
 
 const StyledQnaLayout = styled.div`
   width: 100%;

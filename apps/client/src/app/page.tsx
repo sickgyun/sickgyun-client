@@ -9,7 +9,6 @@ import Header from '@/components/common/Header';
 import JobPostingList from '@/components/job-posting/JobPostingList';
 import LoginBox from '@/components/main/LoginBox';
 import { POSITION_LIST } from '@/constants/common';
-import { QNA_POSITION_LIST } from '@/constants/qna';
 
 const JOB_POSTING_FULL_VIEW_LINK =
   'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1';
@@ -21,8 +20,8 @@ const MainPage = () => {
     router.push(`/student-profile?position=${queryParams}`);
   };
 
-  const handleGoQnaPage = (queryParams: string) => {
-    router.push(`/qna?category=${queryParams}`);
+  const handleGoQnaPage = () => {
+    router.push(`/qna`);
   };
 
   return (
@@ -37,7 +36,7 @@ const MainPage = () => {
             spacing={36}
             style={{ marginBottom: '64px' }}
           >
-            <StyledBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
+            <StyledMainBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
             {/* 로그인 박스 */}
             <LoginBox />
           </Stack>
@@ -63,18 +62,13 @@ const MainPage = () => {
             </Flex>
           </Stack>
           {/* QNA 리스트*/}
-          <Stack spacing={18} style={{ marginBottom: '64px' }}>
-            <Text fontType="h3">개발, 취업 등의 고민을 QNA에서 알아봐요!</Text>
-            <Flex justify="space-between" style={{ width: '80%', margin: '0 auto' }}>
-              {QNA_POSITION_LIST.map((position) => (
-                <StyledQnaCategoryRedirectButton
-                  onClick={() => handleGoQnaPage(position.queryParams)}
-                >
-                  <Text fontType="h1">{position.emoji}</Text>
-                  <Text fontType="body1">{position.name}</Text>
-                </StyledQnaCategoryRedirectButton>
-              ))}
-            </Flex>
+          <Stack style={{ marginBottom: '64px' }}>
+            <Text fontType="h3">뭘 해야 할지 모르겠다고요? 조언을 구해봐요!</Text>
+            <StyledQnaBannerImage
+              onClick={handleGoQnaPage}
+              src="/assets/qna_banner.png"
+              alt="Qna Banner"
+            />
           </Stack>
           <Stack direction="vertical" spacing={18} style={{ marginBottom: '64px' }}>
             <Flex align="center" justify="space-between">
@@ -106,7 +100,7 @@ const StyledMainPage = styled.div`
   width: 80%;
 `;
 
-const StyledBannerImage = styled.img`
+const StyledMainBannerImage = styled.img`
   object-fit: cover;
   border-radius: 8px;
   height: 250px;
@@ -129,18 +123,10 @@ const StyledStudentProfileRedirectButton = styled.div`
   }
 `;
 
-const StyledQnaCategoryRedirectButton = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+const StyledQnaBannerImage = styled.img`
+  cursor: pointer;
+  object-fit: cover;
+  border-radius: 16px;
   height: 120px;
-  transition: all 0.25s ease;
-  &:hover {
-    & > * {
-      color: ${({ theme }) => theme.colors.primary};
-    }
-    cursor: pointer;
-  }
+  width: 100%;
 `;
