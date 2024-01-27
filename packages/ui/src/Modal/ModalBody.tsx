@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
 import type { PropsWithChildren } from 'react';
 
-type ModalBodyProps = PropsWithChildren;
-
-export const ModalBody = ({ children }: ModalBodyProps) => {
+export const ModalBody = ({ children }: PropsWithChildren) => {
   return <StyledModalBody>{children}</StyledModalBody>;
 };
 

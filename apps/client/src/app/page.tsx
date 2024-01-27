@@ -127,6 +127,6 @@ const StyledQnaBannerImage = styled.img`
   cursor: pointer;
   object-fit: cover;
   border-radius: 16px;
-  height: 120px;
+  height: 150px;
   width: 100%;
 `;

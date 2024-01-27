@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
 import type { PropsWithChildren } from 'react';
 
-type ModalFooterProps = PropsWithChildren;
-
-export const ModalFooter = ({ children }: ModalFooterProps) => {
+export const ModalFooter = ({ children }: PropsWithChildren) => {
   return <StyledModalFooter>{children}</StyledModalFooter>;
 };
 
