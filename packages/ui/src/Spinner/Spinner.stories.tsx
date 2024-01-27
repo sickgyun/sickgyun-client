@@ -7,7 +7,7 @@ type Spinner = typeof SpinnerComponent;
 const meta: Meta<Spinner> = {
   argTypes: {
     size: {
-      control: { type: 'text' },
+      control: { type: 'number' },
     },
     color: {
       control: { type: 'text' },
@@ -21,7 +21,7 @@ export default meta;
 
 export const Default: StoryObj<Spinner> = {
   args: {
-    size: '60px',
+    size: 60,
     color: `${colors.primary}`,
   },
   render: (args) => <SpinnerComponent {...args} />,

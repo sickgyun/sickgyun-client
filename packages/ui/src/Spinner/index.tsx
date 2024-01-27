@@ -4,12 +4,12 @@ import { colors } from '@sickgyun/design-token';
 import { type ForwardedRef, forwardRef } from 'react';
 
 type SpinnerProps = {
-  size?: string;
+  size?: number;
   color?: string;
 };
 
 export const Spinner = forwardRef(function Spinner(
-  { size = '50px', color = colors.primary, ...props }: SpinnerProps,
+  { size = 50, color = colors.primary, ...props }: SpinnerProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -35,8 +35,8 @@ const spin = keyframes`
 `;
 
 const StyledSpinner = styled.div<SpinnerProps>`
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size}px`};
   border: 9px solid ${colors.gray100};
   border-top: 9px solid ${({ color }) => color};
   border-radius: 50%;
