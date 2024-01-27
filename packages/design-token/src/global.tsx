@@ -8,8 +8,6 @@ const globalStyle = css`
   }
 
   body {
-    font-family: WantedSansVariable;
-    font-weight: normal;
     color: ${colors.black};
   }
 `;
