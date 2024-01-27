@@ -32,7 +32,7 @@ const QnaPage = () => {
         <StyledQna>
           <Stack direction="vertical" spacing={15} style={{ marginBottom: '60px' }}>
             <Flex justify="space-between">
-              <Text fontType="h3">🔥 인기글</Text>
+              <Text fontType="h3">인기글을 모아봤어요!</Text>
               <Stack direction="horizontal" spacing={6}>
                 <StyledActiveButton
                   onClick={handlePrevPopularQna}
@@ -65,7 +65,7 @@ export default QnaPage;
 
 const StyledQnaLayout = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.gray50};
   min-height: 100vh;
 `;
 

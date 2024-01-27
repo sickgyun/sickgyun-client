@@ -26,6 +26,6 @@ const StyledQnaCategory = styled.div`
   min-height: 26px;
   gap: 7px;
   padding: 5px 13px;
-  background-color: ${({ theme }) => theme.colors.gray300};
+  background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 30px;
 `;

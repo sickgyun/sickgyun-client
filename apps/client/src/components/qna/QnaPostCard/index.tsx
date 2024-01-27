@@ -54,7 +54,7 @@ export default QnaPostCard;
 const StyledQnaPostCard = styled.div`
   width: calc((100% / 3) - 10px);
   height: 185px;
-  background-color: ${({ theme }) => theme.colors.gray100};
+  background-color: ${({ theme }) => theme.colors.white};
   flex-shrink: 0;
   cursor: pointer;
   border-radius: 12px;
