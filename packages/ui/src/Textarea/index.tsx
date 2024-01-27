@@ -24,11 +24,11 @@ export const Textarea = forwardRef(function Textarea(
   ref: ForwardedRef<HTMLTextAreaElement>
 ) {
   const handleTextareaHeightChange = useCallback(
-    debounce((e: ChangeEvent<HTMLTextAreaElement>) => {
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
       e.target.style.height = 'inherit';
       e.target.style.height = `${e.target.scrollHeight}px`;
-    }, 300),
-    [debounce]
+    },
+    []
   );
 
   return (
