@@ -12,3 +12,4 @@ export * from './Link';
 export * from './Select';
 export * from './Textarea';
 export * from './Spacer';
+export * from './Spinner';
