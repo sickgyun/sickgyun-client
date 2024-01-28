@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
-import { AddIcon, Text } from '@sickgyun/ui';
+import { IconAddFill } from '@seed-design/icon';
+import { colors } from '@sickgyun/design-token';
+import { Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import StudentProfileCreateModal from '../StudentProfileCreateModal';
 import StudentProfileUpdateModal from '../StudentProfileUpdateModal';
@@ -36,7 +38,7 @@ const StudentProfileActionButton = ({ actionType }: StudentProfileActionButtonPr
           <Text fontType="h3" color="white">
             프로필 등록
           </Text>
-          <AddIcon color="white" width="20px" height="20px" />
+          <IconAddFill width={20} height={20} color={colors.white} />
         </>
       ) : (
         <Text fontType="h3" color="white">

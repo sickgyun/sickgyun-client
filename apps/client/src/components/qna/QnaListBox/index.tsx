@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { IconHeartRegular, IconReplyRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { CommentIcon, Flex, HeartIcon, Stack, Text } from '@sickgyun/ui';
+import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
 import { QNA, QNA_SORT } from '@/constants/qna';
@@ -38,13 +39,13 @@ const QnaListBox = () => {
                   </Stack>
                   <Stack spacing={12} direction="horizontal">
                     <Stack direction="horizontal" align="center" spacing={3}>
-                      <HeartIcon width={16} height={16} color={colors.black} />
+                      <IconHeartRegular width={16} height={16} color={colors.black} />
                       <Text fontType="body2" style={{ marginTop: '2px' }}>
                         {qna.heart}
                       </Text>
                     </Stack>
                     <Stack direction="horizontal" align="center" spacing={3}>
-                      <CommentIcon width={16} height={16} color={colors.black} />
+                      <IconReplyRegular width={16} height={16} color={colors.black} />
                       <Text fontType="body2" style={{ marginTop: '2px' }}>
                         {qna.commentCount}
                       </Text>

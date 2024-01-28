@@ -1,5 +1,5 @@
+import { IconCloseFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { CloseIcon } from '../Icons';
 
 type ModalCloseButtonProps = {
   onClose: VoidFunction;
@@ -7,7 +7,7 @@ type ModalCloseButtonProps = {
 
 export const ModalCloseButton = ({ onClose }: ModalCloseButtonProps) => {
   return (
-    <CloseIcon
+    <IconCloseFill
       onClick={onClose}
       width={36}
       height={36}

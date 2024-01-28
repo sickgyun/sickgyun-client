@@ -114,6 +114,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.13)(react@18.2.0)
+      '@seed-design/icon':
+        specifier: ^0.5.3
+        version: 0.5.3(react@18.2.0)
       '@sickgyun/design-token':
         specifier: workspace:*
         version: link:../../packages/design-token
@@ -318,6 +321,9 @@ importers:
       '@floating-ui/react':
         specifier: ^0.26.7
         version: 0.26.7(react-dom@18.2.0)(react@18.2.0)
+      '@seed-design/icon':
+        specifier: ^0.5.3
+        version: 0.5.3(react@18.2.0)
       '@sickgyun/design-token':
         specifier: workspace:*
         version: link:../design-token
@@ -3532,6 +3538,14 @@ packages:
   /@rushstack/eslint-patch@1.6.1:
     resolution: {integrity: sha512-UY+FGM/2jjMkzQLn8pxcHGMaVLh9aEitG3zY2CiY7XHdLiz3bZOwa6oDxNqEMv7zZkV+cj5DOdz0cQ1BP5Hjgw==}
     dev: true
+
+  /@seed-design/icon@0.5.3(react@18.2.0):
+    resolution: {integrity: sha512-Xwc7ctcBvwS+D17Rn5hYCUJG9Npvf+o23w85WV58aFnh0BTeZVOwGIlw4uhFLwzk1E4mnupdZxDfH/6KRUiAog==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
