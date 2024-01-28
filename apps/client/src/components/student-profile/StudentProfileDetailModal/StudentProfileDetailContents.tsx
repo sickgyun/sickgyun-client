@@ -1,5 +1,6 @@
-import { ChevronRightIcon } from '@chakra-ui/icons';
 import styled from '@emotion/styled';
+import { IconChevronRightFill } from '@seed-design/icon';
+import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import { getUserProfileImage } from '@sickgyun/utils';
 import Image from 'next/image';
@@ -79,7 +80,7 @@ const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentP
                 <Text fontType="body3" color="gray700">
                   깃허브 바로가기
                 </Text>
-                <ChevronRightIcon color="gray.700" />
+                <IconChevronRightFill width={24} height={24} color={colors.gray700} />
               </Flex>
             </StyledNavigationLinkButton>
           )}
@@ -91,8 +92,7 @@ const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentP
                 <Text fontType="body3" color="gray700">
                   이메일 바로가기
                 </Text>
-                {/* TODO: RightIcon 컴포넌트 추가 */}
-                <ChevronRightIcon color="gray.700" />
+                <IconChevronRightFill width={24} height={24} color={colors.gray700} />
               </Flex>
             </StyledNavigationLinkButton>
           )}

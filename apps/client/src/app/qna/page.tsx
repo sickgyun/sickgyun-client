@@ -1,9 +1,9 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { ArrowLeftIcon, ArrowRightIcon, Flex, Stack, Text } from '@sickgyun/ui';
+import { IconChevronLeftFill, IconChevronRightFill } from '@seed-design/icon';
+import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
-import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import QnaBox from '@/components/qna/QnaBox';
 import QnaListBox from '@/components/qna/QnaListBox';
@@ -38,13 +38,13 @@ const QnaPage = () => {
                   onClick={handlePrevPopularQna}
                   isFirstPage={currentQnaPageIndex == 0}
                 >
-                  <ArrowLeftIcon width={30} height={30} />
+                  <IconChevronLeftFill width={24} height={24} />
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
                   isLastPage={currentQnaPageIndex == QNA.length - 3}
                 >
-                  <ArrowRightIcon width={30} height={30} />
+                  <IconChevronRightFill width={24} height={24} />
                 </StyledActiveButton>
               </Stack>
             </Flex>
@@ -56,7 +56,6 @@ const QnaPage = () => {
           </StyledQnaContent>
         </StyledQna>
       </StyledQnaLayout>
-      <Footer />
     </>
   );
 };

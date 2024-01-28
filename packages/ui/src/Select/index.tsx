@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { IconArrowDropDownFill } from '@seed-design/icon';
 import type { ForwardedRef, ReactNode, SelectHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 import { Flex } from '../Flex';
-import { ArrowDownIcon } from '../Icons';
 import { Text } from '../Text';
 
 type SelectProps = {
@@ -28,7 +28,7 @@ export const Select = forwardRef(function Select(
           {placeholder && <option value="">{placeholder}</option>}
           {children}
         </StyledSelect>
-        <ArrowDownIcon
+        <IconArrowDropDownFill
           width={24}
           height={24}
           cursor="pointer"
