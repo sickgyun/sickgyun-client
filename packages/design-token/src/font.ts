@@ -3,7 +3,6 @@ import { css } from '@emotion/react';
 export const FontCSS = css`
   @font-face {
     font-family: 'WantedSansVariable';
-    src: url('./fonts/WantedSansVariable.woff2') format('woff2');
-    font-weight: normal;
+    src: url('/fonts/WantedSansVariable.woff2') format('woff2');
   }
 `;

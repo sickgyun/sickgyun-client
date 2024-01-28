@@ -9,6 +9,8 @@ const globalStyle = css`
 
   body {
     color: ${colors.black};
+    font-weight: normal;
+    font-family: WantedSansVariable;
   }
 `;
 
