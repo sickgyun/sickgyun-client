@@ -118,7 +118,7 @@ const StyledLoginBox = styled.div`
   padding: 32px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.gray200};
-  width: 500px;
+  width: 364px;
   height: 250px;
 `;
 
