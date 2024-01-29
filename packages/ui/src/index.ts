@@ -12,3 +12,5 @@ export * from './Select';
 export * from './Textarea';
 export * from './Spacer';
 export * from './Spinner';
+export * from './Tooltip';
+export * from './ErrorBoundary';
