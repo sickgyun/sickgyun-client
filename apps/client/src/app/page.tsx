@@ -42,7 +42,7 @@ const MainPage = () => {
             direction="horizontal"
             align="center"
             spacing={36}
-            style={{ marginBottom: '64px' }}
+            style={{ marginBottom: '84px' }}
           >
             <MainBanner banners={renderBanners()} />
             {/* 로그인 박스 */}
