@@ -71,7 +71,6 @@ const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentP
       )}
       <Stack spacing={16}>
         <Text fontType="h3">정보</Text>
-        {/* 깃허브 */}
         <Stack spacing={12}>
           {studentProfileData?.githubId && (
             <StyledNavigationLinkButton onClick={handleGoGithub}>
@@ -84,7 +83,6 @@ const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentP
               </Flex>
             </StyledNavigationLinkButton>
           )}
-          {/* 이메일 */}
           {studentProfileData?.email && (
             <StyledNavigationLinkButton onClick={handleGoEmail}>
               <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>

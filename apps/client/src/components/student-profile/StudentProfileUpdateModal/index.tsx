@@ -68,9 +68,8 @@ const StudentProfileUpdateModal = ({
         onClose={close}
         onDelete={() => {
           handleDeleteStudentProfile();
-          // 다이로그 닫기
+          // TODO: close와 onClose 명확한 구분
           close();
-          // 모달 닫기
           onClose();
         }}
       />

@@ -37,7 +37,6 @@ const MainPage = () => {
       <Header />
       <StyledMainPageLayout>
         <StyledMainPage>
-          {/* 로그인 & 배너 섹션 */}
           <Stack
             direction="horizontal"
             align="center"
@@ -45,10 +44,8 @@ const MainPage = () => {
             style={{ marginBottom: '84px' }}
           >
             <MainBanner banners={renderBanners()} />
-            {/* 로그인 박스 */}
             <LoginBox />
           </Stack>
-          {/* 직군별 리스트 */}
           <Stack spacing={18} style={{ marginBottom: '64px' }}>
             <Text fontType="h3">
               진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
@@ -69,7 +66,6 @@ const MainPage = () => {
               ))}
             </Flex>
           </Stack>
-          {/* QNA 리스트*/}
           <Stack style={{ marginBottom: '64px' }}>
             <Text fontType="h3">뭘 해야 할지 모르겠다고요? 조언을 구해봐요!</Text>
             <StyledQnaBannerImage

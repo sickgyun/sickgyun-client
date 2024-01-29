@@ -15,10 +15,8 @@ export const useUserInformation = () => {
   useEffect(() => {
     const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
 
-    // 로그인 상태 저장
     setIsLogin(Boolean(accessToken));
 
-    // 유저 정보 저장
     if (userInformationData) {
       setUserInformation(userInformationData);
     }
