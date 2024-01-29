@@ -8,6 +8,7 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import JobPostingList from '@/components/job-posting/JobPostingList';
 import LoginBox from '@/components/main/LoginBox';
+import MainBanner from '@/components/main/MainBanner';
 import { POSITION_LIST } from '@/constants/common';
 
 const JOB_POSTING_FULL_VIEW_LINK =
@@ -24,6 +25,13 @@ const MainPage = () => {
     router.push(`/qna`);
   };
 
+  const renderBanners = () => {
+    return [
+      <img src="/assets/mock_banner.jpeg" alt="Banner1" />,
+      <img src="/assets/mock_banner.jpeg" alt="Banner2" />,
+    ];
+  };
+
   return (
     <>
       <Header />
@@ -36,7 +44,7 @@ const MainPage = () => {
             spacing={36}
             style={{ marginBottom: '64px' }}
           >
-            <StyledMainBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
+            <MainBanner banners={renderBanners()} />
             {/* 로그인 박스 */}
             <LoginBox />
           </Stack>
@@ -98,13 +106,6 @@ const StyledMainPage = styled.div`
   padding-top: 48px;
   padding-bottom: 64px;
   width: 80%;
-`;
-
-const StyledMainBannerImage = styled.img`
-  object-fit: cover;
-  border-radius: 8px;
-  height: 250px;
-  width: 100%;
 `;
 
 const StyledStudentProfileRedirectButton = styled.div`
