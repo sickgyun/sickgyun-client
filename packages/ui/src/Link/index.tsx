@@ -16,7 +16,7 @@ export const Link = forwardRef(function Link(
   ref: ForwardedRef<HTMLAnchorElement>
 ) {
   return (
-    <StyledLink href={href} color={color} fontType={textStyle} ref={ref}>
+    <StyledLink ref={ref} href={href} color={color} fontType={textStyle}>
       {children}
     </StyledLink>
   );
