@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ColorKeys, FontKeys } from '@sickgyun/design-token';
 import NextLink from 'next/link';
-import type { ReactNode } from 'react';
+import { type ForwardedRef, type ReactNode, forwardRef } from 'react';
 
 type LinkProps = {
   href: string;
@@ -11,18 +11,16 @@ type LinkProps = {
   fontType?: FontKeys;
 };
 
-export const Link = ({
-  children,
-  href,
-  fontType: textStyle = 'p1',
-  color = 'black',
-}: LinkProps) => {
+export const Link = forwardRef(function Link(
+  { children, href, fontType: textStyle = 'p1', color = 'black' }: LinkProps,
+  ref: ForwardedRef<HTMLAnchorElement>
+) {
   return (
-    <StyledLink href={href} color={color} fontType={textStyle}>
+    <StyledLink href={href} color={color} fontType={textStyle} ref={ref}>
       {children}
     </StyledLink>
   );
-};
+});
 
 const StyledLink = styled(NextLink)<{ color: ColorKeys; fontType: FontKeys }>`
   ${({ theme, color, fontType }) => css`
