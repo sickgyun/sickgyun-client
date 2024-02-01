@@ -15,8 +15,8 @@ const Header = () => {
   const { isLogin } = useUserInformation();
 
   const handleLogin = () => {
-    if (!process.env.NEXT_PUBLIC_AUTH_URL) return;
-    router.replace(process.env.NEXT_PUBLIC_AUTH_URL);
+    if (!process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL) return;
+    router.replace(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
   };
 
   const handleLogout = () => {
