@@ -48,13 +48,10 @@ const GoogleLoginPage = () => {
 export default GoogleLoginPage;
 
 const getGoogleAccessToken = () => {
-  const currentURL = window.location.href;
+  const params = new URLSearchParams(window.location.hash.substring(1));
+  const accessToken = params.get('access_token');
 
-  const authCode = currentURL
-    .split('&')[0]
-    .replace('http://localhost:3000/auth#access_token=', '');
-
-  return authCode;
+  return accessToken;
 };
 
 const StyledGoogleLoginPageLayout = styled.div`
