@@ -1,4 +1,4 @@
-type LocalStorageKey = 'chac';
+type LocalStorageKey = 'siac';
 export class Storage {
   static getItem(key: LocalStorageKey) {
     return typeof window !== 'undefined' ? localStorage.getItem(key) : null;
