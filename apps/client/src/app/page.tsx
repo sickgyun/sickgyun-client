@@ -6,9 +6,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import JobPostingList from '@/components/job-posting/JobPostingList';
 import LoginBox from '@/components/main/LoginBox';
 import MainBanner from '@/components/main/MainBanner';
+import RecuritList from '@/components/recurit/RecuritList';
 import { POSITION_LIST } from '@/constants/common';
 
 const JOB_POSTING_FULL_VIEW_LINK =
@@ -81,7 +81,7 @@ const MainPage = () => {
                 전체 보기
               </Link>
             </Flex>
-            <JobPostingList />
+            <RecuritList />
           </Stack>
         </StyledMainPage>
       </StyledMainPageLayout>
