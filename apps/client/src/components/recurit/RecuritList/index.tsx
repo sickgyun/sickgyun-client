@@ -15,7 +15,7 @@ const RecuritList = () => {
           title={recurit.reqruitName}
           thumbnail={recurit.imageSrc}
           companyName={recurit.company}
-          detailLink=""
+          href={recurit.href}
         />
       ))}
     </StyledRecuritList>
@@ -34,16 +34,16 @@ type RecuritCardProps = {
   title: string;
   thumbnail?: string;
   companyName: string;
-  detailLink: string;
+  href: string;
 };
 
-const RecuritCard = ({ title, thumbnail, companyName, detailLink }: RecuritCardProps) => {
-  const handleGoComapnyDetailPage = () => {
-    window.open(detailLink);
+const RecuritCard = ({ title, thumbnail, companyName, href }: RecuritCardProps) => {
+  const handleGoRecruitDetailPage = () => {
+    window.open(href);
   };
 
   return (
-    <StyledRecuritCard onClick={handleGoComapnyDetailPage}>
+    <StyledRecuritCard onClick={handleGoRecruitDetailPage}>
       <StyledThumnailImage src={thumbnail} width={85} height={85} alt="Job Posting" />
       <Stack spacing={4}>
         <Text fontType="h4">{title}</Text>

@@ -6,7 +6,7 @@ type RecuritListResponse = {
   company: string;
   imageSrc: string;
   reqruitName: string;
-  skills: string[];
+  href: string;
 };
 
 export const RECURIT_LIST_QUERY_KEY = 'recuritList';
