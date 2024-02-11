@@ -13,9 +13,10 @@ const GoogleLoginPage = () => {
 
   const { mutate: loginGoogleMutate } = useGoogleLoginMutation({
     onSuccess: (data) => {
-      const { accessToken } = data;
+      const { accessToken, refreshToken } = data;
 
       Storage.setItem(LOCAL_STORAGE_KEY.accessToken, `Bearer ${accessToken}`);
+      Storage.setItem(LOCAL_STORAGE_KEY.refreshToken, refreshToken);
 
       router.replace('/');
     },

@@ -1,7 +1,7 @@
 import { ApiException, CustomException, Storage, errorMessage } from '@sickgyun/libs';
 import type { ApiErrorScheme } from '@sickgyun/libs';
 import { isProd } from '@sickgyun/utils';
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 
@@ -17,10 +17,12 @@ const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
   if (typeof window === 'undefined') {
     return config;
   }
-  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+
   if (!config.headers) {
     return config;
   }
+
+  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
   if (!accessToken) {
     return config;
   }
@@ -49,6 +51,12 @@ const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
     return Promise.reject(new CustomException(errorMessage.TIMEOUT, 'NETWORK_TIMEOUT'));
   }
 
+  if (isAxiosError(error)) {
+    if (error.response?.status === 403) {
+      refreshAccessToken();
+    }
+  }
+
   return Promise.reject(new CustomException(errorMessage.UNKNOWN_400, 'NETWORK_ERROR'));
 };
 
@@ -75,4 +83,21 @@ export const patch = <T>(...args: Parameters<typeof instance.patch>) => {
 
 export const del = <T>(...args: Parameters<typeof instance.delete>) => {
   return instance.delete<T, T>(...args);
+};
+
+const refreshAccessToken = async () => {
+  try {
+    const refreshToken = Storage.getItem(LOCAL_STORAGE_KEY.refreshToken);
+    const res = await post<{ accessToken: string; refreshToken: string }>(
+      '/api/auth/refresh',
+      {
+        refreshToken,
+      }
+    );
+
+    Storage.setItem(LOCAL_STORAGE_KEY.accessToken, `Bearer ${res.accessToken}`);
+    Storage.setItem(LOCAL_STORAGE_KEY.refreshToken, res.refreshToken);
+  } catch (error) {
+    console.error(error);
+  }
 };
