@@ -48,7 +48,7 @@ const StudentProfilePage = () => {
               </Button>
             ))}
           </Stack>
-          <StudentProfileList positionQueryParams={positionQueryParams} />
+          <StudentProfileList />
         </StyledStudentProfilePage>
       </StyledStudentProfilePageLayout>
       <Footer />

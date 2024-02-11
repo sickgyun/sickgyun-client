@@ -7,6 +7,7 @@ type RecuritListResponse = {
   imageSrc: string;
   reqruitName: string;
   href: string;
+  admissionYear: number;
 };
 
 export const RECURIT_LIST_QUERY_KEY = 'recuritList';

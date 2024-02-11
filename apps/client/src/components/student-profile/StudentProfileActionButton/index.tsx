@@ -3,7 +3,7 @@ import { IconAddFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
-import StudentProfileCreateModal from '../StudentProfileCreateModal';
+import { useRouter } from 'next/navigation';
 import StudentProfileUpdateModal from '../StudentProfileUpdateModal';
 
 type StudentProfileActionButtonProps = {
@@ -11,13 +11,8 @@ type StudentProfileActionButtonProps = {
 };
 
 const StudentProfileActionButton = ({ actionType }: StudentProfileActionButtonProps) => {
+  const router = useRouter();
   const overlay = useOverlay();
-
-  const openStudentProfileCreateModal = () => {
-    overlay.open(({ isOpen, close }) => (
-      <StudentProfileCreateModal isOpen={isOpen} onClose={close} />
-    ));
-  };
 
   const openStudentProfileUpdateModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -25,11 +20,15 @@ const StudentProfileActionButton = ({ actionType }: StudentProfileActionButtonPr
     ));
   };
 
+  const handleGoStudentProfileCreatePage = () => {
+    router.push('/student-profile/create');
+  };
+
   return (
     <StyledStudentProfileActionButton
       onClick={
         actionType === 'create'
-          ? openStudentProfileCreateModal
+          ? handleGoStudentProfileCreatePage
           : openStudentProfileUpdateModal
       }
     >
