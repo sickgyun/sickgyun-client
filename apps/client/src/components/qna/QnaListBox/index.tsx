@@ -5,9 +5,15 @@ import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
 import { QNA, QNA_SORT } from '@/constants/qna';
+import { useRouter } from 'next/navigation';
 
 const QnaListBox = () => {
   const [selectedQna, setSelectedQna] = useState(0);
+  const router = useRouter();
+
+  const handleGoDetailPage = (id: number) => {
+    router.push(`/qna-post/${id}`);
+  };
 
   return (
     <StyledQnaListBox>
@@ -26,7 +32,7 @@ const QnaListBox = () => {
       ))}
       <StyledQnaBoxWrapper>
         {QNA.map((qna) => (
-          <StyledQnaBox>
+          <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)}>
             <Flex direction="column">
               <StyledPopularQna>
                 <QnaCategory questionType={qna.questionType} />

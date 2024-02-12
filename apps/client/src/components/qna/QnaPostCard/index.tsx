@@ -5,8 +5,10 @@ import { IconHeartRegular, IconReplyRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import QnaCategory from '../QnaCategory';
+import { useRouter } from 'next/navigation';
 
 type QnaPostingCardProps = {
+  id: number;
   title: string;
   questionType: string;
   name: string;
@@ -15,14 +17,20 @@ type QnaPostingCardProps = {
 };
 
 const QnaPostCard = ({
+  id,
   title,
   questionType,
   name,
   heart,
   commentCount,
 }: QnaPostingCardProps) => {
+  const router = useRouter();
+
+  const handleGoQnaDetailPage = () => {
+    router.push(`/qna-post/${id}`);
+  };
   return (
-    <StyledQnaPostCard>
+    <StyledQnaPostCard onClick={handleGoQnaDetailPage}>
       <Flex direction="column">
         <StyledPopularQnaContent>
           <QnaCategory questionType={questionType} />
