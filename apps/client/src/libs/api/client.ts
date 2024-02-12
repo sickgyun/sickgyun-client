@@ -42,8 +42,9 @@ const interceptorResponseFulfilled = (res: AxiosResponse) => {
   return Promise.reject(res.data);
 };
 
-let isTokenRefreshing = false;
-let refreshPromise: Promise<{ accessToken: string; refreshToken: string }> | null = null;
+let isRefreshingToken = false;
+let tokenRefreshPromise: Promise<{ accessToken: string; refreshToken: string }> | null =
+  null;
 
 const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) => {
   if (error.response?.data?.['response_messages']) {
@@ -56,19 +57,19 @@ const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) =>
 
   if (isAxiosError(error)) {
     if (error.response?.status === 403) {
-      if (!isTokenRefreshing) {
-        isTokenRefreshing = true;
+      if (!isRefreshingToken) {
+        isRefreshingToken = true;
 
         try {
           const refreshToken = Storage.getItem(LOCAL_STORAGE_KEY.refreshToken);
-          refreshPromise = post<{ accessToken: string; refreshToken: string }>(
+          tokenRefreshPromise = post<{ accessToken: string; refreshToken: string }>(
             '/api/auth/refresh',
             {
               refreshToken,
             }
           );
 
-          const response = await refreshPromise;
+          const response = await tokenRefreshPromise;
 
           Storage.setItem(
             LOCAL_STORAGE_KEY.accessToken,
@@ -81,11 +82,11 @@ const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) =>
         } catch (error) {
           console.error(error);
         } finally {
-          isTokenRefreshing = false;
-          refreshPromise = null;
+          isRefreshingToken = false;
+          tokenRefreshPromise = null;
         }
       } else {
-        await refreshPromise;
+        await tokenRefreshPromise;
       }
 
       return instance(error.config);
