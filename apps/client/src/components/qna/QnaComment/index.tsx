@@ -1,8 +1,8 @@
-import { QNA_COMMENT } from '@/constants/qna';
 import styled from '@emotion/styled';
 import { colors } from '@sickgyun/design-token';
 import { Button, Flex, Stack, Text, Textarea } from '@sickgyun/ui';
 import { useForm } from 'react-hook-form';
+import { QNA_COMMENT } from '@/constants/qna';
 
 type QnaCommentCreateFormInput = {
   comment: string;
@@ -12,6 +12,8 @@ const QnaComment = () => {
   const { register, handleSubmit, reset } = useForm<QnaCommentCreateFormInput>();
 
   const onSubmit = (data: QnaCommentCreateFormInput) => {
+    console.log(data);
+
     reset();
   };
 

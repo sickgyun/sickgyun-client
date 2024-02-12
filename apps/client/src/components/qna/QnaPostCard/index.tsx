@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 import { IconHeartRegular, IconReplyRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
-import QnaCategory from '../QnaCategory';
 import { useRouter } from 'next/navigation';
+import QnaCategory from '../QnaCategory';
 
 type QnaPostingCardProps = {
   id: number;

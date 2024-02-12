@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { IconHeartRegular, IconReplyRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
 import { QNA, QNA_SORT } from '@/constants/qna';
-import { useRouter } from 'next/navigation';
 
 const QnaListBox = () => {
   const [selectedQna, setSelectedQna] = useState(0);

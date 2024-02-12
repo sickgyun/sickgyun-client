@@ -1,12 +1,12 @@
 'use client';
 
-import Header from '@/components/common/Header';
-import QnaCategory from '@/components/qna/QnaCategory';
-import QnaComment from '@/components/qna/QnaComment';
 import styled from '@emotion/styled';
 import { IconEmoticonThin, IconHeartRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
+import Header from '@/components/common/Header';
+import QnaCategory from '@/components/qna/QnaCategory';
+import QnaComment from '@/components/qna/QnaComment';
 
 const QnaPostPage = () => {
   return (
