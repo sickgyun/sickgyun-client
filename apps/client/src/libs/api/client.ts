@@ -42,7 +42,10 @@ const interceptorResponseFulfilled = (res: AxiosResponse) => {
   return Promise.reject(res.data);
 };
 
-const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
+let isTokenRefreshing = false;
+let refreshPromise: Promise<{ accessToken: string; refreshToken: string }> | null = null;
+
+const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) => {
   if (error.response?.data?.['response_messages']) {
     return Promise.reject(new ApiException(error.response.data, error.response.status));
   }
@@ -53,7 +56,39 @@ const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
 
   if (isAxiosError(error)) {
     if (error.response?.status === 403) {
-      refreshAccessToken();
+      if (!isTokenRefreshing) {
+        isTokenRefreshing = true;
+
+        try {
+          const refreshToken = Storage.getItem(LOCAL_STORAGE_KEY.refreshToken);
+          refreshPromise = post<{ accessToken: string; refreshToken: string }>(
+            '/api/auth/refresh',
+            {
+              refreshToken,
+            }
+          );
+
+          const response = await refreshPromise;
+
+          Storage.setItem(
+            LOCAL_STORAGE_KEY.accessToken,
+            `Bearer ${response.accessToken}`
+          );
+          Storage.setItem(
+            LOCAL_STORAGE_KEY.refreshToken,
+            `Bearer ${response.refreshToken}`
+          );
+        } catch (error) {
+          console.error(error);
+        } finally {
+          isTokenRefreshing = false;
+          refreshPromise = null;
+        }
+      } else {
+        await refreshPromise;
+      }
+
+      return instance(error.config);
     }
   }
 
@@ -83,21 +118,4 @@ export const patch = <T>(...args: Parameters<typeof instance.patch>) => {
 
 export const del = <T>(...args: Parameters<typeof instance.delete>) => {
   return instance.delete<T, T>(...args);
-};
-
-const refreshAccessToken = async () => {
-  try {
-    const refreshToken = Storage.getItem(LOCAL_STORAGE_KEY.refreshToken);
-    const res = await post<{ accessToken: string; refreshToken: string }>(
-      '/api/auth/refresh',
-      {
-        refreshToken,
-      }
-    );
-
-    Storage.setItem(LOCAL_STORAGE_KEY.accessToken, `Bearer ${res.accessToken}`);
-    Storage.setItem(LOCAL_STORAGE_KEY.refreshToken, res.refreshToken);
-  } catch (error) {
-    console.error(error);
-  }
 };

@@ -16,7 +16,7 @@ const GoogleLoginPage = () => {
       const { accessToken, refreshToken } = data;
 
       Storage.setItem(LOCAL_STORAGE_KEY.accessToken, `Bearer ${accessToken}`);
-      Storage.setItem(LOCAL_STORAGE_KEY.refreshToken, refreshToken);
+      Storage.setItem(LOCAL_STORAGE_KEY.refreshToken, `Bearer ${refreshToken}`);
 
       router.replace('/');
     },
