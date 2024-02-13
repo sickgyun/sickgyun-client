@@ -114,15 +114,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.11.0
         version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.13)(react@18.2.0)
-<<<<<<< HEAD
       '@seed-design/icon':
         specifier: ^0.5.3
         version: 0.5.3(react@18.2.0)
-=======
-      '@hookform/resolvers':
-        specifier: ^3.3.4
-        version: 3.3.4(react-hook-form@7.48.2)
->>>>>>> e9b000ae45bc08a1384d5b71f50ecf6c537ff4f1
       '@sickgyun/design-token':
         specifier: workspace:*
         version: link:../../packages/design-token
@@ -161,20 +155,10 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-hook-form:
         specifier: ^7.48.2
-<<<<<<< HEAD
         version: 7.49.2(react@18.2.0)
       swiper:
         specifier: ^11.0.5
         version: 11.0.5
-=======
-        version: 7.48.2(react@18.2.0)
-      recoil:
-        specifier: ^0.7.7
-        version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
-      yup:
-        specifier: ^1.3.3
-        version: 1.3.3
->>>>>>> e9b000ae45bc08a1384d5b71f50ecf6c537ff4f1
     devDependencies:
       '@sickgyun/eslint-config':
         specifier: workspace:*
@@ -2499,17 +2483,8 @@ packages:
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
     dev: true
 
-<<<<<<< HEAD
   /@floating-ui/utils@0.2.1:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
-=======
-  /@hookform/resolvers@3.3.4(react-hook-form@7.48.2):
-    resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
-    peerDependencies:
-      react-hook-form: ^7.0.0
-    dependencies:
-      react-hook-form: 7.48.2(react@18.2.0)
->>>>>>> e9b000ae45bc08a1384d5b71f50ecf6c537ff4f1
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:
@@ -10620,34 +10595,9 @@ packages:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
     dev: false
 
-<<<<<<< HEAD
   /react-hook-form@7.49.2(react@18.2.0):
     resolution: {integrity: sha512-TZcnSc17+LPPVpMRIDNVITY6w20deMdNi6iehTFLV1x8SqThXGwu93HjlUVU09pzFgZH7qZOvLMM7UYf2ShAHA==}
     engines: {node: '>=18', pnpm: '8'}
-=======
-  /react-focus-lock@2.9.6(@types/react@18.2.13)(react@18.2.0):
-    resolution: {integrity: sha512-B7gYnCjHNrNYwY2juS71dHbf0+UpXXojt02svxybj8N5bxceAkzPChKEncHuratjUHkIFNCn06k2qj1DRlzTug==}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.23.6
-      '@types/react': 18.2.13
-      focus-lock: 1.0.0
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-clientside-effect: 1.2.6(react@18.2.0)
-      use-callback-ref: 1.3.1(@types/react@18.2.13)(react@18.2.0)
-      use-sidecar: 1.1.2(@types/react@18.2.13)(react@18.2.0)
-    dev: false
-
-  /react-hook-form@7.48.2(react@18.2.0):
-    resolution: {integrity: sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==}
-    engines: {node: '>=12.22.0'}
->>>>>>> e9b000ae45bc08a1384d5b71f50ecf6c537ff4f1
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
