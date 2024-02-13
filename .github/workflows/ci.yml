@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        command: ['lint', 'test']
+        command: ['lint', 'test', 'build']
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
