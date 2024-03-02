@@ -8,9 +8,9 @@ import { QueryClientProvider } from '@/providers';
 const Providers = ({ children }: PropsWithChildren) => {
   return (
     <QueryClientProvider>
-      <OverlayProvider>
-        <StyleProvider>{children}</StyleProvider>
-      </OverlayProvider>
+      <StyleProvider>
+        <OverlayProvider>{children}</OverlayProvider>
+      </StyleProvider>
     </QueryClientProvider>
   );
 };

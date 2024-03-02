@@ -18,7 +18,11 @@ const MainPage = () => {
   const router = useRouter();
 
   const hanldeGoStudentProfilePage = (queryParams: string) => {
-    router.push(`/student-profile?position=${queryParams}`);
+    if (process.env.NODE_ENV === 'production') {
+      alert('상진이가 열심히 개발중이에요!');
+    } else {
+      router.push(`/student-profile?position=${queryParams}`);
+    }
   };
 
   const handleGoQnaPage = () => {
