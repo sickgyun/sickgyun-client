@@ -1,7 +1,7 @@
 import { ApiException, CustomException, Storage, errorMessage } from '@sickgyun/libs';
 import type { ApiErrorScheme } from '@sickgyun/libs';
 import { isProd } from '@sickgyun/utils';
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 
@@ -17,10 +17,12 @@ const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
   if (typeof window === 'undefined') {
     return config;
   }
-  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+
   if (!config.headers) {
     return config;
   }
+
+  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
   if (!accessToken) {
     return config;
   }
@@ -40,13 +42,55 @@ const interceptorResponseFulfilled = (res: AxiosResponse) => {
   return Promise.reject(res.data);
 };
 
-const interceptorResponseRejected = (error: AxiosError<ApiErrorScheme>) => {
+let isRefreshingToken = false;
+let tokenRefreshPromise: Promise<{ accessToken: string; refreshToken: string }> | null =
+  null;
+
+const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) => {
   if (error.response?.data?.['response_messages']) {
     return Promise.reject(new ApiException(error.response.data, error.response.status));
   }
 
   if (error.message.startsWith('timeout')) {
     return Promise.reject(new CustomException(errorMessage.TIMEOUT, 'NETWORK_TIMEOUT'));
+  }
+
+  if (isAxiosError(error)) {
+    if (error.response?.status === 403) {
+      if (!isRefreshingToken) {
+        isRefreshingToken = true;
+
+        try {
+          const refreshToken = Storage.getItem(LOCAL_STORAGE_KEY.refreshToken);
+          tokenRefreshPromise = post<{ accessToken: string; refreshToken: string }>(
+            '/api/auth/refresh',
+            {
+              refreshToken,
+            }
+          );
+
+          const response = await tokenRefreshPromise;
+
+          Storage.setItem(
+            LOCAL_STORAGE_KEY.accessToken,
+            `Bearer ${response.accessToken}`
+          );
+          Storage.setItem(
+            LOCAL_STORAGE_KEY.refreshToken,
+            `Bearer ${response.refreshToken}`
+          );
+        } catch (error) {
+          console.error(error);
+        } finally {
+          isRefreshingToken = false;
+          tokenRefreshPromise = null;
+        }
+      } else {
+        await tokenRefreshPromise;
+      }
+
+      return instance(error.config);
+    }
   }
 
   return Promise.reject(new CustomException(errorMessage.UNKNOWN_400, 'NETWORK_ERROR'));
