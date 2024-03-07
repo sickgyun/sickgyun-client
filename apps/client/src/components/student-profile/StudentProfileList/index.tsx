@@ -35,6 +35,8 @@ const StudentProfileList = ({ major }: StudentProfileListProps) => {
             cardinal={cardinal}
             major={studentProfile.major}
             isRecruited={studentProfile.isRecruited}
+            company={studentProfile.company}
+            introduction={studentProfile.introduction}
           />
         );
       })}

@@ -27,20 +27,20 @@ const StudentProfileCard = ({
     <StyledStudentProfileCard onClick={onClick}>
       <Stack
         direction="horizontal"
-        align="flex-start"
+        align="center "
         spacing={24}
         style={{ height: '100%' }}
       >
         <StyledProfileImage src={imageUrl} width={88} height={88} alt="Student Profile" />
-        <Stack spacing={4}>
+        <Stack spacing={6}>
           <Stack direction="horizontal" align="center" spacing={6}>
-            <Text fontType="h4">{name}</Text>
+            <Text fontType="body1">{name}</Text>
             <Text fontType="body3" color="gray600">
               {cardinal}기 • {major}
             </Text>
           </Stack>
           {introduction && (
-            <Text fontType="body2" color="gray600" isEllipsis={true}>
+            <Text fontType="p2" color="gray600" isEllipsis={true}>
               {introduction}
             </Text>
           )}
