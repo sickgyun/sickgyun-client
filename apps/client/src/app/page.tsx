@@ -60,7 +60,7 @@ const MainPage = () => {
                   onClick={() => hanldeGoStudentProfilePage(major.queryParameter)}
                 >
                   <Image
-                    src={`/assets/position/${major.queryParameter}.png`}
+                    src={`/assets/images/major/${major.queryParameter}.png`}
                     height={48}
                     width={48}
                     alt="Major"
