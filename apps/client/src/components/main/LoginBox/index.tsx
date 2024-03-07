@@ -79,11 +79,21 @@ const LoginBox = () => {
           </Stack>
           <Flex align="center" justify="space-between" style={{ width: '100%' }}>
             <StyledNavigationLinkButton onClick={handleGoJumpit}>
-              <Image src="/assets/jumpit.png" width={24} height={24} alt="Jumpit" />
+              <Image
+                src="/assets/images/jumpit.png"
+                width={24}
+                height={24}
+                alt="Jumpit"
+              />
               <Text fontType="body2">점핏 바로가기</Text>
             </StyledNavigationLinkButton>
             <StyledNavigationLinkButton onClick={handleGoWanted}>
-              <Image src="/assets/wanted.png" width={24} height={24} alt="Wanted" />
+              <Image
+                src="/assets/images/wanted.png"
+                width={24}
+                height={24}
+                alt="Wanted"
+              />
               <Text fontType="p2">원티드 바로가기</Text>
             </StyledNavigationLinkButton>
           </Flex>

@@ -31,8 +31,8 @@ const MainPage = () => {
 
   const renderBanners = () => {
     return [
-      <img src="/assets/mock_banner.jpeg" alt="Banner1" />,
-      <img src="/assets/mock_banner.jpeg" alt="Banner2" />,
+      <img src="/assets/images/mocks/mock_banner.jpeg" alt="Banner1" />,
+      <img src="/assets/images/mocks/mock_banner.jpeg" alt="Banner2" />,
     ];
   };
 
@@ -74,7 +74,7 @@ const MainPage = () => {
             <Text fontType="h3">뭘 해야 할지 모르겠다고요? 조언을 구해봐요!</Text>
             <StyledQnaBannerImage
               onClick={handleGoQnaPage}
-              src="/assets/qna_banner.png"
+              src="/assets/images/qna_banner.png"
               alt="Qna Banner"
             />
           </Stack>

@@ -50,7 +50,7 @@ const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentP
             관심 있는 분야: {studentProfileData?.position}
           </Text>
           <Stack direction="horizontal" spacing={6} align="center">
-            <Image src="/assets/company.svg" height={16} width={16} alt="Company" />
+            <Image src="/assets/svgs/company.svg" height={16} width={16} alt="Company" />
             <Text fontType="body2" color="gray600">
               {studentProfileData?.company
                 ? studentProfileData.company
