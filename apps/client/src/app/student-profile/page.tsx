@@ -7,48 +7,43 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import StudentProfileActionButton from '@/components/student-profile/StudentProfileActionButton';
 import StudentProfileList from '@/components/student-profile/StudentProfileList';
-import { POSITION_LIST } from '@/constants/common';
+import { MAJOR_LIST } from '@/constants/profile';
 import { useStudentProfile } from '@/store/StudentProfile';
 import { useUserInformation } from '@/store/UserInformation';
 
 const StudentProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
-
-  const positionQueryParams = params.get('position');
-
-  if (!positionQueryParams) {
-    throw new Error('잘못된 접근 방식입니다.');
-  }
-
   const { isLogin } = useUserInformation();
   const { hasStudentProfile } = useStudentProfile();
+  const majorQueryParameter = params.get('major');
+
+  const handleMajorButtonClick = (major: string) => {
+    router.replace(`/student-profile?major=${major}`);
+  };
 
   return (
     <>
       <Header />
       <StyledStudentProfilePageLayout>
         <StyledStudentProfilePage>
-          <StyledBannerImage src="/assets/mock_banner.jpeg" alt="Banner" />
           <Stack
             direction="horizontal"
             align="center"
             spacing={24}
             style={{ marginBottom: '48px' }}
           >
-            {POSITION_LIST.map((position) => (
+            {MAJOR_LIST.map((major) => (
               <Button
                 styleType="quaternary"
-                onClick={() =>
-                  router.replace(`/student-profile?position=${position.queryParams}`)
-                }
-                isActive={position.queryParams === positionQueryParams}
+                onClick={() => handleMajorButtonClick(major.queryParameter)}
+                isActive={major.queryParameter === majorQueryParameter}
               >
-                {position.name}
+                {major.name}
               </Button>
             ))}
           </Stack>
-          <StudentProfileList />
+          <StudentProfileList major={majorQueryParameter} />
         </StyledStudentProfilePage>
       </StyledStudentProfilePageLayout>
       <Footer />
@@ -69,17 +64,10 @@ const StyledStudentProfilePageLayout = styled.div`
   min-height: 100vh;
 `;
 
-const StyledStudentProfilePage = styled.div`
+const StyledStudentProfilePage = styled(Stack)`
   margin: 0 auto;
   padding-top: 48px;
   padding-bottom: 64px;
-  width: 80%;
-`;
-
-const StyledBannerImage = styled.img`
   margin-bottom: 48px;
-  border-radius: 8px;
-  object-fit: cover;
-  width: 100%;
-  height: 250px;
+  width: 80%;
 `;

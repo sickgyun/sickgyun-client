@@ -7,10 +7,14 @@ import StudentProfileDetailModal from '../StudentProfileDetailModal';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
 
-const StudentProfileList = () => {
-  const overlay = useOverlay();
+type StudentProfileListProps = {
+  major: string;
+};
 
-  const { studentProfileList } = useGetStudentProfileList();
+const StudentProfileList = ({ major }: StudentProfileListProps) => {
+  const overlay = useOverlay();
+  // TODO: 백엔드 major=all 추가시 수정
+  const { studentProfileList } = useGetStudentProfileList([major.toUpperCase()]);
 
   const openStudentProfileDetailModal = (userCode: number) => {
     overlay.open(({ isOpen, close }) => (

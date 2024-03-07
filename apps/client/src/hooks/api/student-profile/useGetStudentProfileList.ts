@@ -14,10 +14,15 @@ export type StudentProfileListResponse = {
 
 export const STUDENT_PROFILE_LIST_QUERY_KEY = 'studentProfileList';
 
-export const useGetStudentProfileList = () => {
+export const useGetStudentProfileList = (majors: string[]) => {
+  const studentProfileListEndPoint = majors.includes('ALL')
+    ? '/api/profiles'
+    : `/api/profiles?majors=${majors}`;
+
   const studentProfileListQuery = useSuspenseQuery<StudentProfileListResponse[]>({
-    queryKey: [STUDENT_PROFILE_LIST_QUERY_KEY],
-    queryFn: async () => await get<StudentProfileListResponse[]>('/api/profiles'),
+    queryKey: [STUDENT_PROFILE_LIST_QUERY_KEY, majors],
+    queryFn: async () =>
+      await get<StudentProfileListResponse[]>(studentProfileListEndPoint),
   });
 
   return {

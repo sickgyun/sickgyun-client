@@ -8,7 +8,13 @@ const nextConfig = {
     '@sickgyun/ui',
   ],
   images: {
-    domains: ['cdn.rallit.com', 'pbs.twimg.com', 'i.namu.wiki', 'image.rivers.co.kr'],
+    domains: [
+      'cdn.rallit.com',
+      'pbs.twimg.com',
+      'i.namu.wiki',
+      'image.rivers.co.kr',
+      'sickgyun.s3.ap-northeast-2.amazonaws.com',
+    ],
   },
 };
 
