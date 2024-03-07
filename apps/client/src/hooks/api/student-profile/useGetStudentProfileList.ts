@@ -1,34 +1,32 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
 
-export type StudentProfileListData = {
-  userCode: number;
-  name: string;
-  bio?: string;
-  profileUrl?: string;
-  cardinal: number;
-  company?: string;
-  position: string;
-};
-
 export type StudentProfileListResponse = {
-  message: string;
-  dataList: StudentProfileListData[];
+  userId: number;
+  name: string;
+  admissionYear: number;
+  imageUrl: string;
+  major: string;
+  introduction: string;
+  company: string;
+  isRecruited: boolean;
 };
 
 export const STUDENT_PROFILE_LIST_QUERY_KEY = 'studentProfileList';
 
-export const useGetStudentProfileList = (positionQueryParams: string) => {
-  const studentProfileListQuery = useSuspenseQuery<StudentProfileListResponse>({
-    queryKey: [STUDENT_PROFILE_LIST_QUERY_KEY, positionQueryParams],
+export const useGetStudentProfileList = (majors: string[]) => {
+  const studentProfileListEndPoint = majors.includes('ALL')
+    ? '/api/profiles'
+    : `/api/profiles?majors=${majors}`;
+
+  const studentProfileListQuery = useSuspenseQuery<StudentProfileListResponse[]>({
+    queryKey: [STUDENT_PROFILE_LIST_QUERY_KEY, majors],
     queryFn: async () =>
-      await get<StudentProfileListResponse>(
-        `/student-profile/?position=${positionQueryParams}`
-      ),
+      await get<StudentProfileListResponse[]>(studentProfileListEndPoint),
   });
 
   return {
-    studentProfileListData: studentProfileListQuery.data.dataList,
+    studentProfileList: studentProfileListQuery.data,
     ...studentProfileListQuery,
   };
 };

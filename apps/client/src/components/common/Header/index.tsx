@@ -33,7 +33,7 @@ const Header = () => {
         style={{ margin: '0 auto', width: '80%', height: '100%' }}
       >
         <Image
-          src="/assets/logo.svg"
+          src="/assets/svgs/logo.svg"
           onClick={() => router.replace('/')}
           width={90}
           height={32}

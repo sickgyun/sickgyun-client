@@ -8,13 +8,13 @@ import { withSuspense } from '@/hocs/withSuspense';
 import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
 
 type StudentProfileListProps = {
-  positionQueryParams: string;
+  major: string;
 };
 
-const StudentProfileList = ({ positionQueryParams }: StudentProfileListProps) => {
+const StudentProfileList = ({ major }: StudentProfileListProps) => {
   const overlay = useOverlay();
-
-  const { studentProfileListData } = useGetStudentProfileList(positionQueryParams);
+  // TODO: 백엔드 major=all 추가시 수정
+  const { studentProfileList } = useGetStudentProfileList([major.toUpperCase()]);
 
   const openStudentProfileDetailModal = (userCode: number) => {
     overlay.open(({ isOpen, close }) => (
@@ -22,19 +22,24 @@ const StudentProfileList = ({ positionQueryParams }: StudentProfileListProps) =>
     ));
   };
 
-  return studentProfileListData.length > 0 ? (
+  return studentProfileList.length > 0 ? (
     <StyledStudentProfileList>
-      {studentProfileListData.map((studentProfile) => (
-        <StudentProfileCard
-          onClick={() => openStudentProfileDetailModal(studentProfile.userCode)}
-          name={studentProfile.name}
-          profileUrl={studentProfile.profileUrl}
-          cardinal={studentProfile.cardinal}
-          position={studentProfile.position}
-          bio={studentProfile.bio}
-          company={studentProfile.company}
-        />
-      ))}
+      {studentProfileList.map((studentProfile) => {
+        const cardinal = studentProfile.admissionYear - 2020;
+
+        return (
+          <StudentProfileCard
+            onClick={() => openStudentProfileDetailModal(studentProfile.userId)}
+            name={studentProfile.name}
+            imageUrl={studentProfile.imageUrl}
+            cardinal={cardinal}
+            major={studentProfile.major}
+            isRecruited={studentProfile.isRecruited}
+            company={studentProfile.company}
+            introduction={studentProfile.introduction}
+          />
+        );
+      })}
     </StyledStudentProfileList>
   ) : (
     <Text fontType="h3">앗! 해당 분야의 학생이 없어요..</Text>

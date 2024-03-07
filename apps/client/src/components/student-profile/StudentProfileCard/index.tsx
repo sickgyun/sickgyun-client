@@ -1,59 +1,53 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
-import { getUserProfileImage } from '@sickgyun/utils';
 import Image from 'next/image';
 
 type StudentProfileCardProps = {
   onClick: VoidFunction;
   name: string;
-  profileUrl?: string;
+  imageUrl: string;
   cardinal: number;
-  position: string;
-  bio?: string;
+  major: string;
   company?: string;
+  introduction?: string;
+  isRecruited: boolean;
 };
 
 const StudentProfileCard = ({
   onClick,
   name,
   cardinal,
-  profileUrl,
-  position,
-  bio,
+  imageUrl,
+  major,
   company,
+  introduction,
+  isRecruited,
 }: StudentProfileCardProps) => {
-  const profileImage = getUserProfileImage(profileUrl);
-
   return (
     <StyledStudentProfileCard onClick={onClick}>
       <Stack
         direction="horizontal"
-        align="flex-start"
+        align="center "
         spacing={24}
         style={{ height: '100%' }}
       >
-        <StyledProfileImage
-          src={profileImage}
-          width={88}
-          height={88}
-          alt="Student Profile"
-        />
-        <Stack spacing={4}>
+        <StyledProfileImage src={imageUrl} width={88} height={88} alt="Student Profile" />
+        <Stack spacing={6}>
           <Stack direction="horizontal" align="center" spacing={6}>
-            <Text fontType="h4">{name}</Text>
+            <Text fontType="body1">{name}</Text>
             <Text fontType="body3" color="gray600">
-              {cardinal}기 • {position}
+              {cardinal}기 • {major}
             </Text>
           </Stack>
-          {bio && (
-            <Text fontType="body2" color="gray600" isEllipsis={true}>
-              {bio}
+          {introduction && (
+            <Text fontType="p2" color="gray600" isEllipsis={true}>
+              {introduction}
             </Text>
           )}
           <Stack direction="horizontal" spacing={6} align="center">
-            <Image src="/assets/company.svg" width={16} height={16} alt="Company" />
+            <Image src="/assets/svgs/company.svg" width={16} height={16} alt="Company" />
             <Text fontType="body2" color="gray600">
-              {company ? company : '부산소프트웨어마이스터고등학교'}
+              {isRecruited ? company : '부산소프트웨어마이스터고등학교'}
             </Text>
           </Stack>
         </Stack>
