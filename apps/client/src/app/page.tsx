@@ -18,11 +18,7 @@ const MainPage = () => {
   const router = useRouter();
 
   const hanldeGoStudentProfilePage = (major: string) => {
-    if (process.env.NODE_ENV === 'production') {
-      alert('상진이가 열심히 개발중이에요!');
-    } else {
-      router.push(`/student-profile?major=${major}`);
-    }
+    router.push(`/student-profile?major=${major}`);
   };
 
   const handleGoQnaPage = () => {
