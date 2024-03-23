@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
 
-type RecuritListResponse = {
+export type RecuritList = {
   id: number;
   company: string;
   imageSrc: string;
@@ -13,10 +13,10 @@ type RecuritListResponse = {
 export const RECURIT_LIST_QUERY_KEY = 'recuritList';
 
 export const useGetRecuritList = (size = 6) => {
-  const recuritListQuery = useSuspenseQuery<RecuritListResponse[]>({
+  const recuritListQuery = useSuspenseQuery<RecuritList[]>({
     queryKey: [RECURIT_LIST_QUERY_KEY],
     queryFn: async () => {
-      return await get<RecuritListResponse[]>(`/api/recruit?size=${size}`);
+      return await get<RecuritList[]>(`/api/recruit?size=${size}`);
     },
   });
 

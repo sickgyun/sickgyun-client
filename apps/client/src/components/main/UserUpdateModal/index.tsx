@@ -12,35 +12,22 @@ import {
 } from '@sickgyun/ui';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useUpdateUserInformationMutation } from '@/hooks/api/user/useUpdateUserInformationMutation';
+import { useUserMutation } from '@/hooks/api/user/useUserMutation';
 import { useUserInformation } from '@/store/UserInformation';
 
-type UserInformationUpdateFormInput = {
+type UserUpdateFormInput = {
+  name: string;
   email: string;
-  githubId: string;
 };
 
-type UserInformationUpdateModalProps = ModalProps;
-
-const UserInformationUpdateModal = ({
-  isOpen,
-  onClose,
-}: UserInformationUpdateModalProps) => {
+const UserUpdateModal = ({ isOpen, onClose }: ModalProps) => {
   const { userInformation } = useUserInformation();
   const { register, handleSubmit: handleUpdateUserInformationSubmit } =
-    useForm<UserInformationUpdateFormInput>();
+    useForm<UserUpdateFormInput>();
+  const { mutate: updateUserInformationMutate } = useUserMutation();
 
-  const { mutate: updateUserInformationMutate } = useUpdateUserInformationMutation();
-
-  const onUpdateUserInformationSubmit: SubmitHandler<UserInformationUpdateFormInput> = (
-    data
-  ) => {
-    const updateUserInformationRequestData = {
-      email: data.email,
-      githubId: data.githubId,
-    };
-
-    updateUserInformationMutate(updateUserInformationRequestData);
+  const onUpdateUserInformationSubmit: SubmitHandler<UserUpdateFormInput> = (data) => {
+    updateUserInformationMutate(data);
     onClose();
   };
 
@@ -57,16 +44,16 @@ const UserInformationUpdateModal = ({
         <ModalBody>
           <Stack direction="vertical" spacing={16} style={{ width: '100%' }}>
             <Input
+              label="이름"
+              defaultValue={userInformation.name}
+              placeholder="이름을 입력해주세요."
+              {...register('name')}
+            />
+            <Input
               label="이메일"
               defaultValue={userInformation.email}
               placeholder="이메일을 입력해주세요."
               {...register('email')}
-            />
-            <Input
-              label="깃허브 아이디"
-              defaultValue={userInformation.githubId}
-              placeholder="깃허브 아이디를 입력해주세요."
-              {...register('githubId')}
             />
           </Stack>
         </ModalBody>
@@ -78,4 +65,4 @@ const UserInformationUpdateModal = ({
   );
 };
 
-export default UserInformationUpdateModal;
+export default UserUpdateModal;

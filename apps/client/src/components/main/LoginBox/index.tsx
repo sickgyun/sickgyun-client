@@ -5,7 +5,7 @@ import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
-import UserInformationUpdateModal from '../UserInformationUpdateModal';
+import UserUpdateModal from '../UserUpdateModal';
 import { useUserInformation } from '@/store/UserInformation';
 
 const LoginBox = () => {
@@ -26,23 +26,19 @@ const LoginBox = () => {
     window.open('https://www.wanted.co.kr');
   };
 
-  const openUserInformationUpdateModal = useCallback(() => {
+  const openUserUpdateModal = useCallback(() => {
     overlay.open(({ isOpen, close }) => (
-      <UserInformationUpdateModal isOpen={isOpen} onClose={close} />
+      <UserUpdateModal isOpen={isOpen} onClose={close} />
     ));
   }, [overlay]);
 
   useEffect(() => {
     if (userInformation.isGraduate) {
       if (!userInformation.company) {
-        openUserInformationUpdateModal();
+        openUserUpdateModal();
       }
     }
-  }, [
-    openUserInformationUpdateModal,
-    userInformation.company,
-    userInformation.isGraduate,
-  ]);
+  }, [openUserUpdateModal, userInformation.company, userInformation.isGraduate]);
 
   return (
     <StyledLoginBox>
@@ -65,7 +61,7 @@ const LoginBox = () => {
                 </Text>
               </Stack>
               <Text
-                onClick={openUserInformationUpdateModal}
+                onClick={openUserUpdateModal}
                 fontType="body1"
                 color="gray500"
                 style={{ cursor: 'pointer' }}
