@@ -16,7 +16,7 @@ export const useGetRecuritList = (size = 6) => {
   const recuritListQuery = useSuspenseQuery<RecuritListResponse[]>({
     queryKey: [RECURIT_LIST_QUERY_KEY],
     queryFn: async () => {
-      return await get<RecuritListResponse[]>(`/api/reqruit?size=${size}`);
+      return await get<RecuritListResponse[]>(`/api/recruit?size=${size}`);
     },
   });
 
