@@ -30,9 +30,9 @@ const buildProvidersTree = (
 };
 
 const ProviderTree = buildProvidersTree([
+  [StyleProvider, {}],
   [QueryClientProvider, {}],
   [OverlayProvider, {}],
-  [StyleProvider, {}],
 ]);
 
 const Providers = ({ children }: PropsWithChildren) => {
