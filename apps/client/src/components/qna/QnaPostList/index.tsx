@@ -10,6 +10,7 @@ const QnaPostList = ({ currentQnaPageIndex }) => {
       <StyledQnaPostList currentQnaPageIndex={currentQnaPageIndex}>
         {QNA.map((qnaPosting) => (
           <QnaPostCard
+            id={qnaPosting.id}
             title={qnaPosting.title}
             questionType={qnaPosting.questionType}
             name={qnaPosting.name}
