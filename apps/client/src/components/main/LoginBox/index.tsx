@@ -1,16 +1,12 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button, Flex, Stack, Text } from '@sickgyun/ui';
-import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useCallback } from 'react';
-import UserUpdateModal from '../UserUpdateModal';
 import { useUser } from '@/store/User';
 
 const LoginBox = () => {
   const router = useRouter();
-  const overlay = useOverlay();
   const { isLogin, user } = useUser();
 
   const handleLogin = () => {
@@ -25,12 +21,6 @@ const LoginBox = () => {
     window.open('https://www.wanted.co.kr');
   };
 
-  const openUserUpdateModal = useCallback(() => {
-    overlay.open(({ isOpen, close }) => (
-      <UserUpdateModal isOpen={isOpen} onClose={close} />
-    ));
-  }, [overlay]);
-
   return (
     <StyledLoginBox>
       {isLogin ? (
@@ -44,20 +34,10 @@ const LoginBox = () => {
                 {user.isGraduated ? '졸업생' : '학생'}
               </Text>
             </Stack>
-            <Stack direction="horizontal" align="center" spacing={8}>
-              <Stack direction="horizontal" align="center" spacing={4}>
-                <Text fontType="h4">{user.name}님</Text>
-                <Text fontType="h4">
-                  {user.isGraduated ? '알려주셔야죠?' : '취업하셔야죠?'}
-                </Text>
-              </Stack>
-              <Text
-                onClick={openUserUpdateModal}
-                fontType="body1"
-                color="gray500"
-                style={{ cursor: 'pointer' }}
-              >
-                설정
+            <Stack direction="horizontal" align="center" spacing={4}>
+              <Text fontType="h4">{user.name}님</Text>
+              <Text fontType="h4">
+                {user.isGraduated ? '알려주셔야죠?' : '취업하셔야죠?'}
               </Text>
             </Stack>
             <Text fontType="p1" color="gray500">

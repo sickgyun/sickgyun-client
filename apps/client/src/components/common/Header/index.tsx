@@ -4,7 +4,6 @@ import { Button, Flex } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { isLoginState, useUser } from '@/store/User';
 
 const Header = () => {
@@ -20,7 +19,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
+    localStorage.clear();
     setIsLogin(false);
     router.push('/');
   };

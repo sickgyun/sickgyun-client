@@ -5,9 +5,8 @@ import { get } from '@/libs/api/client';
 
 export type User = {
   id: number;
-  name?: string | null;
+  name?: string;
   email: string;
-  // TODO: 백엔드와 상의 후 속성 추가
   isGraduated?: boolean;
   cardinal?: number;
 };
