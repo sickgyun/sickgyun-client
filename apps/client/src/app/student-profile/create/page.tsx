@@ -32,9 +32,8 @@ const StudentProfileCreatePage = () => {
     const createStudentProfileRequstData = {
       userCode: user.id,
       name: user.name,
-      // TODO: 백엔드와 상의 후 속성 추가
-      cardinal: 1,
-      isGraduate: true,
+      cardinal: user.cardinal,
+      isGraduate: user.isGraduated,
       bio: data.bio,
       githubId: data.githubId,
       email: data.email,
