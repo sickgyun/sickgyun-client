@@ -1,8 +1,9 @@
-import { ApiException, CustomException, Storage, errorMessage } from '@sickgyun/libs';
-import type { ApiErrorScheme } from '@sickgyun/libs';
 import { isProd } from '@sickgyun/utils';
 import axios, { isAxiosError } from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { ApiException, CustomException, errorMessage } from '../exceptions';
+import type { ApiErrorScheme } from '../exceptions';
+import { Storage } from '../storage';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 
 const DEVELOPMENT_API_URL = process.env.NEXT_PUBLIC_BASE_URL;

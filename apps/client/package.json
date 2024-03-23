@@ -16,7 +16,6 @@
     "@emotion/styled": "^11.11.0",
     "@seed-design/icon": "^0.5.3",
     "@sickgyun/design-token": "workspace:*",
-    "@sickgyun/libs": "workspace:*",
     "@sickgyun/ui": "workspace:*",
     "@sickgyun/utils": "workspace:*",
     "@tanstack/react-query": "^5.7.2",

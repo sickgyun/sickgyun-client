@@ -1,12 +1,12 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Storage } from '@sickgyun/libs';
 import { Spinner } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGoogleLoginMutation } from '@/hooks/api/auth/useLoginGoogleMutation';
+import { Storage } from '@/libs/storage';
 
 const GoogleLoginPage = () => {
   const router = useRouter();
