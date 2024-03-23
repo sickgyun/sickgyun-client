@@ -8,9 +8,8 @@ import QnaCategory from '../QnaCategory';
 import { QNA, QNA_SORT } from '@/constants/qna';
 
 const QnaListBox = () => {
-  const [selectedQna, setSelectedQna] = useState(0);
-
   const router = useRouter();
+  const [selectedQna, setSelectedQna] = useState(0);
 
   const handleGoDetailPage = (id: number) => {
     router.push(`/qna-post/${id}`);

@@ -3,7 +3,7 @@
 import styled from '@emotion/styled';
 import { IconEmoticonThin, IconHeartRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Flex, Stack, Text } from '@sickgyun/ui';
+import { Stack, Text } from '@sickgyun/ui';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import QnaComment from '@/components/qna/QnaComment';
@@ -20,14 +20,7 @@ const QnaPostPage = () => {
           <Stack style={{ marginTop: '15px' }}>
             <Text fontType="h3">연봉과 업무 중 무엇을 선택하는게 좋을지..</Text>
           </Stack>
-          <Flex
-            justify="space-between"
-            style={{
-              marginTop: '10px',
-              paddingBottom: '25px',
-              borderBottom: `1px solid ${colors.gray200}`,
-            }}
-          >
+          <StyledQnaPostSubTitleBox>
             <Stack direction="horizontal" spacing={10}>
               <Text fontType="p2">lsj0202</Text>
               <Text fontType="p2" color="gray500">
@@ -35,7 +28,7 @@ const QnaPostPage = () => {
               </Text>
             </Stack>
             <Stack direction="horizontal" align="center" spacing={3}>
-              <IconEmoticonThin // eye-icon 으로 바꿔야함
+              <IconEmoticonThin // TODO: eye-icon 으로 바꿔야함
                 width={20}
                 height={20}
                 color={colors.gray500}
@@ -44,7 +37,7 @@ const QnaPostPage = () => {
                 조회 22
               </Text>
             </Stack>
-          </Flex>
+          </StyledQnaPostSubTitleBox>
           <Stack style={{ borderBottom: `1px solid ${colors.gray200}` }}>
             <Stack style={{ paddingTop: '30px', paddingBottom: '15px' }}>
               연봉을 많이 주지만 범위가 좁고 루틴한 업무를 맡게될 회사.. 연봉은 적지만..
@@ -73,7 +66,7 @@ export default QnaPostPage;
 
 const StyledQnaPostLayout = styled.div`
   width: 100%;
-  min-height: 92vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,7 +79,7 @@ const StyledQnaPost = styled.div`
   width: 800px;
   border-radius: 12px;
   background-color: white;
-  min-height: 80vh;
+  min-height: 80%;
   padding: 25px;
 `;
 
@@ -98,4 +91,12 @@ const StyledQnaLikeButton = styled.div`
   border-radius: 7px;
   border: 1px solid ${({ theme }) => theme.colors.gray300};
   cursor: pointer;
+`;
+
+const StyledQnaPostSubTitleBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray200};
 `;

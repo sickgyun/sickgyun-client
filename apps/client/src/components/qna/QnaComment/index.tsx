@@ -9,18 +9,21 @@ type QnaCommentCreateFormInput = {
 };
 
 const QnaComment = () => {
-  const { register, handleSubmit, reset } = useForm<QnaCommentCreateFormInput>();
+  const {
+    register,
+    handleSubmit: createQnaCommentSubmit,
+    reset,
+  } = useForm<QnaCommentCreateFormInput>();
 
-  const onSubmit = (data: QnaCommentCreateFormInput) => {
+  const onCreateQnaCommentSubmit = (data: QnaCommentCreateFormInput) => {
     console.log(data);
-
     reset();
   };
 
   return (
     <StyledQnaComment>
       <Text fontType="body1">답변 1</Text>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={createQnaCommentSubmit(onCreateQnaCommentSubmit)}>
         <Textarea {...register('comment', { required: true })} />
         <Flex justify="flex-end" style={{ marginBottom: '10px' }}>
           <Button type="submit" size="small" width="70px" style={{ marginTop: '10px' }}>
