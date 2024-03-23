@@ -38,6 +38,7 @@ const Header = () => {
           width={90}
           height={32}
           alt="Logo"
+          style={{ cursor: 'pointer' }}
         />
         {isLogin ? (
           <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
