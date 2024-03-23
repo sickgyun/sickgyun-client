@@ -1,10 +1,10 @@
-import { Storage } from '@sickgyun/libs';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { isLoginState } from './isLoginState';
 import { userAtomState } from './userAtomState';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUser } from '@/hooks/api/user/useGetUser';
+import { Storage } from '@/libs/storage';
 
 export const useUser = () => {
   const { user } = useGetUser();
