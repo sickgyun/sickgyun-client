@@ -4,15 +4,14 @@ import { Button, Flex } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { LOCAL_STORAGE_KEY } from '@/constants/storage';
-import { isLoginState, useUserInformation } from '@/store/UserInformation';
+import { isLoginState, useUser } from '@/store/User';
 
 const Header = () => {
   const router = useRouter();
 
   const setIsLogin = useSetAtom(isLoginState);
 
-  const { isLogin } = useUserInformation();
+  const { isLogin } = useUser();
 
   const handleLogin = () => {
     if (!process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL) return;
@@ -20,7 +19,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem(LOCAL_STORAGE_KEY.accessToken);
+    localStorage.clear();
     setIsLogin(false);
     router.push('/');
   };

@@ -1,11 +1,11 @@
 import { useRouter } from 'next/navigation';
 import type { ReactNode } from 'react';
-import { useUserInformation } from '@/store/UserInformation';
+import { useUser } from '@/store/User';
 
 export const withAuth = (Component: () => ReactNode) => {
   const WrappedComponent = () => {
     const router = useRouter();
-    const { isLogin } = useUserInformation();
+    const { isLogin } = useUser();
 
     if (typeof window !== 'undefined') {
       if (isLogin) {
