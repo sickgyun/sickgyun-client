@@ -49,7 +49,7 @@ const QnaWritePage = () => {
           <Stack style={{ padding: '22px' }} spacing={10}>
             <Input
               placeholder="제목을 작성해 주세요"
-              style={{ border: 'none' }}
+              style={{ border: 'none', fontSize: '17px' }}
               {...register('title')}
             />
             <StyledErrorMessage>{formState.errors.title?.message}</StyledErrorMessage>
