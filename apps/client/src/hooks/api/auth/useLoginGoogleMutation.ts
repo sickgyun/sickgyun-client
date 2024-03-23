@@ -23,9 +23,8 @@ export const useGoogleLoginMutation = (
 ) => {
   return useMutation({
     mutationKey: [GOOGLE_LOGIN_MUTATION_KEY],
-    mutationFn: ({ accessToken }: GoogleLoginMutationRequest) => {
-      return post<GoogleLoginMutationResponse>('/api/auth/login', { accessToken });
-    },
+    mutationFn: ({ accessToken }: GoogleLoginMutationRequest) =>
+      post<GoogleLoginMutationResponse>('/api/auth/login', { accessToken }),
     ...options,
   });
 };

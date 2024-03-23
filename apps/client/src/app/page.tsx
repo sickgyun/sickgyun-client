@@ -2,20 +2,26 @@
 
 import styled from '@emotion/styled';
 import { Flex, Link, Stack, Text } from '@sickgyun/ui';
+import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import LoginBox from '@/components/main/LoginBox';
 import MainBanner from '@/components/main/MainBanner';
+import UserUpdateModal from '@/components/main/UserUpdateModal';
 import RecuritList from '@/components/recurit/RecuritList';
 import { MAJOR_LIST } from '@/constants/profile';
+import { useUser } from '@/store/User';
 
 const JOB_POSTING_FULL_VIEW_LINK =
   'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1';
 
 const MainPage = () => {
   const router = useRouter();
+  const overlay = useOverlay();
+  const { user } = useUser();
 
   const hanldeGoStudentProfilePage = (major: string) => {
     router.push(`/student-profile?major=${major}`);
@@ -25,12 +31,27 @@ const MainPage = () => {
     router.push(`/qna`);
   };
 
+  const openUserUpdateModal = useCallback(() => {
+    overlay.open(({ isOpen, close }) => (
+      <UserUpdateModal isOpen={isOpen} onClose={close} />
+    ));
+  }, [overlay]);
+
   const renderBanners = () => {
     return [
       <img src="/assets/images/mocks/mock_banner.jpeg" alt="Banner1" />,
       <img src="/assets/images/mocks/mock_banner.jpeg" alt="Banner2" />,
     ];
   };
+
+  useEffect(() => {
+    const isUserRequiredInfoMissing = !user.name;
+
+    if (isUserRequiredInfoMissing) {
+      openUserUpdateModal();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

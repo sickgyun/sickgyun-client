@@ -9,12 +9,12 @@ import StudentProfileActionButton from '@/components/student-profile/StudentProf
 import StudentProfileList from '@/components/student-profile/StudentProfileList';
 import { MAJOR_LIST } from '@/constants/profile';
 import { useStudentProfile } from '@/store/StudentProfile';
-import { useUserInformation } from '@/store/UserInformation';
+import { useUser } from '@/store/User';
 
 const StudentProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const { isLogin } = useUserInformation();
+  const { isLogin } = useUser();
   const { hasStudentProfile } = useStudentProfile();
   const majorQueryParameter = params.get('major');
 

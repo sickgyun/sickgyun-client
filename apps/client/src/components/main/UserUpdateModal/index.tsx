@@ -13,7 +13,7 @@ import {
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useUserMutation } from '@/hooks/api/user/useUserMutation';
-import { useUserInformation } from '@/store/UserInformation';
+import { useUser } from '@/store/User';
 
 type UserUpdateFormInput = {
   name: string;
@@ -21,22 +21,19 @@ type UserUpdateFormInput = {
 };
 
 const UserUpdateModal = ({ isOpen, onClose }: ModalProps) => {
-  const { userInformation } = useUserInformation();
-  const { register, handleSubmit: handleUpdateUserInformationSubmit } =
+  const { user } = useUser();
+  const { register, handleSubmit: handleUpdateUserSubmit } =
     useForm<UserUpdateFormInput>();
-  const { mutate: updateUserInformationMutate } = useUserMutation();
+  const { mutate: updateUserMutate } = useUserMutation();
 
-  const onUpdateUserInformationSubmit: SubmitHandler<UserUpdateFormInput> = (data) => {
-    updateUserInformationMutate(data);
+  const onUpdateUserSubmit: SubmitHandler<UserUpdateFormInput> = (data) => {
+    updateUserMutate(data);
     onClose();
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} width="500px">
-      <ModalContent
-        tag="form"
-        onSubmit={handleUpdateUserInformationSubmit(onUpdateUserInformationSubmit)}
-      >
+      <ModalContent tag="form" onSubmit={handleUpdateUserSubmit(onUpdateUserSubmit)}>
         <ModalHeader>
           <Text fontType="h2">프로필 설정</Text>
           <ModalCloseButton onClose={onClose} />
@@ -45,13 +42,13 @@ const UserUpdateModal = ({ isOpen, onClose }: ModalProps) => {
           <Stack direction="vertical" spacing={16} style={{ width: '100%' }}>
             <Input
               label="이름"
-              defaultValue={userInformation.name}
+              defaultValue={user.name}
               placeholder="이름을 입력해주세요."
               {...register('name')}
             />
             <Input
               label="이메일"
-              defaultValue={userInformation.email}
+              defaultValue={user.email}
               placeholder="이메일을 입력해주세요."
               {...register('email')}
             />

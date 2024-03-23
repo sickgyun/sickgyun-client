@@ -4,18 +4,17 @@ import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import UserUpdateModal from '../UserUpdateModal';
-import { useUserInformation } from '@/store/UserInformation';
+import { useUser } from '@/store/User';
 
 const LoginBox = () => {
   const router = useRouter();
   const overlay = useOverlay();
-  const { isLogin, userInformation } = useUserInformation();
+  const { isLogin, user } = useUser();
 
   const handleLogin = () => {
-    if (!process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL) return;
-    router.replace(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
+    router.push(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
   };
 
   const handleGoJumpit = () => {
@@ -32,14 +31,6 @@ const LoginBox = () => {
     ));
   }, [overlay]);
 
-  useEffect(() => {
-    if (userInformation.isGraduate) {
-      if (!userInformation.company) {
-        openUserUpdateModal();
-      }
-    }
-  }, [openUserUpdateModal, userInformation.company, userInformation.isGraduate]);
-
   return (
     <StyledLoginBox>
       {isLogin ? (
@@ -47,17 +38,17 @@ const LoginBox = () => {
           <Stack spacing={6}>
             <Stack direction="horizontal" align="center" spacing={2}>
               <Text fontType="p3" color="gray500">
-                {userInformation.cardinal}기
+                {user.cardinal}기
               </Text>
               <Text fontType="p3" color="gray500">
-                {userInformation.isGraduate ? '졸업생' : '학생'}
+                {user.isGraduated ? '졸업생' : '학생'}
               </Text>
             </Stack>
             <Stack direction="horizontal" align="center" spacing={8}>
               <Stack direction="horizontal" align="center" spacing={4}>
-                <Text fontType="h4">{userInformation.name}님</Text>
+                <Text fontType="h4">{user.name}님</Text>
                 <Text fontType="h4">
-                  {userInformation.isGraduate ? '알려주셔야죠?' : '취업하셔야죠?'}
+                  {user.isGraduated ? '알려주셔야죠?' : '취업하셔야죠?'}
                 </Text>
               </Stack>
               <Text
@@ -70,7 +61,7 @@ const LoginBox = () => {
               </Text>
             </Stack>
             <Text fontType="p1" color="gray500">
-              {userInformation.email}
+              {user.email}
             </Text>
           </Stack>
           <Flex align="center" justify="space-between" style={{ width: '100%' }}>

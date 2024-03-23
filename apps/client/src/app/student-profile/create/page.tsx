@@ -7,9 +7,8 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import { withAuth } from '@/hocs/withAuth';
 import { useCreateStudentProfileMutation } from '@/hooks/api/student-profile/useCreateStudentProfileMutation';
-import { useUserInformation } from '@/store/UserInformation';
+import { useUser } from '@/store/User';
 
 type StudentProfileCreateFormInput = {
   githubId?: string;
@@ -21,7 +20,7 @@ type StudentProfileCreateFormInput = {
 
 const StudentProfileCreatePage = () => {
   const router = useRouter();
-  const { userInformation } = useUserInformation();
+  const { user } = useUser();
   const { register, handleSubmit: handleCreateStudentProfileSubmit } =
     useForm<StudentProfileCreateFormInput>();
 
@@ -31,11 +30,11 @@ const StudentProfileCreatePage = () => {
     data
   ) => {
     const createStudentProfileRequstData = {
-      userCode: userInformation.userCode,
-      profileUrl: userInformation.profileUrl,
-      name: userInformation.name,
-      cardinal: userInformation.cardinal,
-      isGraduate: userInformation.isGraduate,
+      userCode: user.id,
+      name: user.name,
+      // TODO: 백엔드와 상의 후 속성 추가
+      cardinal: 1,
+      isGraduate: true,
       bio: data.bio,
       githubId: data.githubId,
       email: data.email,
@@ -60,20 +59,19 @@ const StudentProfileCreatePage = () => {
               <Stack direction="horizontal" spacing={16}>
                 <Input
                   label="이름"
-                  value={userInformation.name}
+                  value={user.name}
                   placeholder="이름을 입력해주세요."
                   disabled
                 />
                 <Input
                   label="깃허브 아이디"
-                  defaultValue={userInformation.githubId}
                   placeholder="깃허브 아이디를 입력해주세요."
                   {...register('githubId')}
                 />
               </Stack>
               <Input
                 label="이메일"
-                defaultValue={userInformation.email}
+                defaultValue={user.email}
                 placeholder="이메일을 적어주세요."
                 {...register('email')}
               />
@@ -90,7 +88,7 @@ const StudentProfileCreatePage = () => {
                 minHeight="100px"
                 {...register('bio')}
               />
-              {userInformation.isGraduate && (
+              {user.isGraduated && (
                 <Input
                   label="회사"
                   placeholder="회사명을 입력해주세요."
@@ -109,7 +107,7 @@ const StudentProfileCreatePage = () => {
   );
 };
 
-export default withAuth(StudentProfileCreatePage);
+export default StudentProfileCreatePage;
 
 const StyledStudentProfileCreatePageLayout = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
