@@ -31,7 +31,7 @@ const ProfileCreateModal = ({ isOpen, onClose }: ModalProps) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} width="550px">
+    <Modal isOpen={isOpen} onClose={onClose} width="550px" height="600px">
       <ModalContent tag="form" onSubmit={handleCreateProfileSubmit(onCreateProfile)}>
         <ModalHeader>
           <Text fontType="h2">프로필 등록</Text>
