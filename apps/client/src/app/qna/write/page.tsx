@@ -17,20 +17,25 @@ type QnaWriteFormProps = {
   categoryTitle: string;
 };
 
-const schema = yup.object({
+const QnaWriteObject = yup.object({
   title: yup.string().required('제목을 입력해주세요.'),
   contents: yup.string().required('내용을 입력해주세요.'),
   categoryTitle: yup.string(),
 });
 
 const QnaWritePage = () => {
-  const { register, handleSubmit, formState, setValue } = useForm({
-    resolver: yupResolver(schema),
+  const {
+    register,
+    handleSubmit: createQnaWriteSubmit,
+    formState,
+    setValue,
+  } = useForm({
+    resolver: yupResolver(QnaWriteObject),
     mode: 'onSubmit',
   });
 
-  const handleQnaWriteSubmit = (data: QnaWriteFormProps) => {
-    console.log('handleSubmit', data);
+  const onCreateQnaWriteSubmit = (data: QnaWriteFormProps) => {
+    console.log('createQnaWriteSubmit', data);
   };
 
   const [category] = useAtom(checkedCategory);
@@ -44,7 +49,7 @@ const QnaWritePage = () => {
       <Header />
       <StyledQnaWritePage>
         <QnaWriteCategory />
-        <form onSubmit={handleSubmit(handleQnaWriteSubmit)}>
+        <form onSubmit={createQnaWriteSubmit(onCreateQnaWriteSubmit)}>
           <input type="hidden" {...register('categoryTitle')} />
           <Stack style={{ padding: '22px' }} spacing={10}>
             <Input
