@@ -53,4 +53,10 @@ const StyledModal = styled.div<{ width: string; height: string }>`
   background-color: ${({ theme }) => theme.colors.white};
   padding: 36px;
   border-radius: 16px;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

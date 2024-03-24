@@ -1,14 +1,14 @@
 import { Confirm } from '@sickgyun/ui';
 
-type StudentProfileDeleteConfirmProps = {
+type ProfileDeleteConfirmProps = {
   onDelete: VoidFunction;
 } & ModalProps;
 
-const StudentProfileDeleteConfirm = ({
+const ProfileDeleteConfirm = ({
   isOpen,
   onClose,
   onDelete,
-}: StudentProfileDeleteConfirmProps) => {
+}: ProfileDeleteConfirmProps) => {
   return (
     <Confirm
       isOpen={isOpen}
@@ -21,4 +21,4 @@ const StudentProfileDeleteConfirm = ({
   );
 };
 
-export default StudentProfileDeleteConfirm;
+export default ProfileDeleteConfirm;

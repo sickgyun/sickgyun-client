@@ -2,34 +2,34 @@ import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import React from 'react';
-import StudentProfileCard from '../StudentProfileCard';
-import StudentProfileDetailModal from '../StudentProfileDetailModal';
+import ProfileCard from '../ProfileCard';
+import ProfileDetailModal from '../ProfileDetailModal';
 import { withSuspense } from '@/hocs/withSuspense';
-import { useGetStudentProfileList } from '@/hooks/api/student-profile/useGetStudentProfileList';
+import { useGetProfileList } from '@/hooks/api/student-profile/useGetProfileList';
 
-type StudentProfileListProps = {
+type ProfileListProps = {
   major: string;
 };
 
-const StudentProfileList = ({ major }: StudentProfileListProps) => {
+const ProfileList = ({ major }: ProfileListProps) => {
   const overlay = useOverlay();
   // TODO: 백엔드 major=all 추가시 수정
-  const { studentProfileList } = useGetStudentProfileList([major.toUpperCase()]);
+  const { profileList } = useGetProfileList([major.toUpperCase()]);
 
-  const openStudentProfileDetailModal = (userCode: number) => {
+  const openProfileDetailModal = (userCode: number) => {
     overlay.open(({ isOpen, close }) => (
-      <StudentProfileDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
+      <ProfileDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
     ));
   };
 
-  return studentProfileList.length > 0 ? (
-    <StyledStudentProfileList>
-      {studentProfileList.map((studentProfile) => {
+  return profileList.length > 0 ? (
+    <StyledProfileList>
+      {profileList.map((studentProfile) => {
         const cardinal = studentProfile.admissionYear - 2020;
 
         return (
-          <StudentProfileCard
-            onClick={() => openStudentProfileDetailModal(studentProfile.userId)}
+          <ProfileCard
+            onClick={() => openProfileDetailModal(studentProfile.userId)}
             name={studentProfile.name}
             imageUrl={studentProfile.imageUrl}
             cardinal={cardinal}
@@ -40,15 +40,15 @@ const StudentProfileList = ({ major }: StudentProfileListProps) => {
           />
         );
       })}
-    </StyledStudentProfileList>
+    </StyledProfileList>
   ) : (
     <Text fontType="h3">앗! 해당 분야의 학생이 없어요..</Text>
   );
 };
 
-export default withSuspense(StudentProfileList);
+export default withSuspense(ProfileList);
 
-const StyledStudentProfileList = styled.div`
+const StyledProfileList = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;

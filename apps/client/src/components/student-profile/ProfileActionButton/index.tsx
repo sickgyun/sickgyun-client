@@ -3,34 +3,24 @@ import { IconAddFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
-import { useRouter } from 'next/navigation';
-import StudentProfileUpdateModal from '../StudentProfileUpdateModal';
+import ProfileCreateModal from '../ProfileCreateModal';
 
-type StudentProfileActionButtonProps = {
+type ProfileActionButtonProps = {
   actionType: 'create' | 'update';
 };
 
-const StudentProfileActionButton = ({ actionType }: StudentProfileActionButtonProps) => {
-  const router = useRouter();
+const ProfileActionButton = ({ actionType }: ProfileActionButtonProps) => {
   const overlay = useOverlay();
 
-  const openStudentProfileUpdateModal = () => {
+  const openProfileCreateModal = () => {
     overlay.open(({ isOpen, close }) => (
-      <StudentProfileUpdateModal isOpen={isOpen} onClose={close} />
+      <ProfileCreateModal isOpen={isOpen} onClose={close} />
     ));
   };
 
-  const handleGoStudentProfileCreatePage = () => {
-    router.push('/student-profile/create');
-  };
-
   return (
-    <StyledStudentProfileActionButton
-      onClick={
-        actionType === 'create'
-          ? handleGoStudentProfileCreatePage
-          : openStudentProfileUpdateModal
-      }
+    <StyledProfileActionButton
+      onClick={actionType === 'create' ? openProfileCreateModal : null}
     >
       {actionType === 'create' ? (
         <>
@@ -44,13 +34,13 @@ const StudentProfileActionButton = ({ actionType }: StudentProfileActionButtonPr
           내 프로필 수정
         </Text>
       )}
-    </StyledStudentProfileActionButton>
+    </StyledProfileActionButton>
   );
 };
 
-export default StudentProfileActionButton;
+export default ProfileActionButton;
 
-const StyledStudentProfileActionButton = styled.div`
+const StyledProfileActionButton = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
