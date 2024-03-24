@@ -12,14 +12,9 @@ export type CreateProfileRequest = {
   portfolioUrl?: string;
 };
 
-export type CreatProfileResponse = {
-  message: string;
-};
-
 export const useCreateProfile = () => {
-  return useMutation<CreatProfileResponse, { message?: string }, CreateProfileRequest>({
-    mutationFn: (data: CreateProfileRequest) =>
-      post<CreatProfileResponse>('/api/profiles', data),
+  return useMutation<unknown, unknown, CreateProfileRequest>({
+    mutationFn: (data: CreateProfileRequest) => post('/api/profiles', data),
     onSuccess: () => {
       alert('프로필 등록 성공');
     },

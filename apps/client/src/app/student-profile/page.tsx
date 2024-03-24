@@ -5,8 +5,8 @@ import { Button, Stack } from '@sickgyun/ui';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import StudentProfileActionButton from '@/components/student-profile/StudentProfileActionButton';
-import StudentProfileList from '@/components/student-profile/StudentProfileList';
+import ProfileActionButton from '@/components/student-profile/ProfileActionButton';
+import ProfileList from '@/components/student-profile/ProfileList';
 import { MAJOR_LIST } from '@/constants/profile';
 import { useStudentProfile } from '@/store/StudentProfile';
 import { useUser } from '@/store/User';
@@ -43,14 +43,12 @@ const StudentProfilePage = () => {
               </Button>
             ))}
           </Stack>
-          <StudentProfileList major={majorQueryParameter} />
+          <ProfileList major={majorQueryParameter} />
         </StyledStudentProfilePage>
       </StyledStudentProfilePageLayout>
       <Footer />
       {isLogin ? (
-        <StudentProfileActionButton
-          actionType={hasStudentProfile ? 'update' : 'create'}
-        />
+        <ProfileActionButton actionType={hasStudentProfile ? 'update' : 'create'} />
       ) : null}
     </>
   );
