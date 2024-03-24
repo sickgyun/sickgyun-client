@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 
-type StudentProfileCardProps = {
+type ProfileCardProps = {
   onClick: VoidFunction;
   name: string;
   imageUrl: string;
@@ -13,7 +13,7 @@ type StudentProfileCardProps = {
   isRecruited: boolean;
 };
 
-const StudentProfileCard = ({
+const ProfileCard = ({
   onClick,
   name,
   cardinal,
@@ -22,9 +22,9 @@ const StudentProfileCard = ({
   company,
   introduction,
   isRecruited,
-}: StudentProfileCardProps) => {
+}: ProfileCardProps) => {
   return (
-    <StyledStudentProfileCard onClick={onClick}>
+    <StyledProfileCard onClick={onClick}>
       <Stack
         direction="horizontal"
         align="center "
@@ -52,13 +52,13 @@ const StudentProfileCard = ({
           </Stack>
         </Stack>
       </Stack>
-    </StyledStudentProfileCard>
+    </StyledProfileCard>
   );
 };
 
-export default StudentProfileCard;
+export default ProfileCard;
 
-const StyledStudentProfileCard = styled.div`
+const StyledProfileCard = styled.div`
   transition: all 0.25s ease;
   padding: 16px;
   border-radius: 8px;

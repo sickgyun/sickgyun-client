@@ -7,11 +7,11 @@ import Image from 'next/image';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 
-type StudentProfileDetailContentProps = {
+type ProfileDetailContentsProps = {
   userCode: number;
 };
 
-const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentProps) => {
+const ProfileDetailContents = ({ userCode }: ProfileDetailContentsProps) => {
   const { studentProfileData } = useGetStudentProfile(userCode);
 
   const profileImage = getUserProfileImage(studentProfileData?.profileUrl);
@@ -25,7 +25,7 @@ const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentP
   };
 
   return (
-    <StyledStudentProfileDetailContents>
+    <StyledProfileDetailContents>
       <Stack
         direction="horizontal"
         spacing={24}
@@ -96,13 +96,13 @@ const StudentProfileDetailContents = ({ userCode }: StudentProfileDetailContentP
           )}
         </Stack>
       </Stack>
-    </StyledStudentProfileDetailContents>
+    </StyledProfileDetailContents>
   );
 };
 
-export default withSuspense(StudentProfileDetailContents);
+export default withSuspense(ProfileDetailContents);
 
-const StyledStudentProfileDetailContents = styled.div`
+const StyledProfileDetailContents = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;

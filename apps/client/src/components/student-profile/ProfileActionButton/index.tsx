@@ -3,21 +3,14 @@ import { IconAddFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
-import StudentProfileCreateModal from '../StudentProfileCreateModal';
-import StudentProfileUpdateModal from '../StudentProfileUpdateModal';
+import StudentProfileCreateModal from '../CreateProfileModal';
 
-type StudentProfileActionButtonProps = {
+type ProfileActionButtonProps = {
   actionType: 'create' | 'update';
 };
 
-const StudentProfileActionButton = ({ actionType }: StudentProfileActionButtonProps) => {
+const ProfileActionButton = ({ actionType }: ProfileActionButtonProps) => {
   const overlay = useOverlay();
-
-  const openStudentProfileUpdateModal = () => {
-    overlay.open(({ isOpen, close }) => (
-      <StudentProfileUpdateModal isOpen={isOpen} onClose={close} />
-    ));
-  };
 
   const openStudentProfileCreateModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -26,12 +19,8 @@ const StudentProfileActionButton = ({ actionType }: StudentProfileActionButtonPr
   };
 
   return (
-    <StyledStudentProfileActionButton
-      onClick={
-        actionType === 'create'
-          ? openStudentProfileCreateModal
-          : openStudentProfileUpdateModal
-      }
+    <StyledProfileActionButton
+      onClick={actionType === 'create' ? openStudentProfileCreateModal : null}
     >
       {actionType === 'create' ? (
         <>
@@ -45,13 +34,13 @@ const StudentProfileActionButton = ({ actionType }: StudentProfileActionButtonPr
           내 프로필 수정
         </Text>
       )}
-    </StyledStudentProfileActionButton>
+    </StyledProfileActionButton>
   );
 };
 
-export default StudentProfileActionButton;
+export default ProfileActionButton;
 
-const StyledStudentProfileActionButton = styled.div`
+const StyledProfileActionButton = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;

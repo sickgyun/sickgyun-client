@@ -6,17 +6,13 @@ import {
   ModalHeader,
   Text,
 } from '@sickgyun/ui';
-import StudentProfileDetailContents from './StudentProfileDetailContents';
+import ProfileDetailContents from './ProfileDetailContents';
 
-type StudentProfileDetailModalProps = {
+type ProfileDetailModalProps = {
   userCode: number;
 } & ModalProps;
 
-const StudentProfileDetailModal = ({
-  isOpen,
-  onClose,
-  userCode,
-}: StudentProfileDetailModalProps) => {
+const ProfileDetailModal = ({ isOpen, onClose, userCode }: ProfileDetailModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} width="580px">
       <ModalContent>
@@ -25,11 +21,11 @@ const StudentProfileDetailModal = ({
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
-          <StudentProfileDetailContents userCode={userCode} />
+          <ProfileDetailContents userCode={userCode} />
         </ModalBody>
       </ModalContent>
     </Modal>
   );
 };
 
-export default StudentProfileDetailModal;
+export default ProfileDetailModal;
