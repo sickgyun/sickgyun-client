@@ -2,7 +2,8 @@ export const QNA = [
   {
     id: 0,
     title: '실수 줄이는 팁 있을까요?',
-    questionType: '개발',
+    questionType: 'DEVELOP',
+    questionTitle: '개발',
     name: 'weekend',
     heart: 15,
     commentCount: 3,
@@ -12,7 +13,8 @@ export const QNA = [
   {
     id: 1,
     title: '포트 폴리오 관련 질문 있습니다.',
-    questionType: '고민',
+    questionType: 'CONCERN',
+    questionTitle: '고민',
     name: 'wave123',
     heart: 10,
     commentCount: 3,
@@ -23,7 +25,8 @@ export const QNA = [
     id: 2,
     title:
       '코딩테스트 계속 떨어지는데 이유를 모르겠어요 코딩테스트 계속 떨어지는데 이유를 모르겠어요',
-    questionType: '취업',
+    questionType: 'RECRUIT',
+    questionTitle: '취업',
     name: 'snaghow',
     heart: 7,
     commentCount: 1,
@@ -33,7 +36,8 @@ export const QNA = [
   {
     id: 3,
     title: '포트폴리오 관련 질문 있습니다',
-    questionType: '취업',
+    questionType: 'RECRUIT',
+    questionTitle: '취업',
     name: 'lsj0202',
     heart: 2,
     commentCount: 2,
@@ -43,7 +47,8 @@ export const QNA = [
   {
     id: 4,
     title: '코틀린으로 취직 되나요?',
-    questionType: '고민',
+    questionType: 'CONCERN',
+    questionTitle: '고민',
     name: 'jwc5252',
     heart: 0,
     commentCount: 1,
@@ -53,7 +58,8 @@ export const QNA = [
   {
     id: 5,
     title: '노드 못해도 취직 되나요?',
-    questionType: '고민',
+    questionType: 'CONCERN',
+    questionTitle: '고민',
     name: 'ulh1212',
     heart: 0,
     commentCount: 3,
@@ -63,7 +69,8 @@ export const QNA = [
   {
     id: 6,
     title: '노드 못해도 취직 되나요?',
-    questionType: '고민',
+    questionType: 'CONCERN',
+    questionTitle: '고민',
     name: 'ulh1212',
     heart: 0,
     commentCount: 3,
@@ -90,31 +97,28 @@ export const QNA_SORT = [
 export const QNA_CATEGORY = [
   {
     id: 0,
-    title: '전체',
+    qnaType: 'ALL',
+    qnaTitle: '전체',
     emoji: '🖥️',
   },
   {
     id: 1,
-    title: '개발',
+    qnaType: 'DEVELOP',
+    qnaTitle: '개발',
     emoji: '💻',
   },
   {
     id: 2,
-    title: '취업',
+    qnaType: 'RECRUIT',
+    qnaTitle: '취업',
     emoji: '👔',
   },
   {
     id: 3,
-    title: '고민',
+    qnaType: 'CONCERN',
+    qnaTitle: '고민',
     emoji: '🤔',
   },
-];
-
-export const QNA_POSITION_LIST = [
-  { queryParams: 'all', name: '# 전체', emoji: '🖥️' },
-  { queryParams: 'develop', name: '# 개발', emoji: '💻' },
-  { queryParams: 'work', name: '# 취업', emoji: '👔' },
-  { queryParams: 'worry', name: '# 고민', emoji: '🤔' },
 ];
 
 export const QNA_COMMENT = [

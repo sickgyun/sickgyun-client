@@ -35,7 +35,10 @@ const QnaListBox = () => {
           <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)}>
             <Flex direction="column">
               <StyledPopularQna>
-                <QnaCategory questionType={qna.questionType} />
+                <QnaCategory
+                  questionType={qna.questionType}
+                  questionTitle={qna.questionTitle}
+                />
                 <Text fontType="h4">{qna.title}</Text>
                 <StyledQnaContent>{qna.detailContent}</StyledQnaContent>
                 <Flex justify="space-between" style={{ width: '100%' }}>

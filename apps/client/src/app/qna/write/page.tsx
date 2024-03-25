@@ -6,24 +6,23 @@ import { Button, Input, Stack, Textarea } from '@sickgyun/ui';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import Header from '@/components/common/Header';
 import QnaWriteCategory from '@/components/qna-posting/QnaWriteCategory';
+import { useCreateQna } from '@/hooks/api/qna/useCreateQna';
+import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
 import { checkedCategory } from '@/store/Qna';
-
-type QnaWriteFormProps = {
-  title: string;
-  contents: string;
-  categoryTitle: string;
-};
 
 const QnaWriteObject = yup.object({
   title: yup.string().required('제목을 입력해주세요.'),
-  contents: yup.string().required('내용을 입력해주세요.'),
-  categoryTitle: yup.string(),
+  content: yup.string().required('내용을 입력해주세요.'),
+  category: yup.string(),
 });
 
 const QnaWritePage = () => {
+  const { mutate: createQnaMutate } = useCreateQna();
+
   const {
     register,
     handleSubmit: createQnaWriteSubmit,
@@ -34,23 +33,23 @@ const QnaWritePage = () => {
     mode: 'onSubmit',
   });
 
-  const onCreateQnaWriteSubmit = (data: QnaWriteFormProps) => {
-    console.log('createQnaWriteSubmit', data);
-  };
-
   const [category] = useAtom(checkedCategory);
 
   useEffect(() => {
-    setValue('categoryTitle', category.title);
+    setValue('category', category.title);
   }, [category.title, setValue]);
+
+  const onCreateQnaWrite: SubmitHandler<CreateQnaRequest> = (data) => {
+    createQnaMutate(data);
+  };
 
   return (
     <>
       <Header />
       <StyledQnaWritePage>
         <QnaWriteCategory />
-        <form onSubmit={createQnaWriteSubmit(onCreateQnaWriteSubmit)}>
-          <input type="hidden" {...register('categoryTitle')} />
+        <form onSubmit={createQnaWriteSubmit(onCreateQnaWrite)}>
+          <input type="hidden" {...register('category')} />
           <Stack style={{ padding: '22px' }} spacing={10}>
             <Input
               placeholder="제목을 작성해 주세요"
@@ -62,9 +61,9 @@ const QnaWritePage = () => {
               placeholder="내용을 작성해 주세요"
               minHeight="350px"
               style={{ border: 'none' }}
-              {...register('contents')}
+              {...register('content')}
             />
-            <StyledErrorMessage>{formState.errors.contents?.message}</StyledErrorMessage>
+            <StyledErrorMessage>{formState.errors.content?.message}</StyledErrorMessage>
           </Stack>
           <Stack style={{ padding: '0 22px 22px 0' }} align="flex-end" spacing={0}>
             <Button width="180px" type="submit">

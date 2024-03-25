@@ -3,16 +3,17 @@ import { Text } from '@sickgyun/ui';
 
 type QnaCategoryProps = {
   questionType: string;
+  questionTitle: string;
 };
 
-const QnaCategory = ({ questionType }: QnaCategoryProps) => {
+const QnaCategory = ({ questionType, questionTitle }: QnaCategoryProps) => {
   const questionTypeEmoji =
-    questionType === '취업' ? '👔' : questionType === '개발' ? '💻' : '🤔';
+    questionType === 'RECRUIT' ? '👔' : questionType === 'DEVELOP' ? '💻' : '🤔';
 
   return (
     <StyledQnaCategory>
       <Text>{questionTypeEmoji}</Text>
-      <Text fontType="body2">{questionType}</Text>
+      <Text fontType="body2">{questionTitle}</Text>
     </StyledQnaCategory>
   );
 };

@@ -13,6 +13,7 @@ const QnaPostList = ({ currentQnaPageIndex }) => {
             id={qnaPosting.id}
             title={qnaPosting.title}
             questionType={qnaPosting.questionType}
+            questionTitle={qnaPosting.questionTitle}
             name={qnaPosting.name}
             heart={qnaPosting.heart}
             commentCount={qnaPosting.commentCount}

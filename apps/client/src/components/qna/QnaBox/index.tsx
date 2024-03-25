@@ -33,7 +33,7 @@ const QnaBox = () => {
           >
             <Stack direction="horizontal" spacing={10}>
               <Text>{category.emoji}</Text>
-              <Text fontType="body1">{category.title}</Text>
+              <Text fontType="body1">{category.qnaTitle}</Text>
             </Stack>
           </StyledQnaCategory>
         ))}

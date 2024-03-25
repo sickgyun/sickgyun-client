@@ -15,7 +15,7 @@ const QnaPostPage = () => {
       <StyledQnaPostLayout>
         <StyledQnaPost>
           <Stack style={{ display: 'inline-flex' }}>
-            <QnaCategory questionType="취업" />
+            <QnaCategory questionType="DEVELOP" questionTitle="개발" />
           </Stack>
           <Stack style={{ marginTop: '15px' }}>
             <Text fontType="h3">연봉과 업무 중 무엇을 선택하는게 좋을지..</Text>

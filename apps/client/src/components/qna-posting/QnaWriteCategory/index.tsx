@@ -18,14 +18,15 @@ const QnaWriteCategory = () => {
       <Stack direction="horizontal" spacing={10}>
         {QNA_WRITE_CATEGORY.map((category) => (
           <QnaCategory
-            questionType={category.title}
+            questionType={category.qnaType}
+            questionTitle={category.qnaTitle}
             isWriteCategory
             isActive={activeCategoryIndex === category.id}
             onClick={() => {
               setActiveCategoryIndex(category.id);
               setActiveCategory({
                 id: category.id,
-                title: category.title,
+                title: category.qnaType,
               });
             }}
           />

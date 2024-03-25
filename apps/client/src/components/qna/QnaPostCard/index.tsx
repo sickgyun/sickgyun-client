@@ -11,6 +11,7 @@ type QnaPostingCardProps = {
   id: number;
   title: string;
   questionType: string;
+  questionTitle: string;
   name: string;
   heart: number;
   commentCount: number;
@@ -20,6 +21,7 @@ const QnaPostCard = ({
   id,
   title,
   questionType,
+  questionTitle,
   name,
   heart,
   commentCount,
@@ -33,7 +35,7 @@ const QnaPostCard = ({
     <StyledQnaPostCard onClick={() => handleGoQnaDetailPage(id)}>
       <Flex direction="column">
         <StyledPopularQnaContent>
-          <QnaCategory questionType={questionType} />
+          <QnaCategory questionType={questionType} questionTitle={questionTitle} />
           <StyledQnaContent fontType="h4">{title}</StyledQnaContent>
         </StyledPopularQnaContent>
         <StyledPopularInfo>
