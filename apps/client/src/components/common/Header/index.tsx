@@ -36,6 +36,7 @@ const Header = () => {
           onClick={() => router.replace('/')}
           width={90}
           height={32}
+          style={{ cursor: 'pointer' }}
           alt="Logo"
         />
         {isLogin ? (

@@ -2,12 +2,18 @@ import styled from '@emotion/styled';
 import { IconHeartRegular, IconReplyRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
 import { QNA, QNA_SORT } from '@/constants/qna';
 
 const QnaListBox = () => {
+  const router = useRouter();
   const [selectedQna, setSelectedQna] = useState(0);
+
+  const handleGoDetailPage = (id: number) => {
+    router.push(`/qna-post/${id}`);
+  };
 
   return (
     <StyledQnaListBox>
@@ -26,7 +32,7 @@ const QnaListBox = () => {
       ))}
       <StyledQnaBoxWrapper>
         {QNA.map((qna) => (
-          <StyledQnaBox>
+          <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)}>
             <Flex direction="column">
               <StyledPopularQna>
                 <QnaCategory questionType={qna.questionType} />
