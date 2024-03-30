@@ -3,24 +3,18 @@ import { cache } from 'react';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { get } from '@/libs/api/client';
 import { Storage } from '@/libs/api/storage';
+import type { User } from '@/types/user';
 
-export type User = {
-  id: number;
-  name: string;
-  email: string;
-  hasCreatedProfile: boolean;
-  isGraduated?: boolean;
-  cardinal?: number;
-};
+type GetUserReponse = User;
 
 export const USER_QUERY_KEY = 'user';
 
 export const useGetUser = () => {
   const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
 
-  const userQuery = useQuery<User>({
+  const userQuery = useQuery<GetUserReponse>({
     queryKey: [USER_QUERY_KEY],
-    queryFn: cache(async () => await get<User>('/api/user')),
+    queryFn: cache(async () => await get<GetUserReponse>('/api/user')),
     enabled: Boolean(accessToken),
   });
 

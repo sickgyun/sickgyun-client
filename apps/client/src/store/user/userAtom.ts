@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
-import type { User } from '@/hooks/api/user/useGetUser';
+import type { User } from '@/types/user';
 
 export const userAtom = atom<User>({
   id: 0,
