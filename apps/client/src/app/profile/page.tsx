@@ -5,21 +5,19 @@ import { Button, Stack } from '@sickgyun/ui';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import ProfileActionButton from '@/components/student-profile/ProfileActionButton';
-import ProfileList from '@/components/student-profile/ProfileList';
+import ProfileActionButton from '@/components/profile/ProfileActionButton';
+import ProfileList from '@/components/profile/ProfileList';
 import { MAJOR_LIST } from '@/constants/profile';
-import { useStudentProfile } from '@/store/StudentProfile';
 import { useUser } from '@/store/User';
 
 const StudentProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const { isLogin } = useUser();
-  const { hasStudentProfile } = useStudentProfile();
   const majorQueryParameter = params.get('major');
 
   const handleMajorButtonClick = (major: string) => {
-    router.replace(`/student-profile?major=${major}`);
+    router.replace(`/profile?major=${major}`);
   };
 
   return (
@@ -47,9 +45,7 @@ const StudentProfilePage = () => {
         </StyledStudentProfilePage>
       </StyledStudentProfilePageLayout>
       <Footer />
-      {isLogin ? (
-        <ProfileActionButton actionType={hasStudentProfile ? 'update' : 'create'} />
-      ) : null}
+      {isLogin ? <ProfileActionButton actionType="create" /> : null}
     </>
   );
 };
