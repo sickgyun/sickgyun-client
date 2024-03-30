@@ -2,30 +2,27 @@ import styled from '@emotion/styled';
 import { IconChevronRightFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
-import { getUserProfileImage } from '@sickgyun/utils';
 import Image from 'next/image';
 import { withSuspense } from '@/hocs/withSuspense';
-import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
+import { useGetProfile } from '@/hooks/api/student-profile/useGetProfile';
 
-type ProfileDetailContentsProps = {
+type ProfileDetailFormProps = {
   profileId: number;
 };
 
-const ProfileDetailContents = ({ profileId }: ProfileDetailContentsProps) => {
-  const { studentProfileData } = useGetStudentProfile(profileId);
-
-  const profileImage = getUserProfileImage(studentProfileData?.profileUrl);
+const ProfileDetailForm = ({ profileId }: ProfileDetailFormProps) => {
+  const { profile } = useGetProfile(profileId);
 
   const handleGoGithub = () => {
-    window.open(`https://github.com/${studentProfileData.githubId}`);
+    window.open(`https://github.com/${profile.githubId}`);
   };
 
   const handleGoEmail = () => {
-    window.open(`mailto: ${studentProfileData.email}`);
+    window.open(`mailto: ${profile.email}`);
   };
 
   return (
-    <StyledProfileDetailContents>
+    <StyledProfileDetailForm>
       <Stack
         direction="horizontal"
         spacing={24}
@@ -33,7 +30,7 @@ const ProfileDetailContents = ({ profileId }: ProfileDetailContentsProps) => {
         style={{ height: '94px' }}
       >
         <Image
-          src={profileImage}
+          src={profile.imageUrl}
           width={94}
           height={94}
           style={{ borderRadius: '8px' }}
@@ -41,30 +38,28 @@ const ProfileDetailContents = ({ profileId }: ProfileDetailContentsProps) => {
         />
         <Stack spacing={4}>
           <Stack direction="horizontal" align="center" spacing={6}>
-            <Text fontType="h3">{studentProfileData?.name}</Text>
+            <Text fontType="h3">{profile?.name}</Text>
             <Text fontType="body2" color="gray600">
-              {studentProfileData?.cardinal}기
+              {profile.cardinal}기
             </Text>
           </Stack>
           <Text fontType="body2" color="gray600">
-            관심 있는 분야: {studentProfileData?.position}
+            관심 있는 분야: {profile.major}
           </Text>
           <Stack direction="horizontal" spacing={6} align="center">
             <Image src="/assets/svgs/company.svg" height={16} width={16} alt="Company" />
             <Text fontType="body2" color="gray600">
-              {studentProfileData?.company
-                ? studentProfileData.company
-                : '부산소프트웨어마이스터고등학교'}
+              {profile?.company ? profile.company : '부산소프트웨어마이스터고등학교'}
             </Text>
           </Stack>
         </Stack>
       </Stack>
-      {studentProfileData?.bio && (
+      {profile?.introduction && (
         <Stack spacing={16}>
           <Text fontType="h3">소개 말</Text>
           <StyledIntroduceBox>
             <Text fontType="body2" color="gray600">
-              {studentProfileData.bio}
+              {profile.introduction}
             </Text>
           </StyledIntroduceBox>
         </Stack>
@@ -72,7 +67,7 @@ const ProfileDetailContents = ({ profileId }: ProfileDetailContentsProps) => {
       <Stack spacing={16}>
         <Text fontType="h3">정보</Text>
         <Stack spacing={12}>
-          {studentProfileData?.githubId && (
+          {profile?.githubId && (
             <StyledNavigationLinkButton onClick={handleGoGithub}>
               <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
               <Flex align="center">
@@ -83,7 +78,7 @@ const ProfileDetailContents = ({ profileId }: ProfileDetailContentsProps) => {
               </Flex>
             </StyledNavigationLinkButton>
           )}
-          {studentProfileData?.email && (
+          {profile?.email && (
             <StyledNavigationLinkButton onClick={handleGoEmail}>
               <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
               <Flex align="center">
@@ -96,13 +91,13 @@ const ProfileDetailContents = ({ profileId }: ProfileDetailContentsProps) => {
           )}
         </Stack>
       </Stack>
-    </StyledProfileDetailContents>
+    </StyledProfileDetailForm>
   );
 };
 
-export default withSuspense(ProfileDetailContents);
+export default withSuspense(ProfileDetailForm);
 
-const StyledProfileDetailContents = styled.div`
+const StyledProfileDetailForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;

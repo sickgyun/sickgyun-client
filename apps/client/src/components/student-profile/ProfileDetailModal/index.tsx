@@ -6,7 +6,7 @@ import {
   ModalHeader,
   Text,
 } from '@sickgyun/ui';
-import ProfileDetailContents from './ProfileDetailContents';
+import ProfileDetailContents from '../ProfileDetailForm';
 
 type ProfileDetailModalProps = {
   profileId: number;
