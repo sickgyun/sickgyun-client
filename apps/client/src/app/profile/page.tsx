@@ -17,7 +17,7 @@ const StudentProfilePage = () => {
   const majorQueryParameter = params.get('major');
 
   const handleMajorButtonClick = (major: string) => {
-    router.replace(`/student-profile?major=${major}`);
+    router.replace(`/profile?major=${major}`);
   };
 
   return (
