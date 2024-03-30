@@ -9,10 +9,10 @@ import {
 import ProfileDetailContents from './ProfileDetailContents';
 
 type ProfileDetailModalProps = {
-  userCode: number;
+  profileId: number;
 } & ModalProps;
 
-const ProfileDetailModal = ({ isOpen, onClose, userCode }: ProfileDetailModalProps) => {
+const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} width="580px">
       <ModalContent>
@@ -21,7 +21,7 @@ const ProfileDetailModal = ({ isOpen, onClose, userCode }: ProfileDetailModalPro
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
-          <ProfileDetailContents userCode={userCode} />
+          <ProfileDetailContents profileId={profileId} />
         </ModalBody>
       </ModalContent>
     </Modal>

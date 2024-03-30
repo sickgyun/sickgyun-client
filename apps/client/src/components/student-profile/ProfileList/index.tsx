@@ -13,30 +13,27 @@ type ProfileListProps = {
 
 const ProfileList = ({ major }: ProfileListProps) => {
   const overlay = useOverlay();
-  // TODO: 백엔드 major=all 추가시 수정
   const { profileList } = useGetProfileList([major.toUpperCase()]);
 
-  const openProfileDetailModal = (userCode: number) => {
+  const openProfileDetailModal = (profileId: number) => {
     overlay.open(({ isOpen, close }) => (
-      <ProfileDetailModal isOpen={isOpen} onClose={close} userCode={userCode} />
+      <ProfileDetailModal isOpen={isOpen} onClose={close} profileId={profileId} />
     ));
   };
 
   return profileList.length > 0 ? (
     <StyledProfileList>
-      {profileList.map((studentProfile) => {
-        const cardinal = studentProfile.admissionYear - 2020;
-
+      {profileList.map((profile) => {
         return (
           <ProfileCard
-            onClick={() => openProfileDetailModal(studentProfile.userId)}
-            name={studentProfile.name}
-            imageUrl={studentProfile.imageUrl}
-            cardinal={cardinal}
-            major={studentProfile.major}
-            isRecruited={studentProfile.isRecruited}
-            company={studentProfile.company}
-            introduction={studentProfile.introduction}
+            onClick={() => openProfileDetailModal(profile.id)}
+            name={profile.name}
+            imageUrl={profile.imageUrl}
+            cardinal={profile.cardinal}
+            major={profile.major}
+            isRecruited={profile.isRecruited}
+            company={profile.company}
+            introduction={profile.introduction}
           />
         );
       })}

@@ -8,11 +8,11 @@ import { withSuspense } from '@/hocs/withSuspense';
 import { useGetStudentProfile } from '@/hooks/api/student-profile/useGetStudentProfile';
 
 type ProfileDetailContentsProps = {
-  userCode: number;
+  profileId: number;
 };
 
-const ProfileDetailContents = ({ userCode }: ProfileDetailContentsProps) => {
-  const { studentProfileData } = useGetStudentProfile(userCode);
+const ProfileDetailContents = ({ profileId }: ProfileDetailContentsProps) => {
+  const { studentProfileData } = useGetStudentProfile(profileId);
 
   const profileImage = getUserProfileImage(studentProfileData?.profileUrl);
 

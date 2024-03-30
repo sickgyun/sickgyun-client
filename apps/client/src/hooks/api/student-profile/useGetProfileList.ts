@@ -2,7 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
 
 export type Profile = {
-  userId: number;
+  id: number;
   name: string;
   admissionYear: number;
   imageUrl: string;
@@ -10,6 +10,7 @@ export type Profile = {
   introduction: string;
   company: string;
   isRecruited: boolean;
+  cardinal: number;
 };
 
 export const PROFILE_LIST_QUERY_KEY = 'profileList';
