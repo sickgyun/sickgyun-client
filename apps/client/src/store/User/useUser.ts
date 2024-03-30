@@ -4,7 +4,7 @@ import { isLoginState } from './isLoginState';
 import { userAtomState } from './userAtomState';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUser } from '@/hooks/api/user/useGetUser';
-import { Storage } from '@/libs/storage';
+import { Storage } from '@/libs/api/storage';
 
 export const useUser = () => {
   const { user } = useGetUser();
