@@ -4,14 +4,12 @@ import { Button, Flex } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { isLoginState, useUser } from '@/store/user';
+import { isLoginAtom, useUser } from '@/store/user';
 
 const Header = () => {
   const router = useRouter();
-
-  const setIsLogin = useSetAtom(isLoginState);
-
-  const { isLogin } = useUser();
+  const setIsLogin = useSetAtom(isLoginAtom);
+  const user = useUser();
 
   const handleLogin = () => {
     if (!process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL) return;
@@ -39,7 +37,7 @@ const Header = () => {
           style={{ cursor: 'pointer' }}
           alt="Logo"
         />
-        {isLogin ? (
+        {user.isLogin ? (
           <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
             로그아웃
           </Button>

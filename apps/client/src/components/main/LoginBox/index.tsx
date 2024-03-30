@@ -7,7 +7,7 @@ import { useUser } from '@/store/user';
 
 const LoginBox = () => {
   const router = useRouter();
-  const { isLogin, user } = useUser();
+  const user = useUser();
 
   const handleLogin = () => {
     router.push(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
@@ -23,7 +23,7 @@ const LoginBox = () => {
 
   return (
     <StyledLoginBox>
-      {isLogin ? (
+      {user.isLogin ? (
         <StyledLoginSuccessBox>
           <Stack spacing={6}>
             <Stack direction="horizontal" align="center" spacing={2}>

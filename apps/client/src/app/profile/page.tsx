@@ -13,7 +13,7 @@ import { useUser } from '@/store/user';
 const StudentProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const { isLogin, user } = useUser();
+  const user = useUser();
   const majorQueryParameter = params.get('major');
 
   const handleMajorButtonClick = (major: string) => {
@@ -45,7 +45,7 @@ const StudentProfilePage = () => {
         </StyledStudentProfilePage>
       </StyledStudentProfilePageLayout>
       <Footer />
-      {isLogin ? (
+      {user.isLogin ? (
         <ProfileActionButton actionType={user.hasCreatedProfile ? 'update' : 'create'} />
       ) : null}
     </>

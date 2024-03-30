@@ -13,7 +13,6 @@ export const useUser = () => {
 
   useEffect(() => {
     const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
-
     setIsLogin(Boolean(accessToken));
 
     if (userQuery.data) {
@@ -21,5 +20,5 @@ export const useUser = () => {
     }
   }, [setIsLogin, setUser, userQuery.data]);
 
-  return { isLogin, user };
+  return { isLogin, ...user };
 };

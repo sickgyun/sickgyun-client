@@ -18,13 +18,13 @@ import { useCreateProfile } from '@/hooks/api/profile/useCreateProfile';
 import { useUser } from '@/store/user/useUser';
 
 const ProfileCreateModal = ({ isOpen, onClose }: ModalProps) => {
-  const { user } = useUser();
+  const user = useUser();
   const { register, handleSubmit: handleCreateProfileSubmit } =
     useForm<CreateProfileRequest>();
   const { mutate: createProfileMutate } = useCreateProfile();
 
   const onCreateProfile: SubmitHandler<CreateProfileRequest> = (data) => {
-    const profile = { isRecruited: user.isGraduated, ...data };
+    const profile = { isGraduated: user.isGraduated, ...data };
 
     createProfileMutate(profile);
     onClose();
