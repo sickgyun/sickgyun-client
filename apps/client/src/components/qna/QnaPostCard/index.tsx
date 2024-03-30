@@ -29,7 +29,7 @@ const QnaPostCard = ({
   const router = useRouter();
 
   const handleGoQnaDetailPage = (id: number) => {
-    router.push(`/qna-post/${id}`);
+    router.push(`/qna/${id}`);
   };
   return (
     <StyledQnaPostCard onClick={() => handleGoQnaDetailPage(id)}>

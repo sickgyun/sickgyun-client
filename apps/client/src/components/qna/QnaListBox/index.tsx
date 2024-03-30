@@ -12,7 +12,7 @@ const QnaListBox = () => {
   const [selectedQna, setSelectedQna] = useState(0);
 
   const handleGoDetailPage = (id: number) => {
-    router.push(`/qna-post/${id}`);
+    router.push(`/qna/${id}`);
   };
 
   return (
