@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
+import { cache } from 'react';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { get } from '@/libs/api/client';
 import { Storage } from '@/libs/api/storage';
 
 export type User = {
   id: number;
-  name?: string;
+  name: string;
   email: string;
+  hasCreatedProfile: boolean;
   isGraduated?: boolean;
   cardinal?: number;
 };
@@ -18,7 +20,7 @@ export const useGetUser = () => {
 
   const userQuery = useQuery<User>({
     queryKey: [USER_QUERY_KEY],
-    queryFn: async () => await get<User>('/api/user'),
+    queryFn: cache(async () => await get<User>('/api/user')),
     enabled: Boolean(accessToken),
   });
 

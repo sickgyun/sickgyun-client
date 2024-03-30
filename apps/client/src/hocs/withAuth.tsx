@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import type { ReactNode } from 'react';
-import { useUser } from '@/store/User';
+import { useUser } from '@/store/user';
 
 export const withAuth = (Component: () => ReactNode) => {
   const WrappedComponent = () => {

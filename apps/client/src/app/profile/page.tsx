@@ -8,12 +8,12 @@ import Header from '@/components/common/Header';
 import ProfileActionButton from '@/components/profile/ProfileActionButton';
 import ProfileList from '@/components/profile/ProfileList';
 import { MAJOR_LIST } from '@/constants/profile';
-import { useUser } from '@/store/User';
+import { useUser } from '@/store/user';
 
 const StudentProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const { isLogin } = useUser();
+  const { isLogin, user } = useUser();
   const majorQueryParameter = params.get('major');
 
   const handleMajorButtonClick = (major: string) => {
@@ -45,7 +45,9 @@ const StudentProfilePage = () => {
         </StyledStudentProfilePage>
       </StyledStudentProfilePageLayout>
       <Footer />
-      {isLogin ? <ProfileActionButton actionType="create" /> : null}
+      {isLogin ? (
+        <ProfileActionButton actionType={user.hasCreatedProfile ? 'update' : 'create'} />
+      ) : null}
     </>
   );
 };

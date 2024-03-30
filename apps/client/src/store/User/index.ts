@@ -1,3 +1,3 @@
 export { useUser } from './useUser';
-export { userAtomState } from './userAtomState';
-export { isLoginState } from './isLoginState';
+export { userAtomState } from './userAtom';
+export { isLoginState } from './isLoginAtom';
