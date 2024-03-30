@@ -13,8 +13,8 @@ import {
 } from '@sickgyun/ui';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import type { CreateProfileRequest } from '@/hooks/api/student-profile/useCreateProfile';
-import { useCreateProfile } from '@/hooks/api/student-profile/useCreateProfile';
+import type { CreateProfileRequest } from '@/hooks/api/profile/useCreateProfile';
+import { useCreateProfile } from '@/hooks/api/profile/useCreateProfile';
 import { useUser } from '@/store/User/useUser';
 
 const ProfileCreateModal = ({ isOpen, onClose }: ModalProps) => {

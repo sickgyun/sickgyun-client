@@ -4,7 +4,7 @@ import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { withSuspense } from '@/hocs/withSuspense';
-import { useGetProfile } from '@/hooks/api/student-profile/useGetProfile';
+import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 
 type ProfileDetailFormProps = {
   profileId: number;

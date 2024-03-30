@@ -5,7 +5,7 @@ import React from 'react';
 import ProfileCard from '../ProfileCard';
 import ProfileDetailModal from '../ProfileDetailModal';
 import { withSuspense } from '@/hocs/withSuspense';
-import { useGetProfileList } from '@/hooks/api/student-profile/useGetProfileList';
+import { useGetProfileList } from '@/hooks/api/profile/useGetProfileList';
 
 type ProfileListProps = {
   major: string;

@@ -5,8 +5,8 @@ import { Button, Stack } from '@sickgyun/ui';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import ProfileActionButton from '@/components/student-profile/ProfileActionButton';
-import ProfileList from '@/components/student-profile/ProfileList';
+import ProfileActionButton from '@/components/profile/ProfileActionButton';
+import ProfileList from '@/components/profile/ProfileList';
 import { MAJOR_LIST } from '@/constants/profile';
 import { useUser } from '@/store/User';
 
