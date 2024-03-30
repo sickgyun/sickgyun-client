@@ -38,7 +38,7 @@ const ProfileDetailForm = ({ profileId }: ProfileDetailFormProps) => {
         />
         <Stack spacing={4}>
           <Stack direction="horizontal" align="center" spacing={6}>
-            <Text fontType="h3">{profile?.name}</Text>
+            <Text fontType="h3">{profile.name}</Text>
             <Text fontType="body2" color="gray600">
               {profile.cardinal}기
             </Text>
