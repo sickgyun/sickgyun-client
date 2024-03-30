@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { isLoginAtom } from './isLoginAtom';
-import { userAtom } from './userAtom';
+import { isLoginAtom } from '../../store/user/isLoginAtom';
+import { userAtom } from '../../store/user/userAtom';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUser } from '@/hooks/api/user/useGetUser';
 import { Storage } from '@/libs/api/storage';

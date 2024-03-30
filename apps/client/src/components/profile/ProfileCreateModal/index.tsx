@@ -15,7 +15,7 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import type { CreateProfileRequest } from '@/hooks/api/profile/useCreateProfile';
 import { useCreateProfile } from '@/hooks/api/profile/useCreateProfile';
-import { useUser } from '@/store/user/useUser';
+import { useUser } from '@/hooks/common/useUser';
 
 const ProfileCreateModal = ({ isOpen, onClose }: ModalProps) => {
   const user = useUser();
