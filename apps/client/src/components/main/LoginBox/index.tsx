@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@/store/user';
+import { useUser } from '@/hooks/common/useUser';
 
 const LoginBox = () => {
   const router = useRouter();

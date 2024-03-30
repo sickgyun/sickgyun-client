@@ -8,7 +8,7 @@ import Header from '@/components/common/Header';
 import ProfileActionButton from '@/components/profile/ProfileActionButton';
 import ProfileList from '@/components/profile/ProfileList';
 import { MAJOR_LIST } from '@/constants/profile';
-import { useUser } from '@/store/user';
+import { useUser } from '@/hooks/common/useUser';
 
 const StudentProfilePage = () => {
   const router = useRouter();

@@ -4,7 +4,8 @@ import { Button, Flex } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { isLoginAtom, useUser } from '@/store/user';
+import { useUser } from '@/hooks/common/useUser';
+import { isLoginAtom } from '@/store/user';
 
 const Header = () => {
   const router = useRouter();
