@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
+import { isEmpty } from 'lodash';
 import React from 'react';
 import ProfileCard from '../ProfileCard';
 import ProfileDetailModal from '../ProfileDetailModal';
@@ -21,7 +22,7 @@ const ProfileList = ({ major }: ProfileListProps) => {
     ));
   };
 
-  return profileList.length > 0 ? (
+  return !isEmpty(profileList) ? (
     <StyledProfileList>
       {profileList.map((profile) => {
         return (
