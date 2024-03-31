@@ -6,7 +6,7 @@ import {
   ModalHeader,
   Text,
 } from '@sickgyun/ui';
-import ProfileDetailContents from '../ProfileDetailContent';
+import ProfileDetailContent from '../ProfileDetailContent';
 
 type ProfileDetailModalProps = {
   profileId: number;
@@ -21,7 +21,7 @@ const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalPr
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
-          <ProfileDetailContents profileId={profileId} />
+          <ProfileDetailContent profileId={profileId} />
         </ModalBody>
       </ModalContent>
     </Modal>
