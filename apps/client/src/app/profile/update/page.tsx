@@ -2,7 +2,6 @@
 
 import styled from '@emotion/styled';
 import { Button, Spacer, Text } from '@sickgyun/ui';
-import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import Footer from '@/components/common/Footer';
@@ -14,7 +13,6 @@ import type { UpdateProfileRequest } from '@/hooks/api/profile/useUpdateProfile'
 import { useUser } from '@/hooks/common/useUser';
 
 const ProfileUpdatePage = () => {
-  const router = useRouter();
   const user = useUser();
   const { register, handleSubmit: handleUpdateProfileSubmit } =
     useForm<UpdateProfileRequest>();
@@ -26,24 +24,19 @@ const ProfileUpdatePage = () => {
     updateProfileMutate(profile);
   };
 
-  const handleProfileUpdate = () => {
-    handleUpdateProfileSubmit(onUpdateProfile);
-    router.replace('/profile');
-  };
-
   return (
     <>
       <Header />
       <StyledProfileUpdatePageLayout>
         <Spacer height={32} />
-        <StyledProfileFormContainer>
+        <StyledProfileFormContainer onSubmit={handleUpdateProfileSubmit(onUpdateProfile)}>
           <Text fontType="h1" color="gray900">
             프로필 수정
           </Text>
           <Spacer height={32} />
           <ProfileForm user={user} register={register} defaultValues={profileMine} />
           <Spacer height={48} />
-          <Button onClick={handleProfileUpdate} size="large">
+          <Button type="submit" size="large">
             프로필 수정
           </Button>
         </StyledProfileFormContainer>
@@ -62,7 +55,7 @@ const StyledProfileUpdatePageLayout = styled.div`
   height: 100%;
 `;
 
-const StyledProfileFormContainer = styled.div`
+const StyledProfileFormContainer = styled.form`
   width: 600px;
   margin: 0 auto;
 `;
