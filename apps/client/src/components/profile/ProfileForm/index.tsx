@@ -1,6 +1,5 @@
 import { Input, Select, Stack, Textarea } from '@sickgyun/ui';
 import type { UseFormRegister } from 'react-hook-form';
-import { withSuspense } from '@/hocs/withSuspense';
 import type { Profile } from '@/types/profile';
 import { ProfileForm } from '@/types/profile';
 import type { User } from '@/types/user';
@@ -69,4 +68,4 @@ const ProfileForm = ({ user, register, defaultValues }: ProfileFormProps) => {
   );
 };
 
-export default withSuspense(ProfileForm);
+export default ProfileForm;
