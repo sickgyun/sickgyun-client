@@ -2,34 +2,20 @@ import styled from '@emotion/styled';
 import { IconAddFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Text } from '@sickgyun/ui';
-import { useOverlay } from '@toss/use-overlay';
-import ProfileCreateModal from '../ProfileCreateModal';
-import ProfileUpdateModal from '../ProfileUpdateModal';
+import { useRouter } from 'next/navigation';
 
 type ProfileActionButtonProps = {
   actionType: 'create' | 'update';
 };
 
 const ProfileActionButton = ({ actionType }: ProfileActionButtonProps) => {
-  const overlay = useOverlay();
-
-  const openProfileCreateModal = () => {
-    overlay.open(({ isOpen, close }) => (
-      <ProfileCreateModal isOpen={isOpen} onClose={close} />
-    ));
-  };
-
-  const openProfileUpdateModal = () => {
-    overlay.open(({ isOpen, close }) => (
-      <ProfileUpdateModal isOpen={isOpen} onClose={close} />
-    ));
-  };
+  const router = useRouter();
 
   const handleActionButtonClick = () => {
     if (actionType === 'create') {
-      openProfileCreateModal();
+      router.push('/profile/create');
     } else {
-      openProfileUpdateModal();
+      router.push('/profile/update');
     }
   };
 

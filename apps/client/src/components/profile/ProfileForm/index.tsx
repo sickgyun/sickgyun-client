@@ -1,4 +1,4 @@
-import { Input, Select, Stack } from '@sickgyun/ui';
+import { Input, Select, Stack, Textarea } from '@sickgyun/ui';
 import type { UseFormRegister } from 'react-hook-form';
 import { withSuspense } from '@/hocs/withSuspense';
 import type { Profile } from '@/types/profile';
@@ -14,27 +14,25 @@ type ProfileFormProps = {
 const ProfileForm = ({ user, register, defaultValues }: ProfileFormProps) => {
   return (
     <Stack spacing={16} style={{ width: '100%' }}>
-      <Stack direction="horizontal" spacing={8}>
-        <Input
-          label="이름"
-          value={user.name}
-          placeholder="이름을 입력해주세요."
-          disabled={true}
-        />
-        <Input
-          label="이메일"
-          value={user.email}
-          placeholder="이메일을 적어주세요."
-          disabled={true}
-        />
-      </Stack>
+      <Input
+        label="이름"
+        value={user.name}
+        placeholder="이름을 입력해주세요."
+        disabled={true}
+      />
+      <Input
+        label="이메일"
+        value={user.email}
+        placeholder="이메일을 적어주세요."
+        disabled={true}
+      />
       <Input
         label="깃허브 아이디"
         placeholder="깃허브 아이디를 입력해주세요."
         defaultValue={defaultValues?.githubId}
         {...register('githubId')}
       />
-      <Input
+      <Textarea
         label="소개 말"
         placeholder="소개 말을 적어주세요."
         defaultValue={defaultValues?.introduction}

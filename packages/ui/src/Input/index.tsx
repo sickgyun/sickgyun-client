@@ -49,12 +49,13 @@ const StyledInputWrapper = styled.div<{ width?: string }>`
 
 const StyledInput = styled.input<InputProps>`
   width: 100%;
-  height: 48px;
+  height: 54px;
   border-radius: 16px;
   padding-left: 16px;
   padding-right: 16px;
   outline: none;
   ${({ theme, hasError }) => css`
+    ${theme.fonts.body1}
     border: 1.5px solid ${hasError ? theme.colors.red : theme.colors.gray400};
     background-color: ${theme.colors.white};
     color: ${theme.colors.black};

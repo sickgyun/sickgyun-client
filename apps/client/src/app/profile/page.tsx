@@ -10,7 +10,7 @@ import ProfileList from '@/components/profile/ProfileList';
 import { MAJOR_LIST } from '@/constants/profile';
 import { useUser } from '@/hooks/common/useUser';
 
-const StudentProfilePage = () => {
+const ProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const user = useUser();
@@ -23,8 +23,8 @@ const StudentProfilePage = () => {
   return (
     <>
       <Header />
-      <StyledStudentProfilePageLayout>
-        <StyledStudentProfilePage>
+      <StyledProfilePageLayout>
+        <StyledProfilePage>
           <Stack
             direction="horizontal"
             align="center"
@@ -42,8 +42,8 @@ const StudentProfilePage = () => {
             ))}
           </Stack>
           <ProfileList major={majorQueryParameter} />
-        </StyledStudentProfilePage>
-      </StyledStudentProfilePageLayout>
+        </StyledProfilePage>
+      </StyledProfilePageLayout>
       <Footer />
       {user.isLogin ? (
         <ProfileActionButton actionType={user.hasCreatedProfile ? 'update' : 'create'} />
@@ -52,15 +52,15 @@ const StudentProfilePage = () => {
   );
 };
 
-export default StudentProfilePage;
+export default ProfilePage;
 
-const StyledStudentProfilePageLayout = styled.div`
+const StyledProfilePageLayout = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   width: 100vw;
   min-height: 100vh;
 `;
 
-const StyledStudentProfilePage = styled(Stack)`
+const StyledProfilePage = styled(Stack)`
   margin: 0 auto;
   padding-top: 48px;
   padding-bottom: 64px;
