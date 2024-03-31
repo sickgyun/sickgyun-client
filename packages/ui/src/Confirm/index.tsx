@@ -29,7 +29,7 @@ export const Confirm = forwardRef(function Confirm(
     confirmButtonText = '확인',
     title,
     description,
-    width = '600px',
+    width = '450px',
     height = 'auto',
     children,
     ...props
@@ -49,7 +49,7 @@ export const Confirm = forwardRef(function Confirm(
         <Stack spacing={8}>
           <Text fontType="h2">{title}</Text>
           {description && (
-            <Text fontType="p3" color="gray600">
+            <Text fontType="p2" color="gray600">
               {description}
             </Text>
           )}
