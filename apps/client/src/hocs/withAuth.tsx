@@ -1,14 +1,14 @@
 import { useRouter } from 'next/navigation';
 import type { ReactNode } from 'react';
-import { useUser } from '@/store/User';
+import { useUser } from '@/hooks/common/useUser';
 
 export const withAuth = (Component: () => ReactNode) => {
   const WrappedComponent = () => {
     const router = useRouter();
-    const { isLogin } = useUser();
+    const user = useUser();
 
     if (typeof window !== 'undefined') {
-      if (isLogin) {
+      if (user.isLogin) {
         return <Component />;
       } else {
         router.replace('/');

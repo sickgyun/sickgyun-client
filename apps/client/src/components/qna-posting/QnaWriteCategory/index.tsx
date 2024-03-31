@@ -4,7 +4,7 @@ import { useSetAtom } from 'jotai';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
 import { QNA_WRITE_CATEGORY } from '@/constants/qna-write';
-import { checkedCategory } from '@/store/Qna';
+import { checkedCategory } from '@/store/qna';
 
 const QnaWriteCategory = () => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(3);

@@ -3,7 +3,7 @@ import axios, { isAxiosError } from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { ApiException, CustomException, errorMessage } from '../exceptions';
 import type { ApiErrorScheme } from '../exceptions';
-import { Storage } from '../storage';
+import { Storage } from './storage';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 
 const DEVELOPMENT_API_URL = process.env.NEXT_PUBLIC_BASE_URL;

@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import Header from '@/components/common/Header';
 import QnaWriteCategory from '@/components/qna-posting/QnaWriteCategory';
-import { checkedCategory } from '@/store/Qna';
+import { checkedCategory } from '@/store/qna';
 
 type QnaWriteFormProps = {
   title: string;
