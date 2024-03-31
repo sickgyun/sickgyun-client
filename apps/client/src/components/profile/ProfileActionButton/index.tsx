@@ -4,6 +4,7 @@ import { colors } from '@sickgyun/design-token';
 import { Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import ProfileCreateModal from '../ProfileCreateModal';
+import ProfileUpdateModal from '../ProfileUpdateModal';
 
 type ProfileActionButtonProps = {
   actionType: 'create' | 'update';
@@ -18,10 +19,22 @@ const ProfileActionButton = ({ actionType }: ProfileActionButtonProps) => {
     ));
   };
 
+  const openProfileUpdateModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <ProfileUpdateModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
+  const handleActionButtonClick = () => {
+    if (actionType === 'create') {
+      openProfileCreateModal();
+    } else {
+      openProfileUpdateModal();
+    }
+  };
+
   return (
-    <StyledProfileActionButton
-      onClick={actionType === 'create' ? openProfileCreateModal : null}
-    >
+    <StyledProfileActionButton onClick={handleActionButtonClick}>
       {actionType === 'create' ? (
         <>
           <Text fontType="h3" color="white">

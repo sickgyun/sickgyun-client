@@ -6,11 +6,11 @@ import Image from 'next/image';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 
-type ProfileDetailFormProps = {
+type ProfileDetailContentProps = {
   profileId: number;
 };
 
-const ProfileDetailForm = ({ profileId }: ProfileDetailFormProps) => {
+const ProfileDetailContent = ({ profileId }: ProfileDetailContentProps) => {
   const { profile } = useGetProfile(profileId);
 
   const handleGoGithub = () => {
@@ -22,7 +22,7 @@ const ProfileDetailForm = ({ profileId }: ProfileDetailFormProps) => {
   };
 
   return (
-    <StyledProfileDetailForm>
+    <StyledProfileDetailContent>
       <Stack
         direction="horizontal"
         spacing={24}
@@ -91,13 +91,13 @@ const ProfileDetailForm = ({ profileId }: ProfileDetailFormProps) => {
           )}
         </Stack>
       </Stack>
-    </StyledProfileDetailForm>
+    </StyledProfileDetailContent>
   );
 };
 
-export default withSuspense(ProfileDetailForm);
+export default withSuspense(ProfileDetailContent);
 
-const StyledProfileDetailForm = styled.div`
+const StyledProfileDetailContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
