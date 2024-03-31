@@ -27,7 +27,7 @@ const ProfileCard = ({
     <StyledProfileCard onClick={onClick}>
       <Stack
         direction="horizontal"
-        align="center "
+        align="center"
         spacing={24}
         style={{ height: '100%' }}
       >

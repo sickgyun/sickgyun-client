@@ -1,4 +1,5 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { PROFILE_LIST_QUERY_KEY } from './useGetProfileList';
 import { post } from '@/libs/api/client';
 
 export type CreateProfileRequest = {
@@ -13,10 +14,12 @@ export type CreateProfileRequest = {
 };
 
 export const useCreateProfile = () => {
+  const queryClinet = useQueryClient();
+
   return useMutation<unknown, unknown, CreateProfileRequest>({
     mutationFn: (data: CreateProfileRequest) => post('/api/profiles', data),
     onSuccess: () => {
-      alert('프로필 등록 성공');
+      queryClinet.invalidateQueries({ queryKey: [PROFILE_LIST_QUERY_KEY] });
     },
     onError: () => {
       alert('프로필 등록 실패');

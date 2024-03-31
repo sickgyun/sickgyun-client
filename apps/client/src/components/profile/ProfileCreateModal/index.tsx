@@ -13,18 +13,18 @@ import {
 } from '@sickgyun/ui';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import type { CreateProfileRequest } from '@/hooks/api/student-profile/useCreateProfile';
-import { useCreateProfile } from '@/hooks/api/student-profile/useCreateProfile';
-import { useUser } from '@/store/User/useUser';
+import type { CreateProfileRequest } from '@/hooks/api/profile/useCreateProfile';
+import { useCreateProfile } from '@/hooks/api/profile/useCreateProfile';
+import { useUser } from '@/hooks/common/useUser';
 
 const ProfileCreateModal = ({ isOpen, onClose }: ModalProps) => {
-  const { user } = useUser();
+  const user = useUser();
   const { register, handleSubmit: handleCreateProfileSubmit } =
     useForm<CreateProfileRequest>();
   const { mutate: createProfileMutate } = useCreateProfile();
 
   const onCreateProfile: SubmitHandler<CreateProfileRequest> = (data) => {
-    const profile = { isRecruited: user.isGraduated, ...data };
+    const profile = { isGraduated: user.isGraduated, ...data };
 
     createProfileMutate(profile);
     onClose();

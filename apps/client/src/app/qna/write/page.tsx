@@ -12,9 +12,9 @@ import Header from '@/components/common/Header';
 import QnaWriteCategory from '@/components/qna-posting/QnaWriteCategory';
 import { useCreateQna } from '@/hooks/api/qna/useCreateQna';
 import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
-import { checkedCategory } from '@/store/Qna';
+import { checkedCategory } from '@/store/qna';
 
-const QnaWriteObject = yup.object({
+const QnaWriteForm = yup.object({
   title: yup.string().required('제목을 입력해주세요.'),
   content: yup.string().required('내용을 입력해주세요.'),
   category: yup.string(),
@@ -29,7 +29,7 @@ const QnaWritePage = () => {
     formState,
     setValue,
   } = useForm({
-    resolver: yupResolver(QnaWriteObject),
+    resolver: yupResolver(QnaWriteForm),
     mode: 'onSubmit',
   });
 

@@ -18,7 +18,7 @@ const MainPage = () => {
   const router = useRouter();
 
   const hanldeGoStudentProfilePage = (major: string) => {
-    router.push(`/student-profile?major=${major}`);
+    router.push(`/profile?major=${major}`);
   };
 
   const handleGoQnaPage = () => {
