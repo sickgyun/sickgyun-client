@@ -1,17 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { PROFILE_LIST_QUERY_KEY } from './useGetProfileList';
 import { post } from '@/libs/api/client';
+import type { ProfileForm } from '@/types/profile';
 
-export type CreateProfileRequest = {
-  major: string;
-  isRecruited: boolean;
-  githubId?: string;
-  company?: string;
-  imageUrl?: string;
-  introduction?: string;
-  resumeUrl?: string;
-  portfolioUrl?: string;
-};
+export type CreateProfileRequest = ProfileForm;
 
 export const useCreateProfile = () => {
   const queryClinet = useQueryClient();
