@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 import { IconChevronRightFill, IconSettingFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Flex, Stack, Text } from '@sickgyun/ui';
+import { Flex, Spinner, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
+import FullHeight from '@/components/common/FullHeight';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 import { useUser } from '@/hooks/common/useUser';
@@ -153,7 +154,11 @@ const ProfileDetailContent = ({
   );
 };
 
-export default withSuspense(ProfileDetailContent);
+export default withSuspense(ProfileDetailContent, () => (
+  <FullHeight>
+    <Spinner />
+  </FullHeight>
+));
 
 const StyledProfileDetailContent = styled.div`
   display: flex;
