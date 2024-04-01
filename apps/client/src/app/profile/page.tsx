@@ -2,7 +2,9 @@
 
 import styled from '@emotion/styled';
 import { Button, Stack } from '@sickgyun/ui';
+import { isNil } from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useLayoutEffect } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import ProfileActionButton from '@/components/profile/ProfileActionButton';
@@ -10,14 +12,22 @@ import ProfileList from '@/components/profile/ProfileList';
 import { MAJOR_LIST } from '@/constants/profile';
 import { withAuth } from '@/hocs/withAuth';
 import { useUser } from '@/hooks/common/useUser';
+import type { Major } from '@/types/profile';
 
 const ProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const user = useUser();
-  const majorQueryParameter = params.get('major');
+  const selectedMajor = params.get('major') as Major;
 
-  const handleMajorSelected = (major: string) => {
+  useLayoutEffect(() => {
+    if (isNil(selectedMajor)) {
+      router.replace('/profile?major=ALL');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleMajorSelected = (major: Major) => {
     router.replace(`/profile?major=${major}`);
   };
 
@@ -35,14 +45,14 @@ const ProfilePage = () => {
             {MAJOR_LIST.map((major) => (
               <Button
                 styleType="quaternary"
-                onClick={() => handleMajorSelected(major.queryParameter)}
-                isActive={major.queryParameter === majorQueryParameter}
+                onClick={() => handleMajorSelected(major.value)}
+                isActive={major.value === selectedMajor}
               >
                 {major.name}
               </Button>
             ))}
           </Stack>
-          <ProfileList major={majorQueryParameter} />
+          <ProfileList major={selectedMajor} />
         </StyledProfilePage>
       </StyledProfilePageLayout>
       <Footer />

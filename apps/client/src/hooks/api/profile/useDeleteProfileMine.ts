@@ -15,7 +15,7 @@ export const useDeleteProfile = () => {
       queryClient.invalidateQueries({ queryKey: [PROFILE_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [PROFILE_MINE_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
-      router.replace('/profile?major=all');
+      router.replace('/profile');
     },
   });
 };

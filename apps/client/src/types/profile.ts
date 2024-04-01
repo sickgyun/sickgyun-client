@@ -6,7 +6,7 @@ export type Profile = {
   imageUrl: string;
   isGraduated: boolean;
   isRecruited: boolean;
-  major: string;
+  major: Major;
   githubId?: string;
   resumeUrl?: string;
   portfolioUrl?: string;
@@ -15,7 +15,7 @@ export type Profile = {
 };
 
 export type ProfileForm = {
-  major: string;
+  major: Major;
   isRecruited: boolean;
   githubId?: string;
   company?: string;
@@ -24,3 +24,5 @@ export type ProfileForm = {
   resumeUrl?: string;
   portfolioUrl?: string;
 };
+
+export type Major = 'ALL' | 'FRONTEND' | 'BACKEND' | 'EMBEDDED' | 'GAME' | 'ETC';

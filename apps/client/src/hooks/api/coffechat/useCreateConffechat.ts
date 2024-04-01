@@ -13,7 +13,7 @@ export const useCreateCoffechat = (userId: number) => {
     mutationFn: (data: CreateCoffechatRequest) => post(`/api/coffeechat/${userId}`, data),
     onSuccess: () => {
       alert('커피챗 요청이 보내졌어요!');
-      router.replace('/profile?major=all');
+      router.replace('/profile');
     },
   });
 };

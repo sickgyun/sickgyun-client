@@ -2,20 +2,34 @@
 
 import styled from '@emotion/styled';
 import { Button, Spacer, Stack, Text } from '@sickgyun/ui';
-import { useState } from 'react';
+import { isNil } from 'lodash';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useLayoutEffect } from 'react';
 import CoffechatList from '@/components/coffechat/CoffechatList';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import type { CoffechatNotificationType } from '@/types/coffechat';
 
 const NotificationPage = () => {
-  const [coffechatNotificationType, setCoffechatNotificationType] =
-    useState<CoffechatNotificationType>('REQUEST');
+  const router = useRouter();
+  const params = useSearchParams();
+  const coffechatNotificationType = params.get(
+    'coffechatNotificationType'
+  ) as CoffechatNotificationType;
+
+  useLayoutEffect(() => {
+    if (isNil(coffechatNotificationType)) {
+      router.replace('/notification?coffechatNotificationType=REQUEST');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleCoffechatNotificationTypeSelected = (
     coffechatNotificationType: CoffechatNotificationType
   ) => {
-    setCoffechatNotificationType(coffechatNotificationType);
+    router.replace(
+      `/notification?coffechatNotificationType=${coffechatNotificationType}`
+    );
   };
 
   return (
