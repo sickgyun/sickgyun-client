@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Flex, Link, Stack, Text } from '@sickgyun/ui';
+import { Flex, Link, Spacer, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
@@ -37,16 +37,12 @@ const MainPage = () => {
       <Header />
       <StyledMainPageLayout>
         <StyledMainPage>
-          <Stack
-            direction="horizontal"
-            align="center"
-            spacing={36}
-            style={{ marginBottom: '84px' }}
-          >
+          <Stack direction="horizontal" align="center" spacing={36}>
             <MainBanner banners={renderBanners()} />
             <LoginBox />
           </Stack>
-          <Stack spacing={18} style={{ marginBottom: '64px' }}>
+          <Spacer height={84} />
+          <Stack spacing={18}>
             <Text fontType="h3">
               진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
             </Text>
@@ -66,7 +62,8 @@ const MainPage = () => {
               ))}
             </Flex>
           </Stack>
-          <Stack style={{ marginBottom: '64px' }}>
+          <Spacer height={64} />
+          <Stack>
             <Text fontType="h3">뭘 해야 할지 모르겠다고요? 조언을 구해봐요!</Text>
             <StyledQnaBannerImage
               onClick={handleGoQnaPage}
@@ -74,7 +71,8 @@ const MainPage = () => {
               alt="Qna Banner"
             />
           </Stack>
-          <Stack direction="vertical" spacing={18} style={{ marginBottom: '64px' }}>
+          <Spacer height={64} />
+          <Stack direction="vertical">
             <Flex align="center" justify="space-between">
               <Text fontType="h3">채용 중인 회사에요!</Text>
               <Link href={JOB_POSTING_FULL_VIEW_LINK} fontType="p1" color="gray750">
@@ -83,6 +81,7 @@ const MainPage = () => {
             </Flex>
             <RecuritList />
           </Stack>
+          <Spacer height={64} />
         </StyledMainPage>
       </StyledMainPageLayout>
       <Footer />

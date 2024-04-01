@@ -45,7 +45,7 @@ const LoginBox = () => {
             </Text>
           </Stack>
           <Flex align="center" justify="space-between" style={{ width: '100%' }}>
-            <StyledNavigationLinkButton onClick={handleGoJumpit}>
+            <StyledNavigationButton onClick={handleGoJumpit}>
               <Image
                 src="/assets/images/jumpit.png"
                 width={24}
@@ -53,8 +53,8 @@ const LoginBox = () => {
                 alt="Jumpit"
               />
               <Text fontType="body2">점핏 바로가기</Text>
-            </StyledNavigationLinkButton>
-            <StyledNavigationLinkButton onClick={handleGoWanted}>
+            </StyledNavigationButton>
+            <StyledNavigationButton onClick={handleGoWanted}>
               <Image
                 src="/assets/images/wanted.png"
                 width={24}
@@ -62,7 +62,7 @@ const LoginBox = () => {
                 alt="Wanted"
               />
               <Text fontType="p2">원티드 바로가기</Text>
-            </StyledNavigationLinkButton>
+            </StyledNavigationButton>
           </Flex>
         </StyledLoginSuccessBox>
       ) : (
@@ -115,7 +115,7 @@ const StyledNotLoginBox = styled.div`
   width: 100%;
 `;
 
-const StyledNavigationLinkButton = styled.div`
+const StyledNavigationButton = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

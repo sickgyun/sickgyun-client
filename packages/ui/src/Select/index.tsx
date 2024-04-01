@@ -47,25 +47,26 @@ const StyledSelectWrapper = styled.div<{ width: string }>`
 
 const StyledSelect = styled.select`
   width: 100%;
-  height: 48px;
+  height: 54px;
   border-radius: 16px;
   padding-left: 16px;
   padding-right: 16px;
   border: none;
   outline: none;
-  -webkit-appearance: none; /* 크롬 화살표 없애기 */
-  -moz-appearance: none; /* 파이어폭스 화살표 없애기 */
-  appearance: none /* 화살표 없애기 */
-    ${({ theme }) => css`
-      color: ${theme.colors.black};
-      border: 1.5px solid ${theme.colors.gray400};
-      background-color: ${theme.colors.white};
-      ::placeholder {
-        ${theme.fonts.body1}
-        color: ${theme.colors.gray500};
-      }
-      &:focus {
-        border: 1.5px solid ${theme.colors.primary};
-      }
-    `};
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  ${({ theme }) => css`
+    ${theme.fonts.body1}
+    color: ${theme.colors.black};
+    border: 1.5px solid ${theme.colors.gray400};
+    background-color: ${theme.colors.white};
+    ::placeholder {
+      ${theme.fonts.body1}
+      color: ${theme.colors.gray500};
+    }
+    &:focus {
+      border: 1.5px solid ${theme.colors.primary};
+    }
+  `};
 `;

@@ -68,7 +68,7 @@ const ProfileDetailContent = ({ profileId }: ProfileDetailContentProps) => {
         <Text fontType="h3">정보</Text>
         <Stack spacing={12}>
           {profile?.githubId && (
-            <StyledNavigationLinkButton onClick={handleGoGithub}>
+            <StyledNavigationButton onClick={handleGoGithub}>
               <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
               <Flex align="center">
                 <Text fontType="body3" color="gray700">
@@ -76,10 +76,10 @@ const ProfileDetailContent = ({ profileId }: ProfileDetailContentProps) => {
                 </Text>
                 <IconChevronRightFill width={24} height={24} color={colors.gray700} />
               </Flex>
-            </StyledNavigationLinkButton>
+            </StyledNavigationButton>
           )}
           {profile?.email && (
-            <StyledNavigationLinkButton onClick={handleGoEmail}>
+            <StyledNavigationButton onClick={handleGoEmail}>
               <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
               <Flex align="center">
                 <Text fontType="body3" color="gray700">
@@ -87,7 +87,7 @@ const ProfileDetailContent = ({ profileId }: ProfileDetailContentProps) => {
                 </Text>
                 <IconChevronRightFill width={24} height={24} color={colors.gray700} />
               </Flex>
-            </StyledNavigationLinkButton>
+            </StyledNavigationButton>
           )}
         </Stack>
       </Stack>
@@ -116,7 +116,7 @@ const StyledIntroduceBox = styled.div`
   cursor: pointer;
 `;
 
-const StyledNavigationLinkButton = styled.div`
+const StyledNavigationButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
