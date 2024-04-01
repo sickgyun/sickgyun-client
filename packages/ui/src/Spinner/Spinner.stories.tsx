@@ -21,7 +21,6 @@ export default meta;
 
 export const Default: StoryObj<Spinner> = {
   args: {
-    size: 60,
     color: `${colors.primary}`,
   },
   render: (args) => <SpinnerComponent {...args} />,
