@@ -10,11 +10,11 @@ const ProfileDeleteConfirm = ({
   onClose,
   onProfileDetailModalClose,
 }: ProfileDeleteConfirmProps) => {
-  const { mutate: deleteMutate } = useDeleteProfile();
+  const { mutate: deleteProfileMutate } = useDeleteProfile();
 
   const handleProfileMineDelete = () => {
-    deleteMutate();
-    close();
+    deleteProfileMutate();
+    onClose();
     onProfileDetailModalClose();
   };
 
