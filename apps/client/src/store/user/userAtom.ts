@@ -8,4 +8,5 @@ export const userAtom = atom<User>({
   cardinal: 0,
   isGraduated: false,
   hasCreatedProfile: false,
+  profileId: 0,
 });

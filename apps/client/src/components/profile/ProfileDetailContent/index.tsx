@@ -7,6 +7,7 @@ import Image from 'next/image';
 import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
+import { useUser } from '@/hooks/common/useUser';
 
 type ProfileDetailContentProps = {
   profileId: number;
@@ -18,7 +19,9 @@ const ProfileDetailContent = ({
   onProfileDetailModalClose,
 }: ProfileDetailContentProps) => {
   const overlay = useOverlay();
+  const user = useUser();
   const { profile } = useGetProfile(profileId);
+  const isUserProfile = user.profileId === profile.id;
 
   const openDeleteProfileConfirm = () => {
     overlay.open(({ isOpen, close }) => (
@@ -66,7 +69,7 @@ const ProfileDetailContent = ({
                 {profile.cardinal}기
               </Text>
             </Stack>
-            <StyledSettingButton onClick={openDeleteProfileConfirm} />
+            {isUserProfile && <StyledSettingButton onClick={openDeleteProfileConfirm} />}
           </Stack>
           <Text fontType="body2" color="gray600">
             관심 있는 분야: {profile.major}

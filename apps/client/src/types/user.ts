@@ -5,4 +5,5 @@ export type User = {
   cardinal: number;
   hasCreatedProfile: boolean;
   isGraduated: boolean;
+  profileId?: number;
 };
