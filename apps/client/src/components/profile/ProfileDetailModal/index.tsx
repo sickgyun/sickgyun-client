@@ -23,7 +23,11 @@ const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalPr
 
   const openCoffechatConfirm = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffechatSendConfirm isOpen={isOpen} onClose={close} />
+      <CoffechatSendConfirm
+        isOpen={isOpen}
+        onClose={close}
+        onProfileDetailModalClose={onClose}
+      />
     ));
   };
 

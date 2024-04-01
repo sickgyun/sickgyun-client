@@ -5,9 +5,15 @@ import type { CreateCoffechatRequest } from '@/hooks/api/coffechat/useCreateConf
 import { useCreateCoffechat } from '@/hooks/api/coffechat/useCreateConffechat';
 import { useUser } from '@/hooks/common/useUser';
 
-type CoffechatSendConfirmProps = ModalProps;
+type CoffechatSendConfirmProps = {
+  onProfileDetailModalClose: VoidFunction;
+} & ModalProps;
 
-const CoffechatSendConfirm = ({ isOpen, onClose }: CoffechatSendConfirmProps) => {
+const CoffechatSendConfirm = ({
+  isOpen,
+  onClose,
+  onProfileDetailModalClose,
+}: CoffechatSendConfirmProps) => {
   const user = useUser();
   const { register, handleSubmit: handleCreateCoffechatSubmit } =
     useForm<CreateCoffechatRequest>();
@@ -15,6 +21,8 @@ const CoffechatSendConfirm = ({ isOpen, onClose }: CoffechatSendConfirmProps) =>
 
   const onCreateCoffechat: SubmitHandler<CreateCoffechatRequest> = (data) => {
     createCoffechat(data);
+    onClose();
+    onProfileDetailModalClose();
   };
 
   return (
