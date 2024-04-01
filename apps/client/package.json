@@ -18,7 +18,6 @@
     "@seed-design/icon": "^0.5.3",
     "@sickgyun/design-token": "workspace:*",
     "@sickgyun/ui": "workspace:*",
-    "@sickgyun/utils": "workspace:*",
     "@tanstack/react-query": "^5.7.2",
     "@toss/use-overlay": "^1.3.6",
     "axios": "^1.6.0",

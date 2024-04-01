@@ -1,10 +1,10 @@
-import { isProd } from '@sickgyun/utils';
 import axios, { isAxiosError } from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { ApiException, CustomException, errorMessage } from '../exceptions';
 import type { ApiErrorScheme } from '../exceptions';
 import { Storage } from './storage';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
+import { isProd } from '@/utils/isProd';
 
 const DEVELOPMENT_API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_BASE_URL;
