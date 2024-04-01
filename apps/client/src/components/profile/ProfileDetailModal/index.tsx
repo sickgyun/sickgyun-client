@@ -39,7 +39,7 @@ const StyledModal = styled(Modal)`
 `;
 
 const StyledModalFooter = styled(ModalFooter)`
-  position: sticky;
+  position: absolute;
   bottom: 0;
   left: 0;
 `;
