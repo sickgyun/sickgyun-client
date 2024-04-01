@@ -7,7 +7,7 @@ export const withSuspense = <Props,>(
   Fallback?: (props: unknown) => ReactNode | null
 ) => {
   const WrappedComponent = (props: Props) => (
-    <Suspense fallback={Fallback ? <Fallback /> : <Spinner color="primary" />}>
+    <Suspense fallback={Fallback ? <Fallback /> : <Spinner />}>
       <Component {...props} />
     </Suspense>
   );

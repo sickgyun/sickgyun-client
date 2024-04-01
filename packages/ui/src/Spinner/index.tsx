@@ -9,7 +9,7 @@ type SpinnerProps = {
 };
 
 export const Spinner = forwardRef(function Spinner(
-  { size = 50, color = colors.primary, ...props }: SpinnerProps,
+  { size = 32, color = colors.primary, ...props }: SpinnerProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
@@ -20,6 +20,9 @@ export const Spinner = forwardRef(function Spinner(
 });
 
 const StyledSpinnerWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,8 +40,8 @@ const spin = keyframes`
 const StyledSpinner = styled.div<SpinnerProps>`
   width: ${({ size }) => `${size}px`};
   height: ${({ size }) => `${size}px`};
-  border: 9px solid ${colors.gray100};
-  border-top: 9px solid ${({ color }) => color};
+  border: 3px solid ${colors.gray100};
+  border-top: 3px solid ${({ color }) => color};
   border-radius: 50%;
   animation: ${spin} 1s linear infinite;
 `;
