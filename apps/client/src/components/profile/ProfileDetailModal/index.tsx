@@ -10,7 +10,7 @@ import {
 } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import ProfileDetailContent from '../ProfileDetailContent';
-import CoffechatSendConfirm from '@/components/coffechat/CoffechatSendConfirm';
+import CoffeechatSendConfirm from '@/components/coffeechat/CoffeechatSendConfirm';
 import { useUser } from '@/hooks/common/useUser';
 
 type ProfileDetailModalProps = {
@@ -21,9 +21,9 @@ const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalPr
   const overlay = useOverlay();
   const user = useUser();
 
-  const openCoffechatConfirm = () => {
+  const openCoffeechatConfirm = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffechatSendConfirm
+      <CoffeechatSendConfirm
         isOpen={isOpen}
         onClose={close}
         onProfileDetailModalClose={onClose}
@@ -46,7 +46,7 @@ const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalPr
       </ModalBody>
       {user.profileId !== profileId && (
         <StyledModalFooter>
-          <Button onClick={openCoffechatConfirm} size="large">
+          <Button onClick={openCoffeechatConfirm} size="large">
             커피챗 요청 보내기
           </Button>
         </StyledModalFooter>

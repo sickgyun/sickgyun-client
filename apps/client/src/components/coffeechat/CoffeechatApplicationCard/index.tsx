@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { Button, Stack, Text } from '@sickgyun/ui';
 
-const CoffechatApplicationCard = () => {
+const CoffeechatApplicationCard = () => {
   return (
-    <StyledCoffechatApplicationCard
+    <StyledCoffeechatApplicationCard
       direction="horizontal"
       justify="space-between"
       align="center"
@@ -17,13 +17,13 @@ const CoffechatApplicationCard = () => {
       <Button size="small" styleType="secondary" width="60px">
         취소
       </Button>
-    </StyledCoffechatApplicationCard>
+    </StyledCoffeechatApplicationCard>
   );
 };
 
-export default CoffechatApplicationCard;
+export default CoffeechatApplicationCard;
 
-const StyledCoffechatApplicationCard = styled(Stack)`
+const StyledCoffeechatApplicationCard = styled(Stack)`
   width: 100%;
   height: 80px;
   margin-bottom: 24px;

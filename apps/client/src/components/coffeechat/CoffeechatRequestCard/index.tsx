@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { Button, Stack, Text } from '@sickgyun/ui';
 
-const CoffechatRequestCard = () => {
+const CoffeechatRequestCard = () => {
   return (
-    <StyledCoffechatRequestCard direction="vertical" spacing={24}>
+    <StyledCoffeechatRequestCard direction="vertical" spacing={24}>
       <Stack direction="vertical" spacing={6}>
         <Text fontType="body1">2기 재학생 김석진님이 커피챗 신청을 보냈어요!</Text>
         <Text fontType="body2" color="gray600">
@@ -16,13 +16,13 @@ const CoffechatRequestCard = () => {
         </Button>
         <Button size="medium">수락하기</Button>
       </Stack>
-    </StyledCoffechatRequestCard>
+    </StyledCoffeechatRequestCard>
   );
 };
 
-export default CoffechatRequestCard;
+export default CoffeechatRequestCard;
 
-const StyledCoffechatRequestCard = styled(Stack)`
+const StyledCoffeechatRequestCard = styled(Stack)`
   width: 100%;
   height: 150px;
   margin-bottom: 24px;
