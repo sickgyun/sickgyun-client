@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   const handleGoNotificationPage = () => {
-    router.push('/coffechat/notification');
+    router.push('/notification');
   };
 
   return (

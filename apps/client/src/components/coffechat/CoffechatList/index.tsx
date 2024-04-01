@@ -1,10 +1,20 @@
 import styled from '@emotion/styled';
-import CoffechatCard from '../CoffechatCard';
+import CoffechatApplicationCard from '../CoffechatApplicationCard';
+import CoffechatRequestCard from '../CoffechatRequestCard';
+import type { CoffechatNotificationType } from '@/types/coffechat';
 
-const CoffechatList = () => {
+type CoffechatListProp = {
+  coffechatNotificationType: CoffechatNotificationType;
+};
+
+const CoffechatList = ({ coffechatNotificationType }: CoffechatListProp) => {
   return (
     <StyledCoffechatList>
-      <CoffechatCard />
+      {coffechatNotificationType === 'REQUEST' ? (
+        <CoffechatRequestCard />
+      ) : (
+        <CoffechatApplicationCard />
+      )}
     </StyledCoffechatList>
   );
 };

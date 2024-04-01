@@ -6,8 +6,7 @@ import { useState } from 'react';
 import CoffechatList from '@/components/coffechat/CoffechatList';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-
-type CoffechatNotificationType = 'REQUEST' | 'APPLICATION';
+import type { CoffechatNotificationType } from '@/types/coffechat';
 
 const CoffechatNotificationPage = () => {
   const [coffechatNotificationType, setCoffechatNotificationType] =
@@ -47,7 +46,7 @@ const CoffechatNotificationPage = () => {
           </Stack>
           <Spacer height={48} />
           <StyledCoffechatListWrapper>
-            <CoffechatList />
+            <CoffechatList coffechatNotificationType={coffechatNotificationType} />
           </StyledCoffechatListWrapper>
           <Spacer height={64} />
         </StyledConffechatPage>
