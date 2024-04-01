@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 import { IconChevronRightFill, IconSettingFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Flex, Stack, Text } from '@sickgyun/ui';
+import { Flex, Spinner, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
+import FullHeight from '@/components/common/FullHeight';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 import { useUser } from '@/hooks/common/useUser';
@@ -39,6 +40,14 @@ const ProfileDetailContent = ({
 
   const handleGoEmail = () => {
     window.open(`mailto: ${profile.email}`);
+  };
+
+  const handleGoResume = () => {
+    window.open(profile.resumeUrl);
+  };
+
+  const handleGoPortfolio = () => {
+    window.open(profile.portfolioUrl);
   };
 
   return (
@@ -94,13 +103,35 @@ const ProfileDetailContent = ({
       )}
       <Stack spacing={16}>
         <Text fontType="h3">정보</Text>
-        <Stack spacing={12}>
+        <Stack spacing={16}>
           {profile?.githubId && (
             <StyledNavigationButton onClick={handleGoGithub}>
               <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
               <Stack direction="horizontal" align="center" spacing={4}>
                 <Text fontType="body3" color="gray700">
                   깃허브 바로가기
+                </Text>
+                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+              </Stack>
+            </StyledNavigationButton>
+          )}
+          {profile?.resumeUrl && (
+            <StyledNavigationButton onClick={handleGoResume}>
+              <Text fontType="body2">📑 선배의 이력서를 참고해봐요! </Text>
+              <Stack direction="horizontal" align="center" spacing={4}>
+                <Text fontType="body3" color="gray700">
+                  이력서 바로가기
+                </Text>
+                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+              </Stack>
+            </StyledNavigationButton>
+          )}
+          {profile?.portfolioUrl && (
+            <StyledNavigationButton onClick={handleGoPortfolio}>
+              <Text fontType="body2">💼 선배 포트폴리오는 어떻게 구성되어 있을까요?</Text>
+              <Stack direction="horizontal" align="center" spacing={4}>
+                <Text fontType="body3" color="gray700">
+                  포트폴리오 바로가기
                 </Text>
                 <IconChevronRightFill width={16} height={16} color={colors.gray700} />
               </Stack>
@@ -123,7 +154,11 @@ const ProfileDetailContent = ({
   );
 };
 
-export default withSuspense(ProfileDetailContent);
+export default withSuspense(ProfileDetailContent, () => (
+  <FullHeight>
+    <Spinner />
+  </FullHeight>
+));
 
 const StyledProfileDetailContent = styled.div`
   display: flex;
@@ -148,7 +183,6 @@ const StyledIntroduceBox = styled.div`
   border-radius: 8px;
   width: 100%;
   min-height: 56px;
-  cursor: pointer;
 `;
 
 const StyledNavigationButton = styled.div`

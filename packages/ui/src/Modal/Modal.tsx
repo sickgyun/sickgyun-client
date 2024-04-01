@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import type { CSSProperties, ForwardedRef, MouseEventHandler, ReactNode } from 'react';
+import type { ForwardedRef, HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import Portal from '../Portal';
 
@@ -7,11 +7,10 @@ type ModalProps = {
   isOpen: boolean;
   onClose: VoidFunction;
   children: ReactNode;
-  style?: CSSProperties;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
 export const Modal = forwardRef(function Modal(
-  { isOpen, onClose, children, style, ...props }: ModalProps,
+  { children, isOpen, onClose, ...props }: ModalProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   const onClickOutside: MouseEventHandler<HTMLDivElement> = (e) => {
@@ -22,7 +21,7 @@ export const Modal = forwardRef(function Modal(
   return (
     <Portal isOpen={isOpen}>
       <StyledDIM onClick={onClickOutside}>
-        <StyledModal ref={ref} style={style} {...props}>
+        <StyledModal ref={ref} {...props}>
           {children}
         </StyledModal>
       </StyledDIM>
@@ -48,7 +47,6 @@ const StyledDIM = styled.div`
 const StyledModal = styled.div`
   width: 450px;
   height: auto;
-  min-height: 250px;
   background-color: ${({ theme }) => theme.colors.white};
   padding: 36px;
   border-radius: 16px;
