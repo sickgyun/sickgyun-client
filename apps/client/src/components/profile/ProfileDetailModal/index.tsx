@@ -11,6 +11,7 @@ import {
 import { useOverlay } from '@toss/use-overlay';
 import ProfileDetailContent from '../ProfileDetailContent';
 import CoffechatSendConfirm from '@/components/coffechat/CoffechatSendConfirm';
+import { useUser } from '@/hooks/common/useUser';
 
 type ProfileDetailModalProps = {
   profileId: number;
@@ -18,6 +19,7 @@ type ProfileDetailModalProps = {
 
 const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalProps) => {
   const overlay = useOverlay();
+  const user = useUser();
 
   const openCoffechatConfirm = () => {
     overlay.open(({ isOpen, close }) => (
@@ -38,11 +40,13 @@ const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalPr
       <ModalBody>
         <ProfileDetailContent profileId={profileId} onProfileDetailModalClose={onClose} />
       </ModalBody>
-      <StyledModalFooter>
-        <Button onClick={openCoffechatConfirm} size="large">
-          커피챗 요청 보내기
-        </Button>
-      </StyledModalFooter>
+      {user.profileId !== profileId && (
+        <StyledModalFooter>
+          <Button onClick={openCoffechatConfirm} size="large">
+            커피챗 요청 보내기
+          </Button>
+        </StyledModalFooter>
+      )}
     </StyledModal>
   );
 };
