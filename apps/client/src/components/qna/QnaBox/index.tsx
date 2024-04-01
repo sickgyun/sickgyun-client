@@ -28,7 +28,10 @@ const QnaBox = () => {
       <Flex direction="column">
         {QNA_CATEGORY.map((category) => (
           <StyledQnaCategory
-            onClick={() => setActiveCategoryIndex(category.id)}
+            onClick={() => {
+              setActiveCategoryIndex(category.id);
+              router.push(`/qna?category=${category.qnaType}`);
+            }}
             isActive={category.id === activeCategoryIndex}
           >
             <Stack direction="horizontal" spacing={10}>

@@ -71,7 +71,7 @@ const StyledQnaPostCard = styled.div`
 `;
 
 const StyledPopularQnaContent = styled.div`
-  height: 145px;
+  height: 140px;
   border-radius: 12px 12px 0 0;
   padding: 24px;
   display: inline-flex;
@@ -85,7 +85,7 @@ const StyledPopularInfo = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  height: 40px;
+  height: 45px;
   border-top: 1px solid ${({ theme }) => theme.colors.white};
   border-radius: 0 0 12px 12px;
 `;
