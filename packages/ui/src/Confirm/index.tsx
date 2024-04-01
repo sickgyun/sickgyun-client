@@ -41,8 +41,7 @@ export const Confirm = forwardRef(function Confirm(
       ref={ref}
       isOpen={isOpen}
       onClose={onClose}
-      width={width}
-      height={height}
+      style={{ width, height }}
       {...props}
     >
       <ModalHeader>
