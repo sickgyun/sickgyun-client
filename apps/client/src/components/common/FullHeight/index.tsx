@@ -1,10 +1,12 @@
 import type { HTMLAttributes, ReactNode } from 'react';
-import { useState } from 'react';
-import { useIsomorphicLayoutEffect } from '@/hooks/common/useIsomorphicLayoutEffect';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { isClient } from '@/utils/isClient';
 
 type FullHeightProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
+
+const useIsomorphicLayoutEffect = isClient() ? useLayoutEffect : useEffect;
 
 const FullHeight = ({ children, ...props }: FullHeightProps) => {
   const [height, setHeight] = useState(0);
