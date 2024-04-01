@@ -1,70 +1,82 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Input, Stack, Textarea } from '@sickgyun/ui';
-import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { Button, Input, Stack, Text, Textarea } from '@sickgyun/ui';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import type { SubmitHandler } from 'react-hook-form';
 import Header from '@/components/common/Header';
-import QnaWriteCategory from '@/components/qna-posting/QnaWriteCategory';
-import { checkedCategory } from '@/store/qna';
-
-type QnaWriteFormProps = {
-  title: string;
-  contents: string;
-  categoryTitle: string;
-};
-
-const QnaWriteObject = yup.object({
-  title: yup.string().required('제목을 입력해주세요.'),
-  contents: yup.string().required('내용을 입력해주세요.'),
-  categoryTitle: yup.string(),
-});
+import QnaCategory from '@/components/qna/QnaPostCategory';
+import { QNA_WRITE_CATEGORY } from '@/constants/qna-write';
+import { useCreateQna } from '@/hooks/api/qna/useCreateQna';
+import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
+import type { Qna } from '@/types/qna';
 
 const QnaWritePage = () => {
+  const router = useRouter();
+  const { mutate: createQnaMutate } = useCreateQna();
+
+  const [category, setCategory] = useState({
+    id: 3,
+    title: '',
+  });
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(3);
+
   const {
     register,
     handleSubmit: createQnaWriteSubmit,
-    formState,
     setValue,
-  } = useForm({
-    resolver: yupResolver(QnaWriteObject),
-    mode: 'onSubmit',
-  });
-
-  const onCreateQnaWriteSubmit = (data: QnaWriteFormProps) => {
-    console.log('createQnaWriteSubmit', data);
-  };
-
-  const [category] = useAtom(checkedCategory);
+  } = useForm<CreateQnaRequest>();
 
   useEffect(() => {
-    setValue('categoryTitle', category.title);
-  }, [category.title, setValue]);
+    setValue('category', category.title);
+  }, [category.title, setValue]); // 선택된 카테고리가 들어감
+
+  const onCreateQna: SubmitHandler<CreateQnaRequest> = (data) => {
+    createQnaMutate(data);
+    router.push('/qna');
+  };
 
   return (
     <>
       <Header />
       <StyledQnaWritePage>
-        <QnaWriteCategory />
-        <form onSubmit={createQnaWriteSubmit(onCreateQnaWriteSubmit)}>
-          <input type="hidden" {...register('categoryTitle')} />
+        <QnaWriteCategory>
+          <Text fontType="h4" style={{ fontWeight: 'bold' }}>
+            카테고리
+          </Text>
+          <Stack direction="horizontal" spacing={10}>
+            {QNA_WRITE_CATEGORY.map((category) => (
+              <QnaCategory
+                questionType={category.qnaType as Qna}
+                isWriteCategory
+                isActive={activeCategoryIndex === category.id}
+                onClick={() => {
+                  setActiveCategoryIndex(category.id);
+                  setCategory({
+                    id: category.id,
+                    title: category.qnaType,
+                  });
+                }}
+              />
+            ))}
+          </Stack>
+        </QnaWriteCategory>
+        <form onSubmit={createQnaWriteSubmit(onCreateQna)}>
+          <input type="hidden" {...register('category')} />
           <Stack style={{ padding: '22px' }} spacing={10}>
             <Input
               placeholder="제목을 작성해 주세요"
               style={{ border: 'none', fontSize: '17px' }}
               {...register('title')}
             />
-            <StyledErrorMessage>{formState.errors.title?.message}</StyledErrorMessage>
             <Textarea
               placeholder="내용을 작성해 주세요"
               minHeight="350px"
               style={{ border: 'none' }}
-              {...register('contents')}
+              {...register('content')}
             />
-            <StyledErrorMessage>{formState.errors.contents?.message}</StyledErrorMessage>
           </Stack>
           <Stack style={{ padding: '0 22px 22px 0' }} align="flex-end" spacing={0}>
             <Button width="180px" type="submit">
@@ -89,7 +101,12 @@ const StyledQnaWritePage = styled.div`
   border-radius: 15px;
 `;
 
-const StyledErrorMessage = styled.span`
-  color: ${({ theme }) => theme.colors.red};
-  padding-left: 7px;
+const QnaWriteCategory = styled.div`
+  width: 100%;
+  height: 115px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.white};
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;

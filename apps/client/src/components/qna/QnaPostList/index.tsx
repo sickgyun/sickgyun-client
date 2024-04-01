@@ -8,14 +8,14 @@ const QnaPostList = ({ currentQnaPageIndex }) => {
   return (
     <StyledQnaPostListContainer>
       <StyledQnaPostList currentQnaPageIndex={currentQnaPageIndex}>
-        {QNA.map((qnaPosting) => (
+        {QNA.map((qnaList) => (
           <QnaPostCard
-            id={qnaPosting.id}
-            title={qnaPosting.title}
-            questionType={qnaPosting.questionType}
-            name={qnaPosting.name}
-            heart={qnaPosting.heart}
-            commentCount={qnaPosting.commentCount}
+            id={qnaList.id}
+            title={qnaList.title}
+            questionType={qnaList.questionType}
+            name={qnaList.name}
+            heart={qnaList.heart}
+            commentCount={qnaList.commentCount}
           />
         ))}
       </StyledQnaPostList>

@@ -3,10 +3,11 @@
 import styled from '@emotion/styled';
 import { IconEmoticonThin, IconHeartRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Stack, Text } from '@sickgyun/ui';
+import { Flex, Spacer, Stack, Text } from '@sickgyun/ui';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import QnaComment from '@/components/qna/QnaComment';
+import { Qna } from '@/types/qna';
 
 const QnaPostPage = () => {
   return (
@@ -15,7 +16,7 @@ const QnaPostPage = () => {
       <StyledQnaPostLayout>
         <StyledQnaPost>
           <Stack style={{ display: 'inline-flex' }}>
-            <QnaCategory questionType="취업" />
+            <QnaCategory questionType={Qna.CONCERN} />
           </Stack>
           <Stack style={{ marginTop: '15px' }}>
             <Text fontType="h3">연봉과 업무 중 무엇을 선택하는게 좋을지..</Text>
@@ -39,21 +40,18 @@ const QnaPostPage = () => {
             </Stack>
           </StyledQnaPostSubTitleBox>
           <Stack style={{ borderBottom: `1px solid ${colors.gray200}` }}>
-            <Stack style={{ paddingTop: '30px', paddingBottom: '15px' }}>
+            <StyledQnaContentsBox>
               연봉을 많이 주지만 범위가 좁고 루틴한 업무를 맡게될 회사.. 연봉은 적지만..
               다양한 업무를 맡을수 있는 회사.. (그리고.. 바쁨..) 어느 회사를 선택하는게
               좋을까요? 결정을 못하겠어요
-            </Stack>
-            <Stack
-              align="center"
-              justify="center"
-              style={{ width: '100%', marginBottom: '30px' }}
-            >
-              <StyledQnaLikeButton>
+            </StyledQnaContentsBox>
+            <Flex align="center" justify="center">
+              <StyledLikeButton>
                 <IconHeartRegular width={16} height={16} color={colors.black} />
                 <Text>9</Text>
-              </StyledQnaLikeButton>
-            </Stack>
+              </StyledLikeButton>
+            </Flex>
+            <Spacer height={5} />
           </Stack>
           <QnaComment />
         </StyledQnaPost>
@@ -83,7 +81,7 @@ const StyledQnaPost = styled.div`
   padding: 25px;
 `;
 
-const StyledQnaLikeButton = styled.div`
+const StyledLikeButton = styled.div`
   display: flex;
   align-items: center;
   padding: 5px 16px;
@@ -91,6 +89,11 @@ const StyledQnaLikeButton = styled.div`
   border-radius: 7px;
   border: 1px solid ${({ theme }) => theme.colors.gray300};
   cursor: pointer;
+`;
+
+const StyledQnaContentsBox = styled.div`
+  padding-top: 30px;
+  padding-bottom: 10px;
 `;
 
 const StyledQnaPostSubTitleBox = styled.div`

@@ -1,17 +1,14 @@
 export const QNA_WRITE_CATEGORY = [
   {
     id: 0,
-    title: '개발',
-    emoji: '💻',
+    qnaType: 'DEVELOP',
   },
   {
     id: 1,
-    title: '취업',
-    emoji: '👔',
+    qnaType: 'RECRUIT',
   },
   {
     id: 2,
-    title: '고민',
-    emoji: '🤔',
+    qnaType: 'CONCERN',
   },
 ];

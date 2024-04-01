@@ -1,18 +1,37 @@
 import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
+import { Qna } from '@/types/qna';
 
 type QnaCategoryProps = {
-  questionType: string;
+  questionType: Qna;
 };
 
 const QnaCategory = ({ questionType }: QnaCategoryProps) => {
-  const questionTypeEmoji =
-    questionType === '취업' ? '👔' : questionType === '개발' ? '💻' : '🤔';
+  let emoji: string;
+  let categoryTitle: string;
+
+  switch (questionType) {
+    case Qna.DEVELOP:
+      emoji = '💻';
+      categoryTitle = '개발';
+      break;
+    case Qna.RECRUIT:
+      emoji = '👔';
+      categoryTitle = '취업';
+      break;
+    case Qna.CONCERN:
+      emoji = '🤔';
+      categoryTitle = '고민';
+      break;
+    default:
+      emoji = '';
+      categoryTitle = '';
+  }
 
   return (
     <StyledQnaCategory>
-      <Text>{questionTypeEmoji}</Text>
-      <Text fontType="body2">{questionType}</Text>
+      <Text>{emoji}</Text>
+      <Text fontType="body2">{categoryTitle}</Text>
     </StyledQnaCategory>
   );
 };

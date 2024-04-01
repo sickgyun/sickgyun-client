@@ -6,6 +6,7 @@ import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import QnaCategory from '../QnaCategory';
+import type { Qna } from '@/types/qna';
 
 type QnaPostingCardProps = {
   id: number;
@@ -27,13 +28,13 @@ const QnaPostCard = ({
   const router = useRouter();
 
   const handleGoQnaDetailPage = (id: number) => {
-    router.push(`/qna-post/${id}`);
+    router.push(`/qna/${id}`);
   };
   return (
     <StyledQnaPostCard onClick={() => handleGoQnaDetailPage(id)}>
       <Flex direction="column">
         <StyledPopularQnaContent>
-          <QnaCategory questionType={questionType} />
+          <QnaCategory questionType={questionType as Qna} />
           <StyledQnaContent fontType="h4">{title}</StyledQnaContent>
         </StyledPopularQnaContent>
         <StyledPopularInfo>

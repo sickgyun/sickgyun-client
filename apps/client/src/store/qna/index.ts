@@ -1,1 +1,0 @@
-export { checkedCategory } from './checkedCategory';
