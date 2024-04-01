@@ -8,6 +8,7 @@ import Header from '@/components/common/Header';
 import ProfileActionButton from '@/components/profile/ProfileActionButton';
 import ProfileList from '@/components/profile/ProfileList';
 import { MAJOR_LIST } from '@/constants/profile';
+import { withAuth } from '@/hocs/withAuth';
 import { useUser } from '@/hooks/common/useUser';
 
 const ProfilePage = () => {
@@ -52,7 +53,7 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default withAuth(ProfilePage);
 
 const StyledProfilePageLayout = styled.div`
   background-color: ${({ theme }) => theme.colors.white};

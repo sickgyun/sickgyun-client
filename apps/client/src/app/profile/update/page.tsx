@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import ProfileForm from '@/components/profile/ProfileForm';
+import { withAuth } from '@/hocs/withAuth';
 import { useGetProfileMine } from '@/hooks/api/profile/useGetProfileMine';
 import { useUpdateProfile } from '@/hooks/api/profile/useUpdateProfile';
 import type { UpdateProfileRequest } from '@/hooks/api/profile/useUpdateProfile';
@@ -47,7 +48,7 @@ const ProfileUpdatePage = () => {
   );
 };
 
-export default ProfileUpdatePage;
+export default withAuth(ProfileUpdatePage);
 
 const StyledProfileUpdatePageLayout = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
