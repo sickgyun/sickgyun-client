@@ -14,11 +14,7 @@ type ProfileDetailModalProps = {
 
 const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalProps) => {
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      style={{ width: '580px', minHeight: '500px' }}
-    >
+    <Modal isOpen={isOpen} onClose={onClose} style={{ width: '580px', height: '550px' }}>
       <ModalContent>
         <ModalHeader>
           <Text fontType="h2">프로필 정보</Text>
