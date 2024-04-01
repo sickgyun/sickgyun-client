@@ -19,8 +19,8 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    setIsLogin(false);
     router.push('/');
+    setIsLogin(false);
   };
 
   return (
