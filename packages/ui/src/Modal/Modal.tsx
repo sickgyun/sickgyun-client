@@ -7,7 +7,7 @@ type ModalProps = {
   isOpen: boolean;
   onClose: VoidFunction;
   children: ReactNode;
-  style: CSSProperties;
+  style?: CSSProperties;
 };
 
 export const Modal = forwardRef(function Modal(

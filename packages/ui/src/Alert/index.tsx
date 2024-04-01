@@ -7,37 +7,33 @@ import { Modal } from '../Modal/Modal';
 import { Stack } from '../Stack';
 import { Text } from '../Text';
 
-type ConfirmProps = {
+type AlertProps = {
   isOpen: boolean;
   onClose: VoidFunction;
   onConfirm: VoidFunction;
-  closeButtonText?: string;
   confirmButtonText?: string;
   title: string;
   description?: string;
-  width?: string;
-  height?: string;
   children?: ReactNode;
   style?: CSSProperties;
 };
 
-export const Confirm = forwardRef(function Confirm(
+export const Alert = forwardRef(function Alert(
   {
     isOpen,
     onClose,
     onConfirm,
-    closeButtonText = '취소',
     confirmButtonText = '확인',
     title,
     description,
     children,
     style,
     ...props
-  }: ConfirmProps,
+  }: AlertProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
-    <StyledConfirm ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
+    <StyledAlert ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h2">{title}</Text>
@@ -50,20 +46,15 @@ export const Confirm = forwardRef(function Confirm(
       </ModalHeader>
       {children && <ModalContent>{children}</ModalContent>}
       <ModalFooter>
-        <Stack direction="horizontal" spacing={16} style={{ width: '100%' }}>
-          <Button onClick={onClose} styleType="secondary" size="medium">
-            {closeButtonText}
-          </Button>
-          <Button onClick={onConfirm} styleType="primary" size="medium">
-            {confirmButtonText}
-          </Button>
-        </Stack>
+        <Button onClick={onConfirm} styleType="primary" size="medium">
+          {confirmButtonText}
+        </Button>
       </ModalFooter>
-    </StyledConfirm>
+    </StyledAlert>
   );
 });
 
-const StyledConfirm = styled(Modal)`
+const StyledAlert = styled(Modal)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
