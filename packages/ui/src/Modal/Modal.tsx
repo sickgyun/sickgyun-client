@@ -47,7 +47,6 @@ const StyledDIM = styled.div`
 const StyledModal = styled.div`
   width: 450px;
   height: auto;
-  min-height: 250px;
   background-color: ${({ theme }) => theme.colors.white};
   padding: 36px;
   border-radius: 16px;

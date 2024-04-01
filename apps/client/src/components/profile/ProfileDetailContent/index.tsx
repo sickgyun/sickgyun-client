@@ -41,6 +41,14 @@ const ProfileDetailContent = ({
     window.open(`mailto: ${profile.email}`);
   };
 
+  const handleGoResume = () => {
+    window.open(profile.resumeUrl);
+  };
+
+  const handleGoPortfolio = () => {
+    window.open(profile.portfolioUrl);
+  };
+
   return (
     <StyledProfileDetailContent>
       <Stack
@@ -93,44 +101,53 @@ const ProfileDetailContent = ({
         </Stack>
       )}
       <Stack spacing={16}>
-        {profile?.githubId ||
-          (profile?.email && (
-            <>
-              <Text fontType="h3">정보</Text>
-              <Stack spacing={12}>
-                {profile?.githubId && (
-                  <StyledNavigationButton onClick={handleGoGithub}>
-                    <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
-                    <Stack direction="horizontal" align="center" spacing={4}>
-                      <Text fontType="body3" color="gray700">
-                        깃허브 바로가기
-                      </Text>
-                      <IconChevronRightFill
-                        width={16}
-                        height={16}
-                        color={colors.gray700}
-                      />
-                    </Stack>
-                  </StyledNavigationButton>
-                )}
-                {profile?.email && (
-                  <StyledNavigationButton onClick={handleGoEmail}>
-                    <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
-                    <Flex align="center">
-                      <Text fontType="body3" color="gray700">
-                        이메일 바로가기
-                      </Text>
-                      <IconChevronRightFill
-                        width={24}
-                        height={24}
-                        color={colors.gray700}
-                      />
-                    </Flex>
-                  </StyledNavigationButton>
-                )}
+        <Text fontType="h3">정보</Text>
+        <Stack spacing={16}>
+          {profile?.githubId && (
+            <StyledNavigationButton onClick={handleGoGithub}>
+              <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
+              <Stack direction="horizontal" align="center" spacing={4}>
+                <Text fontType="body3" color="gray700">
+                  깃허브 바로가기
+                </Text>
+                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
               </Stack>
-            </>
-          ))}
+            </StyledNavigationButton>
+          )}
+          {profile?.resumeUrl && (
+            <StyledNavigationButton onClick={handleGoResume}>
+              <Text fontType="body2">📑 선배의 이력서를 참고해봐요! </Text>
+              <Stack direction="horizontal" align="center" spacing={4}>
+                <Text fontType="body3" color="gray700">
+                  이력서 바로가기
+                </Text>
+                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+              </Stack>
+            </StyledNavigationButton>
+          )}
+          {profile?.portfolioUrl && (
+            <StyledNavigationButton onClick={handleGoPortfolio}>
+              <Text fontType="body2">💼 선배 포트폴리오는 어떻게 구성되어 있을까요?</Text>
+              <Stack direction="horizontal" align="center" spacing={4}>
+                <Text fontType="body3" color="gray700">
+                  포트폴리오 바로가기
+                </Text>
+                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+              </Stack>
+            </StyledNavigationButton>
+          )}
+          {profile?.email && (
+            <StyledNavigationButton onClick={handleGoEmail}>
+              <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
+              <Flex align="center">
+                <Text fontType="body3" color="gray700">
+                  이메일 바로가기
+                </Text>
+                <IconChevronRightFill width={24} height={24} color={colors.gray700} />
+              </Flex>
+            </StyledNavigationButton>
+          )}
+        </Stack>
       </Stack>
     </StyledProfileDetailContent>
   );
