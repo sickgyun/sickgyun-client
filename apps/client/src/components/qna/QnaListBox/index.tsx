@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import QnaCategory from '../QnaCategory';
 import { QNA, QNA_SORT } from '@/constants/qna';
+import { Qna } from '@/types/qna';
 
 const QnaListBox = () => {
   const router = useRouter();
@@ -35,10 +36,7 @@ const QnaListBox = () => {
           <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)}>
             <Flex direction="column">
               <StyledPopularQna>
-                <QnaCategory
-                  questionType={qna.questionType}
-                  questionTitle={qna.questionTitle}
-                />
+                <QnaCategory questionType={Qna.CONCERN} />
                 <Text fontType="h4">{qna.title}</Text>
                 <StyledQnaContent>{qna.detailContent}</StyledQnaContent>
                 <Flex justify="space-between" style={{ width: '100%' }}>

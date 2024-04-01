@@ -7,6 +7,7 @@ import { Stack, Text } from '@sickgyun/ui';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import QnaComment from '@/components/qna/QnaComment';
+import { Qna } from '@/types/qna';
 
 const QnaPostPage = () => {
   return (
@@ -15,7 +16,7 @@ const QnaPostPage = () => {
       <StyledQnaPostLayout>
         <StyledQnaPost>
           <Stack style={{ display: 'inline-flex' }}>
-            <QnaCategory questionType="DEVELOP" questionTitle="개발" />
+            <QnaCategory questionType={Qna.CONCERN} />
           </Stack>
           <Stack style={{ marginTop: '15px' }}>
             <Text fontType="h3">연봉과 업무 중 무엇을 선택하는게 좋을지..</Text>

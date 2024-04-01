@@ -2,17 +2,18 @@
 
 import styled from '@emotion/styled';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Input, Stack, Textarea } from '@sickgyun/ui';
-import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { Button, Input, Stack, Text, Textarea } from '@sickgyun/ui';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import Header from '@/components/common/Header';
-import QnaWriteCategory from '@/components/qna-posting/QnaWriteCategory';
+import QnaCategory from '@/components/qna-posting/QnaCategory';
+import { QNA_WRITE_CATEGORY } from '@/constants/qna-write';
 import { useCreateQna } from '@/hooks/api/qna/useCreateQna';
 import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
-import { checkedCategory } from '@/store/qna';
+import type { Qna } from '@/types/qna';
 
 const QnaWriteForm = yup.object({
   title: yup.string().required('제목을 입력해주세요.'),
@@ -21,7 +22,14 @@ const QnaWriteForm = yup.object({
 });
 
 const QnaWritePage = () => {
+  const router = useRouter();
   const { mutate: createQnaMutate } = useCreateQna();
+
+  const [category, setCategory] = useState({
+    id: 3,
+    title: '',
+  });
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(3);
 
   const {
     register,
@@ -33,22 +41,41 @@ const QnaWritePage = () => {
     mode: 'onSubmit',
   });
 
-  const [category] = useAtom(checkedCategory);
-
   useEffect(() => {
     setValue('category', category.title);
-  }, [category.title, setValue]);
+  }, [category.title, setValue]); // 선택된 카테고리가 들어감
 
-  const onCreateQnaWrite: SubmitHandler<CreateQnaRequest> = (data) => {
+  const onCreateQna: SubmitHandler<CreateQnaRequest> = (data) => {
     createQnaMutate(data);
+    router.push('/qna');
   };
 
   return (
     <>
       <Header />
       <StyledQnaWritePage>
-        <QnaWriteCategory />
-        <form onSubmit={createQnaWriteSubmit(onCreateQnaWrite)}>
+        <QnaWriteCategory>
+          <Text fontType="h4" style={{ fontWeight: 'bold' }}>
+            카테고리
+          </Text>
+          <Stack direction="horizontal" spacing={10}>
+            {QNA_WRITE_CATEGORY.map((category) => (
+              <QnaCategory
+                questionType={category.qnaType as Qna}
+                isWriteCategory
+                isActive={activeCategoryIndex === category.id}
+                onClick={() => {
+                  setActiveCategoryIndex(category.id);
+                  setCategory({
+                    id: category.id,
+                    title: category.qnaType,
+                  });
+                }}
+              />
+            ))}
+          </Stack>
+        </QnaWriteCategory>
+        <form onSubmit={createQnaWriteSubmit(onCreateQna)}>
           <input type="hidden" {...register('category')} />
           <Stack style={{ padding: '22px' }} spacing={10}>
             <Input
@@ -86,6 +113,16 @@ const StyledQnaWritePage = styled.div`
   width: 80%;
   min-height: 80vh;
   border-radius: 15px;
+`;
+
+const QnaWriteCategory = styled.div`
+  width: 100%;
+  height: 115px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.white};
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const StyledErrorMessage = styled.span`

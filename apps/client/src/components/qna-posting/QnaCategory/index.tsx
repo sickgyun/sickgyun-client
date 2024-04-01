@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
+import { Qna } from '@/types/qna';
 
 type QnaCategoryProps = {
-  questionType: string;
-  questionTitle: string;
+  questionType: Qna;
   isWriteCategory?: boolean;
   isActive?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -12,13 +12,30 @@ type QnaCategoryProps = {
 
 const QnaCategory = ({
   questionType,
-  questionTitle,
   isWriteCategory,
   isActive,
   onClick,
 }: QnaCategoryProps) => {
-  const questionTypeEmoji =
-    questionType === 'RECRUIT' ? '👔' : questionType === 'DEVELOP' ? '💻' : '🤔';
+  let emoji: string;
+  let categoryTitle: string;
+
+  switch (questionType) {
+    case Qna.DEVELOP:
+      emoji = '💻';
+      categoryTitle = '개발';
+      break;
+    case Qna.RECRUIT:
+      emoji = '👔';
+      categoryTitle = '취업';
+      break;
+    case Qna.CONCERN:
+      emoji = '🤔';
+      categoryTitle = '고민';
+      break;
+    default:
+      emoji = '';
+      categoryTitle = '';
+  }
 
   return (
     <StyledQnaCategory
@@ -26,8 +43,8 @@ const QnaCategory = ({
       isActive={isActive}
       onClick={onClick}
     >
-      <Text>{questionTypeEmoji}</Text>
-      <Text fontType="body2">{questionTitle}</Text>
+      <Text>{emoji}</Text>
+      <Text fontType="body2">{categoryTitle}</Text>
     </StyledQnaCategory>
   );
 };
