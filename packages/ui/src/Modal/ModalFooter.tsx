@@ -8,5 +8,4 @@ export const ModalFooter = ({ children }: PropsWithChildren) => {
 const StyledModalFooter = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
 `;
