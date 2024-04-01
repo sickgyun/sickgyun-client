@@ -21,7 +21,10 @@ const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalPr
           <ModalCloseButton onClose={onClose} />
         </ModalHeader>
         <ModalBody>
-          <ProfileDetailContent profileId={profileId} />
+          <ProfileDetailContent
+            profileId={profileId}
+            onProfileDetailModalClose={onClose}
+          />
         </ModalBody>
       </ModalContent>
     </Modal>

@@ -1,17 +1,34 @@
 import styled from '@emotion/styled';
-import { IconChevronRightFill } from '@seed-design/icon';
+import { IconChevronRightFill, IconSettingFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
+import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
+import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 
 type ProfileDetailContentProps = {
   profileId: number;
+  onProfileDetailModalClose: VoidFunction;
 };
 
-const ProfileDetailContent = ({ profileId }: ProfileDetailContentProps) => {
+const ProfileDetailContent = ({
+  profileId,
+  onProfileDetailModalClose,
+}: ProfileDetailContentProps) => {
+  const overlay = useOverlay();
   const { profile } = useGetProfile(profileId);
+
+  const openDeleteProfileConfirm = () => {
+    overlay.open(({ isOpen, close }) => (
+      <ProfileDeleteConfirm
+        isOpen={isOpen}
+        onClose={close}
+        onProfileDetailModalClose={onProfileDetailModalClose}
+      />
+    ));
+  };
 
   const handleGoGithub = () => {
     window.open(`https://github.com/${profile.githubId}`);
@@ -36,12 +53,20 @@ const ProfileDetailContent = ({ profileId }: ProfileDetailContentProps) => {
           style={{ borderRadius: '8px' }}
           alt="Student Profile"
         />
-        <Stack spacing={4}>
-          <Stack direction="horizontal" align="center" spacing={6}>
-            <Text fontType="h3">{profile.name}</Text>
-            <Text fontType="body2" color="gray600">
-              {profile.cardinal}기
-            </Text>
+        <Stack style={{ width: '100%' }} spacing={4}>
+          <Stack
+            direction="horizontal"
+            align="center"
+            justify="space-between"
+            spacing={6}
+          >
+            <Stack direction="horizontal" align="center" spacing={6}>
+              <Text fontType="h3">{profile.name}</Text>
+              <Text fontType="body2" color="gray600">
+                {profile.cardinal}기
+              </Text>
+            </Stack>
+            <StyledSettingButton onClick={openDeleteProfileConfirm} />
           </Stack>
           <Text fontType="body2" color="gray600">
             관심 있는 분야: {profile.major}
@@ -70,12 +95,12 @@ const ProfileDetailContent = ({ profileId }: ProfileDetailContentProps) => {
           {profile?.githubId && (
             <StyledNavigationButton onClick={handleGoGithub}>
               <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
-              <Flex align="center">
+              <Stack direction="horizontal" align="center" spacing={4}>
                 <Text fontType="body3" color="gray700">
                   깃허브 바로가기
                 </Text>
-                <IconChevronRightFill width={24} height={24} color={colors.gray700} />
-              </Flex>
+                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+              </Stack>
             </StyledNavigationButton>
           )}
           {profile?.email && (
@@ -102,6 +127,13 @@ const StyledProfileDetailContent = styled.div`
   flex-direction: column;
   gap: 24px;
   width: 100%;
+`;
+
+const StyledSettingButton = styled(IconSettingFill)`
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  color: ${({ theme }) => theme.colors.gray700};
 `;
 
 const StyledIntroduceBox = styled.div`
