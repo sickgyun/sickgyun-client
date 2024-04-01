@@ -10,7 +10,7 @@ export const useCreateCoffechat = (userId: number) => {
   const router = useRouter();
 
   return useMutation<unknown, unknown, CreateCoffechatRequest>({
-    mutationFn: (data: CreateCoffechatRequest) => post(`/api/coffee/${userId}`, data),
+    mutationFn: (data: CreateCoffechatRequest) => post(`/api/coffeechat/${userId}`, data),
     onSuccess: () => {
       alert('커피챗 요청이 보내졌어요!');
       router.replace('/profile?major=all');
