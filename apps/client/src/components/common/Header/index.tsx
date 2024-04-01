@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Button, Flex } from '@sickgyun/ui';
+import { IconNotificationFill } from '@seed-design/icon';
+import { Button, Flex, Stack } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -22,6 +23,10 @@ const Header = () => {
     setIsLogin(false);
   };
 
+  const handleGoNotificationPage = () => {
+    router.push('/coffechat');
+  };
+
   return (
     <StyledHeader>
       <Flex
@@ -37,15 +42,20 @@ const Header = () => {
           style={{ cursor: 'pointer' }}
           alt="Logo"
         />
-        {user.isLogin ? (
-          <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
-            로그아웃
-          </Button>
-        ) : (
-          <Button onClick={handleLogin} styleType="ghost" size="small" width="90px">
-            로그인
-          </Button>
-        )}
+        <Stack direction="horizontal" align="center" spacing={12}>
+          {user.hasCreatedProfile && (
+            <StyledNotificationButton onClick={handleGoNotificationPage} />
+          )}
+          {user.isLogin ? (
+            <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
+              로그아웃
+            </Button>
+          ) : (
+            <Button onClick={handleLogin} styleType="ghost" size="small" width="90px">
+              로그인
+            </Button>
+          )}
+        </Stack>
       </Flex>
     </StyledHeader>
   );
@@ -60,4 +70,11 @@ const StyledHeader = styled.div`
     border-bottom: 1px solid ${theme.colors.gray200};
     background-color: ${theme.colors.white};
   `}
+`;
+
+const StyledNotificationButton = styled(IconNotificationFill)`
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  color: ${({ theme }) => theme.colors.gray900};
 `;

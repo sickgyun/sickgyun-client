@@ -17,7 +17,7 @@ const ProfilePage = () => {
   const user = useUser();
   const majorQueryParameter = params.get('major');
 
-  const handleMajorButtonClick = (major: string) => {
+  const handleMajorSelected = (major: string) => {
     router.replace(`/profile?major=${major}`);
   };
 
@@ -35,7 +35,7 @@ const ProfilePage = () => {
             {MAJOR_LIST.map((major) => (
               <Button
                 styleType="quaternary"
-                onClick={() => handleMajorButtonClick(major.queryParameter)}
+                onClick={() => handleMajorSelected(major.queryParameter)}
                 isActive={major.queryParameter === majorQueryParameter}
               >
                 {major.name}

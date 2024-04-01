@@ -27,8 +27,8 @@ const ProfileCreatePage = () => {
     <>
       <Header />
       <StyledProfileCreatePageLayout>
-        <Spacer height={32} />
-        <StyledProfileFormContainer onSubmit={handleCreateProfileSubmit(onCreateProfile)}>
+        <StyledProfileCreatePage onSubmit={handleCreateProfileSubmit(onCreateProfile)}>
+          <Spacer height={32} />
           <Text fontType="h1" color="gray900">
             프로필 작성
           </Text>
@@ -38,8 +38,8 @@ const ProfileCreatePage = () => {
           <Button type="submit" size="large">
             프로필 등록
           </Button>
-        </StyledProfileFormContainer>
-        <Spacer height={64} />
+          <Spacer height={64} />
+        </StyledProfileCreatePage>
       </StyledProfileCreatePageLayout>
       <Footer />
     </>
@@ -54,7 +54,7 @@ const StyledProfileCreatePageLayout = styled.div`
   height: 100%;
 `;
 
-const StyledProfileFormContainer = styled.form`
+const StyledProfileCreatePage = styled.form`
   width: 600px;
   margin: 0 auto;
 `;
