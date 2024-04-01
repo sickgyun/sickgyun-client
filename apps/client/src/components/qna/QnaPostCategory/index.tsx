@@ -3,19 +3,19 @@ import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
 import { Qna } from '@/types/qna';
 
-type QnaCategoryProps = {
+type QnaPostCategoryProps = {
   questionType: Qna;
   isWriteCategory?: boolean;
   isActive?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-const QnaCategory = ({
+const QnaPostCategory = ({
   questionType,
   isWriteCategory,
   isActive,
   onClick,
-}: QnaCategoryProps) => {
+}: QnaPostCategoryProps) => {
   let emoji: string;
   let categoryTitle: string;
 
@@ -49,7 +49,7 @@ const QnaCategory = ({
   );
 };
 
-export default QnaCategory;
+export default QnaPostCategory;
 
 const StyledQnaCategory = styled.div<{ isWriteCategory: boolean; isActive: boolean }>`
   display: flex;

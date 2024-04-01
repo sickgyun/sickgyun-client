@@ -1,25 +1,17 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Input, Stack, Text, Textarea } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
-import * as yup from 'yup';
 import Header from '@/components/common/Header';
-import QnaCategory from '@/components/qna-posting/QnaCategory';
+import QnaCategory from '@/components/qna/QnaPostCategory';
 import { QNA_WRITE_CATEGORY } from '@/constants/qna-write';
 import { useCreateQna } from '@/hooks/api/qna/useCreateQna';
 import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
 import type { Qna } from '@/types/qna';
-
-const QnaWriteForm = yup.object({
-  title: yup.string().required('제목을 입력해주세요.'),
-  content: yup.string().required('내용을 입력해주세요.'),
-  category: yup.string(),
-});
 
 const QnaWritePage = () => {
   const router = useRouter();
@@ -34,12 +26,8 @@ const QnaWritePage = () => {
   const {
     register,
     handleSubmit: createQnaWriteSubmit,
-    formState,
     setValue,
-  } = useForm({
-    resolver: yupResolver(QnaWriteForm),
-    mode: 'onSubmit',
-  });
+  } = useForm<CreateQnaRequest>();
 
   useEffect(() => {
     setValue('category', category.title);
@@ -83,14 +71,12 @@ const QnaWritePage = () => {
               style={{ border: 'none', fontSize: '17px' }}
               {...register('title')}
             />
-            <StyledErrorMessage>{formState.errors.title?.message}</StyledErrorMessage>
             <Textarea
               placeholder="내용을 작성해 주세요"
               minHeight="350px"
               style={{ border: 'none' }}
               {...register('content')}
             />
-            <StyledErrorMessage>{formState.errors.content?.message}</StyledErrorMessage>
           </Stack>
           <Stack style={{ padding: '0 22px 22px 0' }} align="flex-end" spacing={0}>
             <Button width="180px" type="submit">
@@ -123,9 +109,4 @@ const QnaWriteCategory = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
-
-const StyledErrorMessage = styled.span`
-  color: ${({ theme }) => theme.colors.red};
-  padding-left: 7px;
 `;
