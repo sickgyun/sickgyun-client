@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import type { ForwardedRef, ReactNode } from 'react';
+import type { CSSProperties, ForwardedRef, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import { Button } from '../Button';
 import { ModalContent, ModalFooter, ModalHeader } from '../Modal';
@@ -18,6 +18,7 @@ type ConfirmProps = {
   width?: string;
   height?: string;
   children?: ReactNode;
+  style?: CSSProperties;
 };
 
 export const Confirm = forwardRef(function Confirm(
@@ -29,21 +30,14 @@ export const Confirm = forwardRef(function Confirm(
     confirmButtonText = '확인',
     title,
     description,
-    width = '450px',
-    height = 'auto',
     children,
+    style,
     ...props
   }: ConfirmProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
-    <StyledConfirm
-      ref={ref}
-      isOpen={isOpen}
-      onClose={onClose}
-      style={{ width, height }}
-      {...props}
-    >
+    <StyledConfirm ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h2">{title}</Text>
@@ -73,4 +67,6 @@ const StyledConfirm = styled(Modal)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 450px;
+  height: auto;
 `;

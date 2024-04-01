@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import type { ForwardedRef, ReactNode } from 'react';
+import type { CSSProperties, ForwardedRef, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import { Button } from '../Button';
 import { ModalContent, ModalFooter, ModalHeader } from '../Modal';
@@ -14,9 +14,8 @@ type AlertProps = {
   confirmButtonText?: string;
   title: string;
   description?: string;
-  width?: string;
-  height?: string;
   children?: ReactNode;
+  style?: CSSProperties;
 };
 
 export const Alert = forwardRef(function Alert(
@@ -27,21 +26,14 @@ export const Alert = forwardRef(function Alert(
     confirmButtonText = '확인',
     title,
     description,
-    width = '450px',
-    height = 'auto',
     children,
+    style,
     ...props
   }: AlertProps,
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
-    <StyledAlert
-      ref={ref}
-      isOpen={isOpen}
-      onClose={onClose}
-      style={{ width, height }}
-      {...props}
-    >
+    <StyledAlert ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h2">{title}</Text>
@@ -66,4 +58,6 @@ const StyledAlert = styled(Modal)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 450px;
+  height: auto;
 `;
