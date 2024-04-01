@@ -3,7 +3,7 @@
 import styled from '@emotion/styled';
 import { IconEmoticonThin, IconHeartRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Stack, Text } from '@sickgyun/ui';
+import { Flex, Spacer, Stack, Text } from '@sickgyun/ui';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import QnaComment from '@/components/qna/QnaComment';
@@ -40,21 +40,18 @@ const QnaPostPage = () => {
             </Stack>
           </StyledQnaPostSubTitleBox>
           <Stack style={{ borderBottom: `1px solid ${colors.gray200}` }}>
-            <Stack style={{ paddingTop: '30px', paddingBottom: '15px' }}>
+            <Stack style={{ paddingTop: '30px', paddingBottom: '10px' }}>
               연봉을 많이 주지만 범위가 좁고 루틴한 업무를 맡게될 회사.. 연봉은 적지만..
               다양한 업무를 맡을수 있는 회사.. (그리고.. 바쁨..) 어느 회사를 선택하는게
               좋을까요? 결정을 못하겠어요
             </Stack>
-            <Stack
-              align="center"
-              justify="center"
-              style={{ width: '100%', marginBottom: '30px' }}
-            >
+            <Flex align="center" justify="center">
               <StyledQnaLikeButton>
                 <IconHeartRegular width={16} height={16} color={colors.black} />
                 <Text>9</Text>
               </StyledQnaLikeButton>
-            </Stack>
+            </Flex>
+            <Spacer height={10} />
           </Stack>
           <QnaComment />
         </StyledQnaPost>
