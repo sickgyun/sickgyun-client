@@ -93,31 +93,44 @@ const ProfileDetailContent = ({
         </Stack>
       )}
       <Stack spacing={16}>
-        <Text fontType="h3">정보</Text>
-        <Stack spacing={12}>
-          {profile?.githubId && (
-            <StyledNavigationButton onClick={handleGoGithub}>
-              <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
-              <Stack direction="horizontal" align="center" spacing={4}>
-                <Text fontType="body3" color="gray700">
-                  깃허브 바로가기
-                </Text>
-                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+        {profile?.githubId ||
+          (profile?.email && (
+            <>
+              <Text fontType="h3">정보</Text>
+              <Stack spacing={12}>
+                {profile?.githubId && (
+                  <StyledNavigationButton onClick={handleGoGithub}>
+                    <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
+                    <Stack direction="horizontal" align="center" spacing={4}>
+                      <Text fontType="body3" color="gray700">
+                        깃허브 바로가기
+                      </Text>
+                      <IconChevronRightFill
+                        width={16}
+                        height={16}
+                        color={colors.gray700}
+                      />
+                    </Stack>
+                  </StyledNavigationButton>
+                )}
+                {profile?.email && (
+                  <StyledNavigationButton onClick={handleGoEmail}>
+                    <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
+                    <Flex align="center">
+                      <Text fontType="body3" color="gray700">
+                        이메일 바로가기
+                      </Text>
+                      <IconChevronRightFill
+                        width={24}
+                        height={24}
+                        color={colors.gray700}
+                      />
+                    </Flex>
+                  </StyledNavigationButton>
+                )}
               </Stack>
-            </StyledNavigationButton>
-          )}
-          {profile?.email && (
-            <StyledNavigationButton onClick={handleGoEmail}>
-              <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
-              <Flex align="center">
-                <Text fontType="body3" color="gray700">
-                  이메일 바로가기
-                </Text>
-                <IconChevronRightFill width={24} height={24} color={colors.gray700} />
-              </Flex>
-            </StyledNavigationButton>
-          )}
-        </Stack>
+            </>
+          ))}
       </Stack>
     </StyledProfileDetailContent>
   );
@@ -148,7 +161,6 @@ const StyledIntroduceBox = styled.div`
   border-radius: 8px;
   width: 100%;
   min-height: 56px;
-  cursor: pointer;
 `;
 
 const StyledNavigationButton = styled.div`

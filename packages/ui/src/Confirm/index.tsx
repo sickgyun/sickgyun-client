@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import type { CSSProperties, ForwardedRef, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import { Button } from '../Button';
-import { ModalContent, ModalFooter, ModalHeader } from '../Modal';
+import { ModalBody, ModalFooter, ModalHeader } from '../Modal';
 import { Modal } from '../Modal/Modal';
 import { Stack } from '../Stack';
 import { Text } from '../Text';
@@ -48,7 +48,7 @@ export const Confirm = forwardRef(function Confirm(
           )}
         </Stack>
       </ModalHeader>
-      {children && <ModalContent>{children}</ModalContent>}
+      {children && <ModalBody>{children}</ModalBody>}
       <ModalFooter>
         <Stack direction="horizontal" spacing={16} style={{ width: '100%' }}>
           <Button onClick={onClose} styleType="secondary" size="medium">
