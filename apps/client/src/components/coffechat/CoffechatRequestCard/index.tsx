@@ -11,7 +11,7 @@ const CoffechatRequestCard = () => {
         </Text>
       </Stack>
       <Stack direction="horizontal" align="center" spacing={12}>
-        <Button styleType="secondary" size="medium">
+        <Button styleType="secondary" size="medium" width="120px">
           거절하기
         </Button>
         <Button size="medium">수락하기</Button>
