@@ -54,7 +54,7 @@ export const Alert = forwardRef(function Alert(
       </ModalHeader>
       {children && <ModalContent>{children}</ModalContent>}
       <ModalFooter>
-        <Button onClick={onConfirm} styleType="primary" size="small">
+        <Button onClick={onConfirm} styleType="primary" size="medium">
           {confirmButtonText}
         </Button>
       </ModalFooter>
