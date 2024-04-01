@@ -8,7 +8,7 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import type { CoffechatNotificationType } from '@/types/coffechat';
 
-const CoffechatNotificationPage = () => {
+const NotificationPage = () => {
   const [coffechatNotificationType, setCoffechatNotificationType] =
     useState<CoffechatNotificationType>('REQUEST');
 
@@ -21,8 +21,8 @@ const CoffechatNotificationPage = () => {
   return (
     <>
       <Header />
-      <StyledCoffechatNotificationPageLayout>
-        <StyledConffechatPage>
+      <StyledNotificationPageLayout>
+        <StyledNotificationPage>
           <Spacer height={32} />
           <Text fontType="h1" color="gray900">
             커피챗 {coffechatNotificationType === 'REQUEST' ? '요청' : '신청'} 알림
@@ -49,22 +49,22 @@ const CoffechatNotificationPage = () => {
             <CoffechatList coffechatNotificationType={coffechatNotificationType} />
           </StyledCoffechatListWrapper>
           <Spacer height={64} />
-        </StyledConffechatPage>
-      </StyledCoffechatNotificationPageLayout>
+        </StyledNotificationPage>
+      </StyledNotificationPageLayout>
       <Footer />
     </>
   );
 };
 
-export default CoffechatNotificationPage;
+export default NotificationPage;
 
-const StyledCoffechatNotificationPageLayout = styled.div`
+const StyledNotificationPageLayout = styled.div`
   width: 100vw;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
-const StyledConffechatPage = styled.div`
+const StyledNotificationPage = styled.div`
   width: 700px;
   margin: 0 auto;
 `;
