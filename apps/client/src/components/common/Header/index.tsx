@@ -13,14 +13,13 @@ const Header = () => {
   const user = useUser();
 
   const handleLogin = () => {
-    if (!process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL) return;
     router.replace(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
   };
 
   const handleLogout = () => {
     localStorage.clear();
-    setIsLogin(false);
     router.push('/');
+    setIsLogin(false);
   };
 
   return (
