@@ -36,13 +36,13 @@ const QnaPage = () => {
               <Stack direction="horizontal" spacing={6}>
                 <StyledActiveButton
                   onClick={handlePrevPopularQna}
-                  isFirstPage={currentQnaPageIndex == 0}
+                  isFirstPage={currentQnaPageIndex === 0}
                 >
                   <IconChevronLeftFill width={24} height={24} />
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
-                  isLastPage={currentQnaPageIndex == QNA.length - 3}
+                  isLastPage={currentQnaPageIndex === QNA.length - 3}
                 >
                   <IconChevronRightFill width={24} height={24} />
                 </StyledActiveButton>
