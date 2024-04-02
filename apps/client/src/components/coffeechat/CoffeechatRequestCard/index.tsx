@@ -1,7 +1,24 @@
 import styled from '@emotion/styled';
 import { Button, Stack, Text } from '@sickgyun/ui';
+import { useOverlay } from '@toss/use-overlay';
+import CoffeechatAcceptConfirm from '../CoffeechatAcceptConfirm';
+import CoffeechatRejectConfirm from '../CoffeechatRejectConfirm';
 
 const CoffeechatRequestCard = () => {
+  const overlay = useOverlay();
+
+  const openCoffeechatAcceptConfirm = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatAcceptConfirm isOpen={isOpen} onClose={close} />
+    ));
+  };
+
+  const openCoffeechatRejectConfirm = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatRejectConfirm isOpen={isOpen} onClose={close} />
+    ));
+  };
+
   return (
     <StyledCoffeechatRequestCard direction="vertical" spacing={24}>
       <Stack direction="vertical" spacing={6}>
@@ -11,10 +28,17 @@ const CoffeechatRequestCard = () => {
         </Text>
       </Stack>
       <Stack direction="horizontal" align="center" spacing={12}>
-        <Button styleType="secondary" size="medium" width="120px">
+        <Button
+          onClick={openCoffeechatRejectConfirm}
+          styleType="secondary"
+          size="medium"
+          width="120px"
+        >
           거절하기
         </Button>
-        <Button size="medium">수락하기</Button>
+        <Button onClick={openCoffeechatAcceptConfirm} size="medium">
+          수락하기
+        </Button>
       </Stack>
     </StyledCoffeechatRequestCard>
   );
