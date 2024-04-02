@@ -9,7 +9,7 @@ const CoffeechatApplicationCard = () => {
       align="center"
     >
       <Stack direction="vertical" spacing={6}>
-        <Text fontType="h4">김석진님</Text>
+        <Text fontType="body1">김석진님</Text>
         <Text fontType="body2" color="gray600">
           응답 대기중인 커피챗이 있어요!
         </Text>
