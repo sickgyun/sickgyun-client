@@ -11,20 +11,10 @@ import type { Qna } from '@/types/qna';
 type QnaPostingCardProps = {
   id: number;
   title: string;
-  questionType: string;
-  name: string;
-  heart: number;
-  commentCount: number;
+  category: string;
 };
 
-const QnaPostCard = ({
-  id,
-  title,
-  questionType,
-  name,
-  heart,
-  commentCount,
-}: QnaPostingCardProps) => {
+const QnaPostCard = ({ id, title, category }: QnaPostingCardProps) => {
   const router = useRouter();
 
   const handleGoQnaDetailPage = (id: number) => {
@@ -34,22 +24,22 @@ const QnaPostCard = ({
     <StyledQnaPostCard onClick={() => handleGoQnaDetailPage(id)}>
       <Flex direction="column">
         <StyledPopularQnaContent>
-          <QnaCategory questionType={questionType as Qna} />
+          <QnaCategory questionType={category as Qna} />
           <StyledQnaContent fontType="h4">{title}</StyledQnaContent>
         </StyledPopularQnaContent>
         <StyledPopularInfo>
-          <Text>{name}</Text>
+          <Text>이상진</Text>
           <Stack direction="horizontal" spacing={12}>
             <Stack direction="horizontal" align="center" spacing={3}>
               <IconHeartRegular width={16} height={16} color={colors.black} />
               <Text fontType="body2" style={{ marginTop: '2px' }}>
-                {heart}
+                {3}
               </Text>
             </Stack>
             <Stack direction="horizontal" align="center" spacing={3}>
               <IconReplyRegular width={16} height={16} color={colors.black} />
               <Text fontType="body2" style={{ marginTop: '2px' }}>
-                {commentCount}
+                {3}
               </Text>
             </Stack>
           </Stack>

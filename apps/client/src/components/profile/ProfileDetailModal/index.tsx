@@ -15,9 +15,15 @@ import { useUser } from '@/hooks/common/useUser';
 
 type ProfileDetailModalProps = {
   profileId: number;
+  userId: number;
 } & ModalProps;
 
-const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalProps) => {
+const ProfileDetailModal = ({
+  isOpen,
+  onClose,
+  profileId,
+  userId,
+}: ProfileDetailModalProps) => {
   const overlay = useOverlay();
   const user = useUser();
 
@@ -27,6 +33,7 @@ const ProfileDetailModal = ({ isOpen, onClose, profileId }: ProfileDetailModalPr
         isOpen={isOpen}
         onClose={close}
         onProfileDetailModalClose={onClose}
+        userId={userId}
       />
     ));
   };

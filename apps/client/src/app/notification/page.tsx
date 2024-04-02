@@ -8,28 +8,23 @@ import { useLayoutEffect } from 'react';
 import CoffeechatList from '@/components/coffeechat/CoffeechatList';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import type { CoffeechatNotificationType } from '@/types/coffeechat';
+import type { CoffeechatType } from '@/types/coffeechat';
 
 const NotificationPage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const selectedCoffeechatNotificationType = params.get(
-    'type'
-  ) as CoffeechatNotificationType;
-  const coffeechatNotificationType =
-    selectedCoffeechatNotificationType === 'APPLICATION' ? '신청' : '요청';
+  const selectedCoffeechatType = params.get('type') as CoffeechatType;
+  const coffeechatType = selectedCoffeechatType === 'RECEIVE' ? '요청' : '신청';
 
   useLayoutEffect(() => {
-    if (isNil(selectedCoffeechatNotificationType)) {
-      router.replace('/notification?type=REQUEST');
+    if (isNil(selectedCoffeechatType)) {
+      router.replace('/notification?type=RECEIVE');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCoffeechatNotificationType]);
+  }, [selectedCoffeechatType]);
 
-  const handleCoffeechatNotificationTypeSelected = (
-    coffeechatNotificationType: CoffeechatNotificationType
-  ) => {
-    router.replace(`/notification?type=${coffeechatNotificationType}`);
+  const handleCoffeechatTypeSelected = (coffeechatType: CoffeechatType) => {
+    router.replace(`/notification?type=${coffeechatType}`);
   };
 
   return (
@@ -39,20 +34,20 @@ const NotificationPage = () => {
         <StyledNotificationPage>
           <Spacer height={32} />
           <Text fontType="h1" color="gray900">
-            커피챗 {coffeechatNotificationType} 알림
+            커피챗 {coffeechatType} 알림
           </Text>
           <Spacer height={32} />
           <Stack direction="horizontal" align="center" spacing={12}>
             <Button
-              onClick={() => handleCoffeechatNotificationTypeSelected('REQUEST')}
-              isActive={selectedCoffeechatNotificationType === 'REQUEST'}
+              onClick={() => handleCoffeechatTypeSelected('RECEIVE')}
+              isActive={selectedCoffeechatType === 'RECEIVE'}
               styleType="quaternary"
             >
               요청 내역
             </Button>
             <Button
-              onClick={() => handleCoffeechatNotificationTypeSelected('APPLICATION')}
-              isActive={selectedCoffeechatNotificationType === 'APPLICATION'}
+              onClick={() => handleCoffeechatTypeSelected('SEND')}
+              isActive={selectedCoffeechatType === 'SEND'}
               styleType="quaternary"
             >
               신청 내역
@@ -60,9 +55,7 @@ const NotificationPage = () => {
           </Stack>
           <Spacer height={48} />
           <StyledCoffeechatListWrapper>
-            <CoffeechatList
-              coffeechatNotificationType={selectedCoffeechatNotificationType}
-            />
+            <CoffeechatList coffeechatType={selectedCoffeechatType} />
           </StyledCoffeechatListWrapper>
           <Spacer height={64} />
         </StyledNotificationPage>

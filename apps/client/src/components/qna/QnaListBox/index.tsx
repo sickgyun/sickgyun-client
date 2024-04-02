@@ -48,8 +48,11 @@ const QnaListBox = () => {
             const currentTime = currentDate.diff(createTime, 'minutes');
 
             let timeAgo: string;
-            if (currentTime < 1440) timeAgo = `${Math.floor(currentTime / 60)}시간 전`;
-            else timeAgo = `${Math.floor(currentTime / 1440)}일 전`;
+            if (currentTime < 1440) {
+              currentTime < 60
+                ? (timeAgo = `${Math.floor(currentTime)}분 전`)
+                : (timeAgo = `${Math.floor(currentTime / 60)}시간 전`);
+            } else timeAgo = `${Math.floor(currentTime / 1440)}일 전`;
 
             return (
               <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)}>
@@ -83,7 +86,9 @@ const QnaListBox = () => {
             );
           })
         ) : (
-          <Text fontType="body1">앗! 아직 질문이 올라오지 않았어요..</Text>
+          <Text fontType="body1" style={{ marginBottom: '20px' }}>
+            앗! 아직 질문이 올라오지 않았어요..
+          </Text>
         )}
       </StyledQnaBoxWrapper>
     </StyledQnaListBox>

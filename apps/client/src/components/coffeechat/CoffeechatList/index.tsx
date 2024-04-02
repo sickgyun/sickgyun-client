@@ -1,25 +1,33 @@
 import styled from '@emotion/styled';
-import CoffeechatApplicationCard from '../CoffeechatApplicationCard';
-import CoffeechatRequestCard from '../CoffeechatRequestCard';
-import type { CoffeechatNotificationType } from '@/types/coffeechat';
+import CoffeechatReceiveCard from '../CoffeechatReceiveCard';
+import CoffeechatSendCard from '../CoffeechatSendCard';
+import { withSuspense } from '@/hocs/withSuspense';
+import { useGetReceiveCoffeechatList } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
+import { useGetSendCoffeechatList } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
+import type { CoffeechatType } from '@/types/coffeechat';
 
-type CoffeechatListProp = {
-  coffeechatNotificationType: CoffeechatNotificationType;
+type CoffeechatListProps = {
+  coffeechatType: CoffeechatType;
 };
 
-const CoffeechatList = ({ coffeechatNotificationType }: CoffeechatListProp) => {
+const CoffeechatList = ({ coffeechatType }: CoffeechatListProps) => {
+  const { receiveCoffeechatList } = useGetReceiveCoffeechatList(coffeechatType);
+  const { sendCoffeechatList } = useGetSendCoffeechatList(coffeechatType);
+  const coffeechatList =
+    coffeechatType === 'RECEIVE' ? receiveCoffeechatList : sendCoffeechatList;
+  const CoffeechatCard =
+    coffeechatType === 'RECEIVE' ? CoffeechatReceiveCard : CoffeechatSendCard;
+
   return (
     <StyledCoffeechatList>
-      {coffeechatNotificationType === 'REQUEST' ? (
-        <CoffeechatRequestCard />
-      ) : (
-        <CoffeechatApplicationCard />
-      )}
+      {coffeechatList.map((coffeechat) => (
+        <CoffeechatCard {...coffeechat} />
+      ))}
     </StyledCoffeechatList>
   );
 };
 
-export default CoffeechatList;
+export default withSuspense(CoffeechatList);
 
 const StyledCoffeechatList = styled.div`
   display: flex;

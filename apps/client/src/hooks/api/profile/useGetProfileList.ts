@@ -4,6 +4,7 @@ import type { Major } from '@/types/profile';
 
 export type GetProfileListResponse = {
   id: number;
+  userId: number;
   name: string;
   admissionYear: number;
   imageUrl: string;

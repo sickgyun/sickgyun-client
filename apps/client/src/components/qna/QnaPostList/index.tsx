@@ -2,20 +2,23 @@
 
 import styled from '@emotion/styled';
 import QnaPostCard from '../QnaPostCard';
-import { QNA } from '@/constants/qna';
+import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
+import { withSuspense } from '@/hocs/withSuspense';
 
 const QnaPostList = ({ currentQnaPageIndex }) => {
+  const { qnaList } = useGetQnaList();
+  const topRankArr = qnaList.slice(0, 9);
+
+  console.log('sdf', topRankArr);
+
   return (
     <StyledQnaPostListContainer>
       <StyledQnaPostList currentQnaPageIndex={currentQnaPageIndex}>
-        {QNA.map((qnaList) => (
+        {topRankArr.map((qnaList) => (
           <QnaPostCard
             id={qnaList.id}
             title={qnaList.title}
-            questionType={qnaList.questionType}
-            name={qnaList.name}
-            heart={qnaList.heart}
-            commentCount={qnaList.commentCount}
+            category={qnaList.category}
           />
         ))}
       </StyledQnaPostList>
@@ -23,7 +26,7 @@ const QnaPostList = ({ currentQnaPageIndex }) => {
   );
 };
 
-export default QnaPostList;
+export default withSuspense(QnaPostList);
 
 const StyledQnaPostListContainer = styled.div`
   overflow: hidden;
