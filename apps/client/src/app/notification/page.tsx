@@ -17,11 +17,11 @@ const NotificationPage = () => {
     'type'
   ) as CoffeechatNotificationType;
   const coffeechatNotificationType =
-    selectedCoffeechatNotificationType === 'APPLICATION' ? '신청' : '요청';
+    selectedCoffeechatNotificationType === 'RECEIVE' ? '신청' : '요청';
 
   useLayoutEffect(() => {
     if (isNil(selectedCoffeechatNotificationType)) {
-      router.replace('/notification?type=REQUEST');
+      router.replace('/notification?type=RECEIVE');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCoffeechatNotificationType]);
@@ -44,15 +44,15 @@ const NotificationPage = () => {
           <Spacer height={32} />
           <Stack direction="horizontal" align="center" spacing={12}>
             <Button
-              onClick={() => handleCoffeechatNotificationTypeSelected('REQUEST')}
-              isActive={selectedCoffeechatNotificationType === 'REQUEST'}
+              onClick={() => handleCoffeechatNotificationTypeSelected('RECEIVE')}
+              isActive={selectedCoffeechatNotificationType === 'RECEIVE'}
               styleType="quaternary"
             >
               요청 내역
             </Button>
             <Button
-              onClick={() => handleCoffeechatNotificationTypeSelected('APPLICATION')}
-              isActive={selectedCoffeechatNotificationType === 'APPLICATION'}
+              onClick={() => handleCoffeechatNotificationTypeSelected('SEND')}
+              isActive={selectedCoffeechatNotificationType === 'SEND'}
               styleType="quaternary"
             >
               신청 내역

@@ -1,1 +1,1 @@
-export type CoffeechatNotificationType = 'REQUEST' | 'APPLICATION';
+export type CoffeechatNotificationType = 'RECEIVE' | 'SEND';

@@ -10,7 +10,7 @@ type CoffeechatListProp = {
 const CoffeechatList = ({ coffeechatNotificationType }: CoffeechatListProp) => {
   return (
     <StyledCoffeechatList>
-      {coffeechatNotificationType === 'REQUEST' ? (
+      {coffeechatNotificationType === 'RECEIVE' ? (
         <CoffeechatRequestCard />
       ) : (
         <CoffeechatApplicationCard />
