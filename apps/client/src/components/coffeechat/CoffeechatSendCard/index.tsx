@@ -24,9 +24,9 @@ const CoffeechatSendCard = ({ toUser }: CoffeechatSendCardProps) => {
       align="center"
     >
       <Stack direction="vertical" spacing={6}>
-        <Text fontType="body1">{toUser.name}님</Text>
+        <Text fontType="body1">{toUser.name}님에게</Text>
         <Text fontType="body2" color="gray600">
-          응답 대기중인 커피챗이 있어요!
+          응답이 아직 오지 않았어요!
         </Text>
       </Stack>
       <Button
