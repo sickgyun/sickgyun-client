@@ -7,16 +7,16 @@ import {
 } from '@/hooks/api/coffeechat/useRejectCoffeechat';
 
 type CoffeechatRejectConfirmProps = {
-  userId: number;
+  coffeechatId: number;
 } & ModalProps;
 
 const CoffeechatRejectConfirm = ({
   isOpen,
   onClose,
-  userId,
+  coffeechatId,
 }: CoffeechatRejectConfirmProps) => {
   const { register, handleSubmit: handleRejectCoffeechatSubmit } = useForm();
-  const { mutate: rejectCoffeechatMutate } = useRejectCoffeechat(userId);
+  const { mutate: rejectCoffeechatMutate } = useRejectCoffeechat(coffeechatId);
 
   const onRejectCoffeechat: SubmitHandler<RejectCoffeechatRequest> = (data) => {
     rejectCoffeechatMutate(data);

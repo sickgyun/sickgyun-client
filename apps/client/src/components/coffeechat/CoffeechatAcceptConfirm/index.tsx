@@ -2,15 +2,15 @@ import { Confirm } from '@sickgyun/ui';
 import { useAcceptCoffeechat } from '@/hooks/api/coffeechat/useAcceptCoffeechat';
 
 type CoffeechatAcceptConfirmProps = {
-  userId: number;
+  coffeechatId: number;
 } & ModalProps;
 
 const CoffeechatAcceptConfirm = ({
   isOpen,
   onClose,
-  userId,
+  coffeechatId,
 }: CoffeechatAcceptConfirmProps) => {
-  const { mutate: acceptCoffechatMutate } = useAcceptCoffeechat(userId);
+  const { mutate: acceptCoffechatMutate } = useAcceptCoffeechat(coffeechatId);
 
   const handleConfirm = () => {
     onClose();

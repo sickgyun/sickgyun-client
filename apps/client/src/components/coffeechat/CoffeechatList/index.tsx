@@ -23,7 +23,9 @@ const CoffeechatList = ({ coffeechatType }: CoffeechatListProps) => {
   return (
     <StyledCoffeechatList>
       {!isEmpty(coffeechatList) ? (
-        coffeechatList.map((coffeechat) => <CoffeechatCard {...coffeechat} />)
+        coffeechatList.map((coffeechat) => (
+          <CoffeechatCard coffeechatId={coffeechat.id} {...coffeechat} />
+        ))
       ) : (
         <Text fontType="h3">
           앗! {coffeechatType === 'RECEIVE' ? '요청 내역' : '신청 내역'}이 없어요...

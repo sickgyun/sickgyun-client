@@ -7,21 +7,33 @@ import type { User } from '@/types/user';
 
 type CoffeechatReceiveCardProps = {
   fromUser: User;
+  coffeechatId: number;
 };
 
-const CoffeechatReceiveCard = ({ fromUser }: CoffeechatReceiveCardProps) => {
+const CoffeechatReceiveCard = ({
+  fromUser,
+  coffeechatId,
+}: CoffeechatReceiveCardProps) => {
   const overlay = useOverlay();
   const userType = fromUser.isGraduated ? '졸업생' : '재학생';
 
   const openCoffeechatAcceptConfirm = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatAcceptConfirm isOpen={isOpen} onClose={close} userId={fromUser.id} />
+      <CoffeechatAcceptConfirm
+        isOpen={isOpen}
+        onClose={close}
+        coffeechatId={coffeechatId}
+      />
     ));
   };
 
   const openCoffeechatRejectConfirm = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatRejectConfirm isOpen={isOpen} onClose={close} userId={fromUser.id} />
+      <CoffeechatRejectConfirm
+        isOpen={isOpen}
+        onClose={close}
+        coffeechatId={coffeechatId}
+      />
     ));
   };
 
