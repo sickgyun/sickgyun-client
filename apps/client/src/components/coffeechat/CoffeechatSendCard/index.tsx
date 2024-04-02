@@ -13,7 +13,7 @@ const CoffeechatSendCard = ({ toUser }: CoffeechatSendCardProps) => {
 
   const openCoffeechatCancelConfrim = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatCancelConfirm isOpen={isOpen} onClose={close} />
+      <CoffeechatCancelConfirm isOpen={isOpen} onClose={close} userId={toUser.id} />
     ));
   };
 

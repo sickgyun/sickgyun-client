@@ -15,13 +15,13 @@ const CoffeechatReceiveCard = ({ fromUser }: CoffeechatReceiveCardProps) => {
 
   const openCoffeechatAcceptConfirm = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatAcceptConfirm isOpen={isOpen} onClose={close} />
+      <CoffeechatAcceptConfirm isOpen={isOpen} onClose={close} userId={fromUser.id} />
     ));
   };
 
   const openCoffeechatRejectConfirm = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatRejectConfirm isOpen={isOpen} onClose={close} />
+      <CoffeechatRejectConfirm isOpen={isOpen} onClose={close} userId={fromUser.id} />
     ));
   };
 
