@@ -2,8 +2,13 @@ import styled from '@emotion/styled';
 import { Button, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import CoffeechatCancelConfirm from '../CoffeechatCancelConfirm';
+import type { User } from '@/types/user';
 
-const CoffeechatApplicationCard = () => {
+type CoffeechatSendCardProps = {
+  toUser: User;
+};
+
+const CoffeechatSendCard = ({ toUser }: CoffeechatSendCardProps) => {
   const overlay = useOverlay();
 
   const openCoffeechatCancelConfrim = () => {
@@ -13,13 +18,13 @@ const CoffeechatApplicationCard = () => {
   };
 
   return (
-    <StyledCoffeechatApplicationCard
+    <StyledCoffeechatSendCard
       direction="horizontal"
       justify="space-between"
       align="center"
     >
       <Stack direction="vertical" spacing={6}>
-        <Text fontType="body1">김석진님</Text>
+        <Text fontType="body1">{toUser.name}님</Text>
         <Text fontType="body2" color="gray600">
           응답 대기중인 커피챗이 있어요!
         </Text>
@@ -32,13 +37,13 @@ const CoffeechatApplicationCard = () => {
       >
         취소
       </Button>
-    </StyledCoffeechatApplicationCard>
+    </StyledCoffeechatSendCard>
   );
 };
 
-export default CoffeechatApplicationCard;
+export default CoffeechatSendCard;
 
-const StyledCoffeechatApplicationCard = styled(Stack)`
+const StyledCoffeechatSendCard = styled(Stack)`
   width: 100%;
   height: 80px;
   margin-bottom: 24px;

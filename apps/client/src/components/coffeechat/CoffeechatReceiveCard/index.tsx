@@ -3,8 +3,13 @@ import { Button, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import CoffeechatAcceptConfirm from '../CoffeechatAcceptConfirm';
 import CoffeechatRejectConfirm from '../CoffeechatRejectConfirm';
+import type { User } from '@/types/user';
 
-const CoffeechatRequestCard = () => {
+type CoffechatReceiveCardProps = {
+  fromUser: User;
+};
+
+const CoffechatReceiveCard = ({ fromUser }: CoffechatReceiveCardProps) => {
   const overlay = useOverlay();
 
   const openCoffeechatAcceptConfirm = () => {
@@ -20,9 +25,12 @@ const CoffeechatRequestCard = () => {
   };
 
   return (
-    <StyledCoffeechatRequestCard direction="vertical" spacing={24}>
+    <StyledCoffechatReceiveCard direction="vertical" spacing={24}>
       <Stack direction="vertical" spacing={6}>
-        <Text fontType="body1">2기 재학생 김석진님이 커피챗 신청을 보냈어요!</Text>
+        <Text fontType="body1">
+          {fromUser.cardinal}기 {fromUser.isGraduated ? '졸업생' : '재학생'}{' '}
+          {fromUser.name}님이 커피챗 신청을 보냈어요!
+        </Text>
         <Text fontType="body2" color="gray600">
           커피챗 신청을 수락하시겠습니까?
         </Text>
@@ -40,13 +48,13 @@ const CoffeechatRequestCard = () => {
           수락하기
         </Button>
       </Stack>
-    </StyledCoffeechatRequestCard>
+    </StyledCoffechatReceiveCard>
   );
 };
 
-export default CoffeechatRequestCard;
+export default CoffechatReceiveCard;
 
-const StyledCoffeechatRequestCard = styled(Stack)`
+const StyledCoffechatReceiveCard = styled(Stack)`
   width: 100%;
   height: 150px;
   margin-bottom: 24px;
