@@ -17,9 +17,20 @@ const ProfileList = ({ major }: ProfileListProps) => {
   const overlay = useOverlay();
   const { profileList } = useGetProfileList([major]);
 
-  const openProfileDetailModal = (profileId: number) => {
+  const openProfileDetailModal = ({
+    profileId,
+    userId,
+  }: {
+    profileId: number;
+    userId: number;
+  }) => {
     overlay.open(({ isOpen, close }) => (
-      <ProfileDetailModal isOpen={isOpen} onClose={close} profileId={profileId} />
+      <ProfileDetailModal
+        isOpen={isOpen}
+        onClose={close}
+        profileId={profileId}
+        userId={userId}
+      />
     ));
   };
 
@@ -28,7 +39,9 @@ const ProfileList = ({ major }: ProfileListProps) => {
       {profileList.map((profile) => {
         return (
           <ProfileCard
-            onClick={() => openProfileDetailModal(profile.id)}
+            onClick={() =>
+              openProfileDetailModal({ profileId: profile.id, userId: profile.userId })
+            }
             name={profile.name}
             imageUrl={profile.imageUrl}
             cardinal={profile.cardinal}
