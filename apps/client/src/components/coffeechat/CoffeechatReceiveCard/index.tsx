@@ -68,12 +68,12 @@ const CoffeechatReceiveCard = ({
           <Button
             onClick={openCoffeechatRejectConfirm}
             styleType="secondary"
-            size="medium"
+            size="small"
             width="120px"
           >
             거절하기
           </Button>
-          <Button onClick={openCoffeechatAcceptConfirm} size="medium">
+          <Button onClick={openCoffeechatAcceptConfirm} size="small">
             수락하기
           </Button>
         </Stack>
