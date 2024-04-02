@@ -13,8 +13,8 @@ export const useCreateCoffeechat = (userId: number) => {
     mutationFn: (data: CreateCoffeechatRequest) =>
       post(`/api/coffeechat/${userId}`, data),
     onSuccess: () => {
-      alert('커피챗 요청이 보내졌어요!');
       router.replace('/profile');
+      alert('커피챗 요청이 보내졌어요!');
     },
   });
 };
