@@ -1,12 +1,13 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
+import type { Major } from '@/types/profile';
 
 export type GetProfileListResponse = {
   id: number;
   name: string;
   admissionYear: number;
   imageUrl: string;
-  major: string;
+  major: Major;
   introduction: string;
   company: string;
   isRecruited: boolean;

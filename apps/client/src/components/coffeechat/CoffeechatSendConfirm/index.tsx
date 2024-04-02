@@ -1,26 +1,26 @@
 import { Confirm, Textarea } from '@sickgyun/ui';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import type { CreateCoffechatRequest } from '@/hooks/api/coffechat/useCreateConffechat';
-import { useCreateCoffechat } from '@/hooks/api/coffechat/useCreateConffechat';
+import { useCreateCoffeechat } from '@/hooks/api/coffeechat/useCreateCoffeechat';
+import type { CreateCoffeechatRequest } from '@/hooks/api/coffeechat/useCreateCoffeechat';
 import { useUser } from '@/hooks/common/useUser';
 
-type CoffechatSendConfirmProps = {
+type CoffeechatSendConfirmProps = {
   onProfileDetailModalClose: VoidFunction;
 } & ModalProps;
 
-const CoffechatSendConfirm = ({
+const CoffeechatSendConfirm = ({
   isOpen,
   onClose,
   onProfileDetailModalClose,
-}: CoffechatSendConfirmProps) => {
+}: CoffeechatSendConfirmProps) => {
   const user = useUser();
-  const { register, handleSubmit: handleCreateCoffechatSubmit } =
-    useForm<CreateCoffechatRequest>();
-  const { mutate: createCoffechat } = useCreateCoffechat(user.id);
+  const { register, handleSubmit: handleCreateCoffeechatSubmit } =
+    useForm<CreateCoffeechatRequest>();
+  const { mutate: createCoffeechat } = useCreateCoffeechat(user.id);
 
-  const onCreateCoffechat: SubmitHandler<CreateCoffechatRequest> = (data) => {
-    createCoffechat(data);
+  const onCreateCoffeechat: SubmitHandler<CreateCoffeechatRequest> = (data) => {
+    createCoffeechat(data);
     onClose();
     onProfileDetailModalClose();
   };
@@ -31,7 +31,7 @@ const CoffechatSendConfirm = ({
       description="메세지를 입력해서 커피챗을 신청해보세요!"
       isOpen={isOpen}
       onClose={onClose}
-      onConfirm={handleCreateCoffechatSubmit(onCreateCoffechat)}
+      onConfirm={handleCreateCoffeechatSubmit(onCreateCoffeechat)}
     >
       <Textarea
         label="메세지"
@@ -42,4 +42,4 @@ const CoffechatSendConfirm = ({
   );
 };
 
-export default CoffechatSendConfirm;
+export default CoffeechatSendConfirm;

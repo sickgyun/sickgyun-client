@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
+import type { Major } from '@/types/profile';
 
 type ProfileCardProps = {
   onClick: VoidFunction;
   name: string;
   imageUrl: string;
   cardinal: number;
-  major: string;
+  major: Major;
   company?: string;
   introduction?: string;
   isRecruited: boolean;

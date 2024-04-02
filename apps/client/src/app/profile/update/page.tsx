@@ -29,8 +29,8 @@ const ProfileUpdatePage = () => {
     <>
       <Header />
       <StyledProfileUpdatePageLayout>
-        <Spacer height={32} />
-        <StyledProfileFormContainer onSubmit={handleUpdateProfileSubmit(onUpdateProfile)}>
+        <StyledProfileUpdatePage onSubmit={handleUpdateProfileSubmit(onUpdateProfile)}>
+          <Spacer height={32} />
           <Text fontType="h1" color="gray900">
             프로필 수정
           </Text>
@@ -40,8 +40,8 @@ const ProfileUpdatePage = () => {
           <Button type="submit" size="large">
             프로필 수정
           </Button>
-        </StyledProfileFormContainer>
-        <Spacer height={64} />
+          <Spacer height={64} />
+        </StyledProfileUpdatePage>
       </StyledProfileUpdatePageLayout>
       <Footer />
     </>
@@ -56,7 +56,7 @@ const StyledProfileUpdatePageLayout = styled.div`
   height: 100%;
 `;
 
-const StyledProfileFormContainer = styled.form`
+const StyledProfileUpdatePage = styled.form`
   width: 600px;
   margin: 0 auto;
 `;

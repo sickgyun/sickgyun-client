@@ -7,14 +7,15 @@ import ProfileCard from '../ProfileCard';
 import ProfileDetailModal from '../ProfileDetailModal';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetProfileList } from '@/hooks/api/profile/useGetProfileList';
+import type { Major } from '@/types/profile';
 
 type ProfileListProps = {
-  major: string;
+  major: Major;
 };
 
 const ProfileList = ({ major }: ProfileListProps) => {
   const overlay = useOverlay();
-  const { profileList } = useGetProfileList([major.toUpperCase()]);
+  const { profileList } = useGetProfileList([major]);
 
   const openProfileDetailModal = (profileId: number) => {
     overlay.open(({ isOpen, close }) => (
