@@ -5,11 +5,11 @@ import CoffeechatAcceptConfirm from '../CoffeechatAcceptConfirm';
 import CoffeechatRejectConfirm from '../CoffeechatRejectConfirm';
 import type { User } from '@/types/user';
 
-type CoffechatReceiveCardProps = {
+type CoffeechatReceiveCardProps = {
   fromUser: User;
 };
 
-const CoffechatReceiveCard = ({ fromUser }: CoffechatReceiveCardProps) => {
+const CoffeechatReceiveCard = ({ fromUser }: CoffeechatReceiveCardProps) => {
   const overlay = useOverlay();
 
   const openCoffeechatAcceptConfirm = () => {
@@ -25,7 +25,7 @@ const CoffechatReceiveCard = ({ fromUser }: CoffechatReceiveCardProps) => {
   };
 
   return (
-    <StyledCoffechatReceiveCard direction="vertical" spacing={24}>
+    <StyledCoffeechatReceiveCard direction="vertical" spacing={24}>
       <Stack direction="vertical" spacing={6}>
         <Text fontType="body1">
           {fromUser.cardinal}기 {fromUser.isGraduated ? '졸업생' : '재학생'}{' '}
@@ -48,13 +48,13 @@ const CoffechatReceiveCard = ({ fromUser }: CoffechatReceiveCardProps) => {
           수락하기
         </Button>
       </Stack>
-    </StyledCoffechatReceiveCard>
+    </StyledCoffeechatReceiveCard>
   );
 };
 
-export default CoffechatReceiveCard;
+export default CoffeechatReceiveCard;
 
-const StyledCoffechatReceiveCard = styled(Stack)`
+const StyledCoffeechatReceiveCard = styled(Stack)`
   width: 100%;
   height: 150px;
   margin-bottom: 24px;

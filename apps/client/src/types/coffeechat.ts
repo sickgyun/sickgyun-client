@@ -2,7 +2,7 @@ import type { User } from './user';
 
 export type CoffeechatType = 'RECEIVE' | 'SEND';
 
-export type CoffechatList = {
+export type CoffeechatList = {
   id: number;
   state: 'ACCEPT' | 'PENDING' | 'REJECT';
   toUser: User;
