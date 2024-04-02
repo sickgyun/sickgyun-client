@@ -3,21 +3,21 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useCreateCoffeechat } from '@/hooks/api/coffeechat/useCreateCoffeechat';
 import type { CreateCoffeechatRequest } from '@/hooks/api/coffeechat/useCreateCoffeechat';
-import { useUser } from '@/hooks/common/useUser';
 
 type CoffeechatSendConfirmProps = {
   onProfileDetailModalClose: VoidFunction;
+  userId: number;
 } & ModalProps;
 
 const CoffeechatSendConfirm = ({
   isOpen,
   onClose,
   onProfileDetailModalClose,
+  userId,
 }: CoffeechatSendConfirmProps) => {
-  const user = useUser();
   const { register, handleSubmit: handleCreateCoffeechatSubmit } =
     useForm<CreateCoffeechatRequest>();
-  const { mutate: createCoffeechat } = useCreateCoffeechat(user.id);
+  const { mutate: createCoffeechat } = useCreateCoffeechat(userId);
 
   const onCreateCoffeechat: SubmitHandler<CreateCoffeechatRequest> = (data) => {
     createCoffeechat(data);
