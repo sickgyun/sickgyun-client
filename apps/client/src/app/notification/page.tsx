@@ -13,13 +13,11 @@ import type { CoffeechatNotificationType } from '@/types/coffeechat';
 const NotificationPage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const coffeechatNotificationType = params.get(
-    'coffeechatNotificationType'
-  ) as CoffeechatNotificationType;
+  const coffeechatNotificationType = params.get('type') as CoffeechatNotificationType;
 
   useLayoutEffect(() => {
     if (isNil(coffeechatNotificationType)) {
-      router.replace('/notification?coffeechatNotificationType=REQUEST');
+      router.replace('/notification?type=REQUEST');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -27,9 +25,7 @@ const NotificationPage = () => {
   const handleCoffeechatNotificationTypeSelected = (
     coffeechatNotificationType: CoffeechatNotificationType
   ) => {
-    router.replace(
-      `/notification?coffeechatNotificationType=${coffeechatNotificationType}`
-    );
+    router.replace(`/notification?type=${coffeechatNotificationType}`);
   };
 
   return (
