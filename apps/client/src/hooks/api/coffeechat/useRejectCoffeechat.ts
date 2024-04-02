@@ -3,7 +3,7 @@ import { RECEIVE_COFFEE_CHAT_LIST } from './useGetReceiveCoffeechatList';
 import { put } from '@/libs/api/client';
 
 export type RejectCoffeechatRequest = {
-  message?: string;
+  message: string;
 };
 
 export const useRejectCoffeechat = (coffeechatId: number) => {
