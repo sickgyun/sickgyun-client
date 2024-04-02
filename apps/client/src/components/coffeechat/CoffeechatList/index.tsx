@@ -13,8 +13,8 @@ type CoffeechatListProps = {
 };
 
 const CoffeechatList = ({ coffeechatType }: CoffeechatListProps) => {
-  const { receiveCoffeechatList } = useGetReceiveCoffeechatList(coffeechatType);
-  const { sendCoffeechatList } = useGetSendCoffeechatList(coffeechatType);
+  const { receiveCoffeechatList } = useGetReceiveCoffeechatList();
+  const { sendCoffeechatList } = useGetSendCoffeechatList();
   const coffeechatList =
     coffeechatType === 'RECEIVE' ? receiveCoffeechatList : sendCoffeechatList;
   const CoffeechatCard =
