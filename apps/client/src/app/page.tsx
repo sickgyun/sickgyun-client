@@ -11,6 +11,7 @@ import MainBanner from '@/components/main/MainBanner';
 import RecuritList from '@/components/recurit/RecuritList';
 import { JOB_POSTING_FULL_VIEW_LINK, MAJOR_LIST } from '@/constants/profile';
 import type { Major } from '@/types/profile';
+import { isProd } from '@/utils/isProd';
 
 const MainPage = () => {
   const router = useRouter();
@@ -20,6 +21,10 @@ const MainPage = () => {
   };
 
   const handleGoQnaPage = () => {
+    if (isProd(process.env.NODE_ENV)) {
+      alert('상진이가 열심히 개발중이에요!');
+      return;
+    }
     router.push(`/qna`);
   };
 
