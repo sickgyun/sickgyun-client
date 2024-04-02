@@ -1,11 +1,8 @@
 import { Confirm, Textarea } from '@sickgyun/ui';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useCreateCoffeechat } from '@/hooks/api/coffeechat/useCreateConffechat';
-import type {
-  CreateCoffeechatRequest,
-  CreateeCoffeechatRequest,
-} from '@/hooks/api/coffeechat/useCreateConffeechat';
+import { useCreateCoffeechat } from '@/hooks/api/coffeechat/useCreateCoffeechat';
+import type { CreateCoffeechatRequest } from '@/hooks/api/coffeechat/useCreateCoffeechat';
 import { useUser } from '@/hooks/common/useUser';
 
 type CoffeechatSendConfirmProps = {
@@ -22,7 +19,7 @@ const CoffeechatSendConfirm = ({
     useForm<CreateCoffeechatRequest>();
   const { mutate: createCoffeechat } = useCreateCoffeechat(user.id);
 
-  const onCreateCoffeechat: SubmitHandler<CreateeCoffeechatRequest> = (data) => {
+  const onCreateCoffeechat: SubmitHandler<CreateCoffeechatRequest> = (data) => {
     createCoffeechat(data);
     onClose();
     onProfileDetailModalClose();
