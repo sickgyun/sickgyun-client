@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { Text } from '@sickgyun/ui';
+import { isEmpty } from 'lodash';
 import CoffeechatReceiveCard from '../CoffeechatReceiveCard';
 import CoffeechatSendCard from '../CoffeechatSendCard';
 import { withSuspense } from '@/hocs/withSuspense';
@@ -20,9 +22,13 @@ const CoffeechatList = ({ coffeechatType }: CoffeechatListProps) => {
 
   return (
     <StyledCoffeechatList>
-      {coffeechatList.map((coffeechat) => (
-        <CoffeechatCard {...coffeechat} />
-      ))}
+      {!isEmpty(coffeechatList) ? (
+        coffeechatList.map((coffeechat) => <CoffeechatCard {...coffeechat} />)
+      ) : (
+        <Text fontType="h3">
+          앗! {coffeechatType === 'RECEIVE' ? '요청 내역' : '신청 내역'}이 없어요...
+        </Text>
+      )}
     </StyledCoffeechatList>
   );
 };
