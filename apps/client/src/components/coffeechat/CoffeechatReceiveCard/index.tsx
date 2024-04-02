@@ -11,6 +11,7 @@ type CoffeechatReceiveCardProps = {
 
 const CoffeechatReceiveCard = ({ fromUser }: CoffeechatReceiveCardProps) => {
   const overlay = useOverlay();
+  const userType = fromUser.isGraduated ? '졸업생' : '재학생';
 
   const openCoffeechatAcceptConfirm = () => {
     overlay.open(({ isOpen, close }) => (
@@ -28,8 +29,7 @@ const CoffeechatReceiveCard = ({ fromUser }: CoffeechatReceiveCardProps) => {
     <StyledCoffeechatReceiveCard direction="vertical" spacing={24}>
       <Stack direction="vertical" spacing={6}>
         <Text fontType="body1">
-          {fromUser.cardinal}기 {fromUser.isGraduated ? '졸업생' : '재학생'}{' '}
-          {fromUser.name}님이 커피챗 신청을 보냈어요!
+          {fromUser.cardinal}기 {userType} {fromUser.name}님이 커피챗 신청을 보냈어요!
         </Text>
         <Text fontType="body2" color="gray600">
           커피챗 신청을 수락하시겠습니까?
