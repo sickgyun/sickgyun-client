@@ -6,10 +6,10 @@ export type GetProfileResponse = Profile;
 
 export const PROFILE_QUERY_KEY = 'profile';
 
-export const useGetProfile = (id: number) => {
+export const useGetProfile = (profileId: number) => {
   const profileQuery = useSuspenseQuery<GetProfileResponse>({
-    queryKey: [PROFILE_QUERY_KEY, id],
-    queryFn: async () => await get<GetProfileResponse>(`/api/profiles/${id}`),
+    queryKey: [PROFILE_QUERY_KEY, profileId],
+    queryFn: async () => await get<GetProfileResponse>(`/api/profiles/${profileId}`),
   });
 
   return { profile: profileQuery.data, ...profileQuery };

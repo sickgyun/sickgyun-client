@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaPostCategory';
-import { QNA_WRITE_CATEGORY } from '@/constants/qna-write';
+import { QNA_WRITE_CATEGORY } from '@/constants/qna';
 import { useCreateQna } from '@/hooks/api/qna/useCreateQna';
 import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
 import type { Qna } from '@/types/qna';

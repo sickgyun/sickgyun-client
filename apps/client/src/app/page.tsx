@@ -9,19 +9,22 @@ import Header from '@/components/common/Header';
 import LoginBox from '@/components/main/LoginBox';
 import MainBanner from '@/components/main/MainBanner';
 import RecuritList from '@/components/recurit/RecuritList';
-import { MAJOR_LIST } from '@/constants/profile';
-
-const JOB_POSTING_FULL_VIEW_LINK =
-  'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1';
+import { JOB_POSTING_FULL_VIEW_LINK, MAJOR_LIST } from '@/constants/profile';
+import type { Major } from '@/types/profile';
+import { isProd } from '@/utils/isProd';
 
 const MainPage = () => {
   const router = useRouter();
 
-  const hanldeGoStudentProfilePage = (major: string) => {
+  const hanldeGoProfilePage = (major: Major) => {
     router.push(`/profile?major=${major}`);
   };
 
   const handleGoQnaPage = () => {
+    if (isProd(process.env.NODE_ENV)) {
+      alert('상진이가 열심히 개발중이에요!');
+      return;
+    }
     router.push(`/qna`);
   };
 
@@ -49,10 +52,10 @@ const MainPage = () => {
             <Flex justify="space-between">
               {MAJOR_LIST.map((major) => (
                 <StyledStudentProfileRedirectButton
-                  onClick={() => hanldeGoStudentProfilePage(major.queryParameter)}
+                  onClick={() => hanldeGoProfilePage(major.value)}
                 >
                   <Image
-                    src={`/assets/images/major/${major.queryParameter}.png`}
+                    src={`/assets/images/major/${major.value}.png`}
                     height={48}
                     width={48}
                     alt="Major"

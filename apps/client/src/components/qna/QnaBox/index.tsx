@@ -21,7 +21,7 @@ const QnaBox = () => {
         justify="center"
         style={{ height: '90px', borderBottom: `1px solid ${colors.white}` }}
       >
-        <Button width="80%" styleType="primary" onClick={() => handleGoQnaWritePage()}>
+        <Button width="80%" onClick={() => handleGoQnaWritePage()}>
           질문하기
         </Button>
       </Stack>

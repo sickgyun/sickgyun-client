@@ -54,7 +54,7 @@ export const Confirm = forwardRef(function Confirm(
           <Button onClick={onClose} styleType="secondary" size="medium">
             {closeButtonText}
           </Button>
-          <Button onClick={onConfirm} styleType="primary" size="medium">
+          <Button onClick={onConfirm} size="medium">
             {confirmButtonText}
           </Button>
         </Stack>
