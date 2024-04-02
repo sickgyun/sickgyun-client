@@ -25,7 +25,7 @@ const ProfilePage = () => {
       router.replace('/profile?major=ALL');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedMajor]);
 
   const handleMajorSelected = (major: Major) => {
     router.replace(`/profile?major=${major}`);

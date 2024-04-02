@@ -13,14 +13,18 @@ import type { CoffeechatNotificationType } from '@/types/coffeechat';
 const NotificationPage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const coffeechatNotificationType = params.get('type') as CoffeechatNotificationType;
+  const selectedCoffeechatNotificationType = params.get(
+    'type'
+  ) as CoffeechatNotificationType;
+  const coffeechatNotificationType =
+    selectedCoffeechatNotificationType === 'APPLICATION' ? '신청' : '요청';
 
   useLayoutEffect(() => {
-    if (isNil(coffeechatNotificationType)) {
+    if (isNil(selectedCoffeechatNotificationType)) {
       router.replace('/notification?type=REQUEST');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedCoffeechatNotificationType]);
 
   const handleCoffeechatNotificationTypeSelected = (
     coffeechatNotificationType: CoffeechatNotificationType
@@ -35,20 +39,20 @@ const NotificationPage = () => {
         <StyledNotificationPage>
           <Spacer height={32} />
           <Text fontType="h1" color="gray900">
-            커피챗 {coffeechatNotificationType === 'REQUEST' ? '요청' : '신청'} 알림
+            커피챗 {coffeechatNotificationType} 알림
           </Text>
           <Spacer height={32} />
           <Stack direction="horizontal" align="center" spacing={12}>
             <Button
               onClick={() => handleCoffeechatNotificationTypeSelected('REQUEST')}
-              isActive={coffeechatNotificationType === 'REQUEST'}
+              isActive={selectedCoffeechatNotificationType === 'REQUEST'}
               styleType="quaternary"
             >
               요청 내역
             </Button>
             <Button
               onClick={() => handleCoffeechatNotificationTypeSelected('APPLICATION')}
-              isActive={coffeechatNotificationType === 'APPLICATION'}
+              isActive={selectedCoffeechatNotificationType === 'APPLICATION'}
               styleType="quaternary"
             >
               신청 내역
@@ -56,7 +60,9 @@ const NotificationPage = () => {
           </Stack>
           <Spacer height={48} />
           <StyledCoffeechatListWrapper>
-            <CoffeechatList coffeechatNotificationType={coffeechatNotificationType} />
+            <CoffeechatList
+              coffeechatNotificationType={selectedCoffeechatNotificationType}
+            />
           </StyledCoffeechatListWrapper>
           <Spacer height={64} />
         </StyledNotificationPage>
