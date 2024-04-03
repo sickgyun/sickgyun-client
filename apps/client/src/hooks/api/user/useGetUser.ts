@@ -5,7 +5,10 @@ import { get } from '@/libs/api/client';
 import { Storage } from '@/libs/api/storage';
 import type { User } from '@/types/user';
 
-type GetUserReponse = User;
+type GetUserReponse = {
+  user: User;
+  hasNotification: boolean;
+};
 
 export const USER_QUERY_KEY = 'user';
 
