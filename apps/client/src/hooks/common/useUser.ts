@@ -16,7 +16,10 @@ export const useUser = () => {
     setIsLogin(Boolean(accessToken));
 
     if (userQuery.data) {
-      setUser(userQuery.data);
+      setUser({
+        ...userQuery.data.user,
+        hasNotification: userQuery.data.hasNotification,
+      });
     }
   }, [setIsLogin, setUser, userQuery.data]);
 

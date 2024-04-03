@@ -38,7 +38,7 @@ export const Confirm = forwardRef(function Confirm(
 ) {
   return (
     <StyledConfirm ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
-      <ModalHeader>
+      <StyledModalHeader>
         <Stack spacing={8}>
           <Text fontType="h2">{title}</Text>
           {description && (
@@ -47,7 +47,7 @@ export const Confirm = forwardRef(function Confirm(
             </Text>
           )}
         </Stack>
-      </ModalHeader>
+      </StyledModalHeader>
       {children && <ModalBody>{children}</ModalBody>}
       <ModalFooter>
         <Stack direction="horizontal" spacing={16} style={{ width: '100%' }}>
@@ -69,4 +69,8 @@ const StyledConfirm = styled(Modal)`
   justify-content: space-between;
   width: 450px;
   height: auto;
+`;
+
+const StyledModalHeader = styled(ModalHeader)`
+  border: none;
 `;

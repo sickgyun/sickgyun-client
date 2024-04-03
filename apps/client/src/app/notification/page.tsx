@@ -5,7 +5,8 @@ import { Button, Spacer, Stack, Text } from '@sickgyun/ui';
 import { isNil } from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useLayoutEffect } from 'react';
-import CoffeechatList from '@/components/coffeechat/CoffeechatList';
+import CoffeechatReceiveList from '@/components/coffeechat/CoffeechatReceiveList';
+import CoffeechatSendList from '@/components/coffeechat/CoffeechatSendList';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import type { CoffeechatType } from '@/types/coffeechat';
@@ -14,7 +15,7 @@ const NotificationPage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const selectedCoffeechatType = params.get('type') as CoffeechatType;
-  const coffeechatType = selectedCoffeechatType === 'RECEIVE' ? '요청' : '신청';
+  const coffeechatType = selectedCoffeechatType === 'SEND' ? '신청' : '요청';
 
   useLayoutEffect(() => {
     if (isNil(selectedCoffeechatType)) {
@@ -43,19 +44,23 @@ const NotificationPage = () => {
               isActive={selectedCoffeechatType === 'RECEIVE'}
               styleType="quaternary"
             >
-              요청 내역
+              요청 받은 내역
             </Button>
             <Button
               onClick={() => handleCoffeechatTypeSelected('SEND')}
               isActive={selectedCoffeechatType === 'SEND'}
               styleType="quaternary"
             >
-              신청 내역
+              신청 한 내역
             </Button>
           </Stack>
           <Spacer height={48} />
           <StyledCoffeechatListWrapper>
-            <CoffeechatList coffeechatType={selectedCoffeechatType} />
+            {selectedCoffeechatType === 'RECEIVE' ? (
+              <CoffeechatReceiveList />
+            ) : (
+              <CoffeechatSendList />
+            )}
           </StyledCoffeechatListWrapper>
           <Spacer height={64} />
         </StyledNotificationPage>

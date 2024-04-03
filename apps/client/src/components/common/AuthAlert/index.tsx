@@ -7,8 +7,8 @@ const AuthAlert = ({ isOpen, onClose }: AuthAlertProps) => {
   const router = useRouter();
 
   const handleConfirm = () => {
-    router.replace('/');
     onClose();
+    router.replace('/');
   };
 
   return (
