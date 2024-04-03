@@ -5,7 +5,8 @@ import { Button, Spacer, Stack, Text } from '@sickgyun/ui';
 import { isNil } from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useLayoutEffect } from 'react';
-import CoffeechatList from '@/components/coffeechat/CoffeechatList';
+import CoffeechatReceiveList from '@/components/coffeechat/CoffeechatReceiveList';
+import CoffeechatSendList from '@/components/coffeechat/CoffeechatSendList';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import type { CoffeechatType } from '@/types/coffeechat';
@@ -55,7 +56,11 @@ const NotificationPage = () => {
           </Stack>
           <Spacer height={48} />
           <StyledCoffeechatListWrapper>
-            <CoffeechatList coffeechatType={selectedCoffeechatType} />
+            {selectedCoffeechatType === 'RECEIVE' ? (
+              <CoffeechatReceiveList />
+            ) : (
+              <CoffeechatSendList />
+            )}
           </StyledCoffeechatListWrapper>
           <Spacer height={64} />
         </StyledNotificationPage>
