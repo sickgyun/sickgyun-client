@@ -1,7 +1,11 @@
 import { atom } from 'jotai';
 import type { User } from '@/types/user';
 
-export const userAtom = atom<User>({
+type UserAtom = {
+  hasNotification: boolean;
+} & User;
+
+export const userAtom = atom<UserAtom>({
   id: 0,
   name: '',
   email: '',
@@ -9,4 +13,5 @@ export const userAtom = atom<User>({
   isGraduated: false,
   hasCreatedProfile: false,
   profileId: 0,
+  hasNotification: false,
 });

@@ -46,7 +46,7 @@ const Header = () => {
           {user.hasCreatedProfile && (
             <StyledNotificationButtonWrapper>
               <StyledNotificationButton onClick={handleGoNotificationPage} />
-              <StyledNotificationDot />
+              {user.hasNotification && <StyledNotificationDot />}
             </StyledNotificationButtonWrapper>
           )}
           {user.isLogin ? (
