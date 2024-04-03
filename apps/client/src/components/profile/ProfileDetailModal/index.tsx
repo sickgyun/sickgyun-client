@@ -39,11 +39,7 @@ const ProfileDetailModal = ({
   };
 
   return (
-    <StyledModal
-      isOpen={isOpen}
-      onClose={onClose}
-      style={{ width: '600px', height: '600px' }}
-    >
+    <StyledModal isOpen={isOpen} onClose={onClose}>
       <ModalHeader>
         <Text fontType="h2">프로필 정보</Text>
         <ModalCloseButton onClose={onClose} />
@@ -66,6 +62,8 @@ export default ProfileDetailModal;
 
 const StyledModal = styled(Modal)`
   position: relative;
+  width: 600px;
+  height: 600px;
 `;
 
 const StyledModalFooter = styled(ModalFooter)`
