@@ -17,10 +17,10 @@ const CoffeechatSendConfirm = ({
 }: CoffeechatSendConfirmProps) => {
   const { register, handleSubmit: handleCreateCoffeechatSubmit } =
     useForm<CreateCoffeechatRequest>();
-  const { mutate: createCoffeechat } = useCreateCoffeechat(userId);
+  const { mutate: createCoffeechatMutate } = useCreateCoffeechat(userId);
 
   const onCreateCoffeechat: SubmitHandler<CreateCoffeechatRequest> = (data) => {
-    createCoffeechat(data);
+    createCoffeechatMutate(data);
     onClose();
     onProfileDetailModalClose();
   };

@@ -44,7 +44,10 @@ const Header = () => {
         />
         <Stack direction="horizontal" align="center" spacing={12}>
           {user.hasCreatedProfile && (
-            <StyledNotificationButton onClick={handleGoNotificationPage} />
+            <StyledNotificationButtonWrapper>
+              <StyledNotificationButton onClick={handleGoNotificationPage} />
+              <StyledNotificationDot />
+            </StyledNotificationButtonWrapper>
           )}
           {user.isLogin ? (
             <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
@@ -72,9 +75,22 @@ const StyledHeader = styled.div`
   `}
 `;
 
+const StyledNotificationButtonWrapper = styled.div`
+  position: relative;
+`;
+
 const StyledNotificationButton = styled(IconNotificationFill)`
   cursor: pointer;
   width: 22px;
   height: 22px;
   color: ${({ theme }) => theme.colors.gray900};
+`;
+
+const StyledNotificationDot = styled.span`
+  position: absolute;
+  background-color: ${({ theme }) => theme.colors.red};
+  width: 4px;
+  height: 4px;
+  right: 0;
+  border-radius: 50%;
 `;

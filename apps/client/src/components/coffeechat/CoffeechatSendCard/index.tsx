@@ -6,14 +6,19 @@ import type { User } from '@/types/user';
 
 type CoffeechatSendCardProps = {
   toUser: User;
+  coffeechatId: number;
 };
 
-const CoffeechatSendCard = ({ toUser }: CoffeechatSendCardProps) => {
+const CoffeechatSendCard = ({ toUser, coffeechatId }: CoffeechatSendCardProps) => {
   const overlay = useOverlay();
 
   const openCoffeechatCancelConfrim = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatCancelConfirm isOpen={isOpen} onClose={close} />
+      <CoffeechatCancelConfirm
+        isOpen={isOpen}
+        onClose={close}
+        coffeechatId={coffeechatId}
+      />
     ));
   };
 

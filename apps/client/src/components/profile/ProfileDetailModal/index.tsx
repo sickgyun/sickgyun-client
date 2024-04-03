@@ -27,7 +27,7 @@ const ProfileDetailModal = ({
   const overlay = useOverlay();
   const user = useUser();
 
-  const openCoffeechatConfirm = () => {
+  const openCoffeechatSendConfirm = () => {
     overlay.open(({ isOpen, close }) => (
       <CoffeechatSendConfirm
         isOpen={isOpen}
@@ -53,7 +53,7 @@ const ProfileDetailModal = ({
       </ModalBody>
       {user.profileId !== profileId && (
         <StyledModalFooter>
-          <Button onClick={openCoffeechatConfirm} size="large">
+          <Button onClick={openCoffeechatSendConfirm} size="large">
             커피챗 요청 보내기
           </Button>
         </StyledModalFooter>
