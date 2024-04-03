@@ -29,7 +29,11 @@ const CoffeechatMessageModal = ({
         <ModalCloseButton onClose={onClose} />
       </ModalHeader>
       <ModalBody>
-        <StyledCoffeechatMessageWrapper>{message}</StyledCoffeechatMessageWrapper>
+        <StyledCoffeechatMessageWrapper>
+          <Text fontType="p1" color="gray900">
+            {message}
+          </Text>
+        </StyledCoffeechatMessageWrapper>
       </ModalBody>
     </StyledModal>
   );
@@ -39,6 +43,7 @@ export default CoffeechatMessageModal;
 
 const StyledModal = styled(Modal)`
   width: 500px;
+  max-height: 500px;
 `;
 
 const StyledCoffeechatMessageWrapper = styled.div`
