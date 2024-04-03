@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { USER_QUERY_KEY } from '../user/useGetUser';
 import { PROFILE_LIST_QUERY_KEY } from './useGetProfileList';
@@ -12,7 +13,7 @@ export const useCreateProfile = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  return useMutation<unknown, unknown, CreateProfileRequest>({
+  return useMutation<unknown, AxiosError, CreateProfileRequest>({
     mutationFn: (data: CreateProfileRequest) => post('/api/profiles', data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [PROFILE_LIST_QUERY_KEY] });
