@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { USER_QUERY_KEY } from '../user/useGetUser';
 import { RECEIVE_COFFEE_CHAT_LIST } from './useGetReceiveCoffeechatList';
 import { put } from '@/libs/api/client';
-import { USER_QUERY_KEY } from '../user/useGetUser';
 
 type UseAcceptCoffeechatProps = {
   coffeechatId: number;
