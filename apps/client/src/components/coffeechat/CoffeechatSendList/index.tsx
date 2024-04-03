@@ -1,12 +1,15 @@
 import styled from '@emotion/styled';
-import { Text } from '@sickgyun/ui';
+import { Spinner, Text } from '@sickgyun/ui';
 import { isEmpty } from 'lodash';
 import CoffeechatSendCard from '../CoffeechatSendCard';
-import { withSuspense } from '@/hocs/withSuspense';
 import { useGetSendCoffeechatList } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
 
 const CoffeechatSendList = () => {
-  const { sendCoffeechatList } = useGetSendCoffeechatList();
+  const { sendCoffeechatList, isLoading } = useGetSendCoffeechatList();
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <StyledCoffeechatSendList>
@@ -21,7 +24,7 @@ const CoffeechatSendList = () => {
   );
 };
 
-export default withSuspense(CoffeechatSendList);
+export default CoffeechatSendList;
 
 const StyledCoffeechatSendList = styled.div`
   display: flex;

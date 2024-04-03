@@ -15,7 +15,7 @@ const NotificationPage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const selectedCoffeechatType = params.get('type') as CoffeechatType;
-  const coffeechatType = selectedCoffeechatType === 'RECEIVE' ? '요청' : '신청';
+  const coffeechatType = selectedCoffeechatType === 'SEND' ? '신청' : '요청';
 
   useLayoutEffect(() => {
     if (isNil(selectedCoffeechatType)) {
