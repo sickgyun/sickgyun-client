@@ -2,31 +2,11 @@
 
 import styled from '@emotion/styled';
 import { Spinner } from '@sickgyun/ui';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { LOCAL_STORAGE_KEY } from '@/constants/storage';
-import { useGoogleLoginMutation } from '@/hooks/api/auth/useLoginGoogleMutation';
-import { Storage } from '@/libs/api/storage';
+import { useLoginGoogle } from '@/hooks/api/auth/useLoginGoogle';
 
 const GoogleLoginPage = () => {
-  const router = useRouter();
-
-  const { mutate: loginGoogleMutate } = useGoogleLoginMutation({
-    onSuccess: (data) => {
-      const { accessToken, refreshToken } = data;
-
-      Storage.setItem(LOCAL_STORAGE_KEY.accessToken, `Bearer ${accessToken}`);
-      Storage.setItem(LOCAL_STORAGE_KEY.refreshToken, `Bearer ${refreshToken}`);
-
-      router.replace('/');
-    },
-    onError: (data) => {
-      if (data.message) {
-        alert(data.message);
-      }
-      router.replace('/');
-    },
-  });
+  const { mutate: loginGoogleMutate } = useLoginGoogle();
 
   useEffect(() => {
     const accessToken = getGoogleAccessToken();
