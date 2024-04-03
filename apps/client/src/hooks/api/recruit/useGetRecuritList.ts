@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { get } from '@/libs/api/client';
 
 export type Recurit = {
@@ -13,10 +14,10 @@ export type Recurit = {
 export const RECURIT_LIST_QUERY_KEY = 'recuritList';
 
 export const useGetRecuritList = (size = 6) => {
-  const recuritListQuery = useSuspenseQuery<Recurit[]>({
+  const recuritListQuery = useSuspenseQuery<Recurit[], AxiosError>({
     queryKey: [RECURIT_LIST_QUERY_KEY],
     queryFn: async () => {
-      return await get<Recurit[]>(`/api/recruit?size=${size}`);
+      return await get(`/api/recruit?size=${size}`);
     },
   });
 

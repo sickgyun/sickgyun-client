@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { USER_QUERY_KEY } from '../user/useGetUser';
 import { RECEIVE_COFFEE_CHAT_LIST } from './useGetReceiveCoffeechatList';
 import { put } from '@/libs/api/client';
@@ -18,9 +19,8 @@ export const useAcceptCoffeechat = ({
 }: UseAcceptCoffeechatProps) => {
   const queryClient = useQueryClient();
 
-  return useMutation({
-    mutationFn: () =>
-      put<AcceptCoffeechatResponse>(`/api/coffeechat/${coffeechatId}/accept`),
+  return useMutation<AcceptCoffeechatResponse, AxiosError>({
+    mutationFn: () => put(`/api/coffeechat/${coffeechatId}/accept`),
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });

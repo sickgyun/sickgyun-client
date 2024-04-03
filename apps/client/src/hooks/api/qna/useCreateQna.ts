@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { post } from '@/libs/api/client';
 
 export type CreateQnaRequest = {
@@ -8,8 +9,8 @@ export type CreateQnaRequest = {
 };
 
 export const useCreateQna = () => {
-  return useMutation<unknown, unknown, CreateQnaRequest>({
-    mutationFn: (data: CreateQnaRequest) => post('/api/qna', data),
+  return useMutation<unknown, AxiosError, CreateQnaRequest>({
+    mutationFn: (data) => post('/api/qna', data),
     onSuccess: () => {
       alert('qna 등록 성공');
     },
