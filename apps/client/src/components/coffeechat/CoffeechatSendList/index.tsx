@@ -15,7 +15,7 @@ const CoffeechatSendList = () => {
           <CoffeechatSendCard coffeechatId={coffeechat.id} toUser={coffeechat.toUser} />
         ))
       ) : (
-        <Text fontType="h3">앗! 신청 내역이 없어요...</Text>
+        <Text fontType="h3">앗! 신청 한 내역이 없어요...</Text>
       )}
     </StyledCoffeechatSendList>
   );

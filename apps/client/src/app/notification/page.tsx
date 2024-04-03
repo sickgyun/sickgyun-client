@@ -44,14 +44,14 @@ const NotificationPage = () => {
               isActive={selectedCoffeechatType === 'RECEIVE'}
               styleType="quaternary"
             >
-              요청 내역
+              요청 받은 내역
             </Button>
             <Button
               onClick={() => handleCoffeechatTypeSelected('SEND')}
               isActive={selectedCoffeechatType === 'SEND'}
               styleType="quaternary"
             >
-              신청 내역
+              신청 한 내역
             </Button>
           </Stack>
           <Spacer height={48} />

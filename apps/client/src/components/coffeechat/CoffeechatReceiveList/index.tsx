@@ -19,7 +19,7 @@ const CoffeechatReceiveList = () => {
           />
         ))
       ) : (
-        <Text fontType="h3">앗! 요청 내역이 없어요...</Text>
+        <Text fontType="h3">앗! 요청 받은 내역이 없어요...</Text>
       )}
     </StyledCoffeechatReceiveList>
   );
