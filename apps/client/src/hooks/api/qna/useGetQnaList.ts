@@ -8,6 +8,8 @@ export type GetQnaListResponse = {
   content: string;
   category: string;
   createTime: string;
+  likeCount: number;
+  commentCount: number;
 };
 
 export const QNA_LIST_QUERY_KEY = 'qnaList';

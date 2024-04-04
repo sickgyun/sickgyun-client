@@ -12,9 +12,17 @@ type QnaPostingCardProps = {
   id: number;
   title: string;
   category: string;
+  likeCount: number;
+  commentCount: number;
 };
 
-const QnaPostCard = ({ id, title, category }: QnaPostingCardProps) => {
+const QnaPostCard = ({
+  id,
+  title,
+  category,
+  likeCount,
+  commentCount,
+}: QnaPostingCardProps) => {
   const router = useRouter();
 
   const handleGoQnaDetailPage = (id: number) => {
@@ -33,13 +41,13 @@ const QnaPostCard = ({ id, title, category }: QnaPostingCardProps) => {
             <Stack direction="horizontal" align="center" spacing={3}>
               <IconHeartRegular width={16} height={16} color={colors.black} />
               <Text fontType="body2" style={{ marginTop: '2px' }}>
-                {3}
+                {likeCount}
               </Text>
             </Stack>
             <Stack direction="horizontal" align="center" spacing={3}>
               <IconReplyRegular width={16} height={16} color={colors.black} />
               <Text fontType="body2" style={{ marginTop: '2px' }}>
-                {3}
+                {commentCount}
               </Text>
             </Stack>
           </Stack>

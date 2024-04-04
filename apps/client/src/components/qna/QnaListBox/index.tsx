@@ -69,13 +69,13 @@ const QnaListBox = () => {
                         <Stack direction="horizontal" align="center" spacing={3}>
                           <IconHeartRegular width={16} height={16} color={colors.black} />
                           <Text fontType="body2" style={{ marginTop: '2px' }}>
-                            {3}
+                            {qna.likeCount}
                           </Text>
                         </Stack>
                         <Stack direction="horizontal" align="center" spacing={3}>
                           <IconReplyRegular width={16} height={16} color={colors.black} />
                           <Text fontType="body2" style={{ marginTop: '2px' }}>
-                            {3}
+                            {qna.commentCount}
                           </Text>
                         </Stack>
                       </Stack>
