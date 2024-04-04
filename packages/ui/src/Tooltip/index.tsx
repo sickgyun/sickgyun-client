@@ -20,7 +20,6 @@ import type {
   ComponentType,
   Dispatch,
   MouseEvent,
-  PropsWithChildren,
   ReactNode,
   SetStateAction,
 } from 'react';
@@ -196,7 +195,10 @@ const useTimeoutTransition = ({
 const PositionWrapper = ({
   children,
   strategy,
-}: PropsWithChildren<{ strategy?: Strategy; children: React.ReactNode }>) => {
+}: {
+  strategy?: Strategy;
+  children: ReactNode;
+}) => {
   if (strategy === 'fixed') {
     return <>{children}</>;
   }
