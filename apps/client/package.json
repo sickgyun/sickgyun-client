@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
     "swiper": "^11.0.5",
+    "timeago.js": "^4.0.2",
     "yup": "^1.4.0"
   },
   "devDependencies": {

@@ -1,12 +1,12 @@
 'use client';
 
 import styled from '@emotion/styled';
-import QnaPostCard from '../QnaPostCard';
-import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
-import { withSuspense } from '@/hocs/withSuspense';
-import { qnaLengthAtom } from '@/store/user/qnaLengthAtom';
 import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
+import QnaPostCard from '../QnaPostCard';
+import { withSuspense } from '@/hocs/withSuspense';
+import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
+import { qnaLengthAtom } from '@/store/user/qnaLengthAtom';
 
 const QnaPostList = ({ currentQnaPageIndex }) => {
   const { qnaList } = useGetQnaList();
@@ -15,7 +15,7 @@ const QnaPostList = ({ currentQnaPageIndex }) => {
 
   useEffect(() => {
     setQnaLength(topRankArr.length);
-  }, [qnaList]);
+  }, [setQnaLength, topRankArr]);
 
   return (
     <StyledQnaPostList currentQnaPageIndex={currentQnaPageIndex}>

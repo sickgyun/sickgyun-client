@@ -3,12 +3,12 @@
 import styled from '@emotion/styled';
 import { IconChevronLeftFill, IconChevronRightFill } from '@seed-design/icon';
 import { Flex, Spacer, Stack, Text } from '@sickgyun/ui';
+import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import Header from '@/components/common/Header';
 import QnaBox from '@/components/qna/QnaBox';
 import QnaListBox from '@/components/qna/QnaListBox';
 import QnaPostList from '@/components/qna/QnaPostList';
-import { useAtomValue } from 'jotai';
 import { qnaLengthAtom } from '@/store/user/qnaLengthAtom';
 
 const QnaPage = () => {

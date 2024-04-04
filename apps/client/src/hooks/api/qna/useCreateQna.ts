@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
-import { post } from '@/libs/api/client';
 import { QNA_LIST_QUERY_KEY } from './useGetQnaList';
+import { post } from '@/libs/api/client';
 
 export type CreateQnaRequest = {
   title: string;

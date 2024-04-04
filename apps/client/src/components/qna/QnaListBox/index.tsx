@@ -4,13 +4,15 @@ import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import dayjs from 'dayjs';
+import { format, register } from 'timeago.js';
+import koLocale from 'timeago.js/lib/lang/ko';
 import QnaCategory from '../QnaCategory';
 import { QNA_SORT } from '@/constants/qna';
-import { Qna } from '@/types/qna';
-import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
 import { withSuspense } from '@/hocs/withSuspense';
-import { useTimeAgo } from '@/hooks/common/useTimeAgo';
+import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
+import type { Qna } from '@/types/qna';
+
+register('ko', koLocale);
 
 const QnaListBox = () => {
   const router = useRouter();
@@ -18,7 +20,6 @@ const QnaListBox = () => {
   const categoryParam = params.get('category');
 
   const [selectedQna, setSelectedQna] = useState(0);
-
   const { qnaList } = useGetQnaList([categoryParam]);
 
   const handleGoDetailPage = (id: number) => {
@@ -36,46 +37,43 @@ const QnaListBox = () => {
             cursor: 'pointer',
             fontWeight: selectedQna === qna.id ? 'bold' : 'normal',
           }}
+          key={qna.id}
         >
           {qna.title}
         </Text>
       ))}
       <StyledQnaBoxWrapper>
         {qnaList.length > 0 ? (
-          qnaList.map((qna) => {
-            const timeAgo = useTimeAgo(qna.createTime);
-
-            return (
-              <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)}>
-                <Flex direction="column">
-                  <StyledPopularQna>
-                    <QnaCategory questionType={qna.category as unknown as Qna} />
-                    <Text fontType="h4">{qna.title}</Text>
-                    <StyledQnaContent>{qna.content}</StyledQnaContent>
-                    <Flex justify="space-between" style={{ width: '100%' }}>
-                      <Stack spacing={12} direction="horizontal">
-                        <Text fontType="body2">{timeAgo}</Text>
+          qnaList.map((qna) => (
+            <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)} key={qna.id}>
+              <Flex direction="column">
+                <StyledPopularQna>
+                  <QnaCategory questionType={qna.category as unknown as Qna} />
+                  <Text fontType="h4">{qna.title}</Text>
+                  <StyledQnaContent>{qna.content}</StyledQnaContent>
+                  <Flex justify="space-between" style={{ width: '100%' }}>
+                    <Stack spacing={12} direction="horizontal">
+                      <Text fontType="body2">{format(qna.createTime, 'ko')}</Text>
+                    </Stack>
+                    <Stack spacing={12} direction="horizontal">
+                      <Stack direction="horizontal" align="center" spacing={3}>
+                        <IconHeartRegular width={16} height={16} color={colors.black} />
+                        <Text fontType="body2" style={{ marginTop: '2px' }}>
+                          {qna.likeCount}
+                        </Text>
                       </Stack>
-                      <Stack spacing={12} direction="horizontal">
-                        <Stack direction="horizontal" align="center" spacing={3}>
-                          <IconHeartRegular width={16} height={16} color={colors.black} />
-                          <Text fontType="body2" style={{ marginTop: '2px' }}>
-                            {qna.likeCount}
-                          </Text>
-                        </Stack>
-                        <Stack direction="horizontal" align="center" spacing={3}>
-                          <IconReplyRegular width={16} height={16} color={colors.black} />
-                          <Text fontType="body2" style={{ marginTop: '2px' }}>
-                            {qna.commentCount}
-                          </Text>
-                        </Stack>
+                      <Stack direction="horizontal" align="center" spacing={3}>
+                        <IconReplyRegular width={16} height={16} color={colors.black} />
+                        <Text fontType="body2" style={{ marginTop: '2px' }}>
+                          {qna.commentCount}
+                        </Text>
                       </Stack>
-                    </Flex>
-                  </StyledPopularQna>
-                </Flex>
-              </StyledQnaBox>
-            );
-          })
+                    </Stack>
+                  </Flex>
+                </StyledPopularQna>
+              </Flex>
+            </StyledQnaBox>
+          ))
         ) : (
           <Text fontType="body1" style={{ marginBottom: '20px' }}>
             앗! 아직 질문이 올라오지 않았어요..

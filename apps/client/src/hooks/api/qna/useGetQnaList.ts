@@ -1,6 +1,5 @@
-import { get } from '@/libs/api/client';
-import { Qna } from '@/types/qna';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { get } from '@/libs/api/client';
 
 export type GetQnaListResponse = {
   id: number;
