@@ -6,11 +6,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import NotificationButton from '../NotificationButton';
 import { useUser } from '@/hooks/common/useUser';
-import { isLoginAtom } from '@/store/user';
+import { RESET_USER, userAtom } from '@/store/user/userAtom';
 
 const Header = () => {
   const router = useRouter();
-  const setIsLogin = useSetAtom(isLoginAtom);
+  const setUser = useSetAtom(userAtom);
   const user = useUser();
 
   const handleLogin = () => {
@@ -19,8 +19,8 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    router.push('/');
-    setIsLogin(false);
+    setUser(RESET_USER);
+    router.replace('/');
   };
 
   return (
