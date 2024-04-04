@@ -67,7 +67,7 @@ const MainPage = () => {
             </Flex>
           </Stack>
           <Spacer height={64} />
-          <Stack>
+          <Stack spacing={18}>
             <Text fontType="h3">뭘 해야 할지 모르겠다고요? 조언을 구해봐요!</Text>
             <StyledQnaBannerImage
               onClick={handleGoQnaPage}
@@ -76,7 +76,7 @@ const MainPage = () => {
             />
           </Stack>
           <Spacer height={64} />
-          <StyledRecuritListContainer>
+          <Stack spacing={18} style={{ position: 'relative' }}>
             <Flex align="center" justify="space-between">
               <Text fontType="h3">채용 중인 회사에요!</Text>
               <Link href={JOB_POSTING_FULL_VIEW_LINK} fontType="p1" color="gray750">
@@ -84,7 +84,7 @@ const MainPage = () => {
               </Link>
             </Flex>
             <RecuritList />
-          </StyledRecuritListContainer>
+          </Stack>
           <Spacer height={64} />
         </StyledMainPage>
       </StyledMainPageLayout>
@@ -129,10 +129,4 @@ const StyledQnaBannerImage = styled.img`
   border-radius: 16px;
   height: 150px;
   width: 100%;
-`;
-
-const StyledRecuritListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
 `;
