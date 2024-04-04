@@ -10,6 +10,7 @@ import { QNA_SORT } from '@/constants/qna';
 import { Qna } from '@/types/qna';
 import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
 import { withSuspense } from '@/hocs/withSuspense';
+import { useTimeAgo } from '@/hooks/common/useTimeAgo';
 
 const QnaListBox = () => {
   const router = useRouter();
@@ -19,8 +20,6 @@ const QnaListBox = () => {
   const [selectedQna, setSelectedQna] = useState(0);
 
   const { qnaList } = useGetQnaList([categoryParam]);
-
-  const currentDate = dayjs();
 
   const handleGoDetailPage = (id: number) => {
     router.push(`/qna/${id}`);
@@ -44,15 +43,7 @@ const QnaListBox = () => {
       <StyledQnaBoxWrapper>
         {qnaList.length > 0 ? (
           qnaList.map((qna) => {
-            const createTime = dayjs(qna.createTime);
-            const currentTime = currentDate.diff(createTime, 'minutes');
-
-            let timeAgo: string;
-            if (currentTime < 1440) {
-              currentTime < 60
-                ? (timeAgo = `${Math.floor(currentTime)}분 전`)
-                : (timeAgo = `${Math.floor(currentTime / 60)}시간 전`);
-            } else timeAgo = `${Math.floor(currentTime / 1440)}일 전`;
+            const timeAgo = useTimeAgo(qna.createTime);
 
             return (
               <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)}>
