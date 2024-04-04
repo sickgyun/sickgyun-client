@@ -12,12 +12,14 @@ type CoffeechatReceiveCardProps = {
   fromUser: User;
   coffeechatId: number;
   state: CoffeechatState;
+  message?: string;
 };
 
 const CoffeechatReceiveCard = ({
   fromUser,
   coffeechatId,
   state,
+  message,
 }: CoffeechatReceiveCardProps) => {
   const overlay = useOverlay();
   const isPending = state === 'PENDING';
@@ -45,7 +47,7 @@ const CoffeechatReceiveCard = ({
 
   const openCoffechatMessageModal = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatMessageModal isOpen={isOpen} onClose={close} message="메세지" />
+      <CoffeechatMessageModal isOpen={isOpen} onClose={close} message={message} />
     ));
   };
 

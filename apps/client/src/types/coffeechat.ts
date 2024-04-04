@@ -15,4 +15,5 @@ export type CoffeechatList = {
   state: CoffeechatState;
   toUser: User;
   fromUser: User;
+  message?: string;
 };
