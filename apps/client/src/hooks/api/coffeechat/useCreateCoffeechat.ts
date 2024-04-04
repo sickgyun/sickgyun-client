@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { post } from '@/libs/api/client';
 
@@ -9,7 +10,7 @@ export type CreateCoffeechatRequest = {
 export const useCreateCoffeechat = (userId: number) => {
   const router = useRouter();
 
-  return useMutation<unknown, unknown, CreateCoffeechatRequest>({
+  return useMutation<unknown, AxiosError, CreateCoffeechatRequest>({
     mutationFn: (data: CreateCoffeechatRequest) =>
       post(`/api/coffeechat/${userId}`, data),
     onSuccess: () => {

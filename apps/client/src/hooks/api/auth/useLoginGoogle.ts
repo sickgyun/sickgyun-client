@@ -21,8 +21,7 @@ export const useLoginGoogle = () => {
 
   return useMutation<LoginGoogleResponse, AxiosError, LoginGoogleRequest>({
     mutationKey: [GOOGLE_LOGIN_MUTATION_KEY],
-    mutationFn: (data: LoginGoogleRequest) =>
-      post<LoginGoogleResponse>('/api/auth/login', data),
+    mutationFn: (data) => post('/api/auth/login', data),
     onSuccess: (data) => {
       const { accessToken, refreshToken } = data;
 

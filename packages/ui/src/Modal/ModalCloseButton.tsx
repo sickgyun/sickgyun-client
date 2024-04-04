@@ -10,11 +10,11 @@ export const ModalCloseButton = ({ onClose }: ModalCloseButtonProps) => {
   return (
     <IconCloseFill
       onClick={onClose}
-      width={36}
-      height={36}
+      width={28}
+      height={28}
       cursor="pointer"
       color={colors.black}
-      style={{ position: 'absolute', right: 0 }}
+      style={{ position: 'absolute', right: 0, top: 0 }}
     />
   );
 };

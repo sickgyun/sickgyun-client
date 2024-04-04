@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { IconNotificationFill } from '@seed-design/icon';
 import { Button, Flex, Stack } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import NotificationButton from '../NotificationButton';
 import { useUser } from '@/hooks/common/useUser';
 import { isLoginAtom } from '@/store/user';
 
@@ -21,10 +21,6 @@ const Header = () => {
     localStorage.clear();
     router.push('/');
     setIsLogin(false);
-  };
-
-  const handleGoNotificationPage = () => {
-    router.push('/notification');
   };
 
   return (
@@ -45,8 +41,7 @@ const Header = () => {
         <Stack direction="horizontal" align="center" spacing={12}>
           {user.hasCreatedProfile && (
             <StyledNotificationButtonWrapper>
-              <StyledNotificationButton onClick={handleGoNotificationPage} />
-              {user.hasNotification && <StyledNotificationDot />}
+              <NotificationButton hasNotification={user.hasNotification} />
             </StyledNotificationButtonWrapper>
           )}
           {user.isLogin ? (
@@ -77,20 +72,4 @@ const StyledHeader = styled.div`
 
 const StyledNotificationButtonWrapper = styled.div`
   position: relative;
-`;
-
-const StyledNotificationButton = styled(IconNotificationFill)`
-  cursor: pointer;
-  width: 22px;
-  height: 22px;
-  color: ${({ theme }) => theme.colors.gray900};
-`;
-
-const StyledNotificationDot = styled.span`
-  position: absolute;
-  background-color: ${({ theme }) => theme.colors.red};
-  width: 4px;
-  height: 4px;
-  right: 0;
-  border-radius: 50%;
 `;
