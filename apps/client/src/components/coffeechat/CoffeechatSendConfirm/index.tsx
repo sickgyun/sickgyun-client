@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { Confirm, Textarea } from '@sickgyun/ui';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
@@ -26,7 +27,7 @@ const CoffeechatSendConfirm = ({
   };
 
   return (
-    <Confirm
+    <StyledCoffeechatSendConfirm
       title="커피챗 요청"
       description="메세지를 입력해서 커피챗을 신청해보세요!"
       isOpen={isOpen}
@@ -35,11 +36,15 @@ const CoffeechatSendConfirm = ({
     >
       <Textarea
         label="메세지"
-        placeholder="메세지를 입력해주세요."
+        placeholder={`연락할 수 있는 연락처를 기입하면 빠르게 약속을 잡을 수 있어요!\n\n전화번호: 010-1234-5678\n카카오톡 아이디: as123`}
         {...register('message')}
       />
-    </Confirm>
+    </StyledCoffeechatSendConfirm>
   );
 };
 
 export default CoffeechatSendConfirm;
+
+const StyledCoffeechatSendConfirm = styled(Confirm)`
+  width: 500px;
+`;

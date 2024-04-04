@@ -39,7 +39,7 @@ const ProfileDetailModal = ({
   };
 
   return (
-    <StyledModal isOpen={isOpen} onClose={onClose}>
+    <StyledProfileDetailModal isOpen={isOpen} onClose={onClose}>
       <ModalHeader>
         <Text fontType="h2">프로필 정보</Text>
         <ModalCloseButton onClose={onClose} />
@@ -48,25 +48,25 @@ const ProfileDetailModal = ({
         <ProfileDetailContent profileId={profileId} onProfileDetailModalClose={onClose} />
       </ModalBody>
       {user.profileId !== profileId && (
-        <StyledModalFooter>
+        <StyledProfileDetailModalFooter>
           <Button onClick={openCoffeechatSendConfirm} size="large">
             커피챗 요청 보내기
           </Button>
-        </StyledModalFooter>
+        </StyledProfileDetailModalFooter>
       )}
-    </StyledModal>
+    </StyledProfileDetailModal>
   );
 };
 
 export default ProfileDetailModal;
 
-const StyledModal = styled(Modal)`
+const StyledProfileDetailModal = styled(Modal)`
   position: relative;
   width: 600px;
   height: 600px;
 `;
 
-const StyledModalFooter = styled(ModalFooter)`
+const StyledProfileDetailModalFooter = styled(ModalFooter)`
   position: sticky;
   bottom: 0;
   left: 0;
