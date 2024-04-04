@@ -18,7 +18,7 @@ const CoffeechatMessageModal = ({
   message,
 }: CoffeechatMessageModalProps) => {
   return (
-    <StyledModal isOpen={isOpen} onClose={onClose}>
+    <StyledCoffeechatMessageModal isOpen={isOpen} onClose={onClose}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h2">커피챗 수락</Text>
@@ -35,13 +35,13 @@ const CoffeechatMessageModal = ({
           </Text>
         </StyledCoffeechatMessageWrapper>
       </ModalBody>
-    </StyledModal>
+    </StyledCoffeechatMessageModal>
   );
 };
 
 export default CoffeechatMessageModal;
 
-const StyledModal = styled(Modal)`
+const StyledCoffeechatMessageModal = styled(Modal)`
   width: 500px;
   max-height: 500px;
 `;

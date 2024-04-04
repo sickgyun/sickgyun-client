@@ -44,6 +44,7 @@ const ProfilePage = () => {
           >
             {MAJOR_LIST.map((major) => (
               <Button
+                key={major.value}
                 styleType="quaternary"
                 onClick={() => handleMajorSelected(major.value)}
                 isActive={major.value === selectedMajor}
