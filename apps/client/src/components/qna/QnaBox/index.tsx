@@ -28,6 +28,7 @@ const QnaBox = () => {
       <Flex direction="column">
         {QNA_CATEGORY.map((category) => (
           <StyledQnaCategory
+            key={category.id}
             onClick={() => setActiveCategoryIndex(category.id)}
             isActive={category.id === activeCategoryIndex}
           >

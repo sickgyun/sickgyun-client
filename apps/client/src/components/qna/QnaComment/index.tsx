@@ -34,6 +34,7 @@ const QnaComment = () => {
       {QNA_COMMENT.map((comment) => (
         <>
           <Stack
+            key={comment.id}
             style={{
               borderTop: `1px solid ${colors.gray300}`,
               paddingTop: '10px',

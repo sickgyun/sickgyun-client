@@ -49,6 +49,7 @@ const QnaWritePage = () => {
           <Stack direction="horizontal" spacing={10}>
             {QNA_WRITE_CATEGORY.map((category) => (
               <QnaCategory
+                key={category.id}
                 questionType={category.qnaType as Qna}
                 isWriteCategory
                 isActive={activeCategoryIndex === category.id}

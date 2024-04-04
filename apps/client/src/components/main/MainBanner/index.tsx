@@ -61,8 +61,8 @@ const MainBanner = ({ banners }: MainBannerProps) => {
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           modules={[Autoplay]}
         >
-          {banners.map((banner, index) => (
-            <StyledSwiperSlide key={index}>{banner}</StyledSwiperSlide>
+          {banners.map((banner) => (
+            <StyledSwiperSlide key={banner.toString()}>{banner}</StyledSwiperSlide>
           ))}
         </StyledSwiper>
         <StyledSwiperNavigationController>

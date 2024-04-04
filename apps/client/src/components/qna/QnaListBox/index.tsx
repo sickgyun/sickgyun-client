@@ -20,6 +20,7 @@ const QnaListBox = () => {
     <StyledQnaListBox>
       {QNA_SORT.map((qna) => (
         <Text
+          key={qna.id}
           fontType="p1"
           onClick={() => setSelectedQna(qna.id)}
           style={{
@@ -33,7 +34,7 @@ const QnaListBox = () => {
       ))}
       <StyledQnaBoxWrapper>
         {QNA.map((qna) => (
-          <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)}>
+          <StyledQnaBox key={qna.id} onClick={() => handleGoDetailPage(qna.id)}>
             <Flex direction="column">
               <StyledPopularQna>
                 <QnaCategory questionType={Qna.CONCERN} />

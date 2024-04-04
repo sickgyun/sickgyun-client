@@ -39,6 +39,7 @@ const ProfileList = ({ major }: ProfileListProps) => {
       {profileList.map((profile) => {
         return (
           <ProfileCard
+            key={profile.id}
             onClick={() =>
               openProfileDetailModal({ profileId: profile.id, userId: profile.userId })
             }

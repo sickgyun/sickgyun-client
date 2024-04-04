@@ -15,7 +15,11 @@ const CoffeechatSendList = () => {
     <StyledCoffeechatSendList>
       {!isEmpty(sendCoffeechatList) ? (
         sendCoffeechatList.map((coffeechat) => (
-          <CoffeechatSendCard coffeechatId={coffeechat.id} toUser={coffeechat.toUser} />
+          <CoffeechatSendCard
+            key={coffeechat.id}
+            coffeechatId={coffeechat.id}
+            toUser={coffeechat.toUser}
+          />
         ))
       ) : (
         <Text fontType="h3">앗! 신청 한 내역이 없어요...</Text>

@@ -52,6 +52,7 @@ const MainPage = () => {
             <Flex justify="space-between">
               {MAJOR_LIST.map((major) => (
                 <StyledStudentProfileRedirectButton
+                  key={major.value}
                   onClick={() => hanldeGoProfilePage(major.value)}
                 >
                   <Image

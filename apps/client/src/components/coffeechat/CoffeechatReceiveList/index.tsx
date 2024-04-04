@@ -16,6 +16,7 @@ const CoffeechatReceiveList = () => {
       {!isEmpty(receiveCoffeechatList) ? (
         receiveCoffeechatList.map((coffeechat) => (
           <CoffeechatReceiveCard
+            key={coffeechat.id}
             coffeechatId={coffeechat.id}
             fromUser={coffeechat.fromUser}
             state={coffeechat.state}
