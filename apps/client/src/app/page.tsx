@@ -75,7 +75,7 @@ const MainPage = () => {
             />
           </Stack>
           <Spacer height={64} />
-          <Stack direction="vertical">
+          <StyledRecuritListContainer>
             <Flex align="center" justify="space-between">
               <Text fontType="h3">채용 중인 회사에요!</Text>
               <Link href={JOB_POSTING_FULL_VIEW_LINK} fontType="p1" color="gray750">
@@ -83,7 +83,7 @@ const MainPage = () => {
               </Link>
             </Flex>
             <RecuritList />
-          </Stack>
+          </StyledRecuritListContainer>
           <Spacer height={64} />
         </StyledMainPage>
       </StyledMainPageLayout>
@@ -128,4 +128,10 @@ const StyledQnaBannerImage = styled.img`
   border-radius: 16px;
   height: 150px;
   width: 100%;
+`;
+
+const StyledRecuritListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
 `;
