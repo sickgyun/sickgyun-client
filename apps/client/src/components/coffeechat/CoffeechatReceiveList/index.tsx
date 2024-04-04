@@ -20,6 +20,7 @@ const CoffeechatReceiveList = () => {
             coffeechatId={coffeechat.id}
             fromUser={coffeechat.fromUser}
             state={coffeechat.state}
+            message={coffeechat.message}
           />
         ))
       ) : (
