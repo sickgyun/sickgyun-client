@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { userAtom } from '../../store/user/userAtom';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUser } from '@/hooks/api/user/useGetUser';
@@ -7,6 +7,7 @@ import { Storage } from '@/libs/api/storage';
 
 export const useUser = () => {
   const userQuery = useGetUser();
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
@@ -22,5 +23,11 @@ export const useUser = () => {
     }
   }, [setUser, userQuery.data]);
 
-  return user;
+  useEffect(() => {
+    if (userQuery.isSuccess) {
+      setIsLoading(false);
+    }
+  }, [userQuery.isSuccess]);
+
+  return { ...userQuery, isLoading, user: { ...user } };
 };

@@ -11,15 +11,15 @@ import { RESET_USER, userAtom } from '@/store/user/userAtom';
 const Header = () => {
   const router = useRouter();
   const setUser = useSetAtom(userAtom);
-  const user = useUser();
+  const { user, isLoading } = useUser();
 
   const handleLogin = () => {
     router.replace(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
   };
 
   const handleLogout = () => {
-    localStorage.clear();
     setUser(RESET_USER);
+    localStorage.clear();
     router.replace('/');
   };
 
@@ -38,22 +38,24 @@ const Header = () => {
           style={{ cursor: 'pointer' }}
           alt="Logo"
         />
-        <Stack direction="horizontal" align="center" spacing={12}>
-          {user.hasCreatedProfile && (
-            <StyledNotificationButtonWrapper>
-              <NotificationButton hasNotification={user.hasNotification} />
-            </StyledNotificationButtonWrapper>
-          )}
-          {user.isLogin ? (
-            <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
-              로그아웃
-            </Button>
-          ) : (
-            <Button onClick={handleLogin} styleType="ghost" size="small" width="90px">
-              로그인
-            </Button>
-          )}
-        </Stack>
+        {!isLoading && (
+          <Stack direction="horizontal" align="center" spacing={12}>
+            {user.hasCreatedProfile && (
+              <StyledNotificationButtonWrapper>
+                <NotificationButton hasNotification={user.hasNotification} />
+              </StyledNotificationButtonWrapper>
+            )}
+            {user.isLogin ? (
+              <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
+                로그아웃
+              </Button>
+            ) : (
+              <Button onClick={handleLogin} styleType="ghost" size="small" width="90px">
+                로그인
+              </Button>
+            )}
+          </Stack>
+        )}
       </Flex>
     </StyledHeader>
   );

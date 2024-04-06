@@ -1,13 +1,13 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Button, Flex, Stack, Text } from '@sickgyun/ui';
+import { Button, Flex, Spinner, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/hooks/common/useUser';
 
 const LoginBox = () => {
   const router = useRouter();
-  const user = useUser();
+  const { user, isLoading } = useUser();
 
   const handleLogin = () => {
     router.push(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
@@ -23,7 +23,9 @@ const LoginBox = () => {
 
   return (
     <StyledLoginBox>
-      {user.isLogin ? (
+      {isLoading ? (
+        <Spinner />
+      ) : user.isLogin ? (
         <StyledLoginSuccessBox>
           <Stack spacing={6}>
             <Stack direction="horizontal" align="center" spacing={2}>
@@ -89,6 +91,7 @@ const LoginBox = () => {
 export default LoginBox;
 
 const StyledLoginBox = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;

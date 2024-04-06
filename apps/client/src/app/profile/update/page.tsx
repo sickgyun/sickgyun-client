@@ -14,7 +14,7 @@ import type { UpdateProfileRequest } from '@/hooks/api/profile/useUpdateProfile'
 import { useUser } from '@/hooks/common/useUser';
 
 const ProfileUpdatePage = () => {
-  const user = useUser();
+  const { user } = useUser();
   const { register, handleSubmit: handleUpdateProfileSubmit } =
     useForm<UpdateProfileRequest>();
   const { mutate: updateProfileMutate } = useUpdateProfile();
