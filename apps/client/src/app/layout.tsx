@@ -9,7 +9,8 @@ type RootLayoutProps = {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en">
+    <html lang="kr">
+      <title>식견</title>
       <body>
         <Providers>{children}</Providers>
       </body>
