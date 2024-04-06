@@ -20,14 +20,14 @@ const CoffeechatAcceptConfirm = ({
     ));
   };
 
-  const { mutate: acceptCoffechatMutate } = useAcceptCoffeechat({
+  const { mutate: acceptCoffeechatMutate } = useAcceptCoffeechat({
     coffeechatId,
     openCoffeechatMessageModal,
   });
 
   const handleConfirm = () => {
     onClose();
-    acceptCoffechatMutate();
+    acceptCoffeechatMutate();
   };
 
   return (

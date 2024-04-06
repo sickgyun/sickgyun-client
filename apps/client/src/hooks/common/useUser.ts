@@ -27,7 +27,11 @@ export const useUser = () => {
     if (userQuery.isSuccess) {
       setIsLoading(false);
     }
-  }, [userQuery.isSuccess]);
+
+    if (!user.isLogin) {
+      setIsLoading(false);
+    }
+  }, [user.isLogin, userQuery.isSuccess]);
 
   return { ...userQuery, isLoading, user: { ...user } };
 };
