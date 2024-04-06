@@ -95,9 +95,10 @@ const StyledActiveButton = styled.button<{
   cursor: ${({ isButtonFirstPage, isButtonLastPage, isButtonDisabled }) =>
     isButtonFirstPage || isButtonLastPage || isButtonDisabled ? 'default' : 'pointer'};
   transition: color 0.2s;
-
   color: ${({ theme, isButtonFirstPage, isButtonLastPage, isButtonDisabled }) =>
-    !(isButtonFirstPage || isButtonLastPage || isButtonDisabled) && theme.colors.gray400};
+    isButtonFirstPage || isButtonLastPage || isButtonDisabled
+      ? theme.colors.gray400
+      : theme.colors.gray700};
 
   &:hover {
     color: ${({ theme, isButtonFirstPage, isButtonLastPage, isButtonDisabled }) =>
