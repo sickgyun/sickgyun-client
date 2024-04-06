@@ -79,10 +79,6 @@ export const QNA_SORT = [
   },
   {
     id: 1,
-    title: '공감순',
-  },
-  {
-    id: 2,
     title: '조회순',
   },
 ];

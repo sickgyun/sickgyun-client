@@ -7,8 +7,8 @@ import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import Header from '@/components/common/Header';
 import QnaBox from '@/components/qna/QnaBox';
+import QnaPostList from '@/components/qna/QnaList';
 import QnaListBox from '@/components/qna/QnaListBox';
-import QnaPostList from '@/components/qna/QnaPostList';
 import { qnaLengthAtom } from '@/store/user/qnaLengthAtom';
 
 const QnaPage = () => {
@@ -38,22 +38,22 @@ const QnaPage = () => {
               <Stack direction="horizontal" spacing={6}>
                 <StyledActiveButton
                   onClick={handlePrevPopularQna}
-                  isFirstPage={currentQnaPageIndex === 0}
+                  isButtonFirstPage={currentQnaPageIndex === 0}
                 >
                   <IconChevronLeftFill width={24} height={24} />
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
-                  isLastPage={currentQnaPageIndex === qnaLength - 3}
-                  isDisabled={qnaLength <= 3}
+                  isButtonLastPage={currentQnaPageIndex === qnaLength - 3}
+                  isButtonDisabled={qnaLength <= 3}
                 >
                   <IconChevronRightFill width={24} height={24} />
                 </StyledActiveButton>
               </Stack>
             </Flex>
-            <StyledQnaListContainer>
+            <StyledQnaListWrapper>
               <QnaPostList currentQnaPageIndex={currentQnaPageIndex} />
-            </StyledQnaListContainer>
+            </StyledQnaListWrapper>
           </Stack>
           <Spacer height={60} />
           <StyledQnaContent>
@@ -88,25 +88,25 @@ const StyledQnaContent = styled.div`
 `;
 
 const StyledActiveButton = styled.button<{
-  isFirstPage?: boolean;
-  isLastPage?: boolean;
-  isDisabled?: boolean;
+  isButtonFirstPage?: boolean;
+  isButtonLastPage?: boolean;
+  isButtonDisabled?: boolean;
 }>`
-  cursor: ${({ isFirstPage, isLastPage, isDisabled }) =>
-    isFirstPage || isLastPage || isDisabled ? 'default' : 'pointer'};
+  cursor: ${({ isButtonFirstPage, isButtonLastPage, isButtonDisabled }) =>
+    isButtonFirstPage || isButtonLastPage || isButtonDisabled ? 'default' : 'pointer'};
   transition: color 0.2s;
-  color: ${({ theme, isFirstPage, isLastPage, isDisabled }) =>
-    isFirstPage || isLastPage || isDisabled
-      ? theme.colors.gray400
-      : theme.colors.gray700};
+
+  color: ${({ theme, isButtonFirstPage, isButtonLastPage, isButtonDisabled }) =>
+    !(isButtonFirstPage || isButtonLastPage || isButtonDisabled) && theme.colors.gray400};
 
   &:hover {
-    color: ${({ theme, isFirstPage, isLastPage, isDisabled }) =>
-      !(isFirstPage || isLastPage || isDisabled) && theme.colors.gray400};
+    color: ${({ theme, isButtonFirstPage, isButtonLastPage, isButtonDisabled }) =>
+      !(isButtonFirstPage || isButtonLastPage || isButtonDisabled) &&
+      theme.colors.gray400};
   }
 `;
 
-const StyledQnaListContainer = styled.div`
+const StyledQnaListWrapper = styled.div`
   overflow: hidden;
   min-height: 185px;
 `;

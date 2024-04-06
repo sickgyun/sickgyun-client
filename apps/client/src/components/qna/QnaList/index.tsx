@@ -3,24 +3,24 @@
 import styled from '@emotion/styled';
 import { useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import QnaPostCard from '../QnaPostCard';
+import QnaCard from '../QnaCard';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
 import { qnaLengthAtom } from '@/store/user/qnaLengthAtom';
 
-const QnaPostList = ({ currentQnaPageIndex }) => {
+const QnaList = ({ currentQnaPageIndex }) => {
   const { qnaList } = useGetQnaList();
-  const topRankArr = qnaList.slice(0, 9);
+  const topRankList = qnaList.slice(0, 9);
   const setQnaLength = useSetAtom(qnaLengthAtom);
 
   useEffect(() => {
-    setQnaLength(topRankArr.length);
-  }, [setQnaLength, topRankArr]);
+    setQnaLength(topRankList.length);
+  }, [setQnaLength, topRankList]);
 
   return (
-    <StyledQnaPostList currentQnaPageIndex={currentQnaPageIndex}>
-      {topRankArr?.map((qnaList) => (
-        <QnaPostCard
+    <StyledQnaList currentQnaPageIndex={currentQnaPageIndex}>
+      {topRankList?.map((qnaList) => (
+        <QnaCard
           id={qnaList.id}
           title={qnaList.title}
           category={qnaList.category}
@@ -28,13 +28,13 @@ const QnaPostList = ({ currentQnaPageIndex }) => {
           commentCount={qnaList.commentCount}
         />
       ))}
-    </StyledQnaPostList>
+    </StyledQnaList>
   );
 };
 
-export default withSuspense(QnaPostList);
+export default withSuspense(QnaList);
 
-const StyledQnaPostList = styled.div<{ currentQnaPageIndex: number }>`
+const StyledQnaList = styled.div<{ currentQnaPageIndex: number }>`
   width: 100%;
   display: flex;
   transition: transform 0.5s;

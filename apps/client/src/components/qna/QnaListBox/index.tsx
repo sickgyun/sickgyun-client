@@ -4,15 +4,12 @@ import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import { format, register } from 'timeago.js';
-import koLocale from 'timeago.js/lib/lang/ko';
 import QnaCategory from '../QnaCategory';
 import { QNA_SORT } from '@/constants/qna';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
 import type { Qna } from '@/types/qna';
-
-register('ko', koLocale);
+import { timeAgo } from '@/utils/timeAgo';
 
 const QnaListBox = () => {
   const router = useRouter();
@@ -48,12 +45,12 @@ const QnaListBox = () => {
             <StyledQnaBox onClick={() => handleGoDetailPage(qna.id)} key={qna.id}>
               <Flex direction="column">
                 <StyledPopularQna>
-                  <QnaCategory questionType={qna.category as unknown as Qna} />
+                  <QnaCategory questionType={qna.category as Qna} />
                   <Text fontType="h4">{qna.title}</Text>
                   <StyledQnaContent>{qna.content}</StyledQnaContent>
                   <Flex justify="space-between" style={{ width: '100%' }}>
                     <Stack spacing={12} direction="horizontal">
-                      <Text fontType="body2">{format(qna.createTime, 'ko')}</Text>
+                      <Text fontType="body2">{timeAgo(qna.createTime)}</Text>
                     </Stack>
                     <Stack spacing={12} direction="horizontal">
                       <Stack direction="horizontal" align="center" spacing={3}>

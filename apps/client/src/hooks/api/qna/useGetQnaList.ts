@@ -18,7 +18,7 @@ export const useGetQnaList = (categories?: string[]) => {
 
   const qnaListQuery = useSuspenseQuery<GetQnaListResponse[]>({
     queryKey: [QNA_LIST_QUERY_KEY, categories],
-    queryFn: async () => await get<GetQnaListResponse[]>(qnaListEndPoint),
+    queryFn: async () => await get(qnaListEndPoint),
   });
 
   return { qnaList: qnaListQuery.data, ...qnaListQuery };

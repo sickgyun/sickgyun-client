@@ -13,6 +13,11 @@ const QnaBox = () => {
     router.push('/qna/write');
   };
 
+  const handleGoCategoryQnaPage = (id: number, qnaType: string) => {
+    setActiveCategoryIndex(id);
+    router.push(`/qna?category=${qnaType}`);
+  };
+
   return (
     <StyledQnaBox>
       <Stack
@@ -28,10 +33,7 @@ const QnaBox = () => {
       <Flex direction="column">
         {QNA_CATEGORY.map((category) => (
           <StyledQnaCategory
-            onClick={() => {
-              setActiveCategoryIndex(category.id);
-              router.push(`/qna?category=${category.qnaType}`);
-            }}
+            onClick={() => handleGoCategoryQnaPage(category.id, category.qnaType)}
             isActive={category.id === activeCategoryIndex}
           >
             <Stack direction="horizontal" spacing={10}>
