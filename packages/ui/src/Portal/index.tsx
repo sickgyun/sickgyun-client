@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import type { EffectCallback, PropsWithChildren } from 'react';
+import type { EffectCallback, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
-export const Portal = ({ isOpen, children }: PropsWithChildren<{ isOpen: boolean }>) => {
+type PortalProps = {
+  children: ReactNode;
+  isOpen: boolean;
+};
+
+export const Portal = ({ isOpen, children }: PortalProps) => {
   const [container, setContainer] = useState<Element | null>(null);
 
   useDidMount(() => {

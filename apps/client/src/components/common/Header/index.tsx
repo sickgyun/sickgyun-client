@@ -6,21 +6,21 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import NotificationButton from '../NotificationButton';
 import { useUser } from '@/hooks/common/useUser';
-import { isLoginAtom } from '@/store/user';
+import { RESET_USER, userAtom } from '@/store/user/userAtom';
 
 const Header = () => {
   const router = useRouter();
-  const setIsLogin = useSetAtom(isLoginAtom);
-  const user = useUser();
+  const setUser = useSetAtom(userAtom);
+  const { user, isLoading } = useUser();
 
   const handleLogin = () => {
     router.replace(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
   };
 
   const handleLogout = () => {
+    setUser(RESET_USER);
     localStorage.clear();
-    router.push('/');
-    setIsLogin(false);
+    router.replace('/');
   };
 
   return (
@@ -38,22 +38,24 @@ const Header = () => {
           style={{ cursor: 'pointer' }}
           alt="Logo"
         />
-        <Stack direction="horizontal" align="center" spacing={12}>
-          {user.hasCreatedProfile && (
-            <StyledNotificationButtonWrapper>
-              <NotificationButton hasNotification={user.hasNotification} />
-            </StyledNotificationButtonWrapper>
-          )}
-          {user.isLogin ? (
-            <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
-              로그아웃
-            </Button>
-          ) : (
-            <Button onClick={handleLogin} styleType="ghost" size="small" width="90px">
-              로그인
-            </Button>
-          )}
-        </Stack>
+        {!isLoading && (
+          <Stack direction="horizontal" align="center" spacing={12}>
+            {user.hasCreatedProfile && (
+              <StyledNotificationButtonWrapper>
+                <NotificationButton hasNotification={user.hasNotification} />
+              </StyledNotificationButtonWrapper>
+            )}
+            {user.isLogin ? (
+              <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
+                로그아웃
+              </Button>
+            ) : (
+              <Button onClick={handleLogin} styleType="ghost" size="small" width="90px">
+                로그인
+              </Button>
+            )}
+          </Stack>
+        )}
       </Flex>
     </StyledHeader>
   );

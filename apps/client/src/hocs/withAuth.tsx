@@ -6,7 +6,7 @@ import { useUser } from '@/hooks/common/useUser';
 export const withAuth = (Component: () => ReactNode) => {
   const WrappedComponent = () => {
     const overlay = useOverlay();
-    const user = useUser();
+    const { user } = useUser();
 
     const openAuthAlert = () => {
       overlay.open(({ isOpen, close }) => <AuthAlert isOpen={isOpen} onClose={close} />);

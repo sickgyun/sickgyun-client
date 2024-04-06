@@ -2,10 +2,14 @@
 
 import { StyleProvider } from '@sickgyun/design-token';
 import { OverlayProvider } from '@toss/use-overlay';
-import type { PropsWithChildren } from 'react';
+import type { ReactNode } from 'react';
 import { QueryClientProvider } from '@/providers';
 
-const Providers = ({ children }: PropsWithChildren) => {
+type ProvidersProps = {
+  children: ReactNode;
+};
+
+const Providers = ({ children }: ProvidersProps) => {
   return (
     <StyleProvider>
       <QueryClientProvider>

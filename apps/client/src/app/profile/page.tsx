@@ -17,7 +17,7 @@ import type { Major } from '@/types/profile';
 const ProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const user = useUser();
+  const { user } = useUser();
   const selectedMajor = params.get('major') as Major;
 
   useLayoutEffect(() => {

@@ -25,7 +25,7 @@ const ProfileDetailModal = ({
   userId,
 }: ProfileDetailModalProps) => {
   const overlay = useOverlay();
-  const user = useUser();
+  const { user } = useUser();
 
   const openCoffeechatSendConfirm = () => {
     overlay.open(({ isOpen, close }) => (
