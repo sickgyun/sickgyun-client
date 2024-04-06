@@ -1,6 +1,5 @@
 import { useAtom } from 'jotai';
-import { useEffect } from 'react';
-import { isLoginAtom } from '../../store/user/isLoginAtom';
+import { useEffect, useState } from 'react';
 import { userAtom } from '../../store/user/userAtom';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUser } from '@/hooks/api/user/useGetUser';
@@ -8,20 +7,31 @@ import { Storage } from '@/libs/api/storage';
 
 export const useUser = () => {
   const userQuery = useGetUser();
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useAtom(userAtom);
-  const [isLogin, setIsLogin] = useAtom(isLoginAtom);
 
   useEffect(() => {
     const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
-    setIsLogin(Boolean(accessToken));
 
     if (userQuery.data) {
-      setUser({
-        ...userQuery.data.user,
+      const user = {
+        isLogin: Boolean(accessToken),
         hasNotification: userQuery.data.hasNotification,
-      });
+        ...userQuery.data.user,
+      };
+      setUser(user);
     }
-  }, [setIsLogin, setUser, userQuery.data]);
+  }, [setUser, userQuery.data]);
 
-  return { isLogin, ...user };
+  useEffect(() => {
+    if (userQuery.isSuccess) {
+      setIsLoading(false);
+    }
+
+    if (!user.isLogin) {
+      setIsLoading(false);
+    }
+  }, [user.isLogin, userQuery.isSuccess]);
+
+  return { ...userQuery, isLoading, user: { ...user } };
 };

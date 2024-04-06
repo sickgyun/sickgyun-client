@@ -20,7 +20,7 @@ const ProfileDetailContent = ({
   onProfileDetailModalClose,
 }: ProfileDetailContentProps) => {
   const overlay = useOverlay();
-  const user = useUser();
+  const { user } = useUser();
   const { profile } = useGetProfile(profileId);
   const isUserProfile = user.profileId === profile.id;
 

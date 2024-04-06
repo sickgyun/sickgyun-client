@@ -1,11 +1,16 @@
 'use client';
 
-import type { PropsWithChildren } from 'react';
+import type { ReactNode } from 'react';
 import Providers from './providers';
 
-const RootLayout = ({ children }: PropsWithChildren) => {
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en">
+    <html lang="kr">
+      <title>식견</title>
       <body>
         <Providers>{children}</Providers>
       </body>

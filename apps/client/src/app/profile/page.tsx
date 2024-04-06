@@ -17,7 +17,7 @@ import type { Major } from '@/types/profile';
 const ProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const user = useUser();
+  const { user } = useUser();
   const selectedMajor = params.get('major') as Major;
 
   useLayoutEffect(() => {
@@ -72,7 +72,9 @@ const StyledProfilePageLayout = styled.div`
   min-height: 100vh;
 `;
 
-const StyledProfilePage = styled(Stack)`
+const StyledProfilePage = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   padding-top: 48px;
   padding-bottom: 64px;

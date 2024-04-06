@@ -13,7 +13,7 @@ import { useCreateProfile } from '@/hooks/api/profile/useCreateProfile';
 import { useUser } from '@/hooks/common/useUser';
 
 const ProfileCreatePage = () => {
-  const user = useUser();
+  const { user } = useUser();
   const { register, handleSubmit: handleCreateProfileSubmit } =
     useForm<CreateProfileRequest>();
   const { mutate: createProfileMutate } = useCreateProfile();

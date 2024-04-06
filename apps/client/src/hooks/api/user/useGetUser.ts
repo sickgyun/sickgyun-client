@@ -10,6 +10,11 @@ type GetUserResponse = {
   hasNotification: boolean;
 };
 
+export const fetchUser = async () => {
+  const response = await await get('/api/user');
+  return response;
+};
+
 export const USER_QUERY_KEY = 'user';
 
 export const useGetUser = () => {

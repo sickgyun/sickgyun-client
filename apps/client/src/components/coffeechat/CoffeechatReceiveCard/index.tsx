@@ -45,7 +45,7 @@ const CoffeechatReceiveCard = ({
     ));
   };
 
-  const openCoffechatMessageModal = () => {
+  const openCoffeechatMessageModal = () => {
     overlay.open(({ isOpen, close }) => (
       <CoffeechatMessageModal isOpen={isOpen} onClose={close} message={message} />
     ));
@@ -70,7 +70,7 @@ const CoffeechatReceiveCard = ({
               </Text>
               {isAccept && (
                 <ViewMessageButton
-                  onClick={openCoffechatMessageModal}
+                  onClick={openCoffeechatMessageModal}
                   fontType="body2"
                   color="primary"
                 >
@@ -79,9 +79,9 @@ const CoffeechatReceiveCard = ({
               )}
             </Stack>
           </Stack>
-          <StyledCoffechatStatus state={state}>
+          <StyledCoffeechatStatus state={state}>
             {CoffeechatStateEnum[state]} 완료
-          </StyledCoffechatStatus>
+          </StyledCoffeechatStatus>
         </Flex>
       )}
       {isPending && (
@@ -112,7 +112,7 @@ const StyledCoffeechatReceiveCard = styled(Stack)`
   padding-bottom: 16px;
 `;
 
-const StyledCoffechatStatus = styled.div<{ state: CoffeechatState }>`
+const StyledCoffeechatStatus = styled.div<{ state: CoffeechatState }>`
   ${({ theme, state }) => css`
     ${theme.fonts.body2}
     color: ${state === 'REJECT' ? theme.colors.red : theme.colors.primary};
