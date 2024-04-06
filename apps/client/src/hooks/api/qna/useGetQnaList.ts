@@ -13,11 +13,15 @@ export type GetQnaListResponse = {
 
 export const QNA_LIST_QUERY_KEY = 'qnaList';
 
-export const useGetQnaList = (categories?: string[]) => {
-  const qnaListEndPoint = categories ? `api/qna?category=${categories}` : 'api/qna';
+export const useGetQnaList = (categories?: string[], criteria?: string) => {
+  let qnaListEndPoint = categories ? `api/qna?category=${categories}` : 'api/qna';
+
+  if (criteria) {
+    qnaListEndPoint += `&criteria=${criteria}`;
+  }
 
   const qnaListQuery = useSuspenseQuery<GetQnaListResponse[]>({
-    queryKey: [QNA_LIST_QUERY_KEY, categories],
+    queryKey: [QNA_LIST_QUERY_KEY, categories, criteria],
     queryFn: async () => await get(qnaListEndPoint),
   });
 

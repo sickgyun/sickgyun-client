@@ -76,10 +76,12 @@ export const QNA_SORT = [
   {
     id: 0,
     title: '최신순',
+    qnaType: '',
   },
   {
     id: 1,
-    title: '조회순',
+    title: '공감순',
+    qnaType: 'like',
   },
 ];
 

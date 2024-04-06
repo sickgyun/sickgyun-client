@@ -17,7 +17,7 @@ const QnaListBox = () => {
   const categoryParam = params.get('category');
 
   const [selectedQna, setSelectedQna] = useState(0);
-  const { qnaList } = useGetQnaList([categoryParam]);
+  const { qnaList } = useGetQnaList([categoryParam], QNA_SORT[selectedQna]?.qnaType);
 
   const handleGoDetailPage = (id: number) => {
     router.push(`/qna/${id}`);
