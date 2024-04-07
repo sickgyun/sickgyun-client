@@ -16,7 +16,7 @@ type QnaPostingCardProps = {
   commentCount: number;
 };
 
-const QnaPostCard = ({
+const QnaCard = ({
   id,
   title,
   category,
@@ -29,7 +29,7 @@ const QnaPostCard = ({
     router.push(`/qna/${id}`);
   };
   return (
-    <StyledQnaPostCard onClick={() => handleGoQnaDetailPage(id)}>
+    <StyledQnaCard onClick={() => handleGoQnaDetailPage(id)}>
       <Flex direction="column">
         <StyledPopularQnaContent>
           <QnaCategory questionType={category as Qna} />
@@ -53,13 +53,13 @@ const QnaPostCard = ({
           </Stack>
         </StyledPopularInfo>
       </Flex>
-    </StyledQnaPostCard>
+    </StyledQnaCard>
   );
 };
 
-export default QnaPostCard;
+export default QnaCard;
 
-const StyledQnaPostCard = styled.div`
+const StyledQnaCard = styled.div`
   width: calc((100% / 3) - 10px);
   height: 185px;
   background-color: ${({ theme }) => theme.colors.white};
