@@ -9,6 +9,7 @@ import Header from '@/components/common/Header';
 import QnaBox from '@/components/qna/QnaBox';
 import QnaPostList from '@/components/qna/QnaList';
 import QnaListBox from '@/components/qna/QnaListBox';
+import { withAuth } from '@/hocs/withAuth';
 import { qnaLengthAtom } from '@/store/user/qnaLengthAtom';
 
 const QnaPage = () => {
@@ -66,7 +67,7 @@ const QnaPage = () => {
   );
 };
 
-export default QnaPage;
+export default withAuth(QnaPage);
 
 const StyledQnaLayout = styled.div`
   width: 100%;
