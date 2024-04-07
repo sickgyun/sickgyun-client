@@ -1,31 +1,27 @@
 import styled from '@emotion/styled';
-import { Spinner } from '@sickgyun/ui';
 import RecuritCard from '../RecuritCard';
+import { withSuspense } from '@/hocs/withSuspense';
 import { useGetRecuritList } from '@/hooks/api/recruit/useGetRecuritList';
 
 const RecuritList = () => {
-  const { recuritList, isLoading } = useGetRecuritList();
+  const { recuritList } = useGetRecuritList();
 
   return (
     <StyledRecuritList>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        recuritList.map((recurit) => (
-          <RecuritCard
-            key={recurit.id}
-            title={recurit.reqruitName}
-            thumbnail={recurit.imageSrc}
-            companyName={recurit.company}
-            href={recurit.href}
-          />
-        ))
-      )}
+      {recuritList.map((recurit) => (
+        <RecuritCard
+          key={recurit.id}
+          title={recurit.reqruitName}
+          thumbnail={recurit.imageSrc}
+          companyName={recurit.company}
+          href={recurit.href}
+        />
+      ))}
     </StyledRecuritList>
   );
 };
 
-export default RecuritList;
+export default withSuspense(RecuritList);
 
 const StyledRecuritList = styled.div`
   display: grid;
