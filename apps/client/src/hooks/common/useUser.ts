@@ -21,17 +21,13 @@ export const useUser = () => {
       };
       setUser(user);
     }
+
+    const timerId = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
+
+    return () => clearTimeout(timerId);
   }, [setUser, userQuery.data]);
-
-  useEffect(() => {
-    if (userQuery.isSuccess) {
-      setIsLoading(false);
-    }
-
-    if (!user.isLogin) {
-      setIsLoading(false);
-    }
-  }, [user.isLogin, userQuery.isSuccess]);
 
   return { ...userQuery, isLoading, user: { ...user } };
 };
