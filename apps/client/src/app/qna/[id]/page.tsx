@@ -8,22 +8,26 @@ import { useParams } from 'next/navigation';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import QnaComment from '@/components/qna/QnaComment';
+import { useCreateQnaLike } from '@/hooks/api/qna/useCreateQnaLike';
+import { useDeleteQnaLike } from '@/hooks/api/qna/useDeleteQnaLike';
 import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
+import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 import { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
-import { useCreateQnaLike } from '@/hooks/api/qna/useCreateQnaLike';
-import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 
 const QnaPostPage = () => {
   const { id } = useParams();
   const { qnaCard } = useGetQnaCard(Number(id));
-  const { mutate: qnaLikeMutate } = useCreateQnaLike(Number(id));
+  const { mutate: qnaCreateLikeMutate } = useCreateQnaLike(Number(id));
+  const { mutate: qnaDeleteLikeMutate } = useDeleteQnaLike(Number(id));
   const { qnaLike } = useGetQnaLike(Number(id));
 
-  console.log('useGetQnaLike', qnaLike);
-
   const onCreateAndDeleteQnaLike = () => {
-    qnaLikeMutate();
+    if (qnaLike) {
+      qnaDeleteLikeMutate();
+    } else {
+      qnaCreateLikeMutate();
+    }
   };
 
   return (
@@ -92,7 +96,7 @@ const StyledQnaPost = styled.div`
 const StyledLikeButton = styled.div`
   display: flex;
   align-items: center;
-  min-width: 61px;
+  min-width: 65px;
   min-height: 34px;
   padding: 5px 16px;
   gap: 5px;
