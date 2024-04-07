@@ -4,12 +4,12 @@ import styled from '@emotion/styled';
 import { IconHeartRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Spacer, Stack, Text } from '@sickgyun/ui';
+import { useParams } from 'next/navigation';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import QnaComment from '@/components/qna/QnaComment';
-import { Qna } from '@/types/qna';
 import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
-import { useParams } from 'next/navigation';
+import { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
 
 const QnaPostPage = () => {
