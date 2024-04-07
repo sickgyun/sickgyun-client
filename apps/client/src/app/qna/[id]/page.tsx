@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { IconHeartRegular } from '@seed-design/icon';
+import { IconHeartFill, IconHeartRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Spacer, Stack, Text } from '@sickgyun/ui';
 import { useParams } from 'next/navigation';
@@ -11,12 +11,20 @@ import QnaComment from '@/components/qna/QnaComment';
 import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
 import { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
+import { useCreateQnaLike } from '@/hooks/api/qna/useCreateQnaLike';
+import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 
 const QnaPostPage = () => {
   const { id } = useParams();
   const { qnaCard } = useGetQnaCard(Number(id));
+  const { mutate: qnaLikeMutate } = useCreateQnaLike(Number(id));
+  const { qnaLike } = useGetQnaLike(Number(id));
 
-  console.log(qnaCard);
+  console.log('useGetQnaLike', qnaLike);
+
+  const onCreateAndDeleteQnaLike = () => {
+    qnaLikeMutate();
+  };
 
   return (
     <>
@@ -42,8 +50,12 @@ const QnaPostPage = () => {
           <Stack style={{ borderBottom: `1px solid ${colors.gray200}` }}>
             <StyledQnaContentsBox>{qnaCard?.content}</StyledQnaContentsBox>
             <Flex align="center" justify="center">
-              <StyledLikeButton>
-                <IconHeartRegular width={16} height={16} color={colors.black} />
+              <StyledLikeButton onClick={onCreateAndDeleteQnaLike}>
+                {qnaLike ? (
+                  <IconHeartFill width={16} height={16} color={colors.red} />
+                ) : (
+                  <IconHeartRegular width={16} height={16} />
+                )}
                 <Text>{qnaCard?.likeCount}</Text>
               </StyledLikeButton>
             </Flex>
