@@ -6,6 +6,7 @@ export type GetQnaListResponse = {
   title: string;
   content: string;
   category: string;
+  writer: string;
   createTime: string;
   likeCount: number;
   commentCount: number;

@@ -24,6 +24,7 @@ const QnaList = ({ currentQnaPageIndex }) => {
           id={qnaList.id}
           title={qnaList.title}
           category={qnaList.category}
+          writer={qnaList.writer}
           likeCount={qnaList.likeCount}
           commentCount={qnaList.commentCount}
         />

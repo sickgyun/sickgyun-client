@@ -19,14 +19,14 @@ import { timeAgo } from '@/utils/timeAgo';
 
 const QnaPostPage = () => {
   const [isOpenQnaEditModal, setIsOpenQnaEditModal] = useState(false);
-
   const { id } = useParams();
+
   const { qnaCard } = useGetQnaCard(Number(id));
   const { qnaLike } = useGetQnaLike(Number(id));
   const { mutate: qnaCreateLikeMutate } = useCreateQnaLike(Number(id));
   const { mutate: qnaDeleteLikeMutate } = useDeleteQnaLike(Number(id));
 
-  const onCreateAndDeleteQnaLike = () => {
+  const handleCreateAndDeleteQnaLike = () => {
     if (qnaLike) {
       qnaDeleteLikeMutate();
     } else {
@@ -37,7 +37,6 @@ const QnaPostPage = () => {
   const openQnaEditModal = () => {
     setIsOpenQnaEditModal((prev) => !prev);
   };
-
   return (
     <>
       <Header />
@@ -45,11 +44,11 @@ const QnaPostPage = () => {
         <StyledQnaPost>
           <Flex align="flex-start" justify="space-between">
             <Stack style={{ display: 'inline-flex' }}>
-              <QnaCategory questionType={Qna.CONCERN} />
+              <QnaCategory questionType={qnaCard?.category as Qna} />
             </Stack>
             <StyledSettingButtonContainer>
               <StyledSettingButton onClick={openQnaEditModal} />
-              {isOpenQnaEditModal && <QnaModifyBox />}
+              {isOpenQnaEditModal && <QnaModifyBox qnaId={qnaCard.id} />}
             </StyledSettingButtonContainer>
           </Flex>
           <Stack style={{ marginTop: '15px', minHeight: '28px' }}>
@@ -68,7 +67,7 @@ const QnaPostPage = () => {
           <Stack style={{ borderBottom: `1px solid ${colors.gray200}` }}>
             <StyledQnaContentsBox>{qnaCard?.content}</StyledQnaContentsBox>
             <Flex align="center" justify="center">
-              <StyledLikeButton onClick={onCreateAndDeleteQnaLike}>
+              <StyledLikeButton onClick={handleCreateAndDeleteQnaLike}>
                 {qnaLike ? (
                   <IconHeartFill width={16} height={16} color={colors.red} />
                 ) : (

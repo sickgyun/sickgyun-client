@@ -1,17 +1,19 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { IconHeartRegular, IconReplyRegular } from '@seed-design/icon';
+import { IconHeartFill, IconHeartRegular, IconReplyRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import QnaCategory from '../QnaCategory';
 import type { Qna } from '@/types/qna';
+import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 
 type QnaPostingCardProps = {
   id: number;
   title: string;
   category: string;
+  writer: string;
   likeCount: number;
   commentCount: number;
 };
@@ -20,10 +22,12 @@ const QnaCard = ({
   id,
   title,
   category,
+  writer,
   likeCount,
   commentCount,
 }: QnaPostingCardProps) => {
   const router = useRouter();
+  const { qnaLike } = useGetQnaLike(Number(id));
 
   const handleGoQnaDetailPage = (id: number) => {
     router.push(`/qna/${id}`);
@@ -36,10 +40,14 @@ const QnaCard = ({
           <StyledQnaContent fontType="h4">{title}</StyledQnaContent>
         </StyledPopularQnaContent>
         <StyledPopularInfo>
-          <Text>이상진</Text>
+          <Text>{writer}</Text>
           <Stack direction="horizontal" spacing={12}>
             <Stack direction="horizontal" align="center" spacing={3}>
-              <IconHeartRegular width={16} height={16} color={colors.black} />
+              {qnaLike ? (
+                <IconHeartFill width={16} height={16} color={colors.red} />
+              ) : (
+                <IconHeartRegular width={16} height={16} />
+              )}
               <Text fontType="body2" style={{ marginTop: '2px' }}>
                 {likeCount}
               </Text>

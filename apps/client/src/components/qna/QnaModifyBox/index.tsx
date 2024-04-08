@@ -1,10 +1,29 @@
+import { useDeleteQna } from '@/hooks/api/qna/useDeleteQna';
 import styled from '@emotion/styled';
+import { useParams, useRouter } from 'next/navigation';
 
-const QnaModifyBox = () => {
+type qnaModifyBoxProps = {
+  qnaId: number;
+};
+
+const QnaModifyBox = ({ qnaId }: qnaModifyBoxProps) => {
+  const { id } = useParams();
+  const router = useRouter();
+  const { mutate: qnaDeleteMutate } = useDeleteQna(Number(id));
+
+  const handleEditQna = () => {
+    router.push(`/qna/edit/${qnaId}`);
+  };
+
+  const handleDeleteQna = () => {
+    qnaDeleteMutate();
+    router.push('/qna');
+  };
+
   return (
     <StyledQnaModifyBox>
-      <StyledModifyButton>수정하기</StyledModifyButton>
-      <StyledModifyButton>삭제하기</StyledModifyButton>
+      <StyledModifyButton onClick={handleEditQna}>수정하기</StyledModifyButton>
+      <StyledModifyButton onClick={handleDeleteQna}>삭제하기</StyledModifyButton>
     </StyledQnaModifyBox>
   );
 };

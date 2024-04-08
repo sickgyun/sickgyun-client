@@ -42,7 +42,8 @@ const StyledQnaCategory = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 26px;
+  min-width: 73px;
+  min-height: 32px;
   gap: 7px;
   padding: 5px 13px;
   background-color: ${({ theme }) => theme.colors.gray100};
