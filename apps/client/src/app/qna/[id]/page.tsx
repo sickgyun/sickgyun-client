@@ -6,6 +6,7 @@ import { colors } from '@sickgyun/design-token';
 import { Flex, Spacer, Stack, Text } from '@sickgyun/ui';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
+
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import QnaComment from '@/components/qna/QnaComment';
@@ -17,7 +18,7 @@ import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 import { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
 
-const QnaPostPage = () => {
+const QnaDetailPage = () => {
   const [isOpenQnaEditModal, setIsOpenQnaEditModal] = useState(false);
   const { id } = useParams();
 
@@ -40,21 +41,21 @@ const QnaPostPage = () => {
   return (
     <>
       <Header />
-      <StyledQnaPostLayout>
-        <StyledQnaPost>
+      <StyledQnaDetailLayout>
+        <StyledQnaDetail>
           <Flex align="flex-start" justify="space-between">
             <Stack style={{ display: 'inline-flex' }}>
               <QnaCategory questionType={qnaCard?.category as Qna} />
             </Stack>
             <StyledSettingButtonContainer>
               <StyledSettingButton onClick={openQnaEditModal} />
-              {isOpenQnaEditModal && <QnaModifyBox qnaId={qnaCard.id} />}
+              {isOpenQnaEditModal && <QnaModifyBox qnaId={qnaCard?.id} />}
             </StyledSettingButtonContainer>
           </Flex>
           <Stack style={{ marginTop: '15px', minHeight: '28px' }}>
             <Text fontType="h3">{qnaCard?.title}</Text>
           </Stack>
-          <StyledQnaPostSubTitleBox>
+          <StyledQnaDetailSubTitleBox>
             <Stack direction="horizontal" spacing={10}>
               <Text fontType="p2" style={{ minWidth: '25px' }}>
                 {qnaCard?.writer}
@@ -63,31 +64,31 @@ const QnaPostPage = () => {
                 {timeAgo(qnaCard?.createTime)}
               </Text>
             </Stack>
-          </StyledQnaPostSubTitleBox>
+          </StyledQnaDetailSubTitleBox>
           <Stack style={{ borderBottom: `1px solid ${colors.gray200}` }}>
-            <StyledQnaContentsBox>{qnaCard?.content}</StyledQnaContentsBox>
+            <StyledQnaContent>{qnaCard?.content}</StyledQnaContent>
             <Flex align="center" justify="center">
-              <StyledLikeButton onClick={handleCreateAndDeleteQnaLike}>
+              <StyledLikeButtonContainer onClick={handleCreateAndDeleteQnaLike}>
                 {qnaLike ? (
                   <IconHeartFill width={16} height={16} color={colors.red} />
                 ) : (
                   <IconHeartRegular width={16} height={16} />
                 )}
                 <Text>{qnaCard?.likeCount}</Text>
-              </StyledLikeButton>
+              </StyledLikeButtonContainer>
             </Flex>
             <Spacer height={5} />
           </Stack>
           <QnaComment commentCount={qnaCard?.commentCount} />
-        </StyledQnaPost>
-      </StyledQnaPostLayout>
+        </StyledQnaDetail>
+      </StyledQnaDetailLayout>
     </>
   );
 };
 
-export default QnaPostPage;
+export default QnaDetailPage;
 
-const StyledQnaPostLayout = styled.div`
+const StyledQnaDetailLayout = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -98,7 +99,7 @@ const StyledQnaPostLayout = styled.div`
   padding-bottom: 20px;
 `;
 
-const StyledQnaPost = styled.div`
+const StyledQnaDetail = styled.div`
   width: 800px;
   border-radius: 12px;
   background-color: white;
@@ -106,7 +107,7 @@ const StyledQnaPost = styled.div`
   padding: 25px;
 `;
 
-const StyledLikeButton = styled.div`
+const StyledLikeButtonContainer = styled.div`
   display: flex;
   align-items: center;
   min-width: 65px;
@@ -118,10 +119,15 @@ const StyledLikeButton = styled.div`
   cursor: pointer;
 `;
 
-const StyledQnaContentsBox = styled.div`
+const StyledQnaContent = styled.div`
   min-height: 56px;
   padding-top: 30px;
   padding-bottom: 10px;
+`;
+
+const StyledSettingButtonContainer = styled.div`
+  display: inline-block;
+  position: relative;
 `;
 
 const StyledSettingButton = styled(IconSettingFill)`
@@ -130,12 +136,7 @@ const StyledSettingButton = styled(IconSettingFill)`
   cursor: pointer;
 `;
 
-const StyledSettingButtonContainer = styled.div`
-  display: inline-block;
-  position: relative;
-`;
-
-const StyledQnaPostSubTitleBox = styled.div`
+const StyledQnaDetailSubTitleBox = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 10px;

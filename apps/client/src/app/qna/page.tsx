@@ -3,18 +3,19 @@
 import styled from '@emotion/styled';
 import { IconChevronLeftFill, IconChevronRightFill } from '@seed-design/icon';
 import { Flex, Spacer, Stack, Text } from '@sickgyun/ui';
-import { useAtomValue } from 'jotai';
 import { useState } from 'react';
 import Header from '@/components/common/Header';
-import QnaBox from '@/components/qna/QnaBox';
-import QnaPostList from '@/components/qna/QnaList';
-import QnaListBox from '@/components/qna/QnaListBox';
+import QnaCategoryBox from '@/components/qna/QnaCategoryBox';
+import QnaList from '@/components/qna/QnaList';
 import { withAuth } from '@/hocs/withAuth';
-import { qnaLengthAtom } from '@/store/user/qnaLengthAtom';
+import QnaCard from '@/components/qna/QnaCard';
+import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
 
 const QnaPage = () => {
+  const { qnaList } = useGetQnaList();
+  const topRankQnaList = qnaList.slice(0, 9);
+
   const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
-  const qnaLength = useAtomValue(qnaLengthAtom);
 
   const handlePrevPopularQna = () => {
     if (currentQnaPageIndex > 0) {
@@ -23,7 +24,7 @@ const QnaPage = () => {
   };
 
   const handleNextPopularQna = () => {
-    if (currentQnaPageIndex < qnaLength - 3) {
+    if (currentQnaPageIndex < qnaList.length - 3) {
       setCurrentQnaPageIndex((prev) => prev + 1);
     }
   };
@@ -32,7 +33,7 @@ const QnaPage = () => {
     <>
       <Header />
       <StyledQnaLayout>
-        <StyledQna>
+        <StyledQnaContainer>
           <Stack direction="vertical" spacing={15}>
             <Flex justify="space-between">
               <Text fontType="h3">인기글을 모아봤어요!</Text>
@@ -45,23 +46,34 @@ const QnaPage = () => {
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
-                  isButtonLastPage={currentQnaPageIndex === qnaLength - 3}
-                  isButtonDisabled={qnaLength <= 3}
+                  isButtonLastPage={currentQnaPageIndex === qnaList.length - 3}
+                  isButtonDisabled={qnaList.length <= 3}
                 >
                   <IconChevronRightFill width={24} height={24} />
                 </StyledActiveButton>
               </Stack>
             </Flex>
-            <StyledQnaListWrapper>
-              <QnaPostList currentQnaPageIndex={currentQnaPageIndex} />
-            </StyledQnaListWrapper>
+            <StyledTopRankQnaWrapper>
+              <StyledTopRankQnaCard currentQnaPageIndex={currentQnaPageIndex}>
+                {topRankQnaList?.map((qnaList) => (
+                  <QnaCard
+                    id={qnaList.id}
+                    title={qnaList.title}
+                    category={qnaList.category}
+                    writer={qnaList.writer}
+                    likeCount={qnaList.likeCount}
+                    commentCount={qnaList.commentCount}
+                  />
+                ))}
+              </StyledTopRankQnaCard>
+            </StyledTopRankQnaWrapper>
           </Stack>
           <Spacer height={60} />
-          <StyledQnaContent>
-            <QnaBox />
-            <QnaListBox />
-          </StyledQnaContent>
-        </StyledQna>
+          <StyledQnaContentContainer>
+            <QnaCategoryBox />
+            <QnaList />
+          </StyledQnaContentContainer>
+        </StyledQnaContainer>
       </StyledQnaLayout>
     </>
   );
@@ -75,14 +87,14 @@ const StyledQnaLayout = styled.div`
   min-height: 100vh;
 `;
 
-const StyledQna = styled.div`
+const StyledQnaContainer = styled.div`
   margin: 0 auto;
   width: 80%;
   padding-top: 48px;
   padding-bottom: 64px;
 `;
 
-const StyledQnaContent = styled.div`
+const StyledQnaContentContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 35px;
@@ -108,7 +120,16 @@ const StyledActiveButton = styled.button<{
   }
 `;
 
-const StyledQnaListWrapper = styled.div`
+const StyledTopRankQnaWrapper = styled.div`
   overflow: hidden;
   min-height: 185px;
+`;
+
+const StyledTopRankQnaCard = styled.div<{ currentQnaPageIndex: number }>`
+  width: 100%;
+  display: flex;
+  transition: transform 0.5s;
+  transform: ${({ currentQnaPageIndex }) =>
+    `translateX(${-currentQnaPageIndex * (100 / 3)}%)`};
+  gap: 10px;
 `;

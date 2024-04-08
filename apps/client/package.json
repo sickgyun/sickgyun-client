@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
     "swiper": "^11.0.5",
+    "ts-pattern": "^5.1.1",
     "yup": "^1.4.0"
   },
   "devDependencies": {

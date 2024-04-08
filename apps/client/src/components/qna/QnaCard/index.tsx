@@ -39,7 +39,7 @@ const QnaCard = ({
           <QnaCategory questionType={category as Qna} />
           <StyledQnaContent fontType="h4">{title}</StyledQnaContent>
         </StyledPopularQnaContent>
-        <StyledPopularInfo>
+        <StyledPopularQnaInfo>
           <Text>{writer}</Text>
           <Stack direction="horizontal" spacing={12}>
             <Stack direction="horizontal" align="center" spacing={3}>
@@ -59,7 +59,7 @@ const QnaCard = ({
               </Text>
             </Stack>
           </Stack>
-        </StyledPopularInfo>
+        </StyledPopularQnaInfo>
       </Flex>
     </StyledQnaCard>
   );
@@ -86,7 +86,14 @@ const StyledPopularQnaContent = styled.div`
   gap: 10px;
 `;
 
-const StyledPopularInfo = styled.div`
+const StyledQnaContent = styled(Text)`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
+
+const StyledPopularQnaInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -94,11 +101,4 @@ const StyledPopularInfo = styled.div`
   height: 45px;
   border-top: 1px solid ${({ theme }) => theme.colors.white};
   border-radius: 0 0 12px 12px;
-`;
-
-const StyledQnaContent = styled(Text)`
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 `;

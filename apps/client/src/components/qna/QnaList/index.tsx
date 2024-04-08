@@ -1,45 +1,65 @@
-'use client';
-
 import styled from '@emotion/styled';
-import { useSetAtom } from 'jotai';
-import { useEffect } from 'react';
-import QnaCard from '../QnaCard';
+import { Text } from '@sickgyun/ui';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+import { QNA_SORT } from '@/constants/qna';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
-import { qnaLengthAtom } from '@/store/user/qnaLengthAtom';
+import QnaBox from '../QnaBox';
 
-const QnaList = ({ currentQnaPageIndex }) => {
-  const { qnaList } = useGetQnaList();
-  const topRankList = qnaList.slice(0, 9);
-  const setQnaLength = useSetAtom(qnaLengthAtom);
+const QnaList = () => {
+  const params = useSearchParams();
+  const categoryParam = params.get('category');
 
-  useEffect(() => {
-    setQnaLength(topRankList.length);
-  }, [setQnaLength, topRankList]);
+  const [selectedQnaSortText, setSelectedQnaSortText] = useState(0);
+  const { qnaList } = useGetQnaList(
+    [categoryParam],
+    QNA_SORT[selectedQnaSortText]?.qnaType
+  );
 
   return (
-    <StyledQnaList currentQnaPageIndex={currentQnaPageIndex}>
-      {topRankList?.map((qnaList) => (
-        <QnaCard
-          id={qnaList.id}
-          title={qnaList.title}
-          category={qnaList.category}
-          writer={qnaList.writer}
-          likeCount={qnaList.likeCount}
-          commentCount={qnaList.commentCount}
-        />
+    <StyledQnaList>
+      {QNA_SORT.map((qna) => (
+        <StyledQnaSortText
+          key={qna.id}
+          fontType="p1"
+          onClick={() => setSelectedQnaSortText(qna.id)}
+          isSelected={selectedQnaSortText === qna.id}
+        >
+          {qna.title}
+        </StyledQnaSortText>
       ))}
+      <StyledQnaBoxContainer>
+        {qnaList.length > 0 ? (
+          qnaList.map((qna) => <QnaBox {...qna} />)
+        ) : (
+          <Text fontType="body1" style={{ marginBottom: '20px' }}>
+            앗! 아직 질문이 올라오지 않았어요..
+          </Text>
+        )}
+      </StyledQnaBoxContainer>
     </StyledQnaList>
   );
 };
 
 export default withSuspense(QnaList);
 
-const StyledQnaList = styled.div<{ currentQnaPageIndex: number }>`
+const StyledQnaList = styled.div``;
+
+const StyledQnaSortText = styled(Text)<{ isSelected: boolean }>`
+  margin-right: 7px;
+  cursor: pointer;
+  font-weight: ${({ isSelected }) => (isSelected ? 'bold' : 'normal')};
+`;
+
+const StyledQnaBoxContainer = styled.div`
   width: 100%;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 12px;
+  margin-top: 8px;
   display: flex;
-  transition: transform 0.5s;
-  transform: ${({ currentQnaPageIndex }) =>
-    `translateX(${-currentQnaPageIndex * (100 / 3)}%)`};
-  gap: 10px;
+  flex-direction: column;
+  padding: 20px 20px 0 20px;
+  gap: 20px;
+  cursor: pointer;
 `;

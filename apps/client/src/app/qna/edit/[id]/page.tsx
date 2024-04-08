@@ -7,12 +7,12 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import Header from '@/components/common/Header';
-import QnaCategory from '@/components/qna/QnaPostCategory';
 import { QNA_WRITE_CATEGORY } from '@/constants/qna';
 import { useUpdateQna } from '@/hooks/api/qna/useUpdateQna';
 import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
 import type { Qna } from '@/types/qna';
 import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
+import QnaCategory from '@/components/qna/QnaCategory';
 
 const QnaEditPage = () => {
   const { id } = useParams();
@@ -50,7 +50,7 @@ const QnaEditPage = () => {
     <>
       <Header />
       <StyledQnaEditPage>
-        <QnaEditCategory>
+        <QnaEditCategoryContainer>
           <Text fontType="h4" style={{ fontWeight: 'bold' }}>
             카테고리
           </Text>
@@ -71,7 +71,7 @@ const QnaEditPage = () => {
               />
             ))}
           </Stack>
-        </QnaEditCategory>
+        </QnaEditCategoryContainer>
         <form onSubmit={updateQnaWriteSubmit(onCreateQna)}>
           <input type="hidden" {...register('category')} />
           <Stack style={{ padding: '22px' }} spacing={10}>
@@ -112,7 +112,7 @@ const StyledQnaEditPage = styled.div`
   border-radius: 15px;
 `;
 
-const QnaEditCategory = styled.div`
+const QnaEditCategoryContainer = styled.div`
   width: 100%;
   height: 115px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.white};

@@ -1,21 +1,19 @@
+import { match, P } from 'ts-pattern';
+import dayjs from 'dayjs';
+
 export const timeAgo = (createdTime: string) => {
-  const currentDate = new Date();
-  const timeDifference = currentDate.getTime() - new Date(createdTime).getTime();
+  const currentTime = dayjs();
+  const timeDifference = currentTime.diff(dayjs(createdTime), 'second');
 
-  const seconds: number = Math.floor(timeDifference / 1000);
-  const minutes: number = Math.floor(seconds / 60);
-  const hours: number = Math.floor(minutes / 60);
-  const days: number = Math.floor(hours / 24);
+  const seconds = timeDifference;
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
 
-  if (days > 7) {
-    return Math.floor(days / 7) + '주 전';
-  } else if (days > 0) {
-    return days + '일 전';
-  } else if (hours > 0) {
-    return hours + '시간 전';
-  } else if (minutes > 0) {
-    return minutes + '분 전';
-  } else {
-    return '방금 전';
-  }
+  return match({ days, hours, minutes })
+    .with({ days: P.when((d) => d >= 7) }, ({ days }) => `${Math.floor(days / 7)}주 전`)
+    .with({ days: P.when((d) => d >= 1) }, ({ days }) => `${days}일 전`)
+    .with({ hours: P.when((d) => d >= 1) }, ({ hours }) => `${hours}시간 전`)
+    .with({ minutes: P.when((d) => d >= 1) }, ({ minutes }) => `${minutes}분 전`)
+    .otherwise(() => '방금 전');
 };

@@ -7,11 +7,11 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import Header from '@/components/common/Header';
-import QnaCategory from '@/components/qna/QnaPostCategory';
 import { QNA_WRITE_CATEGORY } from '@/constants/qna';
 import { useCreateQna } from '@/hooks/api/qna/useCreateQna';
 import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
 import type { Qna } from '@/types/qna';
+import QnaCategory from '@/components/qna/QnaCategory';
 
 const QnaWritePage = () => {
   const router = useRouter();
@@ -42,7 +42,7 @@ const QnaWritePage = () => {
     <>
       <Header />
       <StyledQnaWritePage>
-        <QnaWriteCategory>
+        <QnaWriteCategoryContainer>
           <Text fontType="h4" style={{ fontWeight: 'bold' }}>
             카테고리
           </Text>
@@ -63,7 +63,7 @@ const QnaWritePage = () => {
               />
             ))}
           </Stack>
-        </QnaWriteCategory>
+        </QnaWriteCategoryContainer>
         <form onSubmit={createQnaWriteSubmit(onCreateQna)}>
           <input type="hidden" {...register('category')} />
           <Stack style={{ padding: '22px' }} spacing={10}>
@@ -102,7 +102,7 @@ const StyledQnaWritePage = styled.div`
   border-radius: 15px;
 `;
 
-const QnaWriteCategory = styled.div`
+const QnaWriteCategoryContainer = styled.div`
   width: 100%;
   height: 115px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.white};
