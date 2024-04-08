@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 import { Flex, Link, Spacer, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import ErrorReportBanner from '@/components/common/Banners/ErrorReportBanner';
+import UserInterviewBanner from '@/components/common/Banners/UserInterviewBanner';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import LoginBox from '@/components/main/LoginBox';
@@ -29,10 +31,7 @@ const MainPage = () => {
   };
 
   const renderBanners = () => {
-    return [
-      <img src="/assets/images/mocks/mock_banner.jpeg" alt="Banner1" />,
-      <img src="/assets/images/mocks/mock_banner.jpeg" alt="Banner2" />,
-    ];
+    return [<ErrorReportBanner />, <UserInterviewBanner />];
   };
 
   return (

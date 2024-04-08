@@ -110,7 +110,7 @@ const StyledMainBanner = styled.div`
   position: relative;
   height: 250px;
   width: calc(100% - 400px);
-  padding: 4px 16px 8px 16px;
+  padding: 0 16px 8px;
 `;
 
 const StyledSwiper = styled(Swiper)`
