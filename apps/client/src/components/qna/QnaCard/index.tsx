@@ -6,8 +6,8 @@ import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import QnaCategory from '../QnaCategory';
-import type { Qna } from '@/types/qna';
 import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
+import type { Qna } from '@/types/qna';
 
 type QnaPostingCardProps = {
   id: number;

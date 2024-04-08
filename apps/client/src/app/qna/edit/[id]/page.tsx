@@ -7,12 +7,12 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import Header from '@/components/common/Header';
-import { QNA_WRITE_CATEGORY } from '@/constants/qna';
-import { useUpdateQna } from '@/hooks/api/qna/useUpdateQna';
-import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
-import type { Qna } from '@/types/qna';
-import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
 import QnaCategory from '@/components/qna/QnaCategory';
+import { QNA_WRITE_CATEGORY } from '@/constants/qna';
+import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
+import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
+import { useUpdateQna } from '@/hooks/api/qna/useUpdateQna';
+import type { Qna } from '@/types/qna';
 
 const QnaEditPage = () => {
   const { id } = useParams();

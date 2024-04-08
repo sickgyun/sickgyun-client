@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 import { IconHeartFill, IconHeartRegular, IconReplyRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
+import { useRouter } from 'next/navigation';
 import QnaCategory from '../QnaCategory';
+import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 import type { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
-import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
-import { useRouter } from 'next/navigation';
 
 type qnaChildBoxProps = {
   id: number;

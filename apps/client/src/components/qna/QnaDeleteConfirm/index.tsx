@@ -1,6 +1,5 @@
-import { useDeleteQna } from '@/hooks/api/qna/useDeleteQna';
 import { Confirm } from '@sickgyun/ui';
-import { useRouter } from 'next/navigation';
+import { useDeleteQna } from '@/hooks/api/qna/useDeleteQna';
 
 type QnaDeleteConfirmProps = {
   id: number;

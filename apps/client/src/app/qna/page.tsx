@@ -5,10 +5,10 @@ import { IconChevronLeftFill, IconChevronRightFill } from '@seed-design/icon';
 import { Flex, Spacer, Stack, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import Header from '@/components/common/Header';
+import QnaCard from '@/components/qna/QnaCard';
 import QnaCategoryBox from '@/components/qna/QnaCategoryBox';
 import QnaList from '@/components/qna/QnaList';
 import { withAuth } from '@/hocs/withAuth';
-import QnaCard from '@/components/qna/QnaCard';
 import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
 
 const QnaPage = () => {

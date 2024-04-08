@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import QnaBox from '../QnaBox';
 import { QNA_SORT } from '@/constants/qna';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
-import QnaBox from '../QnaBox';
 
 const QnaList = () => {
   const params = useSearchParams();
