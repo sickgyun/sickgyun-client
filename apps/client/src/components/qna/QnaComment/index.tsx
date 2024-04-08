@@ -4,11 +4,15 @@ import { Button, Flex, Stack, Text, Textarea } from '@sickgyun/ui';
 import { useForm } from 'react-hook-form';
 import { QNA_COMMENT } from '@/constants/qna';
 
+type QnaCommentProps = {
+  commentCount: number;
+};
+
 type QnaCommentCreateFormInput = {
   comment: string;
 };
 
-const QnaComment = () => {
+const QnaComment = ({ commentCount }: QnaCommentProps) => {
   const {
     register,
     handleSubmit: createQnaCommentSubmit,
@@ -22,7 +26,7 @@ const QnaComment = () => {
 
   return (
     <StyledQnaComment>
-      <Text fontType="body1">답변 1</Text>
+      <Text fontType="body1">답변 {commentCount}</Text>
       <form onSubmit={createQnaCommentSubmit(onCreateQnaCommentSubmit)}>
         <Textarea {...register('comment', { required: true })} />
         <Flex justify="flex-end" style={{ marginBottom: '10px' }}>

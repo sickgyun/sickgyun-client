@@ -1,12 +1,21 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
 import { Qna } from '@/types/qna';
 
 type QnaCategoryProps = {
   questionType: Qna;
+  isWriteCategory?: boolean;
+  isActive?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-const QnaCategory = ({ questionType }: QnaCategoryProps) => {
+const QnaCategory = ({
+  questionType,
+  isWriteCategory = false,
+  isActive = false,
+  onClick,
+}: QnaCategoryProps) => {
   let emoji: string;
   let categoryTitle: string;
 
@@ -29,7 +38,11 @@ const QnaCategory = ({ questionType }: QnaCategoryProps) => {
   }
 
   return (
-    <StyledQnaCategory>
+    <StyledQnaCategory
+      isWriteCategory={isWriteCategory}
+      isActive={isActive}
+      onClick={onClick}
+    >
       <Text>{emoji}</Text>
       <Text fontType="body2">{categoryTitle}</Text>
     </StyledQnaCategory>
@@ -38,13 +51,25 @@ const QnaCategory = ({ questionType }: QnaCategoryProps) => {
 
 export default QnaCategory;
 
-const StyledQnaCategory = styled.div`
+const StyledQnaCategory = styled.div<{ isWriteCategory: boolean; isActive: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 26px;
+  min-width: ${({ isWriteCategory }) => (isWriteCategory ? '73px' : 'auto')};
+  min-height: ${({ isWriteCategory }) => (isWriteCategory ? '32px' : '26px')};
   gap: 7px;
   padding: 5px 13px;
-  background-color: ${({ theme }) => theme.colors.gray100};
+  background-color: ${({ theme, isWriteCategory }) =>
+    isWriteCategory ? theme.colors.gray300 : theme.colors.gray100};
   border-radius: 30px;
+  ${({ theme, isWriteCategory, isActive }) =>
+    isWriteCategory &&
+    css`
+      border: 1px solid ${isActive ? theme.colors.primary : theme.colors.gray300};
+      cursor: pointer;
+      background-color: ${isActive ? theme.colors.primary : theme.colors.white};
+      & > span {
+        color: ${isActive && theme.colors.white};
+      }
+    `}
 `;

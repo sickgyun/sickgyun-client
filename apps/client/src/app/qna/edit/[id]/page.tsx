@@ -2,47 +2,55 @@
 
 import styled from '@emotion/styled';
 import { Button, Input, Stack, Text, Textarea } from '@sickgyun/ui';
-import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import { QNA_WRITE_CATEGORY } from '@/constants/qna';
-import { useCreateQna } from '@/hooks/api/qna/useCreateQna';
 import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
+import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
+import { useUpdateQna } from '@/hooks/api/qna/useUpdateQna';
 import type { Qna } from '@/types/qna';
 
-const QnaWritePage = () => {
-  const router = useRouter();
-  const { mutate: createQnaMutate } = useCreateQna();
+const QnaEditPage = () => {
+  const { id } = useParams();
+  const { qnaCard } = useGetQnaCard(Number(id));
+
+  const { mutate: updateQnaMutate } = useUpdateQna(Number(id));
+
+  const categoryId =
+    qnaCard?.category === 'DEVELOP' ? 0 : qnaCard?.category === 'RECRUIT' ? 1 : 2;
 
   const [category, setCategory] = useState({
-    id: 3,
+    id: categoryId,
     title: '',
   });
-  const [activeCategoryIndex, setActiveCategoryIndex] = useState(3);
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(categoryId);
 
+  console.log('category', category.title);
   const {
     register,
-    handleSubmit: createQnaWriteSubmit,
+    handleSubmit: updateQnaWriteSubmit,
     setValue,
   } = useForm<CreateQnaRequest>();
 
   useEffect(() => {
     setValue('category', category.title);
-  }, [category.title, setValue]); // 선택된 카테고리가 들어감
+    setValue('title', qnaCard?.title);
+    setValue('content', qnaCard?.content);
+  }, [category.title, qnaCard?.title, qnaCard?.content, setValue]);
 
   const onCreateQna: SubmitHandler<CreateQnaRequest> = (data) => {
-    createQnaMutate(data);
-    router.push('/qna');
+    updateQnaMutate(data);
   };
 
   return (
     <>
       <Header />
-      <StyledQnaWritePage>
-        <QnaWriteCategoryContainer>
+      <StyledQnaEditPage>
+        <QnaEditCategoryContainer>
           <Text fontType="h4" style={{ fontWeight: 'bold' }}>
             카테고리
           </Text>
@@ -63,36 +71,38 @@ const QnaWritePage = () => {
               />
             ))}
           </Stack>
-        </QnaWriteCategoryContainer>
-        <form onSubmit={createQnaWriteSubmit(onCreateQna)}>
+        </QnaEditCategoryContainer>
+        <form onSubmit={updateQnaWriteSubmit(onCreateQna)}>
           <input type="hidden" {...register('category')} />
           <Stack style={{ padding: '22px' }} spacing={10}>
             <Input
               placeholder="제목을 작성해 주세요"
               style={{ border: 'none', fontSize: '17px' }}
-              {...register('title')}
+              {...register('title', { required: true })}
+              defaultValue={qnaCard?.title}
             />
             <Textarea
               placeholder="내용을 작성해 주세요"
               minHeight="350px"
               style={{ border: 'none' }}
-              {...register('content')}
+              {...register('content', { required: true })}
+              defaultValue={qnaCard?.content}
             />
           </Stack>
           <Stack style={{ padding: '0 22px 22px 0' }} align="flex-end" spacing={0}>
             <Button width="180px" type="submit">
-              등록하기
+              수정하기
             </Button>
           </Stack>
         </form>
-      </StyledQnaWritePage>
+      </StyledQnaEditPage>
     </>
   );
 };
 
-export default QnaWritePage;
+export default QnaEditPage;
 
-const StyledQnaWritePage = styled.div`
+const StyledQnaEditPage = styled.div`
   background-color: ${({ theme }) => theme.colors.gray100};
   margin: 0 auto;
   margin-top: 24px;
@@ -102,7 +112,7 @@ const StyledQnaWritePage = styled.div`
   border-radius: 15px;
 `;
 
-const QnaWriteCategoryContainer = styled.div`
+const QnaEditCategoryContainer = styled.div`
   width: 100%;
   height: 115px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.white};
