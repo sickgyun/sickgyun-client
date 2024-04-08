@@ -1,13 +1,15 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { IconHeartFill, IconHeartRegular } from '@seed-design/icon';
+import { IconHeartFill, IconHeartRegular, IconSettingFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Spacer, Stack, Text } from '@sickgyun/ui';
 import { useParams } from 'next/navigation';
+import { useState } from 'react';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import QnaComment from '@/components/qna/QnaComment';
+import QnaModifyBox from '@/components/qna/QnaModifyBox';
 import { useCreateQnaLike } from '@/hooks/api/qna/useCreateQnaLike';
 import { useDeleteQnaLike } from '@/hooks/api/qna/useDeleteQnaLike';
 import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
@@ -16,11 +18,13 @@ import { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
 
 const QnaPostPage = () => {
+  const [isOpenQnaEditModal, setIsOpenQnaEditModal] = useState(false);
+
   const { id } = useParams();
   const { qnaCard } = useGetQnaCard(Number(id));
+  const { qnaLike } = useGetQnaLike(Number(id));
   const { mutate: qnaCreateLikeMutate } = useCreateQnaLike(Number(id));
   const { mutate: qnaDeleteLikeMutate } = useDeleteQnaLike(Number(id));
-  const { qnaLike } = useGetQnaLike(Number(id));
 
   const onCreateAndDeleteQnaLike = () => {
     if (qnaLike) {
@@ -30,14 +34,24 @@ const QnaPostPage = () => {
     }
   };
 
+  const openQnaEditModal = () => {
+    setIsOpenQnaEditModal((prev) => !prev);
+  };
+
   return (
     <>
       <Header />
       <StyledQnaPostLayout>
         <StyledQnaPost>
-          <Stack style={{ display: 'inline-flex' }}>
-            <QnaCategory questionType={Qna.CONCERN} />
-          </Stack>
+          <Flex align="flex-start" justify="space-between">
+            <Stack style={{ display: 'inline-flex' }}>
+              <QnaCategory questionType={Qna.CONCERN} />
+            </Stack>
+            <StyledSettingButtonContainer>
+              <StyledSettingButton onClick={openQnaEditModal} />
+              {isOpenQnaEditModal && <QnaModifyBox />}
+            </StyledSettingButtonContainer>
+          </Flex>
           <Stack style={{ marginTop: '15px', minHeight: '28px' }}>
             <Text fontType="h3">{qnaCard?.title}</Text>
           </Stack>
@@ -109,6 +123,17 @@ const StyledQnaContentsBox = styled.div`
   min-height: 56px;
   padding-top: 30px;
   padding-bottom: 10px;
+`;
+
+const StyledSettingButton = styled(IconSettingFill)`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
+
+const StyledSettingButtonContainer = styled.div`
+  display: inline-block;
+  position: relative;
 `;
 
 const StyledQnaPostSubTitleBox = styled.div`
