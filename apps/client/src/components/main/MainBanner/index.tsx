@@ -46,61 +46,59 @@ const MainBanner = ({ banners }: MainBannerProps) => {
   };
 
   return (
-    <>
-      <StyledMainBanner>
-        <StyledSwiper
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          onSlideChange={handleSwiperIndex}
-          pagination={{
-            clickable: true,
-          }}
-          spaceBetween={30}
-          loop={true}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          modules={[Autoplay]}
-        >
-          {banners.map((banner, index) => (
-            <StyledSwiperSlide key={index}>{banner}</StyledSwiperSlide>
-          ))}
-        </StyledSwiper>
-        <StyledSwiperNavigationController>
-          <Text fontType="p2">
-            {swiperIndex}/{banners.length}
-          </Text>
-          <Stack direction="horizontal" spacing={12}>
-            <IconChevronLeftFill
-              onClick={handleSlidePrevious}
+    <StyledMainBanner>
+      <StyledSwiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        onSlideChange={handleSwiperIndex}
+        pagination={{
+          clickable: true,
+        }}
+        spaceBetween={30}
+        loop={true}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        modules={[Autoplay]}
+      >
+        {banners.map((banner, index) => (
+          <StyledSwiperSlide key={index}>{banner}</StyledSwiperSlide>
+        ))}
+      </StyledSwiper>
+      <StyledSwiperController>
+        <Text fontType="p2">
+          {swiperIndex}/{banners.length}
+        </Text>
+        <Stack direction="horizontal" spacing={12}>
+          <IconChevronLeftFill
+            onClick={handleSlidePrevious}
+            width={14}
+            height={14}
+            cursor="pointer"
+          />
+          {isAutoPlay ? (
+            <IconPauseFill
+              onClick={handleAutoPlayStop}
               width={14}
               height={14}
               cursor="pointer"
             />
-            {isAutoPlay ? (
-              <IconPauseFill
-                onClick={handleAutoPlayStop}
-                width={14}
-                height={14}
-                cursor="pointer"
-              />
-            ) : (
-              <IconPlayFill
-                onClick={handleAutoPlayStart}
-                width={14}
-                height={14}
-                cursor="pointer"
-              />
-            )}
-            <IconChevronRightFill
-              onClick={handleSlideNext}
+          ) : (
+            <IconPlayFill
+              onClick={handleAutoPlayStart}
               width={14}
               height={14}
               cursor="pointer"
             />
-          </Stack>
-        </StyledSwiperNavigationController>
-      </StyledMainBanner>
-    </>
+          )}
+          <IconChevronRightFill
+            onClick={handleSlideNext}
+            width={14}
+            height={14}
+            cursor="pointer"
+          />
+        </Stack>
+      </StyledSwiperController>
+    </StyledMainBanner>
   );
 };
 
@@ -110,7 +108,7 @@ const StyledMainBanner = styled.div`
   position: relative;
   height: 250px;
   width: calc(100% - 400px);
-  padding: 0 16px 8px;
+  padding: 0 16px;
 `;
 
 const StyledSwiper = styled(Swiper)`
@@ -128,15 +126,15 @@ const StyledSwiperSlide = styled(SwiperSlide)`
   }
 `;
 
-const StyledSwiperNavigationController = styled.div`
+const StyledSwiperController = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.gray200};
   position: absolute;
+  bottom: -45px;
   display: flex;
   align-items: center;
-  bottom: -40px;
   width: 135px;
   height: 36px;
   padding: 12px;
