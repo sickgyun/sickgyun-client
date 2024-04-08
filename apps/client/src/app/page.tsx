@@ -55,7 +55,7 @@ const MainPage = () => {
                   onClick={() => hanldeGoProfilePage(major.value)}
                 >
                   <Image
-                    src={`/assets/images/major/${major.value}.png`}
+                    src={`/assets/images/major/${major.value.toLowerCase()}.png`}
                     height={48}
                     width={48}
                     alt="Major"
