@@ -15,7 +15,7 @@ export type GetQnaListResponse = {
 export const QNA_LIST_QUERY_KEY = 'qnaList';
 
 export const useGetQnaList = (categories?: string[], criteria?: string) => {
-  let qnaListEndPoint = categories ? `api/qna?category=${categories}` : 'api/qna';
+  let qnaListEndPoint = categories ? `/qna?category=${categories}` : '/qna';
 
   if (criteria) {
     qnaListEndPoint += `&criteria=${criteria}`;

@@ -6,7 +6,7 @@ export const QNA_LIKE_QUERY_KEY = 'qnaLike';
 export const useGetQnaLike = (id?: number) => {
   const qnaLikeQuery = useQuery({
     queryKey: [QNA_LIKE_QUERY_KEY, id],
-    queryFn: async () => await get(`/api/likes/${id}`),
+    queryFn: async () => await get(`/likes/${id}`),
   });
 
   return { qnaLike: qnaLikeQuery.data, ...qnaLikeQuery };

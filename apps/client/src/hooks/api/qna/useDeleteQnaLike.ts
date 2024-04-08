@@ -9,7 +9,7 @@ export const useDeleteQnaLike = (id: number) => {
   const queryClient = useQueryClient();
 
   return useMutation<unknown, AxiosError>({
-    mutationFn: () => del(`api/likes/${id}`),
+    mutationFn: () => del(`/likes/${id}`),
     onSuccess: () => {
       alert('좋아요 삭제 성공');
       queryClient.invalidateQueries({ queryKey: [QNA_LIST_QUERY_KEY] });

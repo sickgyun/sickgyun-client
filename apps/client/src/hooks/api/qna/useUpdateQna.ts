@@ -16,7 +16,7 @@ export const useUpdateQna = (id: number) => {
   const queryClient = useQueryClient();
 
   return useMutation<unknown, AxiosError, UpdateQnaRequest>({
-    mutationFn: (data) => put(`/api/qna/${id}`, data),
+    mutationFn: (data) => put(`/qna/${id}`, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QNA_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [QNA_CARD_QUERY_KEY] });

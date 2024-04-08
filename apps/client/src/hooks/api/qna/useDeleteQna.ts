@@ -9,7 +9,7 @@ export const useDeleteQna = (id: number) => {
   const queryClient = useQueryClient();
 
   return useMutation<unknown, AxiosError>({
-    mutationFn: () => del(`/api/qna/${id}`),
+    mutationFn: () => del(`/qna/${id}`),
     onSuccess: () => {
       router.push('/qna');
       queryClient.invalidateQueries({ queryKey: [QNA_LIST_QUERY_KEY] });

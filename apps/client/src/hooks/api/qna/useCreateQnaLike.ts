@@ -9,7 +9,7 @@ export const useCreateQnaLike = (id: number) => {
   const queryClient = useQueryClient();
 
   return useMutation<unknown, AxiosError>({
-    mutationFn: () => post(`api/likes/${id}`),
+    mutationFn: () => post(`/likes/${id}`),
     onSuccess: () => {
       alert('좋아요 등록 성공');
       queryClient.invalidateQueries({ queryKey: [QNA_LIST_QUERY_KEY] });

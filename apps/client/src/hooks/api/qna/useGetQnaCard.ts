@@ -17,7 +17,7 @@ export const QNA_CARD_QUERY_KEY = 'qnaCard';
 export const useGetQnaCard = (id?: number) => {
   const qnaCardQuery = useQuery<GetQnaCardResponse>({
     queryKey: [QNA_CARD_QUERY_KEY, id],
-    queryFn: async () => await get(`api/qna/${id}`),
+    queryFn: async () => await get(`/qna/${id}`),
   });
 
   return { qnaCard: qnaCardQuery.data, ...qnaCardQuery };
