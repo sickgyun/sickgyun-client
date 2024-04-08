@@ -11,7 +11,7 @@ export const useDeleteProfile = () => {
   const queryClient = useQueryClient();
 
   return useMutation<unknown, AxiosError>({
-    mutationFn: () => del('/api/profiles/mine'),
+    mutationFn: () => del('/profiles/mine'),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [PROFILE_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [PROFILE_MINE_QUERY_KEY] });

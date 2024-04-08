@@ -10,11 +10,6 @@ type GetUserResponse = {
   hasNotification: boolean;
 };
 
-export const fetchUser = async () => {
-  const response = await await get('/api/user');
-  return response;
-};
-
 export const USER_QUERY_KEY = 'user';
 
 export const useGetUser = () => {
@@ -22,7 +17,7 @@ export const useGetUser = () => {
 
   const userQuery = useQuery<GetUserResponse, AxiosError>({
     queryKey: [USER_QUERY_KEY],
-    queryFn: async () => await get('/api/user'),
+    queryFn: async () => await get('/user'),
     enabled: Boolean(accessToken),
   });
 

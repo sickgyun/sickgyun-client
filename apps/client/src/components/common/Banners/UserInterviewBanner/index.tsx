@@ -9,7 +9,7 @@ const UserInterviewBanner = () => {
 
   return (
     <StyledUserInterviewBanner onClick={handleGoUserInterviewForm}>
-      <Stack direction="vertical" spacing={16}>
+      <Stack direction="vertical" spacing={8}>
         <Text fontType="h2" color="white">
           유저 인터뷰 참여하고
         </Text>
@@ -28,9 +28,8 @@ const StyledUserInterviewBanner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 50px;
+  padding: 36px;
   background-image: url('/assets/images/user_interview_banner_background.png');
-  object-fit: cover;
   width: 100%;
   height: 100%;
   cursor: pointer;

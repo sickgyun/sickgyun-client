@@ -17,7 +17,7 @@ export const useGetRecuritList = (size = 6) => {
   const recuritListQuery = useSuspenseQuery<Recurit[], AxiosError>({
     queryKey: [RECURIT_LIST_QUERY_KEY],
     queryFn: async () => {
-      return await get(`/api/recruit?size=${size}`);
+      return await get(`/recruit?size=${size}`);
     },
   });
 

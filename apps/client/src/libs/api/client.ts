@@ -64,7 +64,7 @@ const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) =>
         try {
           const refreshToken = Storage.getItem(LOCAL_STORAGE_KEY.refreshToken);
           tokenRefreshPromise = post<{ accessToken: string; refreshToken: string }>(
-            '/api/auth/refresh',
+            '/auth/refresh',
             {
               refreshToken,
             }
