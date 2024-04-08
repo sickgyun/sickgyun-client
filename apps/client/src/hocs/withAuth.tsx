@@ -19,8 +19,8 @@ export const withAuth = (Component: () => ReactNode) => {
     };
 
     if (typeof window !== 'undefined') {
-      if (mounted && isLogin) {
-        return <Component />;
+      if (isLogin) {
+        return mounted && <Component />;
       } else {
         openAuthAlert();
       }
