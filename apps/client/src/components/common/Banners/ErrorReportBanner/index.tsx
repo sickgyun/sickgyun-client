@@ -31,6 +31,7 @@ const StyledErrorReportBanner = styled.div`
   padding: 50px;
   background-image: url('/assets/images/error_report_banner_background.png');
   object-fit: cover;
+  border-radius: 8px;
   width: 100%;
   height: 100%;
   cursor: pointer;

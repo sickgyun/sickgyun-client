@@ -29,6 +29,7 @@ const StyledUserInterviewBanner = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 36px;
+  border-radius: 8px;
   background-image: url('/assets/images/user_interview_banner_background.png');
   width: 100%;
   height: 100%;
