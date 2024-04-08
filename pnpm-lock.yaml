@@ -162,6 +162,9 @@ importers:
       swiper:
         specifier: ^11.0.5
         version: 11.0.5
+      ts-pattern:
+        specifier: ^5.1.1
+        version: 5.1.1
       yup:
         specifier: ^1.4.0
         version: 1.4.0
@@ -11694,6 +11697,10 @@ packages:
       typescript: 5.3.3
       yargs-parser: 21.1.1
     dev: true
+
+  /ts-pattern@5.1.1:
+    resolution: {integrity: sha512-i+owkHr5RYdQxj8olUgRrqpiWH9x27PuWVfXwDmJ/n/CoF/SAa7WW1i2oUpPDMQpJ4U+bGRUcZkVq7i1m3zFCg==}
+    dev: false
 
   /tsconfig-paths@3.15.0:
     resolution: {integrity: sha512-2Ac2RgzDe/cn48GvOe3M+o82pEFewD3UPbyoUHHdKasHwJKjds4fLXWf/Ux5kATBKN20oaFGu+jbElp1pos0mg==}
