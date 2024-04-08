@@ -10,7 +10,7 @@ export type CreateQnaRequest = {
 
 export const useCreateQna = () => {
   return useMutation<unknown, AxiosError, CreateQnaRequest>({
-    mutationFn: (data) => post('/api/qna', data),
+    mutationFn: (data) => post('/qna', data),
     onSuccess: () => {
       alert('qna 등록 성공');
     },

@@ -13,7 +13,7 @@ export const useGetReceiveCoffeechatList = () => {
     AxiosError
   >({
     queryKey: [RECEIVE_COFFEE_CHAT_LIST],
-    queryFn: async () => await get('/api/coffeechat/my/receive'),
+    queryFn: async () => await get('/coffeechat/my/receive'),
   });
 
   return {

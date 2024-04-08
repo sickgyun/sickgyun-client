@@ -9,7 +9,7 @@ const ErrorReportBanner = () => {
 
   return (
     <StyledErrorReportBanner onClick={handleGoErrorReportForm}>
-      <Stack direction="vertical" spacing={16}>
+      <Stack direction="vertical" spacing={8}>
         <Text fontType="h2" color="white">
           더 나은 식견을 위한
         </Text>

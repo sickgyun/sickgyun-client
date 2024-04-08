@@ -20,8 +20,8 @@ export const PROFILE_LIST_QUERY_KEY = 'profileList';
 
 export const useGetProfileList = (majors: string[]) => {
   const profileListEndPoint = majors.includes('ALL')
-    ? '/api/profiles'
-    : `/api/profiles?majors=${majors}`;
+    ? '/profiles'
+    : `/profiles?majors=${majors}`;
 
   const profileListQuery = useSuspenseQuery<GetProfileListResponse[], AxiosError>({
     queryKey: [PROFILE_LIST_QUERY_KEY, majors],

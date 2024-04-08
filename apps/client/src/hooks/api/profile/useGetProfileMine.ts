@@ -10,7 +10,7 @@ export const PROFILE_MINE_QUERY_KEY = 'profileMine';
 export const useGetProfileMine = () => {
   const profileMineQuery = useQuery<GetProfileMineResponse, AxiosError>({
     queryKey: [PROFILE_MINE_QUERY_KEY],
-    queryFn: async () => await get('/api/profiles/mine'),
+    queryFn: async () => await get('/profiles/mine'),
   });
 
   return { profileMine: profileMineQuery.data, ...profileMineQuery };

@@ -14,7 +14,7 @@ export const useCreateProfile = () => {
   const queryClient = useQueryClient();
 
   return useMutation<unknown, AxiosError, CreateProfileRequest>({
-    mutationFn: (data: CreateProfileRequest) => post('/api/profiles', data),
+    mutationFn: (data: CreateProfileRequest) => post('/profiles', data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [PROFILE_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [PROFILE_MINE_QUERY_KEY] });
