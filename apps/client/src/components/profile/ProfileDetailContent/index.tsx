@@ -59,13 +59,7 @@ const ProfileDetailContent = ({
         align="flex-start"
         style={{ height: '94px' }}
       >
-        <Image
-          src={profile.imageUrl}
-          width={94}
-          height={94}
-          style={{ borderRadius: '8px' }}
-          alt="Student Profile"
-        />
+        <StyledProfileImage src={profile.imageUrl} width={94} height={94} alt="Profile" />
         <Stack style={{ width: '100%' }} spacing={4}>
           <Stack
             direction="horizontal"
@@ -166,6 +160,10 @@ const StyledProfileDetailContent = styled.div`
   flex-direction: column;
   gap: 24px;
   width: 100%;
+`;
+
+const StyledProfileImage = styled(Image)`
+  border-radius: 8px;
 `;
 
 const StyledSettingButton = styled(IconSettingFill)`

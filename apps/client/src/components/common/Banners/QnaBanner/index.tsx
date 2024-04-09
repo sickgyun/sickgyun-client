@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Logo from '../../Logo';
 import { isProd } from '@/utils/isProd';

@@ -2,7 +2,6 @@
 
 import styled from '@emotion/styled';
 import { Spacer, Stack, Text } from '@sickgyun/ui';
-import Image from 'next/image';
 import Logo from '@/components/common/Logo';
 
 const MobilePage = () => {
