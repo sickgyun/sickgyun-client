@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 import { IconChevronRightFill, IconTrashFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Flex, Stack, Text } from '@sickgyun/ui';
+import { Flex, Spinner, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
+import FullHeight from '@/components/common/FullHeight';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 import { useUser } from '@/hooks/common/useUser';
 
@@ -19,7 +20,7 @@ const ProfileDetailContent = ({
 }: ProfileDetailContentProps) => {
   const overlay = useOverlay();
   const { user } = useUser();
-  const { profile } = useGetProfile(profileId);
+  const { profile, isStale } = useGetProfile(profileId);
   const isProfileMine = user.profileId === profile.id;
   const hasProfileInformation = Boolean(
     profile.githubId || profile.resumeUrl || profile.portfolioUrl || profile.email
@@ -50,6 +51,14 @@ const ProfileDetailContent = ({
   const handleGoPortfolio = () => {
     window.open(profile.portfolioUrl);
   };
+
+  if (isStale) {
+    return (
+      <FullHeight>
+        <Spinner />
+      </FullHeight>
+    );
+  }
 
   return (
     <StyledProfileDetailContent>
