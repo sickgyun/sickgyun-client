@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { IconChevronRightFill, IconSettingFill } from '@seed-design/icon';
+import { IconChevronRightFill, IconTrashFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
@@ -73,7 +73,7 @@ const ProfileDetailContent = ({
                 {profile.cardinal}기
               </Text>
             </Stack>
-            {isProfileMine && <StyledSettingButton onClick={openDeleteProfileConfirm} />}
+            {isProfileMine && <StyledDeleteButton onClick={openDeleteProfileConfirm} />}
           </Stack>
           <Text fontType="body2" color="gray600">
             관심 있는 분야: {profile.major}
@@ -166,7 +166,7 @@ const StyledProfileImage = styled(Image)`
   border-radius: 8px;
 `;
 
-const StyledSettingButton = styled(IconSettingFill)`
+const StyledDeleteButton = styled(IconTrashFill)`
   cursor: pointer;
   width: 22px;
   height: 22px;
