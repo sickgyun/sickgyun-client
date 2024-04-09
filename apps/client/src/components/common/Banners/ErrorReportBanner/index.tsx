@@ -28,6 +28,9 @@ const StyledErrorReportBanner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding: 50px;
   background-image: url('/assets/images/error_report_banner_background.png');
   object-fit: cover;

@@ -28,6 +28,9 @@ const StyledUserInterviewBanner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding: 36px;
   border-radius: 8px;
   background-image: url('/assets/images/user_interview_banner_background.png');
