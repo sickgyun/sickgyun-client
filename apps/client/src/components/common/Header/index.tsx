@@ -40,7 +40,7 @@ const Header = () => {
         />
         {!isLoading && (
           <Stack direction="horizontal" align="center" spacing={12}>
-            {user.hasCreatedProfile && (
+            {user.isLogin && (
               <StyledNotificationButtonWrapper>
                 <NotificationButton hasNotification={user.hasNotification} />
               </StyledNotificationButtonWrapper>
