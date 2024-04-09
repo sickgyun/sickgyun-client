@@ -11,8 +11,7 @@ export const useCreateCoffeechat = (userId: number) => {
   const router = useRouter();
 
   return useMutation<unknown, AxiosError, CreateCoffeechatRequest>({
-    mutationFn: (data: CreateCoffeechatRequest) =>
-      post(`/api/coffeechat/${userId}`, data),
+    mutationFn: (data: CreateCoffeechatRequest) => post(`/coffeechat/${userId}`, data),
     onSuccess: () => {
       router.replace('/profile');
       alert('커피챗 요청이 보내졌어요!');

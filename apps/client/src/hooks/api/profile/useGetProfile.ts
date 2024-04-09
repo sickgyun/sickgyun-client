@@ -10,7 +10,7 @@ export const PROFILE_QUERY_KEY = 'profile';
 export const useGetProfile = (profileId: number) => {
   const profileQuery = useSuspenseQuery<GetProfileResponse, AxiosError>({
     queryKey: [PROFILE_QUERY_KEY, profileId],
-    queryFn: async () => await get(`/api/profiles/${profileId}`),
+    queryFn: async () => await get(`/profiles/${profileId}`),
   });
 
   return { profile: profileQuery.data, ...profileQuery };
