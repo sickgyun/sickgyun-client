@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
+import Logo from '../../Logo';
 
 const UserInterviewBanner = () => {
   const handleGoUserInterviewForm = () => {
@@ -17,7 +18,7 @@ const UserInterviewBanner = () => {
           3000원 받아가자!
         </Text>
       </Stack>
-      <Image src="/assets/svgs/logo.svg" alt="Symbol" width={200} height={90} />
+      <Logo width={200} height={90} />
     </StyledUserInterviewBanner>
   );
 };

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Logo from '../../Logo';
 import { isProd } from '@/utils/isProd';
 
 const QnaBanner = () => {
@@ -25,7 +26,7 @@ const QnaBanner = () => {
           부산소마고에 관련한 모든 것, Q&A에서 물어보세요!
         </Text>
       </Stack>
-      <Image src="/assets/svgs/logo.svg" alt="Symbol" width={140} height={48} />
+      <Logo width={140} height={48} />
     </StyledQnaBanner>
   );
 };
