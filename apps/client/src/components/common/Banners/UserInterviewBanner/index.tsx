@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
-import Image from 'next/image';
 import Logo from '../../Logo';
 
 const UserInterviewBanner = () => {
