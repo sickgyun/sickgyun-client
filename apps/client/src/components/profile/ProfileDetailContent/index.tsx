@@ -1,12 +1,10 @@
 import styled from '@emotion/styled';
 import { IconChevronRightFill, IconSettingFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Flex, Spinner, Stack, Text } from '@sickgyun/ui';
+import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
-import FullHeight from '@/components/common/FullHeight';
-import { withSuspense } from '@/hocs/withSuspense';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 import { useUser } from '@/hooks/common/useUser';
 
@@ -22,7 +20,7 @@ const ProfileDetailContent = ({
   const overlay = useOverlay();
   const { user } = useUser();
   const { profile } = useGetProfile(profileId);
-  const isUserProfile = user.profileId === profile.id;
+  const isProfileMine = user.profileId === profile.id;
 
   const openDeleteProfileConfirm = () => {
     overlay.open(({ isOpen, close }) => (
@@ -78,7 +76,7 @@ const ProfileDetailContent = ({
                 {profile.cardinal}기
               </Text>
             </Stack>
-            {isUserProfile && <StyledSettingButton onClick={openDeleteProfileConfirm} />}
+            {isProfileMine && <StyledSettingButton onClick={openDeleteProfileConfirm} />}
           </Stack>
           <Text fontType="body2" color="gray600">
             관심 있는 분야: {profile.major}
@@ -154,11 +152,7 @@ const ProfileDetailContent = ({
   );
 };
 
-export default withSuspense(ProfileDetailContent, () => (
-  <FullHeight>
-    <Spinner />
-  </FullHeight>
-));
+export default ProfileDetailContent;
 
 const StyledProfileDetailContent = styled.div`
   display: flex;

@@ -73,7 +73,7 @@ export default ProfileDetailModal;
 const StyledProfileDetailModal = styled(Modal)`
   position: relative;
   width: 600px;
-  height: 580px;
+  max-height: 580px;
 `;
 
 const StyledProfileDetailModalFooter = styled(ModalFooter)`
