@@ -1,14 +1,15 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Stack, Text } from '@sickgyun/ui';
-import Image from 'next/image';
+import { Spacer, Stack, Text } from '@sickgyun/ui';
+import Logo from '@/components/common/Logo';
 
 const MobilePage = () => {
   return (
     <StyledMobilPageLayout>
       <StyledMobilPage>
-        <StyledLogoImage src="/assets/svgs/logo.svg" alt="Logo" width={120} height={47} />
+        <Logo width={120} height={47} />
+        <Spacer height={24} />
         <Stack direction="vertical" spacing={27}>
           <Stack direction="vertical" align="center" spacing={12}>
             <Text fontType="h3" color="gray900">
@@ -42,8 +43,4 @@ const StyledMobilPage = styled.div`
   justify-content: center;
   height: 100%;
   padding: 24px;
-`;
-
-const StyledLogoImage = styled(Image)`
-  margin-bottom: 24px;
 `;

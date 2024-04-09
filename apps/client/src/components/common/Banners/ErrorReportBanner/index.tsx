@@ -17,7 +17,7 @@ const ErrorReportBanner = () => {
           에러/개선사항 제보하기
         </Text>
       </Stack>
-      <Image src="/assets/svgs/symbol_white.svg" alt="Symbol" width={120} height={120} />
+      <Image src="/assets/svgs/symbol_white.svg" width={120} height={120} alt="Symbol" />
     </StyledErrorReportBanner>
   );
 };

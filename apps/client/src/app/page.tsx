@@ -5,6 +5,7 @@ import { Flex, Link, Spacer, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ErrorReportBanner from '@/components/common/Banners/ErrorReportBanner';
+import QnaBanner from '@/components/common/Banners/QnaBanner';
 import UserInterviewBanner from '@/components/common/Banners/UserInterviewBanner';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -13,21 +14,12 @@ import MainBanner from '@/components/main/MainBanner';
 import RecuritList from '@/components/recurit/RecuritList';
 import { JOB_POSTING_FULL_VIEW_LINK, MAJOR_LIST } from '@/constants/profile';
 import type { Major } from '@/types/profile';
-import { isProd } from '@/utils/isProd';
 
 const MainPage = () => {
   const router = useRouter();
 
   const hanldeGoProfilePage = (major: Major) => {
     router.push(`/profile?major=${major}`);
-  };
-
-  const handleGoQnaPage = () => {
-    if (isProd(process.env.NODE_ENV)) {
-      alert('상진이가 열심히 개발중이에요!');
-      return;
-    }
-    router.push(`/qna`);
   };
 
   const renderBanners = () => {
@@ -68,11 +60,7 @@ const MainPage = () => {
           <Spacer height={64} />
           <Stack spacing={18}>
             <Text fontType="h3">뭘 해야 할지 모르겠다고요? 조언을 구해봐요!</Text>
-            <StyledQnaBannerImage
-              onClick={handleGoQnaPage}
-              src="/assets/images/qna_banner.png"
-              alt="Qna Banner"
-            />
+            <QnaBanner />
           </Stack>
           <Spacer height={64} />
           <Stack spacing={18} style={{ position: 'relative' }}>
@@ -120,12 +108,4 @@ const StyledStudentProfileRedirectButton = styled.div`
     background-color: ${({ theme }) => theme.colors.gray50};
     cursor: pointer;
   }
-`;
-
-const StyledQnaBannerImage = styled.img`
-  cursor: pointer;
-  object-fit: cover;
-  border-radius: 16px;
-  height: 150px;
-  width: 100%;
 `;
