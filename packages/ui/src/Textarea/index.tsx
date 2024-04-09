@@ -66,7 +66,7 @@ const StyledTextarea = styled.textarea<{ minHeight?: string }>`
   ${({ theme }) => css`
     border: 1.5px solid ${theme.colors.gray400};
     background-color: ${theme.colors.white};
-    color: ${theme.colors.black};
+    color: ${theme.colors.gray900};
     caret-color: ${theme.colors.primary};
     ::placeholder {
       ${theme.fonts.body2}

@@ -58,7 +58,7 @@ const StyledSelect = styled.select`
   appearance: none;
   ${({ theme }) => css`
     ${theme.fonts.body1}
-    color: ${theme.colors.black};
+    color: ${theme.colors.gray900};
     border: 1.5px solid ${theme.colors.gray400};
     background-color: ${theme.colors.white};
     ::placeholder {

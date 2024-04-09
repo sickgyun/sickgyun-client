@@ -53,7 +53,7 @@ const QnaCard = ({
               </Text>
             </Stack>
             <Stack direction="horizontal" align="center" spacing={3}>
-              <IconReplyRegular width={16} height={16} color={colors.black} />
+              <IconReplyRegular width={16} height={16} color={colors.gray900} />
               <Text fontType="body2" style={{ marginTop: '2px' }}>
                 {commentCount}
               </Text>

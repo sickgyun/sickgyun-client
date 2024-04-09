@@ -14,7 +14,7 @@ export type GetQnaCardResponse = {
 
 export const QNA_CARD_QUERY_KEY = 'qnaCard';
 
-export const useGetQnaCard = (id?: number) => {
+export const useGetQnaCard = (id: number) => {
   const qnaCardQuery = useQuery<GetQnaCardResponse>({
     queryKey: [QNA_CARD_QUERY_KEY, id],
     queryFn: async () => await get(`/qna/${id}`),

@@ -94,8 +94,8 @@ const StyledQnaDetailLayout = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.gray100};
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 35px;
 `;
 
 const StyledQnaDetail = styled.div`
