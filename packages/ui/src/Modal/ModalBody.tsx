@@ -15,4 +15,5 @@ const StyledModalBody = styled.div`
   align-items: flex-start;
   margin-top: 20px;
   margin-bottom: 48px;
+  height: 100%;
 `;
