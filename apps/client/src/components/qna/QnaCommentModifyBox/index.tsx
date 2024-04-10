@@ -43,7 +43,7 @@ const StyledQnaCommentModifyBox = styled.span`
   margin-top: 5px;
   right: 0;
   width: 100px;
-  height: 80px;
+  height: 70px;
   background-color: white;
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
@@ -55,7 +55,7 @@ const StyledQnaCommentModifyButton = styled.div`
   display: flex;
   align-items: center;
   width: 90px;
-  height: 35px;
+  height: 30px;
   padding: 10px;
   border-radius: 5px;
   font-size: 15px;

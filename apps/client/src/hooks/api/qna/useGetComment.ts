@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
 
-export type GetQnaCommentResponse = {
+export type GetQnaCommentListResponse = {
   id: number;
   content: string;
   userResponse: {
@@ -15,13 +15,13 @@ export type GetQnaCommentResponse = {
   };
 };
 
-export const QNA_COMMENT_QUERY_KEY = 'qnaComment';
+export const QNA_COMMENT_LIST_QUERY_KEY = 'qnaCommentList';
 
-export const useGetQnaComment = (id: number) => {
-  const qnaCommentQuery = useQuery<GetQnaCommentResponse[]>({
-    queryKey: [QNA_COMMENT_QUERY_KEY, id],
+export const useGetQnaCommentList = (id: number) => {
+  const qnaCommentListQuery = useQuery<GetQnaCommentListResponse[]>({
+    queryKey: [QNA_COMMENT_LIST_QUERY_KEY, id],
     queryFn: async () => await get(`/comments/${id}`),
   });
 
-  return { qnaComment: qnaCommentQuery.data, ...qnaCommentQuery };
+  return { qnaCommentList: qnaCommentListQuery.data, ...qnaCommentListQuery };
 };

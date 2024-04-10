@@ -8,7 +8,7 @@ import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
-import QnaComment from '@/components/qna/QnaComment';
+import QnaComment from '@/components/qna/QnaCommentList';
 import QnaModifyBox from '@/components/qna/QnaModifyBox';
 import { useCreateQnaLike } from '@/hooks/api/qna/useCreateQnaLike';
 import { useDeleteQnaLike } from '@/hooks/api/qna/useDeleteQnaLike';
@@ -16,10 +16,12 @@ import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
 import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 import type { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
+import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 
 const QnaDetailPage = () => {
   const [isOpenQnaEditModal, setIsOpenQnaEditModal] = useState(false);
   const { id } = useParams();
+  const openModalRef = useOutsideClick(isOpenQnaEditModal, setIsOpenQnaEditModal);
 
   const { qnaCard } = useGetQnaCard(Number(id));
   const { qnaLike } = useGetQnaLike(Number(id));
@@ -46,7 +48,7 @@ const QnaDetailPage = () => {
             <Stack style={{ display: 'inline-flex' }}>
               <QnaCategory questionType={qnaCard?.category as Qna} />
             </Stack>
-            <StyledSettingButtonContainer>
+            <StyledSettingButtonContainer ref={openModalRef}>
               <StyledSettingButton onClick={openQnaEditModal} />
               {isOpenQnaEditModal && <QnaModifyBox qnaId={qnaCard?.id} />}
             </StyledSettingButtonContainer>
