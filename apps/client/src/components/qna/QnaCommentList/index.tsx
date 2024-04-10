@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { IconReplyMissionRegular } from '@seed-design/icon';
+import { colors } from '@sickgyun/design-token';
 import { Button, Flex, Text, Textarea } from '@sickgyun/ui';
 import { useParams } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
@@ -14,7 +16,7 @@ type QnaCommentListProps = {
 
 const QnaComment = ({ commentCount }: QnaCommentListProps) => {
   const { id } = useParams();
-  const { qnaCommentList } = useGetQnaCommentList(Number(id));
+  const { qnaCommentList, isLoading } = useGetQnaCommentList(Number(id));
   const { mutate: qnaCommentMutate } = useCreateQnaComment(Number(id));
 
   const {
@@ -39,7 +41,16 @@ const QnaComment = ({ commentCount }: QnaCommentListProps) => {
           </Button>
         </Flex>
       </form>
-      {qnaCommentList?.map((comment) => <QnaCommentBox {...comment} />)}
+      {isLoading ? (
+        <StyledQnaCommentSkeletonBox />
+      ) : qnaCommentList?.length > 0 ? (
+        qnaCommentList.map((comment) => <QnaCommentBox {...comment} />)
+      ) : (
+        <StyledNoQnaCommentContainer>
+          <IconReplyMissionRegular color={colors.gray600} width={28} />
+          <Text color={'gray600'}>등록된 댓글이 없어요..</Text>
+        </StyledNoQnaCommentContainer>
+      )}
     </StyledQnaComment>
   );
 };
@@ -51,4 +62,17 @@ const StyledQnaComment = styled.div`
   flex-direction: column;
   padding-top: 20px;
   gap: 10px;
+`;
+
+const StyledQnaCommentSkeletonBox = styled.div`
+  height: 68px;
+`;
+
+const StyledNoQnaCommentContainer = styled.div`
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
 `;

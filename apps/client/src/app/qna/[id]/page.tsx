@@ -123,7 +123,7 @@ const StyledLikeButtonContainer = styled.div`
 `;
 
 const StyledQnaContent = styled.div`
-  min-height: 56px;
+  min-height: 68px;
   padding-top: 30px;
   padding-bottom: 10px;
 `;

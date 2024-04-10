@@ -55,8 +55,8 @@ const StyledQnaCategory = styled.div<{ isWriteCategory: boolean; isActive: boole
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: ${({ isWriteCategory }) => (isWriteCategory ? '73px' : 'auto')};
-  min-height: ${({ isWriteCategory }) => (isWriteCategory ? '32px' : '26px')};
+  min-width: ${({ isWriteCategory }) => (isWriteCategory ? 'auto' : '73px')};
+  min-height: ${({ isWriteCategory }) => (isWriteCategory ? '35px' : '32px')};
   gap: 7px;
   padding: 5px 13px;
   background-color: ${({ theme, isWriteCategory }) =>
