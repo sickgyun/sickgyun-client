@@ -12,11 +12,11 @@ export type GetQnaCardResponse = {
   commentCount: number;
 };
 
-export const QNA_CARD_QUERY_KEY = 'qnaCard';
+export const QNA_QUERY_KEY = 'qna';
 
 export const useGetQnaCard = (id: number) => {
   const qnaCardQuery = useQuery<GetQnaCardResponse>({
-    queryKey: [QNA_CARD_QUERY_KEY, id],
+    queryKey: [QNA_QUERY_KEY, id],
     queryFn: async () => await get(`/qna/${id}`),
   });
 

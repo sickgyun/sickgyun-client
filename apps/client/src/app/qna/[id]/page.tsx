@@ -12,7 +12,7 @@ import QnaComment from '@/components/qna/QnaCommentList';
 import QnaModifyBox from '@/components/qna/QnaModifyBox';
 import { useCreateQnaLike } from '@/hooks/api/qna/useCreateQnaLike';
 import { useDeleteQnaLike } from '@/hooks/api/qna/useDeleteQnaLike';
-import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
+import { useGetQnaCard } from '@/hooks/api/qna/useGetQna';
 import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 import type { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';

@@ -6,8 +6,8 @@ import {
   CreateQnaCommentRequest,
   useCreateQnaComment,
 } from '@/hooks/api/qna/useCreateComment';
-import { useGetQnaCommentList } from '@/hooks/api/qna/useGetComment';
 import QnaCommentBox from '../QnaCommentBox';
+import { useGetQnaCommentList } from '@/hooks/api/qna/useGetQnaCommentList';
 
 type QnaCommentListProps = {
   commentCount: number;

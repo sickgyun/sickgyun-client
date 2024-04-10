@@ -10,7 +10,7 @@ import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import { QNA_WRITE_CATEGORY } from '@/constants/qna';
 import type { CreateQnaRequest } from '@/hooks/api/qna/useCreateQna';
-import { useGetQnaCard } from '@/hooks/api/qna/useGetQnaCard';
+import { useGetQnaCard } from '@/hooks/api/qna/useGetQna';
 import { useUpdateQna } from '@/hooks/api/qna/useUpdateQna';
 import type { Qna } from '@/types/qna';
 
