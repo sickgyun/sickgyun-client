@@ -21,12 +21,13 @@ import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 const QnaDetailPage = () => {
   const [isOpenQnaEditModal, setIsOpenQnaEditModal] = useState(false);
   const { id } = useParams();
-  const openModalRef = useOutsideClick(isOpenQnaEditModal, setIsOpenQnaEditModal);
 
   const { qnaCard } = useGetQnaCard(Number(id));
   const { qnaLike } = useGetQnaLike(Number(id));
   const { mutate: qnaCreateLikeMutate } = useCreateQnaLike(Number(id));
   const { mutate: qnaDeleteLikeMutate } = useDeleteQnaLike(Number(id));
+
+  const openCommentEditRef = useOutsideClick(isOpenQnaEditModal, setIsOpenQnaEditModal);
 
   const handleCreateAndDeleteQnaLike = () => {
     if (qnaLike) {
@@ -48,7 +49,7 @@ const QnaDetailPage = () => {
             <Stack style={{ display: 'inline-flex' }}>
               <QnaCategory questionType={qnaCard?.category as Qna} />
             </Stack>
-            <StyledSettingButtonContainer ref={openModalRef}>
+            <StyledSettingButtonContainer ref={openCommentEditRef}>
               <StyledSettingButton onClick={openQnaEditModal} />
               {isOpenQnaEditModal && <QnaModifyBox qnaId={qnaCard?.id} />}
             </StyledSettingButtonContainer>

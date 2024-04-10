@@ -11,7 +11,6 @@ export const useDeleteQnaLike = (id: number) => {
   return useMutation<unknown, AxiosError>({
     mutationFn: () => del(`/likes/${id}`),
     onSuccess: () => {
-      alert('좋아요 삭제 성공');
       queryClient.invalidateQueries({ queryKey: [QNA_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [QNA_CARD_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [QNA_LIKE_QUERY_KEY] });

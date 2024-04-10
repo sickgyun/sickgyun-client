@@ -1,32 +1,29 @@
+import { useDeleteQna } from '@/hooks/api/qna/useDeleteQna';
 import styled from '@emotion/styled';
-import { useOverlay } from '@toss/use-overlay';
 import { useParams, useRouter } from 'next/navigation';
-import QnaDeleteConfirm from '../QnaDeleteConfirm';
 
 type qnaModifyBoxProps = {
   qnaId: number;
 };
 
 const QnaModifyBox = ({ qnaId }: qnaModifyBoxProps) => {
-  const overlay = useOverlay();
-
   const { id } = useParams();
   const router = useRouter();
+
+  const { mutate: qnaDeleteMutate } = useDeleteQna(Number(id));
 
   const handleEditQna = () => {
     router.push(`/qna/edit/${qnaId}`);
   };
 
-  const openDeleteQnaConfirm = () => {
-    overlay.open(({ isOpen, close }) => (
-      <QnaDeleteConfirm isOpen={isOpen} onClose={close} id={Number(id)} />
-    ));
+  const handleDeleteQna = () => {
+    if (confirm('게시글을 삭제하시겠습니까?')) qnaDeleteMutate();
   };
 
   return (
     <StyledQnaModifyBox>
       <StyledModifyButton onClick={handleEditQna}>수정하기</StyledModifyButton>
-      <StyledModifyButton onClick={openDeleteQnaConfirm}>삭제하기</StyledModifyButton>
+      <StyledModifyButton onClick={handleDeleteQna}>삭제하기</StyledModifyButton>
     </StyledQnaModifyBox>
   );
 };

@@ -11,7 +11,6 @@ export const useDeleteQnaComment = (id: number) => {
   return useMutation<unknown, AxiosError>({
     mutationFn: () => del(`/comments/${id}`),
     onSuccess: () => {
-      alert('댓글 삭제 성공');
       queryClient.invalidateQueries({ queryKey: [QNA_COMMENT_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [QNA_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [QNA_CARD_QUERY_KEY] });

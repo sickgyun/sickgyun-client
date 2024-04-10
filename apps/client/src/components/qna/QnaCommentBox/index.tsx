@@ -1,18 +1,18 @@
 import { GetQnaCommentListResponse } from '@/hooks/api/qna/useGetComment';
-import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 import { useUser } from '@/hooks/common/useUser';
 import styled from '@emotion/styled';
 import { IconSettingFill } from '@seed-design/icon';
 import { Flex, Text } from '@sickgyun/ui';
 import { useState } from 'react';
 import QnaCommentModifyBox from '../QnaCommentModifyBox';
+import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 
 const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
   const { user } = useUser();
 
   const [isOpenQnaCommentEditModal, setIsOpenQnaCommentEditModal] = useState(false);
 
-  const openCommentRef = useOutsideClick(
+  const openCommentModifyRef = useOutsideClick(
     isOpenQnaCommentEditModal,
     setIsOpenQnaCommentEditModal
   );
@@ -35,7 +35,7 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
             {5}일 전
           </Text>
         </Flex>
-        <StyledSettingButtonContainer ref={openCommentRef}>
+        <StyledSettingButtonContainer ref={openCommentModifyRef}>
           {user.id === comment.userResponse.id && (
             <StyledSettingButton onClick={() => toggleQnaCommentEditModal()} />
           )}

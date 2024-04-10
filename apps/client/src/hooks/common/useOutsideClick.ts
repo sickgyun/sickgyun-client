@@ -14,6 +14,7 @@ export const useOutsideClick = (
         setOpen(false);
       }
     };
+
     if (isOpen) {
       document.addEventListener('mousedown', handleOutSideModal);
     }

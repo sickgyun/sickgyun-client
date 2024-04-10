@@ -1,21 +1,17 @@
-import QnaCommentDeleteConfirm from '@/components/QnaCommentDeleteConfirm';
+import { useDeleteQnaComment } from '@/hooks/api/qna/useDeleteQnaComment';
 import styled from '@emotion/styled';
-import { useOverlay } from '@toss/use-overlay';
-import React from 'react';
 
 export type QnaCommentModifyBoxProps = {
   id: number;
 };
 
 const QnaCommentModifyBox = ({ id }: QnaCommentModifyBoxProps) => {
-  const overlay = useOverlay();
+  const { mutate: qnaCommentDeleteMutate } = useDeleteQnaComment(id);
 
   const handleEditQnaComment = () => {};
 
-  const openDeleteQnaCommentConfirm = () => {
-    overlay.open(({ isOpen, close }) => (
-      <QnaCommentDeleteConfirm isOpen={isOpen} onClose={close} id={Number(id)} />
-    ));
+  const handleDeleteQnaComment = (e: any) => {
+    if (confirm('정말 댓글을 삭제하시겠습니까?')) qnaCommentDeleteMutate();
   };
 
   return (
@@ -23,7 +19,7 @@ const QnaCommentModifyBox = ({ id }: QnaCommentModifyBoxProps) => {
       <StyledQnaCommentModifyButton onClick={handleEditQnaComment}>
         수정하기
       </StyledQnaCommentModifyButton>
-      <StyledQnaCommentModifyButton onClick={openDeleteQnaCommentConfirm}>
+      <StyledQnaCommentModifyButton onClick={handleDeleteQnaComment}>
         삭제하기
       </StyledQnaCommentModifyButton>
     </StyledQnaCommentModifyBox>

@@ -15,7 +15,6 @@ export const useCreateQnaComment = (id: number) => {
   return useMutation<unknown, AxiosError, CreateQnaCommentRequest>({
     mutationFn: (data) => post(`/comments/${id}`, data),
     onSuccess: () => {
-      alert('댓글 등록 성공');
       queryClient.invalidateQueries({ queryKey: [QNA_COMMENT_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [QNA_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [QNA_CARD_QUERY_KEY] });

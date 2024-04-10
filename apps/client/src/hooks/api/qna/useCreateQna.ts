@@ -16,7 +16,6 @@ export const useCreateQna = () => {
   return useMutation<unknown, AxiosError, CreateQnaRequest>({
     mutationFn: (data) => post('/qna', data),
     onSuccess: () => {
-      alert('qna 등록 성공');
       queryClient.invalidateQueries({ queryKey: [QNA_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [QNA_CARD_QUERY_KEY] });
     },
