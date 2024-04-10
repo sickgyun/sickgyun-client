@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
 import { Button, Flex, Text, Textarea } from '@sickgyun/ui';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'next/navigation';
-import {
-  CreateQnaCommentRequest,
-  useCreateQnaComment,
-} from '@/hooks/api/qna/useCreateComment';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import QnaCommentBox from '../QnaCommentBox';
+import type { CreateQnaCommentRequest } from '@/hooks/api/qna/useCreateComment';
+import { useCreateQnaComment } from '@/hooks/api/qna/useCreateComment';
 import { useGetQnaCommentList } from '@/hooks/api/qna/useGetQnaCommentList';
 
 type QnaCommentListProps = {

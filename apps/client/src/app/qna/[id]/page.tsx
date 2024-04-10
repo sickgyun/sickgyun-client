@@ -14,9 +14,9 @@ import { useCreateQnaLike } from '@/hooks/api/qna/useCreateQnaLike';
 import { useDeleteQnaLike } from '@/hooks/api/qna/useDeleteQnaLike';
 import { useGetQnaCard } from '@/hooks/api/qna/useGetQna';
 import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
+import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 import type { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
-import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 
 const QnaDetailPage = () => {
   const [isOpenQnaEditModal, setIsOpenQnaEditModal] = useState(false);
@@ -40,6 +40,7 @@ const QnaDetailPage = () => {
   const openQnaEditModal = () => {
     setIsOpenQnaEditModal((prev) => !prev);
   };
+
   return (
     <>
       <Header />

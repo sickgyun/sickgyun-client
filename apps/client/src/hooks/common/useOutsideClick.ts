@@ -1,6 +1,5 @@
-import { SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useRef } from 'react';
-import type { Dispatch } from 'react';
 
 export const useOutsideClick = (
   isOpen: boolean,

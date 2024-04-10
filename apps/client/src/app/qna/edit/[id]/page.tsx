@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
+import { match } from 'ts-pattern';
 import Header from '@/components/common/Header';
 import QnaCategory from '@/components/qna/QnaCategory';
 import { QNA_WRITE_CATEGORY } from '@/constants/qna';
@@ -20,8 +21,10 @@ const QnaEditPage = () => {
 
   const { mutate: updateQnaMutate } = useUpdateQna(Number(id));
 
-  const categoryId =
-    qnaCard?.category === 'DEVELOP' ? 0 : qnaCard?.category === 'RECRUIT' ? 1 : 2;
+  const categoryId = match(qnaCard?.category)
+    .with('DEVELOP', () => 0)
+    .with('RECRUIT', () => 1)
+    .otherwise(() => 2);
 
   const [category, setCategory] = useState({
     id: categoryId,
@@ -29,7 +32,6 @@ const QnaEditPage = () => {
   });
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(categoryId);
 
-  console.log('category', category.title);
   const {
     register,
     handleSubmit: updateQnaWriteSubmit,
@@ -37,7 +39,7 @@ const QnaEditPage = () => {
   } = useForm<CreateQnaRequest>();
 
   useEffect(() => {
-    setValue('category', category.title);
+    setValue('category', category?.title);
     setValue('title', qnaCard?.title);
     setValue('content', qnaCard?.content);
   }, [category.title, qnaCard?.title, qnaCard?.content, setValue]);

@@ -1,17 +1,16 @@
-import { useUser } from '@/hooks/common/useUser';
 import styled from '@emotion/styled';
 import { IconSettingFill } from '@seed-design/icon';
 import { Button, Flex, Text, Textarea } from '@sickgyun/ui';
-import { useState } from 'react';
-import QnaCommentModifyBox from '../QnaCommentModifyBox';
-import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 import { SecondaryButton } from '@sickgyun/ui/src/Button/SecondaryButton';
-import {
-  UpdateQnaCommentRequest,
-  useUpdateQnaComment,
-} from '@/hooks/api/qna/useUpdateQnaComment';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { GetQnaCommentListResponse } from '@/hooks/api/qna/useGetQnaCommentList';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form';
+import QnaCommentModifyBox from '../QnaCommentModifyBox';
+import type { GetQnaCommentListResponse } from '@/hooks/api/qna/useGetQnaCommentList';
+import type { UpdateQnaCommentRequest } from '@/hooks/api/qna/useUpdateQnaComment';
+import { useUpdateQnaComment } from '@/hooks/api/qna/useUpdateQnaComment';
+import { useOutsideClick } from '@/hooks/common/useOutsideClick';
+import { useUser } from '@/hooks/common/useUser';
 
 const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
   const { user } = useUser();
@@ -69,28 +68,26 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
         </StyledSettingButtonContainer>
       </StyledQnaCommentHeader>
       {isOpenQnaEditBox ? (
-        <StyledQnaEditBoxLayout>
-          <form onSubmit={updateQnaCommentSubmit(onUpdateQnaCommentSubmit)}>
-            <Textarea
-              minHeight="120px"
-              {...register('content', { required: true })}
-              defaultValue={comment.content}
-            />
-            <Flex align="center" justify="flex-end" style={{ marginTop: '7px' }}>
-              <SecondaryButton
-                size="small"
-                width="70px"
-                style={{ height: '38px', marginRight: '5px' }}
-                onClick={handleCloseQnaCommentEditModal}
-              >
-                취소
-              </SecondaryButton>
-              <Button type="submit" size="small" width="70px" style={{ height: '38px' }}>
-                수정
-              </Button>
-            </Flex>
-          </form>
-        </StyledQnaEditBoxLayout>
+        <form onSubmit={updateQnaCommentSubmit(onUpdateQnaCommentSubmit)}>
+          <Textarea
+            minHeight="120px"
+            {...register('content', { required: true })}
+            defaultValue={comment.content}
+          />
+          <Flex align="center" justify="flex-end" style={{ marginTop: '7px' }}>
+            <SecondaryButton
+              size="small"
+              width="70px"
+              style={{ height: '38px', marginRight: '5px' }}
+              onClick={handleCloseQnaCommentEditModal}
+            >
+              취소
+            </SecondaryButton>
+            <Button type="submit" size="small" width="70px" style={{ height: '38px' }}>
+              수정
+            </Button>
+          </Flex>
+        </form>
       ) : (
         <Text fontType="p2">{comment?.content}</Text>
       )}
@@ -108,6 +105,7 @@ const StyledQnaCommentHeader = styled.div`
   gap: 10px;
   border-top: 1px solid ${({ theme }) => theme.colors.gray300};
   padding-top: 10px;
+  margin-bottom: 5px;
 `;
 
 const StyledSettingButtonContainer = styled.div`
@@ -119,8 +117,4 @@ const StyledSettingButton = styled(IconSettingFill)`
   width: 16px;
   height: 16px;
   cursor: pointer;
-`;
-
-const StyledQnaEditBoxLayout = styled.div`
-  margin-top: 5px;
 `;

@@ -1,6 +1,6 @@
-import { useDeleteQna } from '@/hooks/api/qna/useDeleteQna';
 import styled from '@emotion/styled';
 import { useParams, useRouter } from 'next/navigation';
+import { useDeleteQna } from '@/hooks/api/qna/useDeleteQna';
 
 type qnaModifyBoxProps = {
   qnaId: number;

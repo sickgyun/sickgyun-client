@@ -8,7 +8,7 @@ import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 import type { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
 
-type qnaChildBoxProps = {
+type qnaBoxProps = {
   id: number;
   category: string;
   title: string;
@@ -26,7 +26,7 @@ const QnaBox = ({
   createTime,
   likeCount,
   commentCount,
-}: qnaChildBoxProps) => {
+}: qnaBoxProps) => {
   const router = useRouter();
 
   const handleGoDetailQnaPage = (id: number) => {

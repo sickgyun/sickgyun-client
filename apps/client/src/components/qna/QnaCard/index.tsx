@@ -27,7 +27,7 @@ const QnaCard = ({
   commentCount,
 }: QnaPostingCardProps) => {
   const router = useRouter();
-  const { qnaLike } = useGetQnaLike(Number(id));
+  const { qnaLike } = useGetQnaLike(id);
 
   const handleGoQnaDetailPage = (id: number) => {
     router.push(`/qna/${id}`);

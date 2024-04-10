@@ -1,6 +1,6 @@
-import { useDeleteQnaComment } from '@/hooks/api/qna/useDeleteQnaComment';
 import styled from '@emotion/styled';
 import type { Dispatch, SetStateAction } from 'react';
+import { useDeleteQnaComment } from '@/hooks/api/qna/useDeleteQnaComment';
 
 export type QnaCommentModifyBoxProps = {
   id: number;
@@ -22,6 +22,7 @@ const QnaCommentModifyBox = ({
 
   const handleDeleteQnaComment = () => {
     if (confirm('정말 댓글을 삭제하시겠습니까?')) qnaCommentDeleteMutate();
+    setIsOpenQnaCommentEditModal(false);
   };
 
   return (
@@ -45,7 +46,6 @@ const StyledQnaCommentModifyBox = styled.span`
   justify-content: center;
   flex-direction: column;
   position: absolute;
-
   margin-top: 5px;
   right: 0;
   width: 100px;
