@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
-import { Spinner, Text } from '@sickgyun/ui';
+import { Button, Spinner, Stack, Text } from '@sickgyun/ui';
 import { isEmpty } from 'lodash';
 import CoffeechatReceiveCard from '../CoffeechatReceiveCard';
 import { useGetReceiveCoffeechatList } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
+import { useUser } from '@/hooks/common/useUser';
 
 const CoffeechatReceiveList = () => {
   const { receiveCoffeechatList, isLoading } = useGetReceiveCoffeechatList();
+  const { user } = useUser();
 
   if (isLoading) {
     return <Spinner />;
@@ -23,8 +25,15 @@ const CoffeechatReceiveList = () => {
             message={coffeechat.message}
           />
         ))
-      ) : (
+      ) : user.hasCreatedProfile ? (
         <Text fontType="h3">앗! 요청 받은 내역이 없어요...</Text>
+      ) : (
+        <Stack direction="vertical" align="center" justify="center" spacing={16}>
+          <Button size="medium" width="200px">
+            프로필 등록하러 가기
+          </Button>
+          <Text fontType="body1">프로필 등록을 하면 커피챗 요청을 받을 수 있어요!</Text>
+        </Stack>
       )}
     </StyledCoffeechatReceiveList>
   );

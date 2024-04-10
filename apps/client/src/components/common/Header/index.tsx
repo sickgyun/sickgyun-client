@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button, Flex, Stack } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Logo from '../Logo';
 import NotificationButton from '../NotificationButton';
 import { useUser } from '@/hooks/common/useUser';
 import { RESET_USER, userAtom } from '@/store/user/userAtom';
@@ -30,17 +30,15 @@ const Header = () => {
         justify="space-between"
         style={{ margin: '0 auto', width: '80%', height: '100%' }}
       >
-        <Image
-          src="/assets/svgs/logo.svg"
-          onClick={() => router.replace('/')}
+        <Logo
           width={90}
           height={32}
+          onClick={() => router.replace('/')}
           style={{ cursor: 'pointer' }}
-          alt="Logo"
         />
         {!isLoading && (
           <Stack direction="horizontal" align="center" spacing={12}>
-            {user.hasCreatedProfile && (
+            {user.isLogin && (
               <StyledNotificationButtonWrapper>
                 <NotificationButton hasNotification={user.hasNotification} />
               </StyledNotificationButtonWrapper>

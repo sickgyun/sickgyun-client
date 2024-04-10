@@ -9,6 +9,7 @@ import {
   Text,
 } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
+import { useRouter } from 'next/navigation';
 import ProfileDetailContent from '../ProfileDetailContent';
 import CoffeechatSendConfirm from '@/components/coffeechat/CoffeechatSendConfirm';
 import { useUser } from '@/hooks/common/useUser';
@@ -25,6 +26,7 @@ const ProfileDetailModal = ({
   userId,
 }: ProfileDetailModalProps) => {
   const overlay = useOverlay();
+  const router = useRouter();
   const { user } = useUser();
 
   const openCoffeechatSendConfirm = () => {
@@ -38,6 +40,10 @@ const ProfileDetailModal = ({
     ));
   };
 
+  const handleGoProfileUpdatePage = () => {
+    router.push('/profile/update');
+  };
+
   return (
     <StyledProfileDetailModal isOpen={isOpen} onClose={onClose}>
       <ModalHeader>
@@ -47,13 +53,17 @@ const ProfileDetailModal = ({
       <ModalBody>
         <ProfileDetailContent profileId={profileId} onProfileDetailModalClose={onClose} />
       </ModalBody>
-      {user.profileId !== profileId && (
-        <StyledProfileDetailModalFooter>
+      <StyledProfileDetailModalFooter>
+        {user.profileId !== profileId ? (
           <Button onClick={openCoffeechatSendConfirm} size="large">
             커피챗 요청 보내기
           </Button>
-        </StyledProfileDetailModalFooter>
-      )}
+        ) : (
+          <Button onClick={handleGoProfileUpdatePage} size="large">
+            프로필 수정하기
+          </Button>
+        )}
+      </StyledProfileDetailModalFooter>
     </StyledProfileDetailModal>
   );
 };
@@ -63,7 +73,7 @@ export default ProfileDetailModal;
 const StyledProfileDetailModal = styled(Modal)`
   position: relative;
   width: 600px;
-  height: 600px;
+  max-height: 580px;
 `;
 
 const StyledProfileDetailModalFooter = styled(ModalFooter)`

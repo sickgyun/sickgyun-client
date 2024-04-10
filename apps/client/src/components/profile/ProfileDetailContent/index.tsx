@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
-import { IconChevronRightFill, IconSettingFill } from '@seed-design/icon';
+import { IconChevronRightFill, IconTrashFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, Spinner, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
 import FullHeight from '@/components/common/FullHeight';
-import { withSuspense } from '@/hocs/withSuspense';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 import { useUser } from '@/hooks/common/useUser';
 
@@ -21,8 +20,11 @@ const ProfileDetailContent = ({
 }: ProfileDetailContentProps) => {
   const overlay = useOverlay();
   const { user } = useUser();
-  const { profile } = useGetProfile(profileId);
-  const isUserProfile = user.profileId === profile.id;
+  const { profile, isStale } = useGetProfile(profileId);
+  const isProfileMine = user.profileId === profile.id;
+  const hasProfileInformation = Boolean(
+    profile.githubId || profile.resumeUrl || profile.portfolioUrl || profile.email
+  );
 
   const openDeleteProfileConfirm = () => {
     overlay.open(({ isOpen, close }) => (
@@ -50,6 +52,14 @@ const ProfileDetailContent = ({
     window.open(profile.portfolioUrl);
   };
 
+  if (isStale) {
+    return (
+      <FullHeight>
+        <Spinner />
+      </FullHeight>
+    );
+  }
+
   return (
     <StyledProfileDetailContent>
       <Stack
@@ -58,13 +68,7 @@ const ProfileDetailContent = ({
         align="flex-start"
         style={{ height: '94px' }}
       >
-        <Image
-          src={profile.imageUrl}
-          width={94}
-          height={94}
-          style={{ borderRadius: '8px' }}
-          alt="Student Profile"
-        />
+        <StyledProfileImage src={profile.imageUrl} width={94} height={94} alt="Profile" />
         <Stack style={{ width: '100%' }} spacing={4}>
           <Stack
             direction="horizontal"
@@ -78,7 +82,7 @@ const ProfileDetailContent = ({
                 {profile.cardinal}기
               </Text>
             </Stack>
-            {isUserProfile && <StyledSettingButton onClick={openDeleteProfileConfirm} />}
+            {isProfileMine && <StyledDeleteButton onClick={openDeleteProfileConfirm} />}
           </Stack>
           <Text fontType="body2" color="gray600">
             관심 있는 분야: {profile.major}
@@ -101,64 +105,64 @@ const ProfileDetailContent = ({
           </StyledIntroduceBox>
         </Stack>
       )}
-      <Stack spacing={16}>
-        <Text fontType="h3">정보</Text>
+      {hasProfileInformation && (
         <Stack spacing={16}>
-          {profile?.githubId && (
-            <StyledNavigationButton onClick={handleGoGithub}>
-              <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
-              <Stack direction="horizontal" align="center" spacing={4}>
-                <Text fontType="body3" color="gray700">
-                  깃허브 바로가기
+          <Text fontType="h3">정보</Text>
+          <Stack spacing={16}>
+            {profile?.githubId && (
+              <StyledNavigationButton onClick={handleGoGithub}>
+                <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
+                <Stack direction="horizontal" align="center" spacing={4}>
+                  <Text fontType="body3" color="gray700">
+                    깃허브 바로가기
+                  </Text>
+                  <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+                </Stack>
+              </StyledNavigationButton>
+            )}
+            {profile?.resumeUrl && (
+              <StyledNavigationButton onClick={handleGoResume}>
+                <Text fontType="body2">📑 선배의 이력서를 참고해봐요! </Text>
+                <Stack direction="horizontal" align="center" spacing={4}>
+                  <Text fontType="body3" color="gray700">
+                    이력서 바로가기
+                  </Text>
+                  <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+                </Stack>
+              </StyledNavigationButton>
+            )}
+            {profile?.portfolioUrl && (
+              <StyledNavigationButton onClick={handleGoPortfolio}>
+                <Text fontType="body2">
+                  💼 선배 포트폴리오는 어떻게 구성되어 있을까요?
                 </Text>
-                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
-              </Stack>
-            </StyledNavigationButton>
-          )}
-          {profile?.resumeUrl && (
-            <StyledNavigationButton onClick={handleGoResume}>
-              <Text fontType="body2">📑 선배의 이력서를 참고해봐요! </Text>
-              <Stack direction="horizontal" align="center" spacing={4}>
-                <Text fontType="body3" color="gray700">
-                  이력서 바로가기
-                </Text>
-                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
-              </Stack>
-            </StyledNavigationButton>
-          )}
-          {profile?.portfolioUrl && (
-            <StyledNavigationButton onClick={handleGoPortfolio}>
-              <Text fontType="body2">💼 선배 포트폴리오는 어떻게 구성되어 있을까요?</Text>
-              <Stack direction="horizontal" align="center" spacing={4}>
-                <Text fontType="body3" color="gray700">
-                  포트폴리오 바로가기
-                </Text>
-                <IconChevronRightFill width={16} height={16} color={colors.gray700} />
-              </Stack>
-            </StyledNavigationButton>
-          )}
-          {profile?.email && (
-            <StyledNavigationButton onClick={handleGoEmail}>
-              <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
-              <Flex align="center">
-                <Text fontType="body3" color="gray700">
-                  이메일 바로가기
-                </Text>
-                <IconChevronRightFill width={24} height={24} color={colors.gray700} />
-              </Flex>
-            </StyledNavigationButton>
-          )}
+                <Stack direction="horizontal" align="center" spacing={4}>
+                  <Text fontType="body3" color="gray700">
+                    포트폴리오 바로가기
+                  </Text>
+                  <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+                </Stack>
+              </StyledNavigationButton>
+            )}
+            {profile?.email && (
+              <StyledNavigationButton onClick={handleGoEmail}>
+                <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
+                <Flex align="center">
+                  <Text fontType="body3" color="gray700">
+                    이메일 바로가기
+                  </Text>
+                  <IconChevronRightFill width={24} height={24} color={colors.gray700} />
+                </Flex>
+              </StyledNavigationButton>
+            )}
+          </Stack>
         </Stack>
-      </Stack>
+      )}
     </StyledProfileDetailContent>
   );
 };
 
-export default withSuspense(ProfileDetailContent, () => (
-  <FullHeight>
-    <Spinner />
-  </FullHeight>
-));
+export default ProfileDetailContent;
 
 const StyledProfileDetailContent = styled.div`
   display: flex;
@@ -167,7 +171,11 @@ const StyledProfileDetailContent = styled.div`
   width: 100%;
 `;
 
-const StyledSettingButton = styled(IconSettingFill)`
+const StyledProfileImage = styled(Image)`
+  border-radius: 8px;
+`;
+
+const StyledDeleteButton = styled(IconTrashFill)`
   cursor: pointer;
   width: 22px;
   height: 22px;

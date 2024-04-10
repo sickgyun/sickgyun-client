@@ -17,7 +17,7 @@ const ErrorReportBanner = () => {
           에러/개선사항 제보하기
         </Text>
       </Stack>
-      <Image src="/assets/svgs/symbol_white.svg" alt="Symbol" width={120} height={120} />
+      <Image src="/assets/svgs/symbol_white.svg" width={120} height={120} alt="Symbol" />
     </StyledErrorReportBanner>
   );
 };
@@ -28,6 +28,9 @@ const StyledErrorReportBanner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding: 50px;
   background-image: url('/assets/images/error_report_banner_background.png');
   object-fit: cover;

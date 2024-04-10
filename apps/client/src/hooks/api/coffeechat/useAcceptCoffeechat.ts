@@ -20,7 +20,7 @@ export const useAcceptCoffeechat = ({
   const queryClient = useQueryClient();
 
   return useMutation<AcceptCoffeechatResponse, AxiosError>({
-    mutationFn: () => put(`/api/coffeechat/${coffeechatId}/accept`),
+    mutationFn: () => put(`/coffeechat/${coffeechatId}/accept`),
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });

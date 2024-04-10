@@ -11,11 +11,19 @@ type ProfileActionButtonProps = {
 const ProfileActionButton = ({ actionType }: ProfileActionButtonProps) => {
   const router = useRouter();
 
+  const handleGoProfileCreatePage = () => {
+    router.push('/profile/create');
+  };
+
+  const handleGoProfileUpdatePage = () => {
+    router.push('/profile/update');
+  };
+
   const handleActionButtonClick = () => {
     if (actionType === 'create') {
-      router.push('/profile/create');
+      handleGoProfileCreatePage();
     } else {
-      router.push('/profile/update');
+      handleGoProfileUpdatePage();
     }
   };
 
