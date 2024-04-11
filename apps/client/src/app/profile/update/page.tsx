@@ -15,8 +15,12 @@ import { useUser } from '@/hooks/common/useUser';
 
 const ProfileUpdatePage = () => {
   const { user, isLoading } = useUser();
-  const { register, handleSubmit: handleUpdateProfileSubmit } =
-    useForm<UpdateProfileRequest>();
+  const {
+    register,
+    handleSubmit: handleUpdateProfileSubmit,
+    setValue,
+    watch,
+  } = useForm<UpdateProfileRequest>();
   const { mutate: updateProfileMutate } = useUpdateProfile();
   const { profileMine } = useGetProfileMine();
 
@@ -39,7 +43,13 @@ const ProfileUpdatePage = () => {
             프로필 수정
           </Text>
           <Spacer height={32} />
-          <ProfileForm user={user} register={register} defaultValues={profileMine} />
+          <ProfileForm
+            user={user}
+            register={register}
+            defaultValues={profileMine}
+            setValue={setValue}
+            watch={watch}
+          />
           <Spacer height={48} />
           <Button type="submit" size="large">
             프로필 수정

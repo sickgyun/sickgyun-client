@@ -14,7 +14,7 @@ export type Profile = {
   introduction?: string;
 };
 
-export type ProfileForm = {
+export type ProfileFormType = {
   major: Major;
   isRecruited: boolean;
   githubId?: string;

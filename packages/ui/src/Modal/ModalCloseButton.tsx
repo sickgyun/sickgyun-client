@@ -13,7 +13,7 @@ export const ModalCloseButton = ({ onClose }: ModalCloseButtonProps) => {
       width={28}
       height={28}
       cursor="pointer"
-      color={colors.black}
+      color={colors.gray900}
       style={{ position: 'absolute', right: 0, top: 0 }}
     />
   );

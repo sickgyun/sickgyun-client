@@ -56,16 +56,16 @@ const StyledInput = styled.input<InputProps>`
   outline: none;
   ${({ theme, hasError }) => css`
     ${theme.fonts.body1}
-    border: 1.5px solid ${hasError ? theme.colors.red : theme.colors.gray400};
+    border: 1px solid ${hasError ? theme.colors.red : theme.colors.gray400};
     background-color: ${theme.colors.white};
-    color: ${theme.colors.black};
+    color: ${theme.colors.gray900};
     caret-color: ${hasError ? theme.colors.red : theme.colors.primary};
     ::placeholder {
       ${theme.fonts.body1}
       color: ${theme.colors.gray500};
     }
     &:focus {
-      border: 1.5px solid ${hasError ? theme.colors.red : theme.colors.primary};
+      border: 1px solid ${hasError ? theme.colors.red : theme.colors.primary};
     }
   `}
 `;

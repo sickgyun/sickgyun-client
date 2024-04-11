@@ -47,7 +47,7 @@ const QnaPostPage = () => {
             </StyledQnaContentsBox>
             <Flex align="center" justify="center">
               <StyledLikeButton>
-                <IconHeartRegular width={16} height={16} color={colors.black} />
+                <IconHeartRegular width={16} height={16} color={colors.gray900} />
                 <Text>9</Text>
               </StyledLikeButton>
             </Flex>

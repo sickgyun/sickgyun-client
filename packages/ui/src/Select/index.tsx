@@ -58,15 +58,15 @@ const StyledSelect = styled.select`
   appearance: none;
   ${({ theme }) => css`
     ${theme.fonts.body1}
-    color: ${theme.colors.black};
-    border: 1.5px solid ${theme.colors.gray400};
+    color: ${theme.colors.gray900};
+    border: 1px solid ${theme.colors.gray400};
     background-color: ${theme.colors.white};
     ::placeholder {
       ${theme.fonts.body1}
       color: ${theme.colors.gray500};
     }
     &:focus {
-      border: 1.5px solid ${theme.colors.primary};
+      border: 1px solid ${theme.colors.primary};
     }
   `};
 `;

@@ -35,12 +35,13 @@ export const Button = forwardRef(function Button(
     styleType = 'primary',
     disabled = false,
     size = 'medium',
+    type = 'button',
     children,
     ...props
   }: ButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
-  const buttonProps = { ref, width, styleType, disabled, size, children, ...props };
+  const buttonProps = { ref, width, styleType, disabled, size, type, children, ...props };
 
   switch (styleType) {
     case 'primary':
