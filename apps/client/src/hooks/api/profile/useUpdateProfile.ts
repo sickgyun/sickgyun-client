@@ -5,9 +5,9 @@ import { PROFILE_QUERY_KEY } from './useGetProfile';
 import { PROFILE_LIST_QUERY_KEY } from './useGetProfileList';
 import { PROFILE_MINE_QUERY_KEY } from './useGetProfileMine';
 import { put } from '@/libs/api/client';
-import type { ProfileForm } from '@/types/profile';
+import type { ProfileFormType } from '@/types/profile';
 
-export type UpdateProfileRequest = ProfileForm;
+export type UpdateProfileRequest = ProfileFormType;
 
 export const useUpdateProfile = () => {
   const router = useRouter();

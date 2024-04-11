@@ -14,8 +14,12 @@ import { useUser } from '@/hooks/common/useUser';
 
 const ProfileCreatePage = () => {
   const { user } = useUser();
-  const { register, handleSubmit: handleCreateProfileSubmit } =
-    useForm<CreateProfileRequest>();
+  const {
+    register,
+    handleSubmit: handleCreateProfileSubmit,
+    setValue,
+    watch,
+  } = useForm<CreateProfileRequest>();
   const { mutate: createProfileMutate } = useCreateProfile();
 
   const onCreateProfile: SubmitHandler<CreateProfileRequest> = (data) => {
@@ -33,7 +37,7 @@ const ProfileCreatePage = () => {
             프로필 작성
           </Text>
           <Spacer height={32} />
-          <ProfileForm user={user} register={register} />
+          <ProfileForm register={register} setValue={setValue} watch={watch} />
           <Spacer height={48} />
           <Button type="submit" size="large">
             프로필 등록

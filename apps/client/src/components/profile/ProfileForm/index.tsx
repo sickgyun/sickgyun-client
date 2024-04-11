@@ -1,18 +1,26 @@
 import { Input, Select, Stack, Textarea } from '@sickgyun/ui';
-import type { UseFormRegister } from 'react-hook-form';
-import type { Profile } from '@/types/profile';
-import { ProfileForm } from '@/types/profile';
-import type { User } from '@/types/user';
+import type { UseFormRegister, UseFormSetValue, UseFormWatch } from 'react-hook-form';
+import ProfileImageUploader from '../ProfileImageUploader';
+import { useUser } from '@/hooks/common/useUser';
+import type { Profile, ProfileFormType } from '@/types/profile';
 
 type ProfileFormProps = {
-  user: User;
   defaultValues?: Profile;
-  register: UseFormRegister<ProfileForm>;
+  setValue: UseFormSetValue<ProfileFormType>;
+  register: UseFormRegister<ProfileFormType>;
+  watch: UseFormWatch<ProfileFormType>;
 };
 
-const ProfileForm = ({ user, register, defaultValues }: ProfileFormProps) => {
+const ProfileForm = ({ defaultValues, register, setValue, watch }: ProfileFormProps) => {
+  const { user } = useUser();
+
   return (
     <Stack spacing={16} style={{ width: '100%' }}>
+      <ProfileImageUploader
+        setValue={setValue}
+        value={watch('imageUrl')}
+        defaultValue={defaultValues?.imageUrl}
+      />
       <Input
         label="이름"
         value={user.name}

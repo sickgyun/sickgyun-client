@@ -23,7 +23,7 @@ const StyledSecondaryButton = styled.button<SecondaryButtonProps>`
   padding: 0px 16px;
   border-radius: 8px;
   cursor: 'pointer';
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.gray900};
   background-color: ${({ theme }) => theme.colors.gray200};
   width: ${({ width }) => width};
   ${({ size }) => size && getButtonSize[size]}

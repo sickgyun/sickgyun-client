@@ -238,7 +238,7 @@ const StyledTooltipItemWrapper = styled.div`
 const StyledTooltipItem = styled.div`
   ${({ theme }) => css`
     ${theme.fonts.body2}
-    background-color: ${theme.colors.black};
+    background-color: ${theme.colors.gray900};
     color: ${theme.colors.white};
   `}
   display: flex;
@@ -253,5 +253,5 @@ const StyledArrow = styled(FloatingArrow)`
   position: absolute;
   width: 8px;
   height: 8px;
-  fill: ${({ theme }) => theme.colors.black};
+  fill: ${({ theme }) => theme.colors.gray900};
 `;
