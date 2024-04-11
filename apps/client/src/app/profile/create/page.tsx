@@ -37,12 +37,7 @@ const ProfileCreatePage = () => {
             프로필 작성
           </Text>
           <Spacer height={32} />
-          <ProfileForm
-            user={user}
-            register={register}
-            setValue={setValue}
-            watch={watch}
-          />
+          <ProfileForm register={register} setValue={setValue} watch={watch} />
           <Spacer height={48} />
           <Button type="submit" size="large">
             프로필 등록

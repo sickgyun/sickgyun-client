@@ -1,24 +1,19 @@
 import { Input, Select, Stack, Textarea } from '@sickgyun/ui';
 import type { UseFormRegister, UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import ProfileImageUploader from '../ProfileImageUploader';
+import { useUser } from '@/hooks/common/useUser';
 import type { Profile, ProfileFormType } from '@/types/profile';
-import type { User } from '@/types/user';
 
 type ProfileFormProps = {
-  user: User;
   defaultValues?: Profile;
   setValue: UseFormSetValue<ProfileFormType>;
   register: UseFormRegister<ProfileFormType>;
   watch: UseFormWatch<ProfileFormType>;
 };
 
-const ProfileForm = ({
-  user,
-  defaultValues,
-  register,
-  setValue,
-  watch,
-}: ProfileFormProps) => {
+const ProfileForm = ({ defaultValues, register, setValue, watch }: ProfileFormProps) => {
+  const { user } = useUser();
+
   return (
     <Stack spacing={16} style={{ width: '100%' }}>
       <ProfileImageUploader

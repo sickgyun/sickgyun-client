@@ -44,7 +44,6 @@ const ProfileUpdatePage = () => {
           </Text>
           <Spacer height={32} />
           <ProfileForm
-            user={user}
             register={register}
             defaultValues={profileMine}
             setValue={setValue}
