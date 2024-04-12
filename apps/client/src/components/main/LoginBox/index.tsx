@@ -37,10 +37,7 @@ const LoginBox = () => {
               </Text>
             </Stack>
             <Stack direction="horizontal" align="center" spacing={4}>
-              <Text fontType="h4">{user.name}님</Text>
-              <Text fontType="h4">
-                {user.isGraduated ? '알려주셔야죠?' : '취업하셔야죠?'}
-              </Text>
+              <Text fontType="h4">{user.name}님 반가워요!</Text>
             </Stack>
             <Text fontType="p1" color="gray500">
               {user.email}
