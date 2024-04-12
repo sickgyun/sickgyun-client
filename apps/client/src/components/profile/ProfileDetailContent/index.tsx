@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { IconChevronRightFill, IconTrashFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Flex, Spinner, Stack, Text } from '@sickgyun/ui';
+import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
-import FullHeight from '@/components/common/FullHeight';
+import FullHeightSpinner from '@/components/common/FullHeightSpinner';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 import { useUser } from '@/hooks/common/useUser';
 
@@ -53,11 +53,7 @@ const ProfileDetailContent = ({
   };
 
   if (isStale) {
-    return (
-      <FullHeight>
-        <Spinner />
-      </FullHeight>
-    );
+    return <FullHeightSpinner />;
   }
 
   return (

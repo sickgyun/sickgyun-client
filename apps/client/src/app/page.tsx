@@ -70,7 +70,9 @@ const MainPage = () => {
                 전체 보기
               </Link>
             </Flex>
-            <RecuritList />
+            <StyledRecuritListWrapper>
+              <RecuritList />
+            </StyledRecuritListWrapper>
           </Stack>
           <Spacer height={64} />
         </StyledMainPage>
@@ -108,4 +110,9 @@ const StyledStudentProfileRedirectButton = styled.div`
     background-color: ${({ theme }) => theme.colors.gray50};
     cursor: pointer;
   }
+`;
+
+const StyledRecuritListWrapper = styled.div`
+  position: relative;
+  min-height: 300px;
 `;
