@@ -7,6 +7,7 @@ import { post } from '@/libs/api/client';
 
 export type CreateQnaCommentRequest = {
   content: string;
+  parentId?: number;
 };
 
 export const useCreateQnaComment = (id: number) => {

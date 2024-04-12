@@ -7,6 +7,7 @@ import { put } from '@/libs/api/client';
 
 export type UpdateQnaCommentRequest = {
   content: string;
+  parentId?: number;
 };
 
 export const useUpdateQnaComment = (id: number) => {

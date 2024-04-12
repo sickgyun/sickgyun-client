@@ -1,18 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
 
+export type UserResponse = {
+  id: number;
+  name: string;
+  email: string;
+  isGraduated: boolean;
+  cardinal: number;
+  hasCreatedProfile: boolean;
+  profileId: number;
+};
+
 export type GetQnaCommentListResponse = {
   id: number;
   content: string;
-  userResponse: {
-    id: number;
-    name: string;
-    email: string;
-    isGraduated: boolean;
-    cardinal: number;
-    hasCreatedProfile: boolean;
-    profileId: number;
-  };
+  userResponse: UserResponse;
+  children?: GetQnaCommentListResponse[];
 };
 
 export const QNA_COMMENT_LIST_QUERY_KEY = 'qnaCommentList';

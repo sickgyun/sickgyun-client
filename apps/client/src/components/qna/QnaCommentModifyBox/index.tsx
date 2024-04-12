@@ -4,8 +4,8 @@ import { useDeleteQnaComment } from '@/hooks/api/qna/useDeleteQnaComment';
 
 export type QnaCommentModifyBoxProps = {
   id: number;
-  setIsOpenQnaEditBox: Dispatch<SetStateAction<boolean>>;
-  setIsOpenQnaCommentEditModal: Dispatch<SetStateAction<boolean>>;
+  setIsOpenQnaEditBox?: Dispatch<SetStateAction<boolean>>;
+  setIsOpenQnaCommentEditModal?: Dispatch<SetStateAction<boolean>>;
 };
 
 const QnaCommentModifyBox = ({

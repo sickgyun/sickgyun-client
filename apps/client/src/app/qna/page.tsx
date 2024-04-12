@@ -60,7 +60,7 @@ const QnaPage = () => {
                     id={qnaList.id}
                     title={qnaList.title}
                     category={qnaList.category}
-                    writer={qnaList.writer}
+                    writer={qnaList.writer.name}
                     likeCount={qnaList.likeCount}
                     commentCount={qnaList.commentCount}
                   />

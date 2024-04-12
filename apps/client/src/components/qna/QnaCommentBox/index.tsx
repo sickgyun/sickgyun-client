@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
-import { IconSettingFill } from '@seed-design/icon';
-import { Button, Flex, Text, Textarea } from '@sickgyun/ui';
+import {
+  IconArrowDropDownFill,
+  IconArrowDropUpFill,
+  IconSettingFill,
+} from '@seed-design/icon';
+import { Button, Flex, Stack, Text, Textarea } from '@sickgyun/ui';
 import { SecondaryButton } from '@sickgyun/ui/src/Button/SecondaryButton';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -11,6 +15,8 @@ import type { UpdateQnaCommentRequest } from '@/hooks/api/qna/useUpdateQnaCommen
 import { useUpdateQnaComment } from '@/hooks/api/qna/useUpdateQnaComment';
 import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 import { useUser } from '@/hooks/common/useUser';
+import CreateQnaRecommentBox from '../CreateQnaRecommentBox';
+import QnaRecommentBox from '../QnaRecommentBox';
 
 const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
   const { user } = useUser();
@@ -18,6 +24,8 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
 
   const [isOpenQnaCommentEditModal, setIsOpenQnaCommentEditModal] = useState(false);
   const [isOpenQnaEditBox, setIsOpenQnaEditBox] = useState(false);
+  const [isOpenRecommentList, setIsOpenRecommentList] = useState(false);
+  const [isOpenRecommentBox, setIsOpenRecommentBox] = useState(false);
 
   const openCommentModifyRef = useOutsideClick(
     isOpenQnaCommentEditModal,
@@ -40,6 +48,14 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
     setIsOpenQnaEditBox(false);
   };
 
+  const handleOpenQnaRecommentList = () => {
+    setIsOpenRecommentList((prev) => !prev);
+  };
+
+  const handleOpenQnaRecommentCreateBox = () => {
+    setIsOpenRecommentBox(true);
+  };
+
   return (
     <StyledQnaCommentBox>
       <StyledQnaCommentHeader>
@@ -54,7 +70,7 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
             {5}일 전
           </Text>
         </Flex>
-        <StyledSettingButtonContainer ref={openCommentModifyRef}>
+        <StyledSettingButtonLayout ref={openCommentModifyRef}>
           {user.id === comment.userResponse.id && (
             <StyledSettingButton onClick={() => handleQnaCommentEditModal()} />
           )}
@@ -65,31 +81,81 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
               setIsOpenQnaCommentEditModal={setIsOpenQnaCommentEditModal}
             />
           )}
-        </StyledSettingButtonContainer>
+        </StyledSettingButtonLayout>
       </StyledQnaCommentHeader>
       {isOpenQnaEditBox ? (
-        <form onSubmit={updateQnaCommentSubmit(onUpdateQnaCommentSubmit)}>
-          <Textarea
-            minHeight="120px"
-            {...register('content', { required: true })}
-            defaultValue={comment.content}
-          />
-          <Flex align="center" justify="flex-end" style={{ marginTop: '7px' }}>
-            <SecondaryButton
-              size="small"
-              width="70px"
-              style={{ height: '38px', marginRight: '5px' }}
-              onClick={handleCloseQnaCommentEditModal}
+        <div>
+          <form
+            onSubmit={updateQnaCommentSubmit(onUpdateQnaCommentSubmit)}
+            style={{ marginTop: '4px' }}
+          >
+            <Textarea
+              minHeight="120px"
+              {...register('content', { required: true })}
+              defaultValue={comment.content}
+            />
+            <Flex
+              align="center"
+              justify="flex-end"
+              style={{ marginTop: '7px', marginBottom: '8px' }}
             >
-              취소
-            </SecondaryButton>
-            <Button type="submit" size="small" width="70px" style={{ height: '38px' }}>
-              수정
-            </Button>
-          </Flex>
-        </form>
+              <SecondaryButton
+                size="small"
+                width="70px"
+                style={{ height: '38px', marginRight: '5px' }}
+                onClick={handleCloseQnaCommentEditModal}
+              >
+                취소
+              </SecondaryButton>
+              <Button type="submit" size="small" width="70px" style={{ height: '38px' }}>
+                수정
+              </Button>
+            </Flex>
+          </form>
+        </div>
       ) : (
-        <Text fontType="p2">{comment?.content}</Text>
+        <Flex direction="column">
+          <Text fontType="p2" style={{ marginTop: '6px', marginBottom: '10px' }}>
+            {comment?.content}
+          </Text>
+          <StyledQnaRecommentLayout>
+            <Text fontType="p3" color="primary" onClick={handleOpenQnaRecommentCreateBox}>
+              답글
+            </Text>
+            {comment?.children.length > 0 && (
+              <StyledQnaRecomment onClick={handleOpenQnaRecommentList}>
+                <Text fontType="p3" color="gray600" style={{ marginRight: '2px' }}>
+                  답글
+                </Text>
+                <Flex align="center">
+                  <Text fontType="p3" color="gray600">
+                    {comment?.children.length}
+                  </Text>
+                  {isOpenRecommentList ? (
+                    <IconArrowDropUpFill width={14} />
+                  ) : (
+                    <IconArrowDropDownFill width={14} />
+                  )}
+                </Flex>
+              </StyledQnaRecomment>
+            )}
+          </StyledQnaRecommentLayout>
+          {isOpenRecommentBox && (
+            <CreateQnaRecommentBox
+              parentId={comment.id}
+              {...comment}
+              setIsOpenRecommentBox={setIsOpenRecommentBox}
+            />
+          )}
+
+          {isOpenRecommentList && (
+            <Flex direction="column">
+              {comment?.children.map((recomment) => (
+                <QnaRecommentBox parentId={comment.id} {...recomment} />
+              ))}
+            </Flex>
+          )}
+        </Flex>
       )}
     </StyledQnaCommentBox>
   );
@@ -100,15 +166,13 @@ export default QnaCommentBox;
 const StyledQnaCommentBox = styled.div``;
 
 const StyledQnaCommentHeader = styled.div`
+  padding-top: 8px;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
   border-top: 1px solid ${({ theme }) => theme.colors.gray300};
-  padding-top: 10px;
-  margin-bottom: 5px;
 `;
 
-const StyledSettingButtonContainer = styled.div`
+const StyledSettingButtonLayout = styled.div`
   display: inline-block;
   position: relative;
 `;
@@ -117,4 +181,20 @@ const StyledSettingButton = styled(IconSettingFill)`
   width: 16px;
   height: 16px;
   cursor: pointer;
+`;
+
+const StyledQnaRecommentLayout = styled.div`
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.gray600};
+  cursor: pointer;
+  margin-bottom: 8px;
+`;
+
+const StyledQnaRecomment = styled.div`
+  width: 50px;
+  height: 15px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
 `;

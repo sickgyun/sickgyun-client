@@ -32,9 +32,11 @@ const QnaComment = ({ commentCount }: QnaCommentListProps) => {
 
   return (
     <StyledQnaComment>
-      <Text fontType="body1">답변 {commentCount}</Text>
+      <Text fontType="body1" style={{ marginBottom: '5px' }}>
+        답변 {commentCount}
+      </Text>
       <form onSubmit={createQnaCommentSubmit(onCreateQnaCommentSubmit)}>
-        <Textarea minHeight="200px" {...register('content', { required: true })} />
+        <Textarea minHeight="150px" {...register('content', { required: true })} />
         <Flex justify="flex-end" style={{ marginBottom: '10px' }}>
           <Button type="submit" size="small" width="70px" style={{ marginTop: '10px' }}>
             등록
@@ -61,11 +63,10 @@ const StyledQnaComment = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 20px;
-  gap: 10px;
 `;
 
 const StyledQnaCommentSkeletonBox = styled.div`
-  height: 68px;
+  height: 80px;
 `;
 
 const StyledNoQnaCommentContainer = styled.div`

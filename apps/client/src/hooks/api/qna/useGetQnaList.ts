@@ -6,7 +6,15 @@ export type GetQnaListResponse = {
   title: string;
   content: string;
   category: string;
-  writer: string;
+  writer: {
+    id: 2;
+    name: string;
+    email: string;
+    isGraduated: boolean;
+    cardinal: number;
+    hasCreatedProfile: boolean;
+    profileId: number;
+  };
   createTime: string;
   likeCount: number;
   commentCount: number;

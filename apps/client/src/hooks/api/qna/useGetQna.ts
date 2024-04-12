@@ -5,7 +5,15 @@ export type GetQnaCardResponse = {
   id: number;
   title: string;
   content: string;
-  writer: string;
+  writer: {
+    id: 2;
+    name: string;
+    email: string;
+    isGraduated: boolean;
+    cardinal: number;
+    hasCreatedProfile: boolean;
+    profileId: number;
+  };
   category: string;
   createTime: string;
   likeCount: number;

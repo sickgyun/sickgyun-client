@@ -61,7 +61,7 @@ const QnaDetailPage = () => {
           <StyledQnaDetailSubTitleBox>
             <Stack direction="horizontal" spacing={10}>
               <Text fontType="p2" style={{ minWidth: '25px' }}>
-                {qnaCard?.writer}
+                {qnaCard?.writer.name}
               </Text>
               <Text fontType="p2" color="gray500">
                 {timeAgo(qnaCard?.createTime)}
