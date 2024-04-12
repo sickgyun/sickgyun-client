@@ -107,7 +107,7 @@ const ProfileDetailContent = ({
           <Stack spacing={16}>
             {profile?.githubId && (
               <StyledNavigationButton onClick={handleGoGithub}>
-                <Text fontType="body2">👀 선배의 깃허브는 어떻게 되어 있을까요?</Text>
+                <Text fontType="body2">👀 깃허브를 구경해봐요!</Text>
                 <Stack direction="horizontal" align="center" spacing={4}>
                   <Text fontType="body3" color="gray700">
                     깃허브 바로가기
@@ -118,7 +118,7 @@ const ProfileDetailContent = ({
             )}
             {profile?.resumeUrl && (
               <StyledNavigationButton onClick={handleGoResume}>
-                <Text fontType="body2">📑 선배의 이력서를 참고해봐요! </Text>
+                <Text fontType="body2">📑 이력서가 궁금하다면?</Text>
                 <Stack direction="horizontal" align="center" spacing={4}>
                   <Text fontType="body3" color="gray700">
                     이력서 바로가기
@@ -129,9 +129,7 @@ const ProfileDetailContent = ({
             )}
             {profile?.portfolioUrl && (
               <StyledNavigationButton onClick={handleGoPortfolio}>
-                <Text fontType="body2">
-                  💼 선배 포트폴리오는 어떻게 구성되어 있을까요?
-                </Text>
+                <Text fontType="body2">💼 포트폴리오는 어떻게 구성되어 있을까요?</Text>
                 <Stack direction="horizontal" align="center" spacing={4}>
                   <Text fontType="body3" color="gray700">
                     포트폴리오 바로가기
@@ -142,7 +140,7 @@ const ProfileDetailContent = ({
             )}
             {profile?.email && (
               <StyledNavigationButton onClick={handleGoEmail}>
-                <Text fontType="body2">📨 커피챗, 코드리뷰, 조언 요청하러가기</Text>
+                <Text fontType="body2">📨 이메일</Text>
                 <Flex align="center">
                   <Text fontType="body3" color="gray700">
                     이메일 바로가기
