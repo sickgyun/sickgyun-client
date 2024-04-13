@@ -1,3 +1,3 @@
-export const isProd = (env: string): boolean => {
-  return env === 'production';
+export const isProd = () => {
+  return process.env.NODE_ENV === 'production';
 };

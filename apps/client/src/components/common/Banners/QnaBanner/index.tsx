@@ -8,7 +8,7 @@ const QnaBanner = () => {
   const router = useRouter();
 
   const handleGoQnaPage = () => {
-    if (isProd(process.env.NODE_ENV)) {
+    if (isProd()) {
       alert('상진이가 열심히 개발중이에요!');
       return;
     }
