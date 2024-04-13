@@ -307,6 +307,22 @@ importers:
         specifier: ^18.2.0
         version: 18.2.13
 
+  packages/logging:
+    dependencies:
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+    devDependencies:
+      '@sickgyun/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint-config
+      '@sickgyun/tsconfig':
+        specifier: workspace:*
+        version: link:../../configs/tsconfig
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.2.13
+
   packages/ui:
     dependencies:
       '@emotion/react':

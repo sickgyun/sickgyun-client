@@ -10,7 +10,7 @@ const DEVELOPMENT_API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const PRODUCTION_API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const instance = axios.create({
-  baseURL: isProd(process.env.NODE_ENV) ? PRODUCTION_API_URL : DEVELOPMENT_API_URL,
+  baseURL: isProd() ? PRODUCTION_API_URL : DEVELOPMENT_API_URL,
   timeout: 15000,
 });
 
