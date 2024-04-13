@@ -7,7 +7,7 @@ import Logo from '@/components/common/Logo';
 
 const SHARE_DATA = {
   title: '식견',
-  url: 'https://www.sickgyun.com',
+  url: 'https://sickgyun.com',
 };
 
 const MobilePage = () => {

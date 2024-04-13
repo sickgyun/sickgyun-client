@@ -32,7 +32,7 @@ export const useLoginGoogle = () => {
     },
     onError: () => {
       router.replace('/');
-      alert('로그인 실패');
+      alert('학교 계정으로 로그인 해주세요.');
     },
   });
 };
