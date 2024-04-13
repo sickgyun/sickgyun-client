@@ -32,7 +32,9 @@ const CoffeechatReceiveList = () => {
           />
         ))
       ) : user.hasCreatedProfile ? (
-        <Text fontType="h3">앗! 요청 받은 내역이 없어요...</Text>
+        <Text fontType="h3" style={{ textAlign: 'center' }}>
+          앗! 요청 받은 내역이 없어요...
+        </Text>
       ) : (
         <Stack direction="vertical" align="center" justify="center" spacing={16}>
           <Button onClick={handleGoProfileCreatePage} size="medium" width="200px">
