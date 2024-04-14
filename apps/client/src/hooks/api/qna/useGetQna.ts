@@ -6,7 +6,7 @@ export type GetQnaCardResponse = {
   title: string;
   content: string;
   writer: {
-    id: 2;
+    id: number;
     name: string;
     email: string;
     isGraduated: boolean;

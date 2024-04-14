@@ -46,7 +46,7 @@ const QnaComment = ({ commentCount }: QnaCommentListProps) => {
       {isLoading ? (
         <StyledQnaCommentSkeletonBox />
       ) : qnaCommentList?.length > 0 ? (
-        qnaCommentList.map((comment) => <QnaCommentBox {...comment} />)
+        qnaCommentList.map((comment) => <QnaCommentBox key={comment.id} {...comment} />)
       ) : (
         <StyledNoQnaCommentContainer>
           <IconReplyMissionRegular color={colors.gray600} width={28} />
@@ -66,11 +66,11 @@ const StyledQnaComment = styled.div`
 `;
 
 const StyledQnaCommentSkeletonBox = styled.div`
-  height: 80px;
+  height: 90px;
 `;
 
 const StyledNoQnaCommentContainer = styled.div`
-  height: 68px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;

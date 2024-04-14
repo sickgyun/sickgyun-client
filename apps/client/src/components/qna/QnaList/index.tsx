@@ -31,7 +31,7 @@ const QnaList = () => {
       ))}
       <StyledQnaBoxContainer>
         {qnaList.length > 0 ? (
-          qnaList.map((qna) => <QnaBox {...qna} />)
+          qnaList.map((qna) => <QnaBox key={qna.id} {...qna} />)
         ) : (
           <Text fontType="body1" style={{ marginBottom: '20px' }}>
             앗! 아직 질문이 올라오지 않았어요..

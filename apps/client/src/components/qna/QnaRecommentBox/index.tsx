@@ -65,14 +65,17 @@ const QnaRecommentBox = ({
     <StyledQnaRecommentBox>
       <Flex direction="column" style={{ marginLeft: '30px', width: '100%' }}>
         <Flex align="center" justify="space-between">
-          <Flex>
-            <Text fontType="p2">
+          <Flex align="center">
+            <Text fontType="p1">
               {userResponse?.name}
-              <Text fontType="p3" style={{ marginLeft: '3px' }}>
-                ({userResponse?.email})
+              <Text fontType="p2" color="gray600" style={{ marginLeft: '3px' }}>
+                <Text fontType="p2" color="gray600" style={{ marginRight: '3px' }}>
+                  ({userResponse?.cardinal}기
+                </Text>
+                {userResponse?.isGraduated ? '졸업생' : '재학생'})
               </Text>
             </Text>
-            <Text fontType="p3" color="gray500" style={{ marginLeft: '8px' }}>
+            <Text fontType="p2" color="gray500" style={{ marginLeft: '8px' }}>
               {5}일 전
             </Text>
           </Flex>

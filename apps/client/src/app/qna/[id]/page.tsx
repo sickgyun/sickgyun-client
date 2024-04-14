@@ -59,10 +59,18 @@ const QnaDetailPage = () => {
             <Text fontType="h3">{qnaCard?.title}</Text>
           </Stack>
           <StyledQnaDetailSubTitleBox>
-            <Stack direction="horizontal" spacing={10}>
-              <Text fontType="p2" style={{ minWidth: '25px' }}>
-                {qnaCard?.writer.name}
-              </Text>
+            <Stack direction="horizontal" spacing={10} align="center">
+              <Stack direction="horizontal" spacing={3}>
+                <Flex align="center">
+                  <Text style={{ marginRight: '3px' }}>{qnaCard?.writer.name}</Text>
+                  <Text fontType="p2" color="gray600" style={{ marginRight: '3px' }}>
+                    ({qnaCard?.writer.cardinal}기
+                  </Text>
+                  <Text fontType="p2" color="gray600">
+                    {qnaCard?.writer.isGraduated ? '졸업생' : '재학생'})
+                  </Text>
+                </Flex>
+              </Stack>
               <Text fontType="p2" color="gray500">
                 {timeAgo(qnaCard?.createTime)}
               </Text>

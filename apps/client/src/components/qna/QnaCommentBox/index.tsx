@@ -60,12 +60,15 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
     <StyledQnaCommentBox>
       <StyledQnaCommentHeader>
         <Flex align="center">
-          <Text fontType="p2">
-            {comment.userResponse?.name}
-            <Text fontType="p3" style={{ marginLeft: '3px' }}>
-              ({comment.userResponse?.email})
+          <Flex align="center">
+            <Text style={{ marginRight: '3px' }}>{comment.userResponse?.name}</Text>
+            <Text fontType="p2" color="gray600" style={{ marginRight: '3px' }}>
+              ({comment?.userResponse.cardinal}기
             </Text>
-          </Text>
+            <Text fontType="p2" color="gray600">
+              {comment?.userResponse.isGraduated ? '졸업생' : '재학생'})
+            </Text>
+          </Flex>
           <Text fontType="p3" color="gray500" style={{ marginLeft: '8px' }}>
             {5}일 전
           </Text>
@@ -84,77 +87,68 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
         </StyledSettingButtonLayout>
       </StyledQnaCommentHeader>
       {isOpenQnaEditBox ? (
-        <div>
-          <form
-            onSubmit={updateQnaCommentSubmit(onUpdateQnaCommentSubmit)}
-            style={{ marginTop: '4px' }}
+        <form onSubmit={updateQnaCommentSubmit(onUpdateQnaCommentSubmit)}>
+          <Textarea
+            minHeight="120px"
+            {...register('content', { required: true })}
+            defaultValue={comment.content}
+          />
+          <Flex
+            align="center"
+            justify="flex-end"
+            style={{ marginTop: '7px', marginBottom: '8px' }}
           >
-            <Textarea
-              minHeight="120px"
-              {...register('content', { required: true })}
-              defaultValue={comment.content}
-            />
-            <Flex
-              align="center"
-              justify="flex-end"
-              style={{ marginTop: '7px', marginBottom: '8px' }}
+            <SecondaryButton
+              size="small"
+              width="70px"
+              style={{ height: '38px', marginRight: '5px' }}
+              onClick={handleCloseQnaCommentEditModal}
             >
-              <SecondaryButton
-                size="small"
-                width="70px"
-                style={{ height: '38px', marginRight: '5px' }}
-                onClick={handleCloseQnaCommentEditModal}
-              >
-                취소
-              </SecondaryButton>
-              <Button type="submit" size="small" width="70px" style={{ height: '38px' }}>
-                수정
-              </Button>
-            </Flex>
-          </form>
-        </div>
+              취소
+            </SecondaryButton>
+            <Button type="submit" size="small" width="70px" style={{ height: '38px' }}>
+              수정
+            </Button>
+          </Flex>
+        </form>
       ) : (
-        <Flex direction="column">
-          <Text fontType="p2" style={{ marginTop: '6px', marginBottom: '10px' }}>
-            {comment?.content}
-          </Text>
-          <StyledQnaRecommentLayout>
-            <Text fontType="p3" color="primary" onClick={handleOpenQnaRecommentCreateBox}>
+        <Text fontType="p1">{comment?.content}</Text>
+      )}
+      <StyledQnaRecommentLayout>
+        <Text fontType="p2" color="primary" onClick={handleOpenQnaRecommentCreateBox}>
+          답글
+        </Text>
+        {comment?.children.length > 0 && (
+          <StyledQnaRecomment onClick={handleOpenQnaRecommentList}>
+            <Text fontType="p2" color="gray600" style={{ marginRight: '2px' }}>
               답글
             </Text>
-            {comment?.children.length > 0 && (
-              <StyledQnaRecomment onClick={handleOpenQnaRecommentList}>
-                <Text fontType="p3" color="gray600" style={{ marginRight: '2px' }}>
-                  답글
-                </Text>
-                <Flex align="center">
-                  <Text fontType="p3" color="gray600">
-                    {comment?.children.length}
-                  </Text>
-                  {isOpenRecommentList ? (
-                    <IconArrowDropUpFill width={14} />
-                  ) : (
-                    <IconArrowDropDownFill width={14} />
-                  )}
-                </Flex>
-              </StyledQnaRecomment>
-            )}
-          </StyledQnaRecommentLayout>
-          {isOpenRecommentBox && (
-            <CreateQnaRecommentBox
-              parentId={comment.id}
-              {...comment}
-              setIsOpenRecommentBox={setIsOpenRecommentBox}
-            />
-          )}
-
-          {isOpenRecommentList && (
-            <Flex direction="column">
-              {comment?.children.map((recomment) => (
-                <QnaRecommentBox parentId={comment.id} {...recomment} />
-              ))}
+            <Flex align="center">
+              <Text fontType="p2" color="gray600">
+                {comment?.children.length}
+              </Text>
+              {isOpenRecommentList ? (
+                <IconArrowDropUpFill width={14} />
+              ) : (
+                <IconArrowDropDownFill width={14} />
+              )}
             </Flex>
-          )}
+          </StyledQnaRecomment>
+        )}
+      </StyledQnaRecommentLayout>
+      {isOpenRecommentBox && (
+        <CreateQnaRecommentBox
+          parentId={comment.id}
+          {...comment}
+          setIsOpenRecommentBox={setIsOpenRecommentBox}
+        />
+      )}
+
+      {isOpenRecommentList && (
+        <Flex direction="column">
+          {comment?.children.map((recomment) => (
+            <QnaRecommentBox key={recomment.id} parentId={comment.id} {...recomment} />
+          ))}
         </Flex>
       )}
     </StyledQnaCommentBox>
@@ -167,6 +161,7 @@ const StyledQnaCommentBox = styled.div``;
 
 const StyledQnaCommentHeader = styled.div`
   padding-top: 8px;
+  padding-bottom: 4px;
   display: flex;
   justify-content: space-between;
   border-top: 1px solid ${({ theme }) => theme.colors.gray300};
@@ -184,6 +179,7 @@ const StyledSettingButton = styled(IconSettingFill)`
 `;
 
 const StyledQnaRecommentLayout = styled.div`
+  margin-top: 8px;
   font-size: 12px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.gray600};
