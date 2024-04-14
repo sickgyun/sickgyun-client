@@ -12,5 +12,5 @@ export const ModalFooter = ({ children, ...props }: ModalFooterProps) => {
 const StyledModalFooter = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 48px;
+  margin-top: 36px;
 `;

@@ -45,17 +45,17 @@ const CoffeechatRequestUserModal = ({
               </Text>
             </StyledCoffeechatRequestUserWrapper>
           )}
-          {contact?.kakaoId && (
-            <StyledCoffeechatRequestUserWrapper>
-              <Text fontType="p1" color="gray900">
-                {contact.kakaoId}
-              </Text>
-            </StyledCoffeechatRequestUserWrapper>
-          )}
           {contact?.instagramId && (
             <StyledCoffeechatRequestUserWrapper>
               <Text fontType="p1" color="gray900">
                 {contact.instagramId}
+              </Text>
+            </StyledCoffeechatRequestUserWrapper>
+          )}
+          {contact?.kakaoId && (
+            <StyledCoffeechatRequestUserWrapper>
+              <Text fontType="p1" color="gray900">
+                {contact.kakaoId}
               </Text>
             </StyledCoffeechatRequestUserWrapper>
           )}
