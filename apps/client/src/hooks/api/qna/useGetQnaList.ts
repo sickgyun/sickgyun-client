@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
 
 export type GetQnaListResponse = {
@@ -29,7 +29,7 @@ export const useGetQnaList = (categories?: string[], criteria?: string) => {
     qnaListEndPoint += `&criteria=${criteria}`;
   }
 
-  const qnaListQuery = useSuspenseQuery<GetQnaListResponse[]>({
+  const qnaListQuery = useQuery<GetQnaListResponse[]>({
     queryKey: [QNA_LIST_QUERY_KEY, categories, criteria],
     queryFn: async () => await get(qnaListEndPoint),
   });

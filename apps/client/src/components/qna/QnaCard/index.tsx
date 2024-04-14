@@ -1,5 +1,3 @@
-'use client';
-
 import styled from '@emotion/styled';
 import { IconHeartFill, IconHeartRegular, IconReplyRegular } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';

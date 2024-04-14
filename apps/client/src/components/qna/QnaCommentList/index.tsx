@@ -66,11 +66,13 @@ const StyledQnaComment = styled.div`
 `;
 
 const StyledQnaCommentSkeletonBox = styled.div`
-  height: 90px;
+  height: 96px;
+  background-color: ${({ theme }) => theme.colors.gray100};
+  border-radius: 10px;
 `;
 
 const StyledNoQnaCommentContainer = styled.div`
-  height: 90px;
+  height: 95px;
   display: flex;
   align-items: center;
   justify-content: center;

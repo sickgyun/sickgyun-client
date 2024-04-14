@@ -21,11 +21,12 @@ import { timeAgo } from '@/utils/timeAgo';
 const QnaDetailPage = () => {
   const [isOpenQnaEditModal, setIsOpenQnaEditModal] = useState(false);
   const { id } = useParams();
+  const qnaId = Number(id);
 
-  const { qnaCard } = useGetQnaCard(Number(id));
-  const { qnaLike } = useGetQnaLike(Number(id));
-  const { mutate: qnaCreateLikeMutate } = useCreateQnaLike(Number(id));
-  const { mutate: qnaDeleteLikeMutate } = useDeleteQnaLike(Number(id));
+  const { qnaCard } = useGetQnaCard(qnaId);
+  const { qnaLike } = useGetQnaLike(qnaId);
+  const { mutate: qnaCreateLikeMutate } = useCreateQnaLike(qnaId);
+  const { mutate: qnaDeleteLikeMutate } = useDeleteQnaLike(qnaId);
 
   const openCommentEditRef = useOutsideClick(isOpenQnaEditModal, setIsOpenQnaEditModal);
 
@@ -50,10 +51,10 @@ const QnaDetailPage = () => {
             <Stack style={{ display: 'inline-flex' }}>
               <QnaCategory questionType={qnaCard?.category as Qna} />
             </Stack>
-            <StyledSettingButtonContainer ref={openCommentEditRef}>
+            <StyledSettingButtonLayout ref={openCommentEditRef}>
               <StyledSettingButton onClick={openQnaEditModal} />
               {isOpenQnaEditModal && <QnaModifyBox qnaId={qnaCard?.id} />}
-            </StyledSettingButtonContainer>
+            </StyledSettingButtonLayout>
           </Flex>
           <Stack style={{ marginTop: '15px', minHeight: '28px' }}>
             <Text fontType="h3">{qnaCard?.title}</Text>
@@ -79,14 +80,14 @@ const QnaDetailPage = () => {
           <Stack style={{ borderBottom: `1px solid ${colors.gray200}` }}>
             <StyledQnaContent>{qnaCard?.content}</StyledQnaContent>
             <Flex align="center" justify="center">
-              <StyledLikeButtonContainer onClick={handleCreateAndDeleteQnaLike}>
+              <StyledLikeButtonLayout onClick={handleCreateAndDeleteQnaLike}>
                 {qnaLike ? (
                   <IconHeartFill width={16} height={16} color={colors.red} />
                 ) : (
                   <IconHeartRegular width={16} height={16} />
                 )}
                 <Text>{qnaCard?.likeCount}</Text>
-              </StyledLikeButtonContainer>
+              </StyledLikeButtonLayout>
             </Flex>
             <Spacer height={5} />
           </Stack>
@@ -118,7 +119,7 @@ const StyledQnaDetail = styled.div`
   padding: 25px;
 `;
 
-const StyledLikeButtonContainer = styled.div`
+const StyledLikeButtonLayout = styled.div`
   display: flex;
   align-items: center;
   min-width: 65px;
@@ -131,12 +132,12 @@ const StyledLikeButtonContainer = styled.div`
 `;
 
 const StyledQnaContent = styled.div`
-  min-height: 68px;
-  padding-top: 30px;
+  min-height: 92px;
+  padding-top: 20px;
   padding-bottom: 10px;
 `;
 
-const StyledSettingButtonContainer = styled.div`
+const StyledSettingButtonLayout = styled.div`
   display: inline-block;
   position: relative;
 `;

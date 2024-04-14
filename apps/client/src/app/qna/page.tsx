@@ -13,7 +13,7 @@ import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
 
 const QnaPage = () => {
   const { qnaList } = useGetQnaList();
-  const topRankQnaList = qnaList.slice(0, 9);
+  const topRankQnaList = qnaList?.slice(0, 9);
 
   const [currentQnaPageIndex, setCurrentQnaPageIndex] = useState(0);
 
@@ -46,8 +46,8 @@ const QnaPage = () => {
                 </StyledActiveButton>
                 <StyledActiveButton
                   onClick={handleNextPopularQna}
-                  isButtonLastPage={currentQnaPageIndex === qnaList.length - 3}
-                  isButtonDisabled={qnaList.length <= 3}
+                  isButtonLastPage={currentQnaPageIndex === qnaList?.length - 3}
+                  isButtonDisabled={qnaList?.length <= 3}
                 >
                   <IconChevronRightFill width={24} height={24} />
                 </StyledActiveButton>

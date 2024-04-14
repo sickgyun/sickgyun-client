@@ -4,19 +4,19 @@ import {
   IconArrowDropUpFill,
   IconSettingFill,
 } from '@seed-design/icon';
-import { Button, Flex, Stack, Text, Textarea } from '@sickgyun/ui';
+import { Button, Flex, Text, Textarea } from '@sickgyun/ui';
 import { SecondaryButton } from '@sickgyun/ui/src/Button/SecondaryButton';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { SubmitHandler } from 'react-hook-form';
+import CreateQnaRecommentBox from '../CreateQnaRecommentBox';
 import QnaCommentModifyBox from '../QnaCommentModifyBox';
+import QnaRecommentBox from '../QnaRecommentBox';
 import type { GetQnaCommentListResponse } from '@/hooks/api/qna/useGetQnaCommentList';
 import type { UpdateQnaCommentRequest } from '@/hooks/api/qna/useUpdateQnaComment';
 import { useUpdateQnaComment } from '@/hooks/api/qna/useUpdateQnaComment';
 import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 import { useUser } from '@/hooks/common/useUser';
-import CreateQnaRecommentBox from '../CreateQnaRecommentBox';
-import QnaRecommentBox from '../QnaRecommentBox';
 
 const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
   const { user } = useUser();
@@ -114,6 +114,7 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
       ) : (
         <Text fontType="p1">{comment?.content}</Text>
       )}
+
       <StyledQnaRecommentLayout>
         <Text fontType="p2" color="primary" onClick={handleOpenQnaRecommentCreateBox}>
           답글
@@ -136,6 +137,7 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
           </StyledQnaRecomment>
         )}
       </StyledQnaRecommentLayout>
+
       {isOpenRecommentBox && (
         <CreateQnaRecommentBox
           parentId={comment.id}

@@ -1,20 +1,19 @@
 import styled from '@emotion/styled';
 import { IconSettingFill } from '@seed-design/icon';
 import { Button, Flex, Text, Textarea } from '@sickgyun/ui';
-import { useUser } from '@/hooks/common/useUser';
-import {
+import { SecondaryButton } from '@sickgyun/ui/src/Button/SecondaryButton';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import type { SubmitHandler } from 'react-hook-form';
+import QnaCommentModifyBox from '../QnaCommentModifyBox';
+import type {
   GetQnaCommentListResponse,
   UserResponse,
 } from '@/hooks/api/qna/useGetQnaCommentList';
+import type { UpdateQnaCommentRequest } from '@/hooks/api/qna/useUpdateQnaComment';
+import { useUpdateQnaComment } from '@/hooks/api/qna/useUpdateQnaComment';
 import { useOutsideClick } from '@/hooks/common/useOutsideClick';
-import { useState } from 'react';
-import QnaCommentModifyBox from '../QnaCommentModifyBox';
-import {
-  UpdateQnaCommentRequest,
-  useUpdateQnaComment,
-} from '@/hooks/api/qna/useUpdateQnaComment';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { SecondaryButton } from '@sickgyun/ui/src/Button/SecondaryButton';
+import { useUser } from '@/hooks/common/useUser';
 
 type QnaRecommentBoxProps = {
   parentId: number;
@@ -30,34 +29,34 @@ const QnaRecommentBox = ({
   userResponse,
 }: QnaRecommentBoxProps) => {
   const { user } = useUser();
-  const { mutate: updateQnaCommentMutate } = useUpdateQnaComment(id);
+  const { mutate: updateQnaReCommentMutate } = useUpdateQnaComment(id);
 
-  const [isOpenQnaCommentEditModal, setIsOpenQnaCommentEditModal] = useState(false);
+  const [isOpenQnaReCommentEditModal, setIsOpenQnaReCommentEditModal] = useState(false);
   const [isOpenQnaEditBox, setIsOpenQnaEditBox] = useState(false);
 
-  const { register, handleSubmit: updateQnaCommentSubmit } =
+  const { register, handleSubmit: updateQnaReCommentSubmit } =
     useForm<UpdateQnaCommentRequest>();
 
-  const handleQnaCommentEditModal = () => {
-    setIsOpenQnaCommentEditModal((prev) => !prev);
+  const handleQnaReCommentEditModal = () => {
+    setIsOpenQnaReCommentEditModal((prev) => !prev);
   };
 
-  const openCommentModifyRef = useOutsideClick(
-    isOpenQnaCommentEditModal,
-    setIsOpenQnaCommentEditModal
+  const openReCommentModifyRef = useOutsideClick(
+    isOpenQnaReCommentEditModal,
+    setIsOpenQnaReCommentEditModal
   );
 
-  const handleCloseQnaCommentEditModal = () => {
+  const handleCloseQnaReCommentEditModal = () => {
     setIsOpenQnaEditBox(false);
   };
 
-  const onUpdateQnaCommentSubmit: SubmitHandler<UpdateQnaCommentRequest> = (data) => {
+  const onUpdateQnaReCommentSubmit: SubmitHandler<UpdateQnaCommentRequest> = (data) => {
     const reCommentData = {
       ...data,
       parentId,
     };
 
-    updateQnaCommentMutate(reCommentData);
+    updateQnaReCommentMutate(reCommentData);
     setIsOpenQnaEditBox(false);
   };
 
@@ -79,15 +78,15 @@ const QnaRecommentBox = ({
               {5}일 전
             </Text>
           </Flex>
-          <StyledSettingButtonLayout ref={openCommentModifyRef}>
+          <StyledSettingButtonLayout ref={openReCommentModifyRef}>
             {user.id === userResponse?.id && (
-              <StyledSettingButton onClick={() => handleQnaCommentEditModal()} />
+              <StyledSettingButton onClick={() => handleQnaReCommentEditModal()} />
             )}
-            {isOpenQnaCommentEditModal && (
+            {isOpenQnaReCommentEditModal && (
               <QnaCommentModifyBox
                 id={id}
                 setIsOpenQnaEditBox={setIsOpenQnaEditBox}
-                setIsOpenQnaCommentEditModal={setIsOpenQnaCommentEditModal}
+                setIsOpenQnaCommentEditModal={setIsOpenQnaReCommentEditModal}
               />
             )}
           </StyledSettingButtonLayout>
@@ -95,7 +94,7 @@ const QnaRecommentBox = ({
         {isOpenQnaEditBox ? (
           isOpenQnaEditBox && (
             <form
-              onSubmit={updateQnaCommentSubmit(onUpdateQnaCommentSubmit)}
+              onSubmit={updateQnaReCommentSubmit(onUpdateQnaReCommentSubmit)}
               style={{ marginTop: '4px' }}
             >
               <Textarea
@@ -112,7 +111,7 @@ const QnaRecommentBox = ({
                   size="small"
                   width="70px"
                   style={{ height: '38px', marginRight: '5px' }}
-                  onClick={handleCloseQnaCommentEditModal}
+                  onClick={handleCloseQnaReCommentEditModal}
                 >
                   취소
                 </SecondaryButton>

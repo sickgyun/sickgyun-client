@@ -1,14 +1,12 @@
-import {
-  CreateQnaCommentRequest,
-  useCreateQnaComment,
-} from '@/hooks/api/qna/useCreateComment';
-import { GetQnaCommentListResponse } from '@/hooks/api/qna/useGetQnaCommentList';
 import { Button, Flex, Textarea } from '@sickgyun/ui';
 import { SecondaryButton } from '@sickgyun/ui/src/Button/SecondaryButton';
-import { SetStateAction } from 'jotai';
 import { useParams } from 'next/navigation';
-import type { Dispatch } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import type { Dispatch, SetStateAction } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { useCreateQnaComment } from '@/hooks/api/qna/useCreateComment';
+import type { CreateQnaCommentRequest } from '@/hooks/api/qna/useCreateComment';
+import type { GetQnaCommentListResponse } from '@/hooks/api/qna/useGetQnaCommentList';
 
 type createQnaRecommentBoxProps = {
   parentId: number;
@@ -25,7 +23,7 @@ const CreateQnaRecommentBox = ({
   const { register, handleSubmit: createQnaRecommentSubmit } =
     useForm<CreateQnaCommentRequest>();
 
-  const onCreateQnaCommentSubmit: SubmitHandler<CreateQnaCommentRequest> = (data) => {
+  const onCreateQnaReCommentSubmit: SubmitHandler<CreateQnaCommentRequest> = (data) => {
     const reCommentData = {
       ...data,
       parentId,
@@ -40,7 +38,7 @@ const CreateQnaRecommentBox = ({
   };
 
   return (
-    <form onSubmit={createQnaRecommentSubmit(onCreateQnaCommentSubmit)}>
+    <form onSubmit={createQnaRecommentSubmit(onCreateQnaReCommentSubmit)}>
       <Textarea minHeight="120px" {...register('content', { required: true })} />
       <Flex
         align="center"

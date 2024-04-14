@@ -17,9 +17,11 @@ import type { Qna } from '@/types/qna';
 
 const QnaEditPage = () => {
   const { id } = useParams();
-  const { qnaCard } = useGetQnaCard(Number(id));
+  const qnaId = Number(id);
 
-  const { mutate: updateQnaMutate } = useUpdateQna(Number(id));
+  const { qnaCard } = useGetQnaCard(qnaId);
+
+  const { mutate: updateQnaMutate } = useUpdateQna(qnaId);
 
   const categoryId = match(qnaCard?.category)
     .with('DEVELOP', () => 0)

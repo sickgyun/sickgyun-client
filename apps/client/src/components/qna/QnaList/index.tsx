@@ -4,7 +4,6 @@ import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import QnaBox from '../QnaBox';
 import { QNA_SORT } from '@/constants/qna';
-import { withSuspense } from '@/hocs/withSuspense';
 import { useGetQnaList } from '@/hooks/api/qna/useGetQnaList';
 
 const QnaList = () => {
@@ -30,7 +29,7 @@ const QnaList = () => {
         </StyledQnaSortText>
       ))}
       <StyledQnaBoxContainer>
-        {qnaList.length > 0 ? (
+        {qnaList?.length > 0 ? (
           qnaList.map((qna) => <QnaBox key={qna.id} {...qna} />)
         ) : (
           <Text fontType="body1" style={{ marginBottom: '20px' }}>
@@ -42,7 +41,7 @@ const QnaList = () => {
   );
 };
 
-export default withSuspense(QnaList);
+export default QnaList;
 
 const StyledQnaList = styled.div``;
 

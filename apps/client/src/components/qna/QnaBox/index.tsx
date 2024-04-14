@@ -38,7 +38,7 @@ const QnaBox = ({
   return (
     <StyledQnaBox key={id} onClick={() => handleGoDetailQnaPage(id)}>
       <Flex direction="column">
-        <StyledQnaContentWrapper>
+        <StyledQnaContentContainer>
           <QnaCategory questionType={category as Qna} />
           <Text fontType="h4">{title}</Text>
           <StyledQnaContent>{content}</StyledQnaContent>
@@ -65,7 +65,7 @@ const QnaBox = ({
               </Stack>
             </Stack>
           </Flex>
-        </StyledQnaContentWrapper>
+        </StyledQnaContentContainer>
       </Flex>
     </StyledQnaBox>
   );
@@ -84,7 +84,7 @@ const StyledQnaBox = styled.div`
   }
 `;
 
-const StyledQnaContentWrapper = styled.div`
+const StyledQnaContentContainer = styled.div`
   height: 170px;
   display: inline-flex;
   flex-direction: column;
