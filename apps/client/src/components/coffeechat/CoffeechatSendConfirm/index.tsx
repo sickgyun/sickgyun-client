@@ -36,7 +36,7 @@ const CoffeechatSendConfirm = ({
     >
       <Textarea
         label="메세지"
-        placeholder={`연락할 수 있는 연락처를 기입하면 빠르게 약속을 잡을 수 있어요!\n\n전화번호: 010-1234-5678\n카카오톡 아이디: as123`}
+        placeholder="메세지를 입력해주세요."
         {...register('message')}
       />
     </StyledCoffeechatSendConfirm>

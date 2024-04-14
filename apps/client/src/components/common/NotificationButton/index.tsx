@@ -15,7 +15,11 @@ const NotificationButton = ({ hasNotification }: NotificationButtonProps) => {
   };
 
   return hasNotification ? (
-    <Tooltip content="알림을 확인해보세요!" visible={true} placement="bottom-end">
+    <Tooltip
+      content="확인하지 않은 커피챗 요청이 있어요!"
+      visible={true}
+      placement="bottom-end"
+    >
       {({ ref }) => {
         return (
           <>

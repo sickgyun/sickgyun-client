@@ -1,7 +1,8 @@
 import { Confirm } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
-import CoffeechatMessageModal from '../CoffeechatMessageModal';
+import CoffeechatRequestUserModal from '../CoffeechatRequestUserModal';
 import { useAcceptCoffeechat } from '@/hooks/api/coffeechat/useAcceptCoffeechat';
+import type { Contact } from '@/types/coffeechat';
 
 type CoffeechatAcceptConfirmProps = {
   coffeechatId: number;
@@ -14,15 +15,26 @@ const CoffeechatAcceptConfirm = ({
 }: CoffeechatAcceptConfirmProps) => {
   const overlay = useOverlay();
 
-  const openCoffeechatMessageModal = (message: string) => {
+  const openCoffeechatRequestUserModal = ({
+    message,
+    contact,
+  }: {
+    message: string;
+    contact: Contact;
+  }) => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatMessageModal isOpen={isOpen} onClose={close} message={message} />
+      <CoffeechatRequestUserModal
+        isOpen={isOpen}
+        onClose={close}
+        message={message}
+        contact={contact}
+      />
     ));
   };
 
   const { mutate: acceptCoffeechatMutate } = useAcceptCoffeechat({
     coffeechatId,
-    openCoffeechatMessageModal,
+    openCoffeechatRequestUserModal,
   });
 
   const handleConfirm = () => {
@@ -33,7 +45,7 @@ const CoffeechatAcceptConfirm = ({
   return (
     <Confirm
       title="커피챗 수락"
-      description="수락하면 상대방이 보낸 메세지를 확인할 수 있어요!"
+      description="수락하면 상대방이 보낸 메세지와 연락처를 확인할 수 있어요!"
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={handleConfirm}

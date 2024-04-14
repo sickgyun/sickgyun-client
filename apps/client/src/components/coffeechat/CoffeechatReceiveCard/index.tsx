@@ -3,15 +3,17 @@ import styled from '@emotion/styled';
 import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import CoffeechatAcceptConfirm from '../CoffeechatAcceptConfirm';
-import CoffeechatMessageModal from '../CoffeechatMessageModal';
 import CoffeechatRejectConfirm from '../CoffeechatRejectConfirm';
-import { type CoffeechatState, CoffeechatStateEnum } from '@/types/coffeechat';
+import CoffeechatRequestUserModal from '../CoffeechatRequestUserModal';
+import { CoffeechatStateEnum } from '@/types/coffeechat';
+import type { CoffeechatState, Contact } from '@/types/coffeechat';
 import type { User } from '@/types/user';
 
 type CoffeechatReceiveCardProps = {
   fromUser: User;
   coffeechatId: number;
   state: CoffeechatState;
+  contact: Contact;
   message?: string;
 };
 
@@ -19,6 +21,7 @@ const CoffeechatReceiveCard = ({
   fromUser,
   coffeechatId,
   state,
+  contact,
   message,
 }: CoffeechatReceiveCardProps) => {
   const overlay = useOverlay();
@@ -45,9 +48,20 @@ const CoffeechatReceiveCard = ({
     ));
   };
 
+  const openCoffeechatRequestUserModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatRequestUserModal
+        isOpen={isOpen}
+        onClose={close}
+        message={message}
+        contact={contact}
+      />
+    ));
+  };
+
   const openCoffeechatMessageModal = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatMessageModal isOpen={isOpen} onClose={close} message={message} />
+      <CoffeechatRequestUserModal isOpen={isOpen} onClose={close} message={message} />
     ));
   };
 
@@ -56,9 +70,18 @@ const CoffeechatReceiveCard = ({
       {isPending ? (
         <Stack direction="vertical" spacing={6}>
           <Text fontType="body1">{fromUser.name}님이 커피챗 신청을 보냈어요!</Text>
-          <Text fontType="body2" color="gray600">
-            {fromUser.cardinal}기 {fromUser.isGraduated ? '졸업생' : '재학생'}
-          </Text>
+          <Stack direction="horizontal" spacing={12}>
+            <Text fontType="body2" color="gray600">
+              {fromUser.cardinal}기 {fromUser.isGraduated ? '졸업생' : '재학생'}
+            </Text>
+            <ViewMessageButton
+              onClick={openCoffeechatMessageModal}
+              fontType="body2"
+              color="primary"
+            >
+              메세지 보기
+            </ViewMessageButton>
+          </Stack>
         </Stack>
       ) : (
         <Flex justify="space-between" align="center">
@@ -69,13 +92,13 @@ const CoffeechatReceiveCard = ({
                 {fromUser.cardinal}기 {fromUser.isGraduated ? '졸업생' : '재학생'}
               </Text>
               {isAccept && (
-                <ViewMessageButton
-                  onClick={openCoffeechatMessageModal}
+                <ViewRequestUserButton
+                  onClick={openCoffeechatRequestUserModal}
                   fontType="body2"
                   color="primary"
                 >
-                  메세지 보기
-                </ViewMessageButton>
+                  메세지 및 연락처 보기
+                </ViewRequestUserButton>
               )}
             </Stack>
           </Stack>
@@ -120,5 +143,9 @@ const StyledCoffeechatStatus = styled.div<{ state: CoffeechatState }>`
 `;
 
 const ViewMessageButton = styled(Text)`
+  cursor: pointer;
+`;
+
+const ViewRequestUserButton = styled(Text)`
   cursor: pointer;
 `;

@@ -5,8 +5,8 @@ type ModalBodyProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const ModalBody = ({ children }: ModalBodyProps) => {
-  return <StyledModalBody>{children}</StyledModalBody>;
+export const ModalBody = ({ children, ...props }: ModalBodyProps) => {
+  return <StyledModalBody {...props}>{children}</StyledModalBody>;
 };
 
 const StyledModalBody = styled.div`
@@ -14,5 +14,4 @@ const StyledModalBody = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-top: 20px;
-  margin-bottom: 48px;
 `;

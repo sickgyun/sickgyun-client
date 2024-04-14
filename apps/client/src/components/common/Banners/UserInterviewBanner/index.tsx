@@ -4,7 +4,7 @@ import Logo from '../../Logo';
 
 const UserInterviewBanner = () => {
   const handleGoUserInterviewForm = () => {
-    alert('4월 22일에 열려요!');
+    alert('4월 29일에 열려요!');
   };
 
   return (

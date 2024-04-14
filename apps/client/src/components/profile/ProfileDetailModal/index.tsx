@@ -11,6 +11,7 @@ import {
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import ProfileDetailContent from '../ProfileDetailContent';
+import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
 import CoffeechatSendConfirm from '@/components/coffeechat/CoffeechatSendConfirm';
 import { useUser } from '@/hooks/common/useUser';
 
@@ -40,8 +41,22 @@ const ProfileDetailModal = ({
     ));
   };
 
+  const openCoffeechatContactFormModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatContactFormModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
   const handleGoProfileUpdatePage = () => {
     router.push('/profile/update');
+  };
+
+  const handleCoffeechatRequestSend = () => {
+    if (user.hasNotContact) {
+      openCoffeechatContactFormModal();
+    } else {
+      openCoffeechatSendConfirm();
+    }
   };
 
   return (
@@ -55,7 +70,7 @@ const ProfileDetailModal = ({
       </ModalBody>
       <StyledProfileDetailModalFooter>
         {user.profileId !== profileId ? (
-          <Button onClick={openCoffeechatSendConfirm} size="large">
+          <Button onClick={handleCoffeechatRequestSend} size="large">
             커피챗 요청 보내기
           </Button>
         ) : (

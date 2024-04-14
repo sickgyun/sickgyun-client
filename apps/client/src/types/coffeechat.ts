@@ -10,10 +10,17 @@ export enum CoffeechatStateEnum {
   'ACCEPT' = '승인',
 }
 
+export type Contact = {
+  phoneNumber: string;
+  kakaoId: string;
+  instagramId: string;
+};
+
 export type CoffeechatList = {
   id: number;
   state: CoffeechatState;
   toUser: User;
   fromUser: User;
+  contact: Contact;
   message?: string;
 };

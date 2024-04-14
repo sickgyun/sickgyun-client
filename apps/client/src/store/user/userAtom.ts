@@ -16,6 +16,10 @@ export const RESET_USER = {
   profileId: 0,
   hasNotification: false,
   isLogin: false,
+  phoneNumber: '',
+  instagramId: '',
+  kakaoId: '',
+  hasNotContact: true,
 };
 
 export const userAtom = atom<UserAtom>(RESET_USER);
