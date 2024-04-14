@@ -17,6 +17,7 @@ import type { UpdateQnaCommentRequest } from '@/hooks/api/qna/useUpdateQnaCommen
 import { useUpdateQnaComment } from '@/hooks/api/qna/useUpdateQnaComment';
 import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 import { useUser } from '@/hooks/common/useUser';
+import { timeAgo } from '@/utils/timeAgo';
 
 const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
   const { user } = useUser();
@@ -70,7 +71,7 @@ const QnaCommentBox = (comment: GetQnaCommentListResponse) => {
             </Text>
           </Flex>
           <Text fontType="p3" color="gray500" style={{ marginLeft: '8px' }}>
-            {5}일 전
+            {timeAgo(comment?.createTime)}
           </Text>
         </Flex>
         <StyledSettingButtonLayout ref={openCommentModifyRef}>

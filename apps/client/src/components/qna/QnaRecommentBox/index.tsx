@@ -14,6 +14,7 @@ import type { UpdateQnaCommentRequest } from '@/hooks/api/qna/useUpdateQnaCommen
 import { useUpdateQnaComment } from '@/hooks/api/qna/useUpdateQnaComment';
 import { useOutsideClick } from '@/hooks/common/useOutsideClick';
 import { useUser } from '@/hooks/common/useUser';
+import { timeAgo } from '@/utils/timeAgo';
 
 type QnaRecommentBoxProps = {
   parentId: number;
@@ -26,6 +27,7 @@ const QnaRecommentBox = ({
   parentId,
   id,
   content,
+  createTime,
   userResponse,
 }: QnaRecommentBoxProps) => {
   const { user } = useUser();
@@ -75,7 +77,7 @@ const QnaRecommentBox = ({
               </Text>
             </Text>
             <Text fontType="p2" color="gray500" style={{ marginLeft: '8px' }}>
-              {5}일 전
+              {timeAgo(createTime)}
             </Text>
           </Flex>
           <StyledSettingButtonLayout ref={openReCommentModifyRef}>

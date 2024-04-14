@@ -14,6 +14,7 @@ export type UserResponse = {
 export type GetQnaCommentListResponse = {
   id: number;
   content: string;
+  createTime: string;
   userResponse: UserResponse;
   children?: GetQnaCommentListResponse[];
 };
