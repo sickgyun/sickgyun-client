@@ -1,15 +1,18 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import CoffeechatCancelConfirm from '../CoffeechatCancelConfirm';
+import type { CoffeechatState } from '@/types/coffeechat';
 import type { User } from '@/types/user';
 
 type CoffeechatSendCardProps = {
   toUser: User;
   coffeechatId: number;
+  state: CoffeechatState;
 };
 
-const CoffeechatSendCard = ({ toUser, coffeechatId }: CoffeechatSendCardProps) => {
+const CoffeechatSendCard = ({ toUser, coffeechatId, state }: CoffeechatSendCardProps) => {
   const overlay = useOverlay();
 
   const openCoffeechatCancelConfrim = () => {
@@ -31,17 +34,27 @@ const CoffeechatSendCard = ({ toUser, coffeechatId }: CoffeechatSendCardProps) =
       <Stack direction="vertical" spacing={6}>
         <Text fontType="body1">{toUser.name}님에게</Text>
         <Text fontType="body2" color="gray600">
-          응답이 아직 오지 않았어요!
+          {state === 'REJECT'
+            ? '커피챗이 거절되었어요.'
+            : state === 'ACCEPT'
+              ? '커피챗이 수락되었어요.'
+              : '응답이 아직 오지 않았어요!'}
         </Text>
       </Stack>
-      <Button
-        onClick={openCoffeechatCancelConfrim}
-        size="small"
-        styleType="secondary"
-        width="60px"
-      >
-        취소
-      </Button>
+      {state === 'REJECT' ? (
+        <StyledCoffeechatState state="REJECT">거절됨</StyledCoffeechatState>
+      ) : state === 'ACCEPT' ? (
+        <StyledCoffeechatState state="ACCEPT">수락됨</StyledCoffeechatState>
+      ) : (
+        <Button
+          onClick={openCoffeechatCancelConfrim}
+          size="small"
+          styleType="secondary"
+          width="60px"
+        >
+          취소
+        </Button>
+      )}
     </StyledCoffeechatSendCard>
   );
 };
@@ -53,4 +66,11 @@ const StyledCoffeechatSendCard = styled(Stack)`
   height: 80px;
   margin-bottom: 24px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray200};
+`;
+
+const StyledCoffeechatState = styled.div<{ state: CoffeechatState }>`
+  ${({ theme, state }) => css`
+    ${theme.fonts.body2}
+    color: ${state === 'REJECT' ? theme.colors.red : theme.colors.primary};
+  `}
 `;

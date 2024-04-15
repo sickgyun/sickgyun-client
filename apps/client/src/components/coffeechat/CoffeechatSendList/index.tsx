@@ -19,6 +19,7 @@ const CoffeechatSendList = () => {
             key={coffeechat.id}
             coffeechatId={coffeechat.id}
             toUser={coffeechat.toUser}
+            state={coffeechat.state}
           />
         ))
       ) : (
