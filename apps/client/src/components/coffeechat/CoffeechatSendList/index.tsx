@@ -22,7 +22,9 @@ const CoffeechatSendList = () => {
           />
         ))
       ) : (
-        <Text fontType="h3">앗! 신청 한 내역이 없어요...</Text>
+        <Text fontType="h3" style={{ textAlign: 'center' }}>
+          앗! 신청 한 내역이 없어요...
+        </Text>
       )}
     </StyledCoffeechatSendList>
   );

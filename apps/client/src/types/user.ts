@@ -6,4 +6,8 @@ export type User = {
   hasCreatedProfile: boolean;
   isGraduated: boolean;
   profileId?: number;
+  phoneNumber?: string;
+  instagramId?: string;
+  kakaoId?: string;
+  hasNotContact: boolean;
 };

@@ -15,7 +15,7 @@ const ProfileForm = ({ defaultValues, register, setValue, watch }: ProfileFormPr
   const { user } = useUser();
 
   return (
-    <Stack spacing={16} style={{ width: '100%' }}>
+    <Stack direction="vertical" spacing={16} style={{ width: '100%' }}>
       <ProfileImageUploader
         setValue={setValue}
         value={watch('imageUrl')}

@@ -6,11 +6,13 @@ import {
   ModalCloseButton,
   ModalFooter,
   ModalHeader,
+  Stack,
   Text,
 } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import ProfileDetailContent from '../ProfileDetailContent';
+import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
 import CoffeechatSendConfirm from '@/components/coffeechat/CoffeechatSendConfirm';
 import { useUser } from '@/hooks/common/useUser';
 
@@ -40,8 +42,22 @@ const ProfileDetailModal = ({
     ));
   };
 
+  const openCoffeechatContactFormModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatContactFormModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
   const handleGoProfileUpdatePage = () => {
     router.push('/profile/update');
+  };
+
+  const handleCoffeechatRequestSend = () => {
+    if (user.hasNotContact) {
+      openCoffeechatContactFormModal();
+    } else {
+      openCoffeechatSendConfirm();
+    }
   };
 
   return (
@@ -55,13 +71,22 @@ const ProfileDetailModal = ({
       </ModalBody>
       <StyledProfileDetailModalFooter>
         {user.profileId !== profileId ? (
-          <Button onClick={openCoffeechatSendConfirm} size="large">
+          <Button onClick={handleCoffeechatRequestSend} size="large">
             커피챗 요청 보내기
           </Button>
         ) : (
-          <Button onClick={handleGoProfileUpdatePage} size="large">
-            프로필 수정하기
-          </Button>
+          <Stack direction="horizontal" spacing={12} style={{ width: '100%' }}>
+            <StyledUpdateContactButton
+              onClick={openCoffeechatContactFormModal}
+              styleType="secondary"
+              size="large"
+            >
+              연락처 {user.hasNotContact ? '추가' : '수정'}
+            </StyledUpdateContactButton>
+            <Button onClick={handleGoProfileUpdatePage} size="large">
+              프로필 수정
+            </Button>
+          </Stack>
         )}
       </StyledProfileDetailModalFooter>
     </StyledProfileDetailModal>
@@ -82,4 +107,8 @@ const StyledProfileDetailModalFooter = styled(ModalFooter)`
   left: 0;
   background-color: ${({ theme }) => theme.colors.white};
   width: 100%;
+`;
+
+const StyledUpdateContactButton = styled(Button)`
+  width: 180px;
 `;

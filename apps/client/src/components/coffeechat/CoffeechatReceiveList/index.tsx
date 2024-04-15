@@ -29,6 +29,7 @@ const CoffeechatReceiveList = () => {
             fromUser={coffeechat.fromUser}
             state={coffeechat.state}
             message={coffeechat.message}
+            contact={coffeechat.contact}
           />
         ))
       ) : user.hasCreatedProfile ? (

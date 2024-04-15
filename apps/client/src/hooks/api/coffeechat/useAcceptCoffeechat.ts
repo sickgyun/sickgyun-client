@@ -3,19 +3,21 @@ import type { AxiosError } from 'axios';
 import { USER_QUERY_KEY } from '../user/useGetUser';
 import { RECEIVE_COFFEE_CHAT_LIST } from './useGetReceiveCoffeechatList';
 import { put } from '@/libs/api/client';
+import type { Contact } from '@/types/coffeechat';
 
 type AcceptCoffeechatResponse = {
   message?: string;
+  contact?: Contact;
 };
 
 type UseAcceptCoffeechatProps = {
   coffeechatId: number;
-  openCoffeechatMessageModal: (message: string) => void;
+  openCoffeechatContactMessageModal: (message: string, contact: Contact) => void;
 };
 
 export const useAcceptCoffeechat = ({
   coffeechatId,
-  openCoffeechatMessageModal,
+  openCoffeechatContactMessageModal,
 }: UseAcceptCoffeechatProps) => {
   const queryClient = useQueryClient();
 
@@ -24,7 +26,7 @@ export const useAcceptCoffeechat = ({
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
-      openCoffeechatMessageModal(response.message);
+      openCoffeechatContactMessageModal(response.message, response.contact);
     },
   });
 };
