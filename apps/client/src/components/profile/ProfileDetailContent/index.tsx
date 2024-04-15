@@ -26,7 +26,7 @@ const ProfileDetailContent = ({
     profile.githubId || profile.resumeUrl || profile.portfolioUrl || profile.email
   );
 
-  const openDeleteProfileConfirm = () => {
+  const openProfileDeleteConfirm = () => {
     overlay.open(({ isOpen, close }) => (
       <ProfileDeleteConfirm
         isOpen={isOpen}
@@ -78,7 +78,7 @@ const ProfileDetailContent = ({
                 {profile.cardinal}기
               </Text>
             </Stack>
-            {isProfileMine && <StyledDeleteButton onClick={openDeleteProfileConfirm} />}
+            {isProfileMine && <StyledDeleteButton onClick={openProfileDeleteConfirm} />}
           </Stack>
           <Text fontType="body2" color="gray600">
             관심 있는 분야: {profile.major}

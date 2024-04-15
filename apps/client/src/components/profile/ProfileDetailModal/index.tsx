@@ -105,7 +105,6 @@ const StyledProfileDetailModalFooter = styled(ModalFooter)`
   position: sticky;
   bottom: 0;
   left: 0;
-  background-color: ${({ theme }) => theme.colors.white};
   width: 100%;
 `;
 
