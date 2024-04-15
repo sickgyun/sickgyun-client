@@ -20,7 +20,7 @@ const ProfileDetailContent = ({
 }: ProfileDetailContentProps) => {
   const overlay = useOverlay();
   const { user } = useUser();
-  const { profile, isStale } = useGetProfile(profileId);
+  const { profile, isFetching } = useGetProfile(profileId);
   const isProfileMine = user.profileId === profile.id;
   const hasProfileInformation = Boolean(
     profile.githubId || profile.resumeUrl || profile.portfolioUrl || profile.email
@@ -52,7 +52,7 @@ const ProfileDetailContent = ({
     window.open(profile.portfolioUrl);
   };
 
-  if (isStale) {
+  if (isFetching) {
     return <FullHeightSpinner />;
   }
 
