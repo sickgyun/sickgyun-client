@@ -1,3 +1,4 @@
 export type ApiErrorScheme = {
-  response_messages: string;
+  message: string;
+  status: number;
 };

@@ -1,9 +1,9 @@
 import axios, { isAxiosError } from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { ApiException, CustomException, errorMessage } from '../exceptions';
-import type { ApiErrorScheme } from '../exceptions';
 import { Storage } from './storage';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
+import type { ApiErrorScheme } from '@/libs/exceptions';
 import { isProd } from '@/utils/isProd';
 
 const DEVELOPMENT_API_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -43,55 +43,30 @@ const interceptorResponseFulfilled = (res: AxiosResponse) => {
   return Promise.reject(res.data);
 };
 
-let isRefreshingToken = false;
-let tokenRefreshPromise: Promise<{ accessToken: string; refreshToken: string }> | null =
-  null;
-
 const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) => {
-  if (error.response?.data?.['response_messages']) {
+  if (isAxiosError(error)) {
+    if (
+      error.response?.data?.status === 403 &&
+      error.response?.data?.message === '토큰이 만료되었습니다.'
+    ) {
+      const response = await post<{ accessToken: string; refreshToken: string }>(
+        '/auth/refresh',
+        {
+          refreshToken: Storage.getItem(LOCAL_STORAGE_KEY.refreshToken),
+        }
+      );
+
+      Storage.setItem(LOCAL_STORAGE_KEY.accessToken, `Bearer ${response.accessToken}`);
+      Storage.setItem(LOCAL_STORAGE_KEY.refreshToken, `Bearer ${response.refreshToken}`);
+    }
+  }
+
+  if (error.response?.data?.['message']) {
     return Promise.reject(new ApiException(error.response.data, error.response.status));
   }
 
   if (error.message.startsWith('timeout')) {
     return Promise.reject(new CustomException(errorMessage.TIMEOUT, 'NETWORK_TIMEOUT'));
-  }
-
-  if (isAxiosError(error)) {
-    if (error.response?.status === 403) {
-      if (!isRefreshingToken) {
-        isRefreshingToken = true;
-
-        try {
-          const refreshToken = Storage.getItem(LOCAL_STORAGE_KEY.refreshToken);
-          tokenRefreshPromise = post<{ accessToken: string; refreshToken: string }>(
-            '/auth/refresh',
-            {
-              refreshToken,
-            }
-          );
-
-          const response = await tokenRefreshPromise;
-
-          Storage.setItem(
-            LOCAL_STORAGE_KEY.accessToken,
-            `Bearer ${response.accessToken}`
-          );
-          Storage.setItem(
-            LOCAL_STORAGE_KEY.refreshToken,
-            `Bearer ${response.refreshToken}`
-          );
-        } catch (error) {
-          console.error(error);
-        } finally {
-          isRefreshingToken = false;
-          tokenRefreshPromise = null;
-        }
-      } else {
-        await tokenRefreshPromise;
-      }
-
-      return instance(error.config);
-    }
   }
 
   return Promise.reject(new CustomException(errorMessage.UNKNOWN_400, 'NETWORK_ERROR'));

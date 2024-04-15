@@ -5,12 +5,13 @@ import { USER_QUERY_KEY } from '../user/useGetUser';
 import { PROFILE_LIST_QUERY_KEY } from './useGetProfileList';
 import { PROFILE_MINE_QUERY_KEY } from './useGetProfileMine';
 import { del } from '@/libs/api/client';
+import type { ApiErrorScheme } from '@/libs/exceptions';
 
 export const useDeleteProfile = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  return useMutation<unknown, AxiosError>({
+  return useMutation<unknown, AxiosError<ApiErrorScheme>>({
     mutationFn: () => del('/profiles/mine'),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [PROFILE_LIST_QUERY_KEY] });

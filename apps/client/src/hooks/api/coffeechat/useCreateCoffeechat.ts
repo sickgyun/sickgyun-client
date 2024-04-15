@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { post } from '@/libs/api/client';
+import type { ApiErrorScheme } from '@/libs/exceptions';
 
 export type CreateCoffeechatRequest = {
   message?: string;
@@ -10,7 +11,7 @@ export type CreateCoffeechatRequest = {
 export const useCreateCoffeechat = (userId: number) => {
   const router = useRouter();
 
-  return useMutation<unknown, AxiosError, CreateCoffeechatRequest>({
+  return useMutation<unknown, AxiosError<ApiErrorScheme>, CreateCoffeechatRequest>({
     mutationFn: (data: CreateCoffeechatRequest) => post(`/coffeechat/${userId}`, data),
     onSuccess: () => {
       router.replace('/profile');
