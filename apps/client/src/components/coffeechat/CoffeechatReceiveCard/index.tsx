@@ -97,7 +97,7 @@ const CoffeechatReceiveCard = ({
                   fontType="body2"
                   color="primary"
                 >
-                  메세지 및 연락처 보기
+                  메세지와 연락처 보기
                 </ViewContactMessageButton>
               )}
             </Stack>

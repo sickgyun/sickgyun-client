@@ -16,7 +16,7 @@ export const useRejectCoffeechat = (coffeechatId: number) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
-      alert('커피챗 응답이 거절되었어요.');
+      alert('커피챗 신청을 거절했어요.');
     },
   });
 };

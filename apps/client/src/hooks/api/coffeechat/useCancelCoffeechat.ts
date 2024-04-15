@@ -10,7 +10,7 @@ export const useCancelCoffeechat = (coffeechatId: number) => {
     mutationFn: () => del(`/coffeechat/${coffeechatId}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [SEND_COFFEE_CHAT_LIST] });
-      alert('커피챗 요청이 취소되었어요.');
+      alert('커피챗 요청을 취소했어요!');
     },
   });
 };

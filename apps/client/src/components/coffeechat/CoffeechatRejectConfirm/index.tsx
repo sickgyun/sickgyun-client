@@ -26,10 +26,11 @@ const CoffeechatRejectConfirm = ({
   return (
     <Confirm
       title="커피챗 거절"
-      description="정말 커피챗을 거절하시겠습니까?"
+      description="정말 커피챗을 거절하시겠어요?"
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={handleRejectCoffeechatSubmit(onRejectCoffeechat)}
+      confirmButtonText="거절하기"
     >
       <Textarea
         label="거절 사유"

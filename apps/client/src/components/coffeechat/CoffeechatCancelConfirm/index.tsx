@@ -19,8 +19,8 @@ const CoffeechatCancelConfirm = ({
 
   return (
     <Confirm
-      title="커피챗 취소"
-      description="정말 커피챗을 취소하시겠습니까?"
+      title="커피챗 신청 취소"
+      description="정말 커피챗 신청을 취소하시겠습니까?"
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={handleConfirm}

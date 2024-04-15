@@ -45,7 +45,7 @@ const CoffeechatContactFormModal = ({
         <Stack spacing={8}>
           <Text fontType="h2">연락처 {user.hasNotContact ? '추가' : '수정'}</Text>
           <Text fontType="p2" color="gray600">
-            연락처를 기입해야 커피챗 요청 후에 매끄럽게 약속을 잡을 수 있어요!
+            연락처를 추가해야 커피챗 요청 후에 매끄럽게 약속을 잡을 수 있어요!
           </Text>
         </Stack>
         <ModalCloseButton onClose={onClose} />

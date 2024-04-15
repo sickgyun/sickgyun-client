@@ -43,6 +43,7 @@ const CoffeechatAcceptConfirm = ({
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={handleConfirm}
+      confirmButtonText="수락하기"
     />
   );
 };
