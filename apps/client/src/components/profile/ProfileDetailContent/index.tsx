@@ -94,11 +94,7 @@ const ProfileDetailContent = ({
       {profile?.introduction && (
         <Stack spacing={16}>
           <Text fontType="h3">소개 말</Text>
-          <StyledIntroduceBox>
-            <Text fontType="body2" color="gray600">
-              {profile.introduction}
-            </Text>
-          </StyledIntroduceBox>
+          <InfoBox>{profile.introduction}</InfoBox>
         </Stack>
       )}
       {hasProfileInformation && (
@@ -174,17 +170,6 @@ const StyledDeleteButton = styled(IconTrashFill)`
   width: 22px;
   height: 22px;
   color: ${({ theme }) => theme.colors.gray700};
-`;
-
-const StyledIntroduceBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 24px;
-  background-color: ${({ theme }) => theme.colors.gray50};
-  border-radius: 8px;
-  width: 100%;
-  min-height: 56px;
 `;
 
 const StyledInfoBox = styled(InfoBox)`
