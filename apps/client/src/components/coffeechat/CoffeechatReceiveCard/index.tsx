@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import CoffeechatAcceptConfirm from '../CoffeechatAcceptConfirm';
+import CoffeechatContactMessageModal from '../CoffeechatContactMessageModal';
 import CoffeechatRejectConfirm from '../CoffeechatRejectConfirm';
-import CoffeechatRequestUserModal from '../CoffeechatRequestUserModal';
 import { CoffeechatStateEnum } from '@/types/coffeechat';
 import type { CoffeechatState, Contact } from '@/types/coffeechat';
 import type { User } from '@/types/user';
@@ -48,9 +48,9 @@ const CoffeechatReceiveCard = ({
     ));
   };
 
-  const openCoffeechatRequestUserModal = () => {
+  const openCoffeechatContactMessageModal = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatRequestUserModal
+      <CoffeechatContactMessageModal
         isOpen={isOpen}
         onClose={close}
         message={message}
@@ -61,7 +61,7 @@ const CoffeechatReceiveCard = ({
 
   const openCoffeechatMessageModal = () => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatRequestUserModal isOpen={isOpen} onClose={close} message={message} />
+      <CoffeechatContactMessageModal isOpen={isOpen} onClose={close} message={message} />
     ));
   };
 
@@ -92,13 +92,13 @@ const CoffeechatReceiveCard = ({
                 {fromUser.cardinal}기 {fromUser.isGraduated ? '졸업생' : '재학생'}
               </Text>
               {isAccept && (
-                <ViewRequestUserButton
-                  onClick={openCoffeechatRequestUserModal}
+                <ViewContactMessageButton
+                  onClick={openCoffeechatContactMessageModal}
                   fontType="body2"
                   color="primary"
                 >
                   메세지 및 연락처 보기
-                </ViewRequestUserButton>
+                </ViewContactMessageButton>
               )}
             </Stack>
           </Stack>
@@ -146,6 +146,6 @@ const ViewMessageButton = styled(Text)`
   cursor: pointer;
 `;
 
-const ViewRequestUserButton = styled(Text)`
+const ViewContactMessageButton = styled(Text)`
   cursor: pointer;
 `;

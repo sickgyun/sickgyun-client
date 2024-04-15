@@ -1,6 +1,6 @@
 import { Confirm } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
-import CoffeechatRequestUserModal from '../CoffeechatRequestUserModal';
+import CoffeechatContactMessageModal from '../CoffeechatCoffeechatContactMessageModal';
 import { useAcceptCoffeechat } from '@/hooks/api/coffeechat/useAcceptCoffeechat';
 import type { Contact } from '@/types/coffeechat';
 
@@ -15,7 +15,7 @@ const CoffeechatAcceptConfirm = ({
 }: CoffeechatAcceptConfirmProps) => {
   const overlay = useOverlay();
 
-  const openCoffeechatRequestUserModal = ({
+  const openCoffeechatContactMessageModal = ({
     message,
     contact,
   }: {
@@ -23,7 +23,7 @@ const CoffeechatAcceptConfirm = ({
     contact: Contact;
   }) => {
     overlay.open(({ isOpen, close }) => (
-      <CoffeechatRequestUserModal
+      <CoffeechatContactMessageModal
         isOpen={isOpen}
         onClose={close}
         message={message}
@@ -34,7 +34,7 @@ const CoffeechatAcceptConfirm = ({
 
   const { mutate: acceptCoffeechatMutate } = useAcceptCoffeechat({
     coffeechatId,
-    openCoffeechatRequestUserModal,
+    openCoffeechatContactMessageModal,
   });
 
   const handleConfirm = () => {

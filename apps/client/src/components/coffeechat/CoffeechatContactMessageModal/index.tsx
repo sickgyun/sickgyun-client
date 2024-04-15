@@ -10,19 +10,19 @@ import {
 } from '@sickgyun/ui';
 import type { Contact } from '@/types/coffeechat';
 
-type CoffeechatRequestUserModalProps = {
+type CoffeechatContactMessageModalProps = {
   message: string;
   contact?: Contact;
 } & ModalProps;
 
-const CoffeechatRequestUserModal = ({
+const CoffeechatContactMessageModal = ({
   isOpen,
   onClose,
   message,
   contact,
-}: CoffeechatRequestUserModalProps) => {
+}: CoffeechatContactMessageModalProps) => {
   return (
-    <StyledCoffeechatRequestUserModal isOpen={isOpen} onClose={onClose}>
+    <StyledCoffeechatContactMessageModal isOpen={isOpen} onClose={onClose}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h2">커피챗 요청</Text>
@@ -46,13 +46,13 @@ const CoffeechatRequestUserModal = ({
           )}
         </Stack>
       </ModalBody>
-    </StyledCoffeechatRequestUserModal>
+    </StyledCoffeechatContactMessageModal>
   );
 };
 
-export default CoffeechatRequestUserModal;
+export default CoffeechatContactMessageModal;
 
-const StyledCoffeechatRequestUserModal = styled(Modal)`
+const StyledCoffeechatContactMessageModal = styled(Modal)`
   width: 550px;
   max-height: 550px;
 `;
