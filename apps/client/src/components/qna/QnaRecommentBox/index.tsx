@@ -76,7 +76,7 @@ const QnaRecommentBox = ({
                 {userResponse?.isGraduated ? '졸업생' : '재학생'})
               </Text>
             </Text>
-            <Text fontType="p2" color="gray500" style={{ marginLeft: '8px' }}>
+            <Text fontType="p3" color="gray500" style={{ marginLeft: '8px' }}>
               {timeAgo(createTime)}
             </Text>
           </Flex>
