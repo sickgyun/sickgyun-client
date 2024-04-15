@@ -1,6 +1,6 @@
 import { Confirm } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
-import CoffeechatContactMessageModal from '../CoffeechatCoffeechatContactMessageModal';
+import CoffeechatContactMessageModal from '../CoffeechatContactMessageModal';
 import { useAcceptCoffeechat } from '@/hooks/api/coffeechat/useAcceptCoffeechat';
 import type { Contact } from '@/types/coffeechat';
 
