@@ -16,5 +16,8 @@ export const useCreateCoffeechat = (userId: number) => {
       router.replace('/profile');
       alert('커피챗 요청을 보냈어요!');
     },
+    onError: () => {
+      alert('이미 커피챗을 요청한 상태에요!');
+    },
   });
 };
