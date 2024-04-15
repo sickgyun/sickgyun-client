@@ -12,13 +12,7 @@ type AcceptCoffeechatResponse = {
 
 type UseAcceptCoffeechatProps = {
   coffeechatId: number;
-  openCoffeechatContactMessageModal: ({
-    message,
-    contact,
-  }: {
-    message: string;
-    contact: Contact;
-  }) => void;
+  openCoffeechatContactMessageModal: (message: string, contact: Contact) => void;
 };
 
 export const useAcceptCoffeechat = ({
@@ -32,10 +26,7 @@ export const useAcceptCoffeechat = ({
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
-      openCoffeechatContactMessageModal({
-        message: response.message,
-        contact: response.contact,
-      });
+      openCoffeechatContactMessageModal(response.message, response.contact);
     },
   });
 };

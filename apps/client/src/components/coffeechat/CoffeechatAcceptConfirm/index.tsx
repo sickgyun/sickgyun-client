@@ -15,13 +15,7 @@ const CoffeechatAcceptConfirm = ({
 }: CoffeechatAcceptConfirmProps) => {
   const overlay = useOverlay();
 
-  const openCoffeechatContactMessageModal = ({
-    message,
-    contact,
-  }: {
-    message: string;
-    contact: Contact;
-  }) => {
+  const openCoffeechatContactMessageModal = (message: string, contact: Contact) => {
     overlay.open(({ isOpen, close }) => (
       <CoffeechatContactMessageModal
         isOpen={isOpen}
