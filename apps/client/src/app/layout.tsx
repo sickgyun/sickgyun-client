@@ -1,19 +1,19 @@
-'use client';
-
 import type { ReactNode } from 'react';
 import Providers from './providers';
-import ScrollToTop from '@/components/common/ScrollToTop';
+import { GoogleAnalytics } from '@/components/common/GoogleAnalytics';
+import { getMetadata } from '@/utils/getMetadata';
 
 type RootLayoutProps = {
   children: ReactNode;
 };
 
+export const metadata = getMetadata();
+
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="kr">
-      <title>식견</title>
       <body>
-        <ScrollToTop />
+        <GoogleAnalytics />
         <Providers>{children}</Providers>
       </body>
     </html>
