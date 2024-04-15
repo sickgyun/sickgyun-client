@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { IconChevronRightFill, IconTrashFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Flex, Stack, Text } from '@sickgyun/ui';
+import { Flex, InfoBox, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
@@ -106,7 +106,7 @@ const ProfileDetailContent = ({
           <Text fontType="h3">정보</Text>
           <Stack spacing={16}>
             {profile?.githubId && (
-              <StyledNavigationButton onClick={handleGoGithub}>
+              <StyledInfoBox onClick={handleGoGithub}>
                 <Text fontType="body2">👀 깃허브를 구경해봐요!</Text>
                 <Stack direction="horizontal" align="center" spacing={4}>
                   <Text fontType="body3" color="gray700">
@@ -114,10 +114,10 @@ const ProfileDetailContent = ({
                   </Text>
                   <IconChevronRightFill width={16} height={16} color={colors.gray700} />
                 </Stack>
-              </StyledNavigationButton>
+              </StyledInfoBox>
             )}
             {profile?.resumeUrl && (
-              <StyledNavigationButton onClick={handleGoResume}>
+              <StyledInfoBox onClick={handleGoResume}>
                 <Text fontType="body2">📑 이력서가 궁금하다면?</Text>
                 <Stack direction="horizontal" align="center" spacing={4}>
                   <Text fontType="body3" color="gray700">
@@ -125,10 +125,10 @@ const ProfileDetailContent = ({
                   </Text>
                   <IconChevronRightFill width={16} height={16} color={colors.gray700} />
                 </Stack>
-              </StyledNavigationButton>
+              </StyledInfoBox>
             )}
             {profile?.portfolioUrl && (
-              <StyledNavigationButton onClick={handleGoPortfolio}>
+              <StyledInfoBox onClick={handleGoPortfolio}>
                 <Text fontType="body2">💼 포트폴리오는 어떻게 구성되어 있을까요?</Text>
                 <Stack direction="horizontal" align="center" spacing={4}>
                   <Text fontType="body3" color="gray700">
@@ -136,10 +136,10 @@ const ProfileDetailContent = ({
                   </Text>
                   <IconChevronRightFill width={16} height={16} color={colors.gray700} />
                 </Stack>
-              </StyledNavigationButton>
+              </StyledInfoBox>
             )}
             {profile?.email && (
-              <StyledNavigationButton onClick={handleGoEmail}>
+              <StyledInfoBox onClick={handleGoEmail}>
                 <Text fontType="body2">📨 이메일</Text>
                 <Flex align="center">
                   <Text fontType="body3" color="gray700">
@@ -147,7 +147,7 @@ const ProfileDetailContent = ({
                   </Text>
                   <IconChevronRightFill width={24} height={24} color={colors.gray700} />
                 </Flex>
-              </StyledNavigationButton>
+              </StyledInfoBox>
             )}
           </Stack>
         </Stack>
@@ -187,14 +187,9 @@ const StyledIntroduceBox = styled.div`
   min-height: 56px;
 `;
 
-const StyledNavigationButton = styled.div`
+const StyledInfoBox = styled(InfoBox)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 24px;
-  background-color: ${({ theme }) => theme.colors.gray50};
-  border-radius: 8px;
-  width: 100%;
-  height: 56px;
   cursor: pointer;
 `;
