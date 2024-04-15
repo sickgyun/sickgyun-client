@@ -56,17 +56,7 @@ const QnaPage = () => {
             <StyledTopRankQnaWrapper>
               <StyledTopRankQnaCard currentQnaPageIndex={currentQnaPageIndex}>
                 {topRankQnaList?.map((qnaList) => (
-                  <QnaCard
-                    key={qnaList.id}
-                    id={qnaList.id}
-                    title={qnaList.title}
-                    category={qnaList.category}
-                    writer={qnaList.writer.name}
-                    likeCount={qnaList.likeCount}
-                    commentCount={qnaList.commentCount}
-                    cardinal={qnaList.writer.cardinal}
-                    isGraduated={qnaList.writer.isGraduated}
-                  />
+                  <QnaCard key={qnaList.id} {...qnaList} />
                 ))}
               </StyledTopRankQnaCard>
             </StyledTopRankQnaWrapper>

@@ -5,48 +5,29 @@ import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import QnaCategory from '../QnaCategory';
 import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
-import type { Qna } from '@/types/qna';
+import type { GetQnaListResponse } from '@/hooks/api/qna/useGetQnaList';
 
-type QnaPostingCardProps = {
-  id: number;
-  title: string;
-  category: string;
-  writer: string;
-  likeCount: number;
-  commentCount: number;
-  cardinal: number;
-  isGraduated: boolean;
-};
-
-const QnaCard = ({
-  id,
-  title,
-  category,
-  writer,
-  likeCount,
-  commentCount,
-  cardinal,
-  isGraduated,
-}: QnaPostingCardProps) => {
+const QnaCard = (qnaList: GetQnaListResponse) => {
   const router = useRouter();
-  const { qnaLike } = useGetQnaLike(id);
+  const { qnaLike } = useGetQnaLike(qnaList.id);
 
   const handleGoQnaDetailPage = (id: number) => {
     router.push(`/qna/${id}`);
   };
 
   return (
-    <StyledQnaCard onClick={() => handleGoQnaDetailPage(id)}>
+    <StyledQnaCard onClick={() => handleGoQnaDetailPage(qnaList.id)}>
       <Flex direction="column">
         <StyledPopularQnaContent>
-          <QnaCategory questionType={category as Qna} />
-          <StyledQnaContent fontType="h4">{title}</StyledQnaContent>
+          <QnaCategory questionType={qnaList.category} />
+          <StyledQnaContent fontType="h4">{qnaList.title}</StyledQnaContent>
         </StyledPopularQnaContent>
         <StyledPopularQnaInfo>
           <Stack direction="horizontal" spacing={3} align="center">
-            <Text>{writer}</Text>
+            <Text>{qnaList.writer.name}</Text>
             <Text fontType="p2" color="gray600">
-              ({cardinal}기 {isGraduated ? '졸업생' : '재학생'})
+              ({qnaList.writer.cardinal}기{' '}
+              {qnaList.writer.isGraduated ? '졸업생' : '재학생'})
             </Text>
           </Stack>
           <Stack direction="horizontal" spacing={12}>
@@ -57,13 +38,13 @@ const QnaCard = ({
                 <IconHeartRegular width={16} height={16} />
               )}
               <Text fontType="body2" style={{ marginTop: '2px' }}>
-                {likeCount}
+                {qnaList.likeCount}
               </Text>
             </Stack>
             <Stack direction="horizontal" align="center" spacing={3}>
               <IconReplyRegular width={16} height={16} color={colors.gray900} />
               <Text fontType="body2" style={{ marginTop: '2px' }}>
-                {commentCount}
+                {qnaList.commentCount}
               </Text>
             </Stack>
           </Stack>

@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { get } from '@/libs/api/client';
+import type { Qna } from '@/types/qna';
 
 export type GetQnaListResponse = {
   id: number;
   title: string;
   content: string;
-  category: string;
+  category: Qna;
   writer: {
     id: 2;
     name: string;

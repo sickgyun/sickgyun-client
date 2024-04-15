@@ -8,9 +8,9 @@ import { useGetQnaLike } from '@/hooks/api/qna/useGetQnaLike';
 import type { Qna } from '@/types/qna';
 import { timeAgo } from '@/utils/timeAgo';
 
-type qnaBoxProps = {
+type QnaBoxProps = {
   id: number;
-  category: string;
+  category: Qna;
   title: string;
   content: string;
   createTime: string;
@@ -18,33 +18,25 @@ type qnaBoxProps = {
   commentCount: number;
 };
 
-const QnaBox = ({
-  id,
-  category,
-  title,
-  content,
-  createTime,
-  likeCount,
-  commentCount,
-}: qnaBoxProps) => {
+const QnaBox = (qna: QnaBoxProps) => {
   const router = useRouter();
 
   const handleGoDetailQnaPage = (id: number) => {
     router.push(`/qna/${id}`);
   };
 
-  const { qnaLike } = useGetQnaLike(Number(id));
+  const { qnaLike } = useGetQnaLike(Number(qna.id));
 
   return (
-    <StyledQnaBox key={id} onClick={() => handleGoDetailQnaPage(id)}>
+    <StyledQnaBox key={qna.id} onClick={() => handleGoDetailQnaPage(qna.id)}>
       <Flex direction="column">
         <StyledQnaContentContainer>
-          <QnaCategory questionType={category as Qna} />
-          <Text fontType="h4">{title}</Text>
-          <StyledQnaContent>{content}</StyledQnaContent>
+          <QnaCategory questionType={qna.category} />
+          <Text fontType="h4">{qna.title}</Text>
+          <StyledQnaContent>{qna.content}</StyledQnaContent>
           <Flex justify="space-between" style={{ width: '100%' }}>
             <Stack spacing={12} direction="horizontal">
-              <Text fontType="body2">{timeAgo(createTime)}</Text>
+              <Text fontType="body2">{timeAgo(qna.createTime)}</Text>
             </Stack>
             <Stack spacing={12} direction="horizontal">
               <Stack direction="horizontal" align="center" spacing={3}>
@@ -54,13 +46,13 @@ const QnaBox = ({
                   <IconHeartRegular width={16} height={16} />
                 )}
                 <Text fontType="body2" style={{ marginTop: '2px' }}>
-                  {likeCount}
+                  {qna.likeCount}
                 </Text>
               </Stack>
               <Stack direction="horizontal" align="center" spacing={3}>
                 <IconReplyRegular width={16} height={16} color={colors.gray900} />
                 <Text fontType="body2" style={{ marginTop: '2px' }}>
-                  {commentCount}
+                  {qna.commentCount}
                 </Text>
               </Stack>
             </Stack>

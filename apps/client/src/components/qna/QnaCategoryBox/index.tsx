@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { colors } from '@sickgyun/design-token';
 import { Button, Flex, Stack, Text } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -20,16 +19,11 @@ const QnaCategoryBox = () => {
 
   return (
     <StyledQnaCategoryBox>
-      <Stack
-        direction="horizontal"
-        align="center"
-        justify="center"
-        style={{ height: '90px', borderBottom: `1px solid ${colors.white}` }}
-      >
+      <QnaButtonLayout>
         <Button width="80%" onClick={() => handleGoQnaWritePage()}>
           질문하기
         </Button>
-      </Stack>
+      </QnaButtonLayout>
       <Flex direction="column">
         {QNA_CATEGORY.map((category) => (
           <StyledQnaCategory
@@ -55,6 +49,14 @@ const StyledQnaCategoryBox = styled.div`
   height: 300px;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 12px;
+`;
+
+const QnaButtonLayout = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.white};
 `;
 
 const StyledQnaCategory = styled.div<{ isActive: boolean }>`

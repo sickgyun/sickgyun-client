@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 import { useParams, useRouter } from 'next/navigation';
 import { useDeleteQna } from '@/hooks/api/qna/useDeleteQna';
 
-type qnaModifyBoxProps = {
+type QnaModifyBoxProps = {
   qnaId: number;
 };
 
-const QnaModifyBox = ({ qnaId }: qnaModifyBoxProps) => {
+const QnaModifyBox = ({ qnaId }: QnaModifyBoxProps) => {
   const { id } = useParams();
   const router = useRouter();
 

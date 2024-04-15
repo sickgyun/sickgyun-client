@@ -8,7 +8,7 @@ import { useCreateQnaComment } from '@/hooks/api/qna/useCreateComment';
 import type { CreateQnaCommentRequest } from '@/hooks/api/qna/useCreateComment';
 import type { GetQnaCommentListResponse } from '@/hooks/api/qna/useGetQnaCommentList';
 
-type createQnaRecommentBoxProps = {
+type CreateQnaRecommentBoxProps = {
   parentId: number;
   setIsOpenRecommentBox: Dispatch<SetStateAction<boolean>>;
 } & GetQnaCommentListResponse;
@@ -16,7 +16,7 @@ type createQnaRecommentBoxProps = {
 const CreateQnaRecommentBox = ({
   setIsOpenRecommentBox,
   parentId,
-}: createQnaRecommentBoxProps) => {
+}: CreateQnaRecommentBoxProps) => {
   const { id } = useParams();
   const { mutate: qnaCommentMutate } = useCreateQnaComment(Number(id));
 
