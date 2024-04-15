@@ -34,13 +34,6 @@ export const getMetadata = (props?: GetMetadataProps) => {
         url: OG_IMAGE,
       },
     },
-    twitter: {
-      title: TITLE,
-      description: DESCRIPTION,
-      images: {
-        url: OG_IMAGE,
-      },
-    },
   };
 
   return metadata;
