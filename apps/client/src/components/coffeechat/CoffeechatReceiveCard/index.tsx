@@ -102,9 +102,9 @@ const CoffeechatReceiveCard = ({
               )}
             </Stack>
           </Stack>
-          <StyledCoffeechatStatus state={state}>
+          <StyledCoffeechatState state={state}>
             {CoffeechatStateEnum[state]} 완료
-          </StyledCoffeechatStatus>
+          </StyledCoffeechatState>
         </Flex>
       )}
       {isPending && (
@@ -135,7 +135,7 @@ const StyledCoffeechatReceiveCard = styled(Stack)`
   padding-bottom: 16px;
 `;
 
-const StyledCoffeechatStatus = styled.div<{ state: CoffeechatState }>`
+const StyledCoffeechatState = styled.div<{ state: CoffeechatState }>`
   ${({ theme, state }) => css`
     ${theme.fonts.body2}
     color: ${state === 'REJECT' ? theme.colors.red : theme.colors.primary};
