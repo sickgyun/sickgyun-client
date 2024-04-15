@@ -1,6 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { get } from '@/libs/api/client';
+import type { ApiErrorScheme } from '@/libs/exceptions';
 import type { Major } from '@/types/profile';
 
 export type GetProfileListResponse = {
@@ -23,7 +24,10 @@ export const useGetProfileList = (majors: string[]) => {
     ? '/profiles'
     : `/profiles?majors=${majors}`;
 
-  const profileListQuery = useSuspenseQuery<GetProfileListResponse[], AxiosError>({
+  const profileListQuery = useSuspenseQuery<
+    GetProfileListResponse[],
+    AxiosError<ApiErrorScheme>
+  >({
     queryKey: [PROFILE_LIST_QUERY_KEY, majors],
     queryFn: async () => await get(profileListEndPoint),
   });

@@ -3,6 +3,7 @@ import type { AxiosError } from 'axios';
 import { USER_QUERY_KEY } from '../user/useGetUser';
 import { RECEIVE_COFFEE_CHAT_LIST } from './useGetReceiveCoffeechatList';
 import { put } from '@/libs/api/client';
+import type { ApiErrorScheme } from '@/libs/exceptions';
 
 export type RejectCoffeechatRequest = {
   message: string;
@@ -11,7 +12,7 @@ export type RejectCoffeechatRequest = {
 export const useRejectCoffeechat = (coffeechatId: number) => {
   const queryClient = useQueryClient();
 
-  return useMutation<unknown, AxiosError, RejectCoffeechatRequest>({
+  return useMutation<unknown, AxiosError<ApiErrorScheme>, RejectCoffeechatRequest>({
     mutationFn: (data) => put(`/coffeechat/${coffeechatId}/reject`, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
