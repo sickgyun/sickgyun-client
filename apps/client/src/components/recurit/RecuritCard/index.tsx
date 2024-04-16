@@ -14,8 +14,8 @@ const RecuritCard = ({ title, thumbnail, companyName, href }: RecuritCardProps) 
   const { logClickEvent } = useLogAnalyticsEvent();
 
   const handleGoRecruitDetailPage = () => {
-    window.open(href);
     logClickEvent({ name: 'click_recurit_card' });
+    window.open(href);
   };
 
   return (
