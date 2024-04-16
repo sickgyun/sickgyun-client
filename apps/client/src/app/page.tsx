@@ -38,9 +38,7 @@ const MainPage = () => {
           </Stack>
           <Spacer height={84} />
           <Stack spacing={18}>
-            <Text fontType="h3">
-              진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
-            </Text>
+            <Text fontType="h3">커피챗할 선배나 친구를 찾아봐요!</Text>
             <Flex justify="space-between">
               {MAJOR_LIST.map((major) => (
                 <StyledStudentProfileRedirectButton
@@ -60,7 +58,7 @@ const MainPage = () => {
           </Stack>
           <Spacer height={64} />
           <Stack spacing={18}>
-            <Text fontType="h3">뭘 해야 할지 모르겠다고요? 조언을 구해봐요!</Text>
+            <Text fontType="h3">자유롭게 물어봐요!</Text>
             <QnaBanner />
           </Stack>
           <Spacer height={64} />
