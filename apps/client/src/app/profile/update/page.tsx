@@ -37,7 +37,7 @@ const ProfileUpdatePage = () => {
     <>
       <Header />
       <StyledProfileUpdatePageLayout>
-        <StyledProfileUpdatePage onSubmit={handleUpdateProfileSubmit(onUpdateProfile)}>
+        <StyledProfileUpdatePage>
           <Spacer height={32} />
           <Text fontType="h1" color="gray900">
             프로필 수정
@@ -50,7 +50,7 @@ const ProfileUpdatePage = () => {
             watch={watch}
           />
           <Spacer height={48} />
-          <Button type="submit" size="large">
+          <Button onClick={handleUpdateProfileSubmit(onUpdateProfile)} size="large">
             프로필 수정
           </Button>
           <Spacer height={64} />
@@ -69,7 +69,7 @@ const StyledProfileUpdatePageLayout = styled.div`
   height: 100%;
 `;
 
-const StyledProfileUpdatePage = styled.form`
+const StyledProfileUpdatePage = styled.div`
   width: 600px;
   margin: 0 auto;
 `;

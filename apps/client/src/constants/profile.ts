@@ -7,5 +7,5 @@ export const MAJOR_LIST = [
   { value: 'ETC', name: '기타' },
 ] as const;
 
-export const JOB_POSTING_FULL_VIEW_LINK =
+export const RECRUIT_FULL_VIEW_LINK =
   'https://www.rallit.com/?jobGroup=DEVELOPER&jobLevel=INTERN%2CBEGINNER%2CJUNIOR&pageNumber=1';
