@@ -21,7 +21,7 @@ const ProfileUpdatePage = () => {
     setValue,
     watch,
   } = useForm<UpdateProfileRequest>();
-  const { mutate: updateProfileMutate } = useUpdateProfile();
+  const { mutate: updateProfileMutate } = useUpdateProfile(watch());
   const { profileMine } = useGetProfileMine();
 
   const onUpdateProfile: SubmitHandler<UpdateProfileRequest> = (data) => {

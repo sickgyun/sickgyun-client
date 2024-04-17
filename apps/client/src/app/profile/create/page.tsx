@@ -20,7 +20,7 @@ const ProfileCreatePage = () => {
     setValue,
     watch,
   } = useForm<CreateProfileRequest>();
-  const { mutate: createProfileMutate } = useCreateProfile();
+  const { mutate: createProfileMutate } = useCreateProfile(watch());
 
   const onCreateProfile: SubmitHandler<CreateProfileRequest> = (data) => {
     const profile = { isGraduated: user.isGraduated, ...data };
