@@ -34,9 +34,7 @@ const ProfileUpdatePage = () => {
   } = useForm<UpdateProfileRequest>();
   const { mutate: updateProfileMutate } = useUpdateProfile({
     onSuccess: () => {
-      const profileForm = watch();
-
-      logClickEvent({ name: 'click_update_profile', params: profileForm });
+      logClickEvent({ name: 'click_update_profile', params: watch() });
       queryClient.invalidateQueries({ queryKey: [PROFILE_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [PROFILE_MINE_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [PROFILE_QUERY_KEY] });

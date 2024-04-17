@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 import { Confirm, Textarea } from '@sickgyun/ui';
+import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useSendCoffeechat } from '@/hooks/api/coffeechat/useSendCoffeechat';
 import type { SendCoffeechatRequest } from '@/hooks/api/coffeechat/useSendCoffeechat';
+import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 
 type CoffeechatSendConfirmProps = {
   onProfileDetailModalClose: VoidFunction;
@@ -16,9 +18,23 @@ const CoffeechatSendConfirm = ({
   onProfileDetailModalClose,
   userId,
 }: CoffeechatSendConfirmProps) => {
-  const { register, handleSubmit: handleCreateCoffeechatSubmit } =
-    useForm<SendCoffeechatRequest>();
-  const { mutate: sendCoffeechatMutate } = useSendCoffeechat(userId);
+  const router = useRouter();
+  const { logClickEvent } = useLogAnalyticsEvent();
+  const {
+    register,
+    handleSubmit: handleCreateCoffeechatSubmit,
+    watch,
+  } = useForm<SendCoffeechatRequest>();
+  const { mutate: sendCoffeechatMutate } = useSendCoffeechat(userId, {
+    onSuccess: () => {
+      logClickEvent({ name: 'click_send_coffeechat', params: watch() });
+      router.replace('/profile');
+      alert('커피챗 요청을 보냈어요!');
+    },
+    onError: () => {
+      alert('이미 커피챗을 요청한 상태에요!');
+    },
+  });
 
   const onSendCoffeechat: SubmitHandler<SendCoffeechatRequest> = (data) => {
     sendCoffeechatMutate(data);

@@ -1,5 +1,8 @@
 import { Confirm } from '@sickgyun/ui';
+import { useQueryClient } from '@tanstack/react-query';
 import { useCancelCoffeechat } from '@/hooks/api/coffeechat/useCancelCoffeechat';
+import { SEND_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
+import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 
 type CoffeechatCancelConfirmProps = {
   coffeechatId: number;
@@ -10,7 +13,16 @@ const CoffeechatCancelConfirm = ({
   onClose,
   coffeechatId,
 }: CoffeechatCancelConfirmProps) => {
-  const { mutate: cancelCoffeechatMutate } = useCancelCoffeechat(coffeechatId);
+  const queryClient = useQueryClient();
+  const { logClickEvent } = useLogAnalyticsEvent();
+
+  const { mutate: cancelCoffeechatMutate } = useCancelCoffeechat(coffeechatId, {
+    onSuccess: () => {
+      logClickEvent({ name: 'click_cancel_coffeechat' });
+      queryClient.invalidateQueries({ queryKey: [SEND_COFFEE_CHAT_LIST] });
+      alert('커피챗 요청을 취소했어요!');
+    },
+  });
 
   const handleConfirm = () => {
     onClose();

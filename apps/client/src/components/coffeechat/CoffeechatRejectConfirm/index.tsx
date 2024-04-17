@@ -1,10 +1,14 @@
 import { Confirm, Textarea } from '@sickgyun/ui';
+import { useQueryClient } from '@tanstack/react-query';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import { RECEIVE_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
 import {
   type RejectCoffeechatRequest,
   useRejectCoffeechat,
 } from '@/hooks/api/coffeechat/useRejectCoffeechat';
+import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
+import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 
 type CoffeechatRejectConfirmProps = {
   coffeechatId: number;
@@ -15,8 +19,17 @@ const CoffeechatRejectConfirm = ({
   onClose,
   coffeechatId,
 }: CoffeechatRejectConfirmProps) => {
+  const queryClient = useQueryClient();
+  const { logClickEvent } = useLogAnalyticsEvent();
   const { register, handleSubmit: handleRejectCoffeechatSubmit } = useForm();
-  const { mutate: rejectCoffeechatMutate } = useRejectCoffeechat(coffeechatId);
+  const { mutate: rejectCoffeechatMutate } = useRejectCoffeechat(coffeechatId, {
+    onSuccess: () => {
+      logClickEvent({ name: 'click_reject_coffeechat' });
+      queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
+      queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
+      alert('커피챗 신청을 거절했어요.');
+    },
+  });
 
   const onRejectCoffeechat: SubmitHandler<RejectCoffeechatRequest> = (data) => {
     rejectCoffeechatMutate(data);

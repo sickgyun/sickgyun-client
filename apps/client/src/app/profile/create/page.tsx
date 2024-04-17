@@ -31,9 +31,7 @@ const ProfileCreatePage = () => {
   } = useForm<CreateProfileRequest>();
   const { mutate: createProfileMutate } = useCreateProfile({
     onSuccess: () => {
-      const profileForm = watch();
-
-      logClickEvent({ name: 'click_create_profile', params: profileForm });
+      logClickEvent({ name: 'click_create_profile', params: watch() });
       queryClient.invalidateQueries({ queryKey: [PROFILE_LIST_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [PROFILE_MINE_QUERY_KEY] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });

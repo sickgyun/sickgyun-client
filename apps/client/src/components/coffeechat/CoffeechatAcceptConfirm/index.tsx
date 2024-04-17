@@ -1,7 +1,11 @@
 import { Confirm } from '@sickgyun/ui';
+import { useQueryClient } from '@tanstack/react-query';
 import { useOverlay } from '@toss/use-overlay';
 import CoffeechatContactMessageModal from '../CoffeechatContactMessageModal';
 import { useAcceptCoffeechat } from '@/hooks/api/coffeechat/useAcceptCoffeechat';
+import { RECEIVE_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
+import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
+import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 import type { Contact } from '@/types/coffeechat';
 
 type CoffeechatAcceptConfirmProps = {
@@ -14,6 +18,8 @@ const CoffeechatAcceptConfirm = ({
   coffeechatId,
 }: CoffeechatAcceptConfirmProps) => {
   const overlay = useOverlay();
+  const queryClient = useQueryClient();
+  const { logClickEvent } = useLogAnalyticsEvent();
 
   const openCoffeechatContactMessageModal = (message: string, contact: Contact) => {
     overlay.open(({ isOpen, close }) => (
@@ -26,9 +32,13 @@ const CoffeechatAcceptConfirm = ({
     ));
   };
 
-  const { mutate: acceptCoffeechatMutate } = useAcceptCoffeechat({
-    coffeechatId,
-    openCoffeechatContactMessageModal,
+  const { mutate: acceptCoffeechatMutate } = useAcceptCoffeechat(coffeechatId, {
+    onSuccess: (response) => {
+      logClickEvent({ name: 'click_accept_coffeechat' });
+      queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
+      queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
+      openCoffeechatContactMessageModal(response.message, response.contact);
+    },
   });
 
   const handleConfirm = () => {
