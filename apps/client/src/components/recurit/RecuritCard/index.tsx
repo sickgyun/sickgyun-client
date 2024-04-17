@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
+import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 
 type RecuritCardProps = {
   title: string;
@@ -10,7 +11,10 @@ type RecuritCardProps = {
 };
 
 const RecuritCard = ({ title, thumbnail, companyName, href }: RecuritCardProps) => {
+  const { logClickEvent } = useLogAnalyticsEvent();
+
   const handleGoRecruitDetailPage = () => {
+    logClickEvent({ name: 'click_recurit_card' });
     window.open(href);
   };
 

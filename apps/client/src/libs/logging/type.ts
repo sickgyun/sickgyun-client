@@ -1,4 +1,4 @@
 export type LogAnalyticsEvent = {
   name: string;
-  params: Record<string, any>;
+  params?: Record<string, any>;
 };

@@ -9,21 +9,22 @@ import QnaBanner from '@/components/common/Banners/QnaBanner';
 import UserInterviewBanner from '@/components/common/Banners/UserInterviewBanner';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
+import LogClickEvent from '@/components/common/LogClickEvent';
 import LoginBox from '@/components/main/LoginBox';
 import MainBanner from '@/components/main/MainBanner';
 import RecuritList from '@/components/recurit/RecuritList';
-import { JOB_POSTING_FULL_VIEW_LINK, MAJOR_LIST } from '@/constants/profile';
+import { MAJOR_LIST, RECRUIT_FULL_VIEW_LINK } from '@/constants/profile';
 import type { Major } from '@/types/profile';
 
 const MainPage = () => {
   const router = useRouter();
 
-  const hanldeGoProfilePage = (major: Major) => {
-    router.push(`/profile?major=${major}`);
-  };
-
   const renderBanners = () => {
     return [<ErrorReportBanner />, <UserInterviewBanner />];
+  };
+
+  const hanldeGoProfilePage = (major: Major) => {
+    router.push(`/profile?major=${major}`);
   };
 
   return (
@@ -37,9 +38,7 @@ const MainPage = () => {
           </Stack>
           <Spacer height={84} />
           <Stack spacing={18}>
-            <Text fontType="h3">
-              진로, 취업 관련 고민을 같이 말할 선배, 친구를 찾아봐요!
-            </Text>
+            <Text fontType="h3">커피챗할 선배나 친구를 찾아봐요!</Text>
             <Flex justify="space-between">
               {MAJOR_LIST.map((major) => (
                 <StyledStudentProfileRedirectButton
@@ -59,16 +58,18 @@ const MainPage = () => {
           </Stack>
           <Spacer height={64} />
           <Stack spacing={18}>
-            <Text fontType="h3">뭘 해야 할지 모르겠다고요? 조언을 구해봐요!</Text>
+            <Text fontType="h3">자유롭게 물어봐요!</Text>
             <QnaBanner />
           </Stack>
           <Spacer height={64} />
           <Stack spacing={18} style={{ position: 'relative' }}>
             <Flex align="center" justify="space-between">
               <Text fontType="h3">채용 중인 회사에요!</Text>
-              <Link href={JOB_POSTING_FULL_VIEW_LINK} fontType="p1" color="gray750">
-                전체 보기
-              </Link>
+              <LogClickEvent name="click_recurit_full_view_link">
+                <Link href={RECRUIT_FULL_VIEW_LINK} fontType="p1" color="gray750">
+                  전체 보기
+                </Link>
+              </LogClickEvent>
             </Flex>
             <StyledRecuritListWrapper>
               <RecuritList />

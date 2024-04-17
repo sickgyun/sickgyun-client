@@ -13,7 +13,7 @@ export const useLogAnalyticsEvent = () => {
           ...event,
           params: {
             userId: user.id,
-            ...event.params,
+            ...event?.params,
           },
         });
       },
@@ -22,7 +22,7 @@ export const useLogAnalyticsEvent = () => {
           ...event,
           params: {
             userId: user.id,
-            ...event.params,
+            ...event?.params,
           },
         });
       },

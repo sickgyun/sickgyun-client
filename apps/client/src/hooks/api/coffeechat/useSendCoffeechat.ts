@@ -3,15 +3,17 @@ import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { post } from '@/libs/api/client';
 import type { ApiErrorScheme } from '@/libs/exceptions';
-import type { ProfileFormType } from '@/types/profile';
 
-export type CreateProfileRequest = ProfileFormType;
+export type SendCoffeechatRequest = {
+  message?: string;
+};
 
-export const useCreateProfile = (
-  options: UseMutationOptions<unknown, AxiosError<ApiErrorScheme>, CreateProfileRequest>
+export const useSendCoffeechat = (
+  userId: number,
+  options: UseMutationOptions<unknown, AxiosError<ApiErrorScheme>, SendCoffeechatRequest>
 ) => {
   return useMutation({
-    mutationFn: (data: CreateProfileRequest) => post('/profiles', data),
+    mutationFn: (data: SendCoffeechatRequest) => post(`/coffeechat/${userId}`, data),
     ...options,
   });
 };

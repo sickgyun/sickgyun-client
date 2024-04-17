@@ -4,14 +4,17 @@ import { isEmpty } from 'lodash';
 import { useRouter } from 'next/navigation';
 import CoffeechatReceiveCard from '../CoffeechatReceiveCard';
 import { useGetReceiveCoffeechatList } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
+import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 import { useUser } from '@/hooks/common/useUser';
 
 const CoffeechatReceiveList = () => {
   const router = useRouter();
   const { receiveCoffeechatList, isLoading } = useGetReceiveCoffeechatList();
+  const { logClickEvent } = useLogAnalyticsEvent();
   const { user } = useUser();
 
   const handleGoProfileCreatePage = () => {
+    logClickEvent({ name: 'click_notification_profile_create_page' });
     router.push('/profile/create');
   };
 
