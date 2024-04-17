@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { Confirm, Textarea } from '@sickgyun/ui';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { useCreateCoffeechat } from '@/hooks/api/coffeechat/useCreateCoffeechat';
-import type { CreateCoffeechatRequest } from '@/hooks/api/coffeechat/useCreateCoffeechat';
+import { useSendCoffeechat } from '@/hooks/api/coffeechat/useSendCoffeechat';
+import type { SendCoffeechatRequest } from '@/hooks/api/coffeechat/useSendCoffeechat';
 
 type CoffeechatSendConfirmProps = {
   onProfileDetailModalClose: VoidFunction;
@@ -16,12 +16,12 @@ const CoffeechatSendConfirm = ({
   onProfileDetailModalClose,
   userId,
 }: CoffeechatSendConfirmProps) => {
-  const { register, handleSubmit: handleCreateCoffeechatSubmit } =
-    useForm<CreateCoffeechatRequest>();
-  const { mutate: createCoffeechatMutate } = useCreateCoffeechat(userId);
+  const { register, handleSubmit: handleSendCoffeechatSubmit } =
+    useForm<SendCoffeechatRequest>();
+  const { mutate: sendCoffeechatMutate } = useSendCoffeechat(userId);
 
-  const onCreateCoffeechat: SubmitHandler<CreateCoffeechatRequest> = (data) => {
-    createCoffeechatMutate(data);
+  const onSendCoffeechat: SubmitHandler<SendCoffeechatRequest> = (data) => {
+    sendCoffeechatMutate(data);
     onClose();
     onProfileDetailModalClose();
   };
@@ -32,7 +32,7 @@ const CoffeechatSendConfirm = ({
       description="메세지를 입력해서 커피챗을 신청해보세요!"
       isOpen={isOpen}
       onClose={onClose}
-      onConfirm={handleCreateCoffeechatSubmit(onCreateCoffeechat)}
+      onConfirm={handleSendCoffeechatSubmit(onSendCoffeechat)}
     >
       <Textarea
         label="메세지"

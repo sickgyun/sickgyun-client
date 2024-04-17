@@ -4,15 +4,15 @@ import { useRouter } from 'next/navigation';
 import { post } from '@/libs/api/client';
 import type { ApiErrorScheme } from '@/libs/exceptions';
 
-export type CreateCoffeechatRequest = {
+export type SendCoffeechatRequest = {
   message?: string;
 };
 
-export const useCreateCoffeechat = (userId: number) => {
+export const useSendCoffeechat = (userId: number) => {
   const router = useRouter();
 
-  return useMutation<unknown, AxiosError<ApiErrorScheme>, CreateCoffeechatRequest>({
-    mutationFn: (data: CreateCoffeechatRequest) => post(`/coffeechat/${userId}`, data),
+  return useMutation<unknown, AxiosError<ApiErrorScheme>, SendCoffeechatRequest>({
+    mutationFn: (data: SendCoffeechatRequest) => post(`/coffeechat/${userId}`, data),
     onSuccess: () => {
       router.replace('/profile');
       alert('커피챗 요청을 보냈어요!');
