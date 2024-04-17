@@ -16,7 +16,7 @@ const CoffeechatSendConfirm = ({
   onProfileDetailModalClose,
   userId,
 }: CoffeechatSendConfirmProps) => {
-  const { register, handleSubmit: handleSendCoffeechatSubmit } =
+  const { register, handleSubmit: handleCreateCoffeechatSubmit } =
     useForm<SendCoffeechatRequest>();
   const { mutate: sendCoffeechatMutate } = useSendCoffeechat(userId);
 
@@ -32,7 +32,7 @@ const CoffeechatSendConfirm = ({
       description="메세지를 입력해서 커피챗을 신청해보세요!"
       isOpen={isOpen}
       onClose={onClose}
-      onConfirm={handleSendCoffeechatSubmit(onSendCoffeechat)}
+      onConfirm={handleCreateCoffeechatSubmit(onSendCoffeechat)}
     >
       <Textarea
         label="메세지"
