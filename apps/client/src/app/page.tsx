@@ -9,11 +9,11 @@ import QnaBanner from '@/components/common/Banners/QnaBanner';
 import UserInterviewBanner from '@/components/common/Banners/UserInterviewBanner';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import LogClickEvent from '@/components/common/LogClickEvent';
 import LoginBox from '@/components/main/LoginBox';
 import MainBanner from '@/components/main/MainBanner';
 import RecuritList from '@/components/recurit/RecuritList';
 import { MAJOR_LIST, RECRUIT_FULL_VIEW_LINK } from '@/constants/profile';
+import { LogClickEvent } from '@/libs/logging';
 import type { Major } from '@/types/profile';
 
 const MainPage = () => {

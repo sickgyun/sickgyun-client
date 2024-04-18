@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useLoginGoogle } from '@/hooks/api/auth/useLoginGoogle';
-import { Storage } from '@/libs/api/storage';
+import { LocalStorage } from '@/libs/api/storage';
 import { useToast } from '@/libs/toast';
 import { getGoogleAccessToken } from '@/utils/getGoogleAccessToken';
 
@@ -17,8 +17,8 @@ const GoogleLoginPage = () => {
     onSuccess: (data) => {
       const { accessToken, refreshToken } = data;
 
-      Storage.setItem(LOCAL_STORAGE_KEY.accessToken, `Bearer ${accessToken}`);
-      Storage.setItem(LOCAL_STORAGE_KEY.refreshToken, `Bearer ${refreshToken}`);
+      LocalStorage.setItem(LOCAL_STORAGE_KEY.accessToken, `Bearer ${accessToken}`);
+      LocalStorage.setItem(LOCAL_STORAGE_KEY.refreshToken, `Bearer ${refreshToken}`);
       router.replace('/');
     },
     onError: () => {
