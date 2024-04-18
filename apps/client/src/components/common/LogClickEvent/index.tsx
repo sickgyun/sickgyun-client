@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 import type { LogAnalyticsEvent } from '@/libs/logging/type';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 
 type LogClickEventProps = {
   children: ReactNode;

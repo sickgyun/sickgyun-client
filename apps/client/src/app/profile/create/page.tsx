@@ -15,8 +15,8 @@ import { useCreateProfile } from '@/hooks/api/profile/useCreateProfile';
 import { PROFILE_LIST_QUERY_KEY } from '@/hooks/api/profile/useGetProfileList';
 import { PROFILE_MINE_QUERY_KEY } from '@/hooks/api/profile/useGetProfileMine';
 import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 import { useUser } from '@/hooks/common/useUser';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 
 const ProfileCreatePage = () => {
   const router = useRouter();

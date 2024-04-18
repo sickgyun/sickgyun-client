@@ -8,7 +8,7 @@ import {
   useRejectCoffeechat,
 } from '@/hooks/api/coffeechat/useRejectCoffeechat';
 import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 import { useToast } from '@/libs/toast';
 
 type CoffeechatRejectConfirmProps = {

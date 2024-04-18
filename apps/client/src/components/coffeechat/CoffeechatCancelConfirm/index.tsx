@@ -3,7 +3,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useCancelCoffeechat } from '@/hooks/api/coffeechat/useCancelCoffeechat';
 import { RECEIVE_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
 import { SEND_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 import { useToast } from '@/libs/toast';
 
 type CoffeechatCancelConfirmProps = {

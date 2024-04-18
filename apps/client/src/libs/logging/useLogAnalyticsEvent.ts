@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useUser } from '@/hooks/common/useUser';
-import { logAnalyticsEvent } from '@/libs/logging/logAnalyticsEvent';
-import type { LogAnalyticsEvent } from '@/libs/logging/type';
+import { type LogAnalyticsEvent, logAnalyticsEvent } from '@/libs/logging';
 
 export const useLogAnalyticsEvent = () => {
   const { user } = useUser();

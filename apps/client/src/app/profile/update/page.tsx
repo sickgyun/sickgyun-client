@@ -18,8 +18,8 @@ import {
 } from '@/hooks/api/profile/useGetProfileMine';
 import { useUpdateProfile } from '@/hooks/api/profile/useUpdateProfile';
 import type { UpdateProfileRequest } from '@/hooks/api/profile/useUpdateProfile';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 import { useUser } from '@/hooks/common/useUser';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 
 const ProfileUpdatePage = () => {
   const router = useRouter();

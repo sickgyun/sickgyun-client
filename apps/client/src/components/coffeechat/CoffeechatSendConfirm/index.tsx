@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { SEND_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
 import { useSendCoffeechat } from '@/hooks/api/coffeechat/useSendCoffeechat';
 import type { SendCoffeechatRequest } from '@/hooks/api/coffeechat/useSendCoffeechat';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 import { useToast } from '@/libs/toast';
 
 type CoffeechatSendConfirmProps = {

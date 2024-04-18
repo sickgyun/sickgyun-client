@@ -4,8 +4,8 @@ import { isEmpty } from 'lodash';
 import { useRouter } from 'next/navigation';
 import CoffeechatReceiveCard from '../CoffeechatReceiveCard';
 import { useGetReceiveCoffeechatList } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
 import { useUser } from '@/hooks/common/useUser';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 
 const CoffeechatReceiveList = () => {
   const router = useRouter();
