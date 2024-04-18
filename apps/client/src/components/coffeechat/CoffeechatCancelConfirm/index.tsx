@@ -4,6 +4,7 @@ import { useCancelCoffeechat } from '@/hooks/api/coffeechat/useCancelCoffeechat'
 import { RECEIVE_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
 import { SEND_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
 import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useToast } from '@/libs/toast';
 
 type CoffeechatCancelConfirmProps = {
   coffeechatId: number;
@@ -15,6 +16,7 @@ const CoffeechatCancelConfirm = ({
   coffeechatId,
 }: CoffeechatCancelConfirmProps) => {
   const queryClient = useQueryClient();
+  const { toast } = useToast();
   const { logClickEvent } = useLogAnalyticsEvent();
 
   const { mutate: cancelCoffeechatMutate } = useCancelCoffeechat(coffeechatId, {
@@ -22,7 +24,7 @@ const CoffeechatCancelConfirm = ({
       logClickEvent({ name: 'click_cancel_coffeechat' });
       queryClient.invalidateQueries({ queryKey: [SEND_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
-      alert('커피챗 요청을 취소했어요!');
+      toast('커피챗 요청을 취소했어요!');
     },
   });
 

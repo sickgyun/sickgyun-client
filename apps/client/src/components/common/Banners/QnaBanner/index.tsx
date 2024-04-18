@@ -2,14 +2,16 @@ import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 import Logo from '../../Logo';
+import { useToast } from '@/libs/toast';
 import { isProd } from '@/utils/isProd';
 
 const QnaBanner = () => {
   const router = useRouter();
+  const { toast } = useToast();
 
   const handleGoQnaPage = () => {
     if (isProd()) {
-      alert('상진이가 열심히 개발중이에요!');
+      toast('열심히 개발중이에요!');
       return;
     }
     router.push(`/qna`);

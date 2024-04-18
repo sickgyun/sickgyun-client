@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 import { Confirm, Textarea } from '@sickgyun/ui';
+import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import { SEND_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
 import { useSendCoffeechat } from '@/hooks/api/coffeechat/useSendCoffeechat';
 import type { SendCoffeechatRequest } from '@/hooks/api/coffeechat/useSendCoffeechat';
 import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useToast } from '@/libs/toast';
 
 type CoffeechatSendConfirmProps = {
   onProfileDetailModalClose: VoidFunction;
@@ -19,6 +22,8 @@ const CoffeechatSendConfirm = ({
   userId,
 }: CoffeechatSendConfirmProps) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
   const { logClickEvent } = useLogAnalyticsEvent();
   const {
     register,
@@ -28,11 +33,17 @@ const CoffeechatSendConfirm = ({
   const { mutate: sendCoffeechatMutate } = useSendCoffeechat(userId, {
     onSuccess: () => {
       logClickEvent({ name: 'click_send_coffeechat', params: watch() });
+      queryClient.invalidateQueries({ queryKey: [SEND_COFFEE_CHAT_LIST] });
       router.replace('/profile');
-      alert('커피챗 요청을 보냈어요!');
+      toast('커피챗 요청을 보냈어요!', {
+        action: {
+          label: '확인하러 가기',
+          onClick: () => router.push('/notification?type=SEND'),
+        },
+      });
     },
     onError: () => {
-      alert('이미 커피챗을 요청한 상태에요!');
+      toast.error('이미 커피챗을 요청한 상태에요!');
     },
   });
 

@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { Button, Spacer, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import Logo from '@/components/common/Logo';
+import { useToast } from '@/libs/toast';
 
 const SHARE_DATA = {
   title: '식견',
@@ -11,12 +12,14 @@ const SHARE_DATA = {
 };
 
 const MobilePage = () => {
+  const { toast } = useToast();
+
   const handleShareButtonClick = async () => {
     if (navigator.canShare(SHARE_DATA)) {
       await navigator.share(SHARE_DATA);
     } else {
       await navigator.clipboard.writeText(SHARE_DATA.url);
-      alert('주소가 복사되었습니다.');
+      toast('주소가 복사되었습니다.');
     }
   };
 

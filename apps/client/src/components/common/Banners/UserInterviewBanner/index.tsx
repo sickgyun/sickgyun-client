@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import Logo from '../../Logo';
+import { useToast } from '@/libs/toast';
 
 const UserInterviewBanner = () => {
+  const { toast } = useToast();
+
   const handleGoUserInterviewForm = () => {
-    alert('4월 29일에 열려요!');
+    toast('4월 29일에 열려요!');
   };
 
   return (
