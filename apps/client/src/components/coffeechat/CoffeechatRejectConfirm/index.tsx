@@ -8,7 +8,8 @@ import {
   useRejectCoffeechat,
 } from '@/hooks/api/coffeechat/useRejectCoffeechat';
 import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useLogAnalyticsEvent } from '@/libs/logging';
+import { useToast } from '@/libs/toast';
 
 type CoffeechatRejectConfirmProps = {
   coffeechatId: number;
@@ -20,6 +21,7 @@ const CoffeechatRejectConfirm = ({
   coffeechatId,
 }: CoffeechatRejectConfirmProps) => {
   const queryClient = useQueryClient();
+  const { toast } = useToast();
   const { logClickEvent } = useLogAnalyticsEvent();
   const { register, handleSubmit: handleRejectCoffeechatSubmit } = useForm();
   const { mutate: rejectCoffeechatMutate } = useRejectCoffeechat(coffeechatId, {
@@ -27,7 +29,7 @@ const CoffeechatRejectConfirm = ({
       logClickEvent({ name: 'click_reject_coffeechat' });
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
-      alert('커피챗 신청을 거절했어요.');
+      toast('커피챗 신청을 거절했어요.');
     },
   });
 

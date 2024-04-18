@@ -5,7 +5,7 @@ import { useDeleteProfile } from '@/hooks/api/profile/useDeleteProfileMine';
 import { PROFILE_LIST_QUERY_KEY } from '@/hooks/api/profile/useGetProfileList';
 import { PROFILE_MINE_QUERY_KEY } from '@/hooks/api/profile/useGetProfileMine';
 import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 
 type ProfileDeleteConfirmProps = {
   onProfileDetailModalClose: VoidFunction;

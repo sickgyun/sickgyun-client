@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 
 type RecuritCardProps = {
   title: string;

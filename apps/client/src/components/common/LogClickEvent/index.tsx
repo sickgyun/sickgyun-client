@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 import type { LogAnalyticsEvent } from '@/libs/logging/type';
 
 type LogClickEventProps = {

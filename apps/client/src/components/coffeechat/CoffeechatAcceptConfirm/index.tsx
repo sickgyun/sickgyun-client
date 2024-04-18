@@ -5,7 +5,7 @@ import CoffeechatContactMessageModal from '../CoffeechatContactMessageModal';
 import { useAcceptCoffeechat } from '@/hooks/api/coffeechat/useAcceptCoffeechat';
 import { RECEIVE_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
 import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
-import { useLogAnalyticsEvent } from '@/hooks/common/useLogAnalyticsEvent';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 import type { Contact } from '@/types/coffeechat';
 
 type CoffeechatAcceptConfirmProps = {

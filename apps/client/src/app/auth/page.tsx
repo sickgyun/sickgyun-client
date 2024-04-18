@@ -7,10 +7,12 @@ import { useEffect } from 'react';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useLoginGoogle } from '@/hooks/api/auth/useLoginGoogle';
 import { Storage } from '@/libs/api/storage';
+import { useToast } from '@/libs/toast';
 import { getGoogleAccessToken } from '@/utils/getGoogleAccessToken';
 
 const GoogleLoginPage = () => {
   const router = useRouter();
+  const { toast } = useToast();
   const { mutate: loginGoogleMutate } = useLoginGoogle({
     onSuccess: (data) => {
       const { accessToken, refreshToken } = data;
@@ -20,7 +22,7 @@ const GoogleLoginPage = () => {
       router.replace('/');
     },
     onError: () => {
-      alert('학교 계정으로 로그인 해주세요.');
+      toast.error('학교 계정으로 로그인 해주세요.');
       router.replace('/');
     },
   });
