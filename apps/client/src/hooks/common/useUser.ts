@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { userAtom } from '../../store/user/userAtom';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUser } from '@/hooks/api/user/useGetUser';
-import { Storage } from '@/libs/api/storage';
+import { LocalStorage } from '@/libs/api/storage';
 
 export const useUser = () => {
   const userQuery = useGetUser();
@@ -11,7 +11,7 @@ export const useUser = () => {
   const [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
-    const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+    const accessToken = LocalStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
 
     if (userQuery.data) {
       const user = {

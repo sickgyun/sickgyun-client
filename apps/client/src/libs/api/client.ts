@@ -1,7 +1,7 @@
 import axios, { isAxiosError } from 'axios';
 import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { ApiException, CustomException, errorMessage } from '../exceptions';
-import { Storage } from './storage';
+import { LocalStorage } from './storage';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import type { ApiErrorScheme } from '@/libs/exceptions';
 
@@ -19,7 +19,7 @@ const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
     return config;
   }
 
-  const accessToken = Storage.getItem(LOCAL_STORAGE_KEY.accessToken);
+  const accessToken = LocalStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
   if (!accessToken) {
     return config;
   }
@@ -48,12 +48,18 @@ const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) =>
       const response = await post<{ accessToken: string; refreshToken: string }>(
         '/auth/refresh',
         {
-          refreshToken: Storage.getItem(LOCAL_STORAGE_KEY.refreshToken),
+          refreshToken: LocalStorage.getItem(LOCAL_STORAGE_KEY.refreshToken),
         }
       );
 
-      Storage.setItem(LOCAL_STORAGE_KEY.accessToken, `Bearer ${response.accessToken}`);
-      Storage.setItem(LOCAL_STORAGE_KEY.refreshToken, `Bearer ${response.refreshToken}`);
+      LocalStorage.setItem(
+        LOCAL_STORAGE_KEY.accessToken,
+        `Bearer ${response.accessToken}`
+      );
+      LocalStorage.setItem(
+        LOCAL_STORAGE_KEY.refreshToken,
+        `Bearer ${response.refreshToken}`
+      );
     }
   }
 

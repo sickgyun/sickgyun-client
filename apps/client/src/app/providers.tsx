@@ -4,6 +4,7 @@ import { StyleProvider } from '@sickgyun/design-token';
 import { OverlayProvider } from '@toss/use-overlay';
 import type { ReactNode } from 'react';
 import ScrollToTop from '@/components/common/ScrollToTop';
+import LogUserAccessTime from '@/components/logging/LogUserAccessTime';
 import { Toaster } from '@/libs/toast';
 import { QueryClientProvider } from '@/providers';
 
@@ -18,6 +19,7 @@ const Providers = ({ children }: ProvidersProps) => {
         <OverlayProvider>
           <ScrollToTop />
           <Toaster />
+          <LogUserAccessTime />
           {children}
         </OverlayProvider>
       </QueryClientProvider>
