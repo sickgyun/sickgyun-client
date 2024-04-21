@@ -25,7 +25,7 @@ const NotFoundPage = () => {
           <Text fontType="p1" color="gray900" style={{ textAlign: 'center' }}>
             요청하신 페이지가 사라졌거나, 잘못된 경로를 이용하셨어요.
             <br />
-            걱정 마세요, 최고의 탐험가도 떄로는 길을 잃을 때가 있죠.
+            걱정 마세요, 최고의 탐험가도 때로는 길을 잃을 때가 있죠.
           </Text>
         </Flex>
         <Spacer height={48} />
