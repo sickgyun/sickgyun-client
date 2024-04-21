@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
-import { useOverlay } from '@toss/use-overlay';
 import { isEmpty } from 'lodash';
 import React from 'react';
 import ProfileCard from '../ProfileCard';
-import ProfileDetailModal from '../ProfileDetailModal';
 import { withSuspense } from '@/hocs/withSuspense';
 import { useGetProfileList } from '@/hooks/api/profile/useGetProfileList';
 import type { Major } from '@/types/profile';
@@ -14,25 +12,7 @@ type ProfileListProps = {
 };
 
 const ProfileList = ({ major }: ProfileListProps) => {
-  const overlay = useOverlay();
   const { profileList } = useGetProfileList([major]);
-
-  const openProfileDetailModal = ({
-    profileId,
-    userId,
-  }: {
-    profileId: number;
-    userId: number;
-  }) => {
-    overlay.open(({ isOpen, close }) => (
-      <ProfileDetailModal
-        isOpen={isOpen}
-        onClose={close}
-        profileId={profileId}
-        userId={userId}
-      />
-    ));
-  };
 
   return !isEmpty(profileList) ? (
     <StyledProfileList>
@@ -40,14 +20,13 @@ const ProfileList = ({ major }: ProfileListProps) => {
         return (
           <ProfileCard
             key={profile.id}
-            onClick={() =>
-              openProfileDetailModal({ profileId: profile.id, userId: profile.userId })
-            }
             name={profile.name}
             imageUrl={profile.imageUrl}
             cardinal={profile.cardinal}
             major={profile.major}
             isRecruited={profile.isRecruited}
+            profileId={profile.id}
+            userId={profile.userId}
             company={profile.company}
             introduction={profile.introduction}
           />

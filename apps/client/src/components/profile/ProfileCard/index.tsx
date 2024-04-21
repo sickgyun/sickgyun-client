@@ -1,31 +1,51 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
+import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
+import ProfileDetailModal from '../ProfileDetailModal';
+import { useLogAnalyticsEvent } from '@/libs/logging';
 import type { Major } from '@/types/profile';
 
 type ProfileCardProps = {
-  onClick: VoidFunction;
   name: string;
   imageUrl: string;
   cardinal: number;
   major: Major;
+  profileId: number;
+  userId: number;
   company?: string;
   introduction?: string;
   isRecruited: boolean;
 };
 
 const ProfileCard = ({
-  onClick,
   name,
   cardinal,
   imageUrl,
   major,
+  profileId,
+  userId,
   company,
   introduction,
   isRecruited,
 }: ProfileCardProps) => {
+  const overlay = useOverlay();
+  const { logClickEvent } = useLogAnalyticsEvent();
+
+  const openProfileDetailModal = () => {
+    logClickEvent({ name: 'click_profile_card' });
+    overlay.open(({ isOpen, close }) => (
+      <ProfileDetailModal
+        isOpen={isOpen}
+        onClose={close}
+        profileId={profileId}
+        userId={userId}
+      />
+    ));
+  };
+
   return (
-    <StyledProfileCard onClick={onClick}>
+    <StyledProfileCard onClick={openProfileDetailModal}>
       <Stack
         direction="horizontal"
         align="center"
