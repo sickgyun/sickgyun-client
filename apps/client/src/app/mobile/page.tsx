@@ -30,20 +30,19 @@ const MobilePage = () => {
         <Spacer height={24} />
         <Stack direction="vertical" align="center" spacing={12}>
           <Text fontType="h2" color="gray900">
-            PC 환경에서 다시 접속해주세요
+            PC에서 식견을 만나보세요
           </Text>
           <Text fontType="body2" color="gray900" style={{ textAlign: 'center' }}>
-            귀찮게 해서 죄송해요ㅠ
-            <br /> 식견은 아직 모바일 환경을 지원하지 않아요
-            <br /> 최대한 빠른 시일내로 반응형 개발할게요...
+            아직 모바일 환경을 지원하지 않아요.
+            <br /> 당황해하실 줄 알고 밑에 공유하기 버튼을 준비했어요.
           </Text>
         </Stack>
         <Spacer height={30} />
-        <StyledCryPatrickStarImage
-          src="/assets/gifs/cry_patrick_star.gif"
+        <StyledJimmyFallonImage
+          src="/assets/gifs/jimmy_fallon.gif"
           alt="Cry Patrick Star"
-          width={200}
-          height={165}
+          width={220}
+          height={157}
         />
         <Spacer height={30} />
         <Stack direction="vertical" align="center" spacing={8} style={{ width: '100%' }}>
@@ -76,6 +75,6 @@ const StyledMobilPage = styled.div`
   padding: 20px;
 `;
 
-const StyledCryPatrickStarImage = styled(Image)`
+const StyledJimmyFallonImage = styled(Image)`
   border-radius: 12px;
 `;
