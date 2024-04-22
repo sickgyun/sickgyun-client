@@ -24,7 +24,7 @@ const CoffeechatCancelConfirm = ({
       logClickEvent({ name: 'click_cancel_coffeechat' });
       queryClient.invalidateQueries({ queryKey: [SEND_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
-      toast('커피챗 요청을 취소했어요!');
+      toast.info('커피챗 요청을 취소했어요!');
     },
   });
 

@@ -20,7 +20,7 @@ const MobilePage = () => {
       await navigator.share(SHARE_DATA);
     } else {
       await navigator.clipboard.writeText(SHARE_DATA.url);
-      toast('주소가 복사되었습니다.');
+      toast.info('주소가 복사되었습니다.');
     }
   };
 

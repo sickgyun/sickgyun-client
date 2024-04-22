@@ -7,7 +7,7 @@ const UserInterviewBanner = () => {
   const { toast } = useToast();
 
   const handleGoUserInterviewForm = () => {
-    toast('4월 29일에 열려요!');
+    toast.info('4월 29일에 열려요!');
   };
 
   return (

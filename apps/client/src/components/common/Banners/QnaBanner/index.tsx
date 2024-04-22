@@ -11,7 +11,7 @@ const QnaBanner = () => {
 
   const handleGoQnaPage = () => {
     if (isProd()) {
-      toast('열심히 개발중이에요!');
+      toast.info('열심히 개발중이에요!');
       return;
     }
     router.push(`/qna`);
