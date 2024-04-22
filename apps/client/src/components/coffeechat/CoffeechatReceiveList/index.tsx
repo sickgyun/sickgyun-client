@@ -44,9 +44,7 @@ const CoffeechatReceiveList = () => {
           <Button onClick={handleGoProfileCreatePage} size="medium" width="200px">
             프로필 등록하러 가기
           </Button>
-          <Text fontType="p1" color="gray900">
-            프로필 등록을 하면 커피챗 요청을 받을 수 있어요!
-          </Text>
+          <Text fontType="p1">프로필 등록을 하면 커피챗 요청을 받을 수 있어요!</Text>
         </Stack>
       )}
     </StyledCoffeechatReceiveList>

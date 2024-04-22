@@ -50,9 +50,7 @@ const ProfileCreatePage = () => {
       <StyledProfileCreatePageLayout>
         <StyledProfileCreatePage>
           <Spacer height={32} />
-          <Text fontType="h1" color="gray900">
-            프로필 작성
-          </Text>
+          <Text fontType="h1">프로필 작성</Text>
           <Spacer height={32} />
           <ProfileForm register={register} setValue={setValue} watch={watch} />
           <Spacer height={48} />

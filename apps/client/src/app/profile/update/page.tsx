@@ -58,9 +58,7 @@ const ProfileUpdatePage = () => {
       <StyledProfileUpdatePageLayout>
         <StyledProfileUpdatePage>
           <Spacer height={32} />
-          <Text fontType="h1" color="gray900">
-            프로필 수정
-          </Text>
+          <Text fontType="h1">프로필 수정</Text>
           <Spacer height={32} />
           <ProfileForm
             register={register}
