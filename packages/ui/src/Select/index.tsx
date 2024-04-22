@@ -10,6 +10,7 @@ type SelectProps = {
   children: ReactNode;
   width?: string;
   label?: string;
+  placeholder?: string;
 } & SelectHTMLAttributes<HTMLSelectElement>;
 
 export const Select = forwardRef(function Select(
