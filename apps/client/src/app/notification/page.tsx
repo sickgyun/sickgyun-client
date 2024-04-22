@@ -34,9 +34,7 @@ const NotificationPage = () => {
       <StyledNotificationPageLayout>
         <StyledNotificationPage>
           <Spacer height={32} />
-          <Text fontType="h1" color="gray900">
-            커피챗 {coffeechatType} 내역
-          </Text>
+          <Text fontType="h1">커피챗 {coffeechatType} 내역</Text>
           <Spacer height={32} />
           <Stack direction="horizontal" align="center" spacing={12}>
             <Button

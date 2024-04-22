@@ -1,24 +1,34 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { IconProfileFill, IconWriteStoryFill } from '@seed-design/icon';
+import { colors } from '@sickgyun/design-token';
 import { Button, Flex, Spinner, Stack, Text } from '@sickgyun/ui';
-import Image from 'next/image';
+import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
+import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
 import { useUser } from '@/hooks/common/useUser';
 
 const LoginBox = () => {
   const router = useRouter();
   const { user, isLoading } = useUser();
+  const overlay = useOverlay();
 
   const handleLogin = () => {
     router.push(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
   };
 
-  const handleGoJumpit = () => {
-    window.open('https://www.jumpit.co.kr');
+  const handleGoProfileManagePage = () => {
+    if (user.hasCreatedProfile) {
+      router.push('/profile/update');
+    } else {
+      router.push('/profile/create');
+    }
   };
 
-  const handleGoWanted = () => {
-    window.open('https://www.wanted.co.kr');
+  const openCoffeechatContactFormModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatContactFormModal isOpen={isOpen} onClose={close} />
+    ));
   };
 
   return (
@@ -44,23 +54,17 @@ const LoginBox = () => {
             </Text>
           </Stack>
           <Flex align="center" justify="space-between" style={{ width: '100%' }}>
-            <StyledNavigationButton onClick={handleGoJumpit}>
-              <Image
-                src="/assets/images/jumpit.png"
-                width={24}
-                height={24}
-                alt="Jumpit"
-              />
-              <Text fontType="body2">점핏 바로가기</Text>
+            <StyledNavigationButton onClick={handleGoProfileManagePage}>
+              <IconProfileFill width={24} height={24} color={colors.gray900} />
+              <Text fontType="body2">
+                프로필 {user.hasCreatedProfile ? '수정' : '추가'}하기
+              </Text>
             </StyledNavigationButton>
-            <StyledNavigationButton onClick={handleGoWanted}>
-              <Image
-                src="/assets/images/wanted.png"
-                width={24}
-                height={24}
-                alt="Wanted"
-              />
-              <Text fontType="p2">원티드 바로가기</Text>
+            <StyledNavigationButton onClick={openCoffeechatContactFormModal}>
+              <IconWriteStoryFill width={24} height={24} color={colors.gray900} />
+              <Text fontType="body2">
+                연락처 {user.hasNotContact ? '추가' : '수정'}하기
+              </Text>
             </StyledNavigationButton>
           </Flex>
         </StyledLoginSuccessBox>

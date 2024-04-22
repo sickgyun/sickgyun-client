@@ -21,7 +21,7 @@ export const Text = forwardRef(function Text(
     tag = 'span',
     children,
     fontType: textStyle = 'p1',
-    color = 'black',
+    color = 'gray900',
     isEllipsis = false,
     ...props
   }: TextProps,
