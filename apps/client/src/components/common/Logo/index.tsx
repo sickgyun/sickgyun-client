@@ -1,9 +1,9 @@
-import type { HTMLAttributes } from 'react';
+import type { ImgHTMLAttributes } from 'react';
 
 type LogoProps = {
   width: number;
   height: number;
-} & HTMLAttributes<HTMLDivElement>;
+} & ImgHTMLAttributes<HTMLImageElement>;
 
 const Logo = ({ width, height, ...props }: LogoProps) => {
   return (

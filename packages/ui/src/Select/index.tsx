@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconExpandMoreFill } from '@seed-design/icon';
-import type { ForwardedRef, HTMLAttributes, ReactNode } from 'react';
+import type { ForwardedRef, ReactNode, SelectHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 import { Flex } from '../Flex';
 import { Text } from '../Text';
@@ -10,7 +10,7 @@ type SelectProps = {
   children: ReactNode;
   width?: string;
   label?: string;
-} & HTMLAttributes<HTMLSelectElement>;
+} & SelectHTMLAttributes<HTMLSelectElement>;
 
 export const Select = forwardRef(function Select(
   { children, placeholder, label, width = '100%', ...props }: SelectProps,
