@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { ChangeEvent, ForwardedRef, TextareaHTMLAttributes } from 'react';
+import type { ChangeEvent, ForwardedRef, HTMLAttributes } from 'react';
 import { forwardRef, useCallback } from 'react';
 import { Text } from '../Text';
 
@@ -9,7 +9,7 @@ type TextareaProps = {
   width?: string;
   minHeight?: string;
   isAutoHeight?: boolean;
-} & TextareaHTMLAttributes<HTMLTextAreaElement>;
+} & HTMLAttributes<HTMLTextAreaElement>;
 
 export const Textarea = forwardRef(function Textarea(
   {
