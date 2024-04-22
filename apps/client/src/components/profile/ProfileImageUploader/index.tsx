@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button, Stack, Text } from '@sickgyun/ui';
 import type { ChangeEventHandler, DragEventHandler } from 'react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { UseFormSetValue } from 'react-hook-form';
 import { useUploadImage } from '@/hooks/api/image/useUploadImage';
 import type { ProfileFormType } from '@/types/profile';
@@ -27,6 +27,13 @@ const ProfileImageUploader = ({
     },
   });
   const hasImageUrl = Boolean(value ?? defaultValue);
+
+  useEffect(() => {
+    if (defaultValue) {
+      setValue('imageUrl', defaultValue);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleFileSelectButtonClick = () => {
     imageFileRef.current?.click();
