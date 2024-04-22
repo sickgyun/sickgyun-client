@@ -8,6 +8,7 @@ import ProfileDeleteConfirm from '../ProfileDeleteConfirm';
 import FullHeightSpinner from '@/components/common/FullHeightSpinner';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 import { useUser } from '@/hooks/common/useUser';
+import { convertNewlineToJSX } from '@/utils/convertNewlineToJsx';
 
 type ProfileDetailContentProps = {
   profileId: number;
@@ -94,7 +95,7 @@ const ProfileDetailContent = ({
       {profile?.introduction && (
         <Stack spacing={16}>
           <Text fontType="h3">소개 말</Text>
-          <InfoBox>{profile.introduction}</InfoBox>
+          <InfoBox>{convertNewlineToJSX(profile.introduction)}</InfoBox>
         </Stack>
       )}
       {hasProfileInformation && (

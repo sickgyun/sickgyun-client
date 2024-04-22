@@ -5,6 +5,7 @@ import { Button, Spacer, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import Logo from '@/components/common/Logo';
 import { useToast } from '@/libs/toast';
+import { convertNewlineToJSX } from '@/utils/convertNewlineToJsx';
 
 const SHARE_DATA = {
   title: '식견',
@@ -33,8 +34,9 @@ const MobilePage = () => {
             PC에서 식견을 만나보세요
           </Text>
           <Text fontType="body2" color="gray900" style={{ textAlign: 'center' }}>
-            아직 모바일 환경을 지원하지 않아요.
-            <br /> 당황해하실 줄 알고 밑에 공유하기 버튼을 준비했어요.
+            {convertNewlineToJSX(
+              '아직 모바일 환경을 지원하지 않아요.\n당황해하실 줄 알고 밑에 공유하기 버튼을 준비했어요.'
+            )}
           </Text>
         </Stack>
         <Spacer height={30} />

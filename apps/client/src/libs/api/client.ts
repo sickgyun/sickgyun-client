@@ -36,12 +36,12 @@ const interceptorRequestFulfilled = (config: InternalAxiosRequestConfig) => {
 
 instance.interceptors.request.use(interceptorRequestFulfilled);
 
-const interceptorResponseFulfilled = (res: AxiosResponse) => {
-  if (200 <= res.status && res.status < 300) {
-    return res.data;
+const interceptorResponseFulfilled = (response: AxiosResponse) => {
+  if (200 <= response.status && response.status < 300) {
+    return response.data;
   }
 
-  return Promise.reject(res.data);
+  return Promise.reject(response.data);
 };
 
 const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) => {
