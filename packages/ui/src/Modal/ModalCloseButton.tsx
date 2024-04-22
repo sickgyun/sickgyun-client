@@ -1,10 +1,10 @@
 import { IconCloseFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import type { HTMLAttributes } from 'react';
+import type { SVGAttributes } from 'react';
 
 type ModalCloseButtonProps = {
   onClose: VoidFunction;
-} & HTMLAttributes<HTMLDivElement>;
+} & SVGAttributes<SVGSVGElement>;
 
 export const ModalCloseButton = ({ onClose }: ModalCloseButtonProps) => {
   return (
