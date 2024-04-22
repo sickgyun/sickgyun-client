@@ -11,12 +11,14 @@ import {
   Text,
 } from '@sickgyun/ui';
 import { useQueryClient } from '@tanstack/react-query';
+import { isEmpty } from 'lodash';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
 import type { UpdateUserContactRequest } from '@/hooks/api/user/useUpdateUserContact';
 import { useUpdateUserContact } from '@/hooks/api/user/useUpdateUserContact';
 import { useUser } from '@/hooks/common/useUser';
+import { useToast } from '@/libs/toast';
 
 type CoffeechatContactFormModalProps = ModalProps;
 
@@ -25,6 +27,7 @@ const CoffeechatContactFormModal = ({
   onClose,
 }: CoffeechatContactFormModalProps) => {
   const queryClient = useQueryClient();
+  const { toast } = useToast();
   const { register, handleSubmit: handleUpdateUserContactSubmit } =
     useForm<UpdateUserContactRequest>();
   const { user } = useUser();
@@ -36,6 +39,13 @@ const CoffeechatContactFormModal = ({
   });
 
   const onUpdateUserContact: SubmitHandler<UpdateUserContactRequest> = (data) => {
+    const { phoneNumber, instagramId, kakaoId } = data;
+
+    if (isEmpty(phoneNumber) && isEmpty(instagramId) && isEmpty(kakaoId)) {
+      toast.error('연락처를 최소 1개 이상 입력해야해요');
+      return;
+    }
+
     updateUserContactMutate(data);
   };
 
@@ -73,9 +83,17 @@ const CoffeechatContactFormModal = ({
         </Stack>
       </ModalBody>
       <ModalFooter>
-        <Button onClick={handleUpdateUserContactSubmit(onUpdateUserContact)} size="large">
-          {user.hasNotContact ? '추가하기' : '수정하기'}
-        </Button>
+        <Stack direction="vertical" align="center" spacing={8} style={{ width: '100%' }}>
+          <Text fontType="p2" color="gray500">
+            연락처를 최소 1개 이상 입력해야해요
+          </Text>
+          <Button
+            onClick={handleUpdateUserContactSubmit(onUpdateUserContact)}
+            size="large"
+          >
+            {user.hasNotContact ? '추가하기' : '수정하기'}
+          </Button>
+        </Stack>
       </ModalFooter>
     </StyledCoffeechatContactFormModal>
   );
