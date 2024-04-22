@@ -5,7 +5,6 @@ import { Flex, Link, Spacer, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ErrorReportBanner from '@/components/common/Banners/ErrorReportBanner';
-import QnaBanner from '@/components/common/Banners/QnaBanner';
 import UserInterviewBanner from '@/components/common/Banners/UserInterviewBanner';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -57,11 +56,11 @@ const MainPage = () => {
             </Flex>
           </Stack>
           <Spacer height={64} />
-          <Stack spacing={18}>
+          {/* <Stack spacing={18}>
             <Text fontType="h3">자유롭게 물어봐요!</Text>
             <QnaBanner />
           </Stack>
-          <Spacer height={64} />
+          <Spacer height={64} /> */}
           <Stack spacing={18} style={{ position: 'relative' }}>
             <Flex align="center" justify="space-between">
               <Text fontType="h3">채용 중인 회사에요!</Text>
