@@ -5,6 +5,11 @@ import { LocalStorage } from './storage';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import type { ApiErrorScheme } from '@/libs/exceptions';
 
+type AuthRefreshResponse = {
+  accessToken: string;
+  refreshToken: string;
+};
+
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 15000,
@@ -45,21 +50,27 @@ const interceptorResponseRejected = async (error: AxiosError<ApiErrorScheme>) =>
       error.response?.data?.status === 403 &&
       error.response?.data?.message === '토큰이 만료되었습니다.'
     ) {
-      const response = await post<{ accessToken: string; refreshToken: string }>(
-        '/auth/refresh',
-        {
+      try {
+        const response = await post<AuthRefreshResponse>('/auth/refresh', {
           refreshToken: LocalStorage.getItem(LOCAL_STORAGE_KEY.refreshToken),
-        }
-      );
+        });
 
-      LocalStorage.setItem(
-        LOCAL_STORAGE_KEY.accessToken,
-        `Bearer ${response.accessToken}`
-      );
-      LocalStorage.setItem(
-        LOCAL_STORAGE_KEY.refreshToken,
-        `Bearer ${response.refreshToken}`
-      );
+        LocalStorage.setItem(
+          LOCAL_STORAGE_KEY.accessToken,
+          `Bearer ${response.accessToken}`
+        );
+        LocalStorage.setItem(
+          LOCAL_STORAGE_KEY.refreshToken,
+          `Bearer ${response.refreshToken}`
+        );
+
+        error.config.headers.Authorization = LocalStorage.getItem('siac');
+
+        return instance.request(error.config);
+      } catch {
+        localStorage.clear();
+        window.location.replace('/');
+      }
     }
   }
 
