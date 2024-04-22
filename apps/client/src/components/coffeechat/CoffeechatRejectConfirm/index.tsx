@@ -29,7 +29,7 @@ const CoffeechatRejectConfirm = ({
       logClickEvent({ name: 'click_reject_coffeechat' });
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
-      toast('커피챗 신청을 거절했어요.');
+      toast.info('커피챗 신청을 거절했어요.');
     },
   });
 
