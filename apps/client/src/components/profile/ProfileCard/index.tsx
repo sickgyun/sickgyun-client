@@ -93,5 +93,5 @@ const StyledProfileCard = styled.div`
 
 const StyledProfileImage = styled(Image)`
   border-radius: 8px;
-  height: 100%;
+  object-fit: cover;
 `;

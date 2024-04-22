@@ -164,6 +164,7 @@ const StyledProfileDetailContent = styled.div`
 
 const StyledProfileImage = styled(Image)`
   border-radius: 8px;
+  object-fit: cover;
 `;
 
 const StyledDeleteButton = styled(IconTrashFill)`
