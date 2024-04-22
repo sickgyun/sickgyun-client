@@ -62,7 +62,7 @@ const ProfileCard = ({
           </Stack>
           {introduction && (
             <Text fontType="p2" color="gray600" isEllipsis={true}>
-              {introduction}
+              {introduction.length === 20 ? introduction + '...' : introduction}
             </Text>
           )}
           <Stack direction="horizontal" spacing={6} align="center">
