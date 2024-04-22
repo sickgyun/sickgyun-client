@@ -1,0 +1,15 @@
+{
+  "extends": ["config:base"],
+  "labels": ["renovate"],
+  "packageRules": [
+    {
+      "packagePatterns": ["^@types/"],
+      "automerge": true
+    },
+    {
+      "groupName": "lints",
+      "matchPackagePatterns": ["^eslint", "^prettier", "^markdownlint"],
+      "labels": ["lint"]
+    }
+  ]
+}
