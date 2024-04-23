@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useUser } from '@/hooks/common/useUser';
 import { useLogAnalyticsEvent } from '@/libs/logging';
 
@@ -8,7 +8,7 @@ const EmailPage = () => {
   const { logShowEvent } = useLogAnalyticsEvent();
   const { user } = useUser();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     logShowEvent({ name: 'show_email_entry_site' });
 
     if (user.isLogin) {
