@@ -70,7 +70,9 @@ const MainPage = () => {
                 ? `${user.name}님의 커피챗 신청을 기다리는 선배들이에요`
                 : '커피챗 신청을 기다리는 선배들이에요'}
             </Text>
-            <DirectProfileList />
+            <StyledDirectProfileListWrapper>
+              <DirectProfileList />
+            </StyledDirectProfileListWrapper>
           </Stack>
           <Spacer height={64} />
           <Stack spacing={18} style={{ position: 'relative' }}>
@@ -124,7 +126,12 @@ const StyledStudentProfileRedirectButton = styled.div`
   }
 `;
 
+const StyledDirectProfileListWrapper = styled.div`
+  position: relative;
+  height: 180px;
+`;
+
 const StyledRecuritListWrapper = styled.div`
   position: relative;
-  min-height: 300px;
+  height: 300px;
 `;

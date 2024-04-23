@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Stack } from '@sickgyun/ui';
 import DirectProfileCard from '../DirectProfileCard';
+import FullHeightSpinner from '@/components/common/FullHeightSpinner';
 import { withSuspense } from '@/hocs/withSuspense';
 
 const DirectProfileList = () => {
@@ -30,9 +31,9 @@ const DirectProfileList = () => {
   );
 };
 
-export default withSuspense(DirectProfileList);
+export default withSuspense(DirectProfileList, FullHeightSpinner);
 
 const StyledDirectProfileList = styled(Stack)`
   width: 100%;
-  height: 180px;
+  height: 100%;
 `;
