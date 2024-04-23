@@ -43,6 +43,7 @@ const ProfileForm = ({ defaultValues, register, setValue, watch }: ProfileFormPr
         label="소개 말"
         placeholder="소개 말을 적어주세요."
         defaultValue={defaultValues?.introduction}
+        minHeight="200px"
         {...register('introduction')}
       />
       <Select label="포지션" defaultValue={defaultValues?.major} {...register('major')}>
