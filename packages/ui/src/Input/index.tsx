@@ -56,7 +56,7 @@ const StyledInput = styled.input<InputProps>`
   outline: none;
   ${({ theme, hasError }) => css`
     ${theme.fonts.body1}
-    border: 1px solid ${hasError ? theme.colors.red : theme.colors.gray400};
+    border: 1px solid ${hasError ? theme.colors.red : theme.colors.gray300};
     background-color: ${theme.colors.white};
     color: ${theme.colors.gray900};
     caret-color: ${hasError ? theme.colors.red : theme.colors.primary};

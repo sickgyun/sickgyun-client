@@ -60,7 +60,7 @@ const StyledSelect = styled.select`
   ${({ theme }) => css`
     ${theme.fonts.body1}
     color: ${theme.colors.gray900};
-    border: 1px solid ${theme.colors.gray400};
+    border: 1px solid ${theme.colors.gray300};
     background-color: ${theme.colors.white};
     ::placeholder {
       ${theme.fonts.body1}

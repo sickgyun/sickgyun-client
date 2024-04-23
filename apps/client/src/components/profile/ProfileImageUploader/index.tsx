@@ -134,7 +134,7 @@ const StyledProfileImageUploader = styled.div<{ isDragging: boolean; imageUrl: s
   width: 100%;
   height: 180px;
   ${({ theme, isDragging, imageUrl }) => css`
-    border: 1px solid ${isDragging ? theme.colors.primary : theme.colors.gray400};
+    border: 1px solid ${isDragging ? theme.colors.primary : theme.colors.gray300};
     ${Boolean(imageUrl) &&
     css`
       background-image: url(${imageUrl});

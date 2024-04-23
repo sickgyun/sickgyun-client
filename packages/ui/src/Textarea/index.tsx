@@ -65,7 +65,7 @@ const StyledTextarea = styled.textarea<{ minHeight?: string }>`
   font-size: 15px;
   ${({ theme }) => css`
     ${theme.fonts.body2}
-    border: 1px solid ${theme.colors.gray400};
+    border: 1px solid ${theme.colors.gray300};
     background-color: ${theme.colors.white};
     color: ${theme.colors.gray900};
     caret-color: ${theme.colors.primary};
