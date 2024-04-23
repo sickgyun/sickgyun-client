@@ -25,7 +25,7 @@ const DirectProfileList = () => {
       <DirectProfileCard
         profileId={3}
         userId={3}
-        introduction={`- 마루, 식견의 디자인을 맡았어요\n- 디자인과 디자이너 취업 등에 대해 이야기\n해드릴 수 있어요`}
+        introduction={`- 마루, 식견의 디자인을 맡았어요.\n- 디자인과 디자이너 취업 등에 대해 이야기\n해드릴 수 있어요.`}
       />
     </StyledDirectProfileList>
   );
