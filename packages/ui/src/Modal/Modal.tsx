@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import type { ForwardedRef, HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 import Portal from '../Portal';
 
 type ModalProps = {
@@ -17,6 +17,14 @@ export const Modal = forwardRef(function Modal(
     if (e.target !== e.currentTarget) return;
     if (onClose) onClose();
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isOpen]);
 
   return (
     <Portal isOpen={isOpen}>
