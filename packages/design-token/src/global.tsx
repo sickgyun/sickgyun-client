@@ -5,12 +5,8 @@ import { FontCSS, ResetCSS } from '.';
 const globalStyle = css`
   * {
     box-sizing: border-box;
-  }
-
-  body {
-    color: ${colors.gray900};
-    font-weight: normal;
     font-family: WantedSansVariable;
+    color: ${colors.gray900};
   }
 `;
 
