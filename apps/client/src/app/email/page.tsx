@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { useLayoutEffect } from 'react';
 import { useUser } from '@/hooks/common/useUser';
 import { useLogAnalyticsEvent } from '@/libs/logging';
