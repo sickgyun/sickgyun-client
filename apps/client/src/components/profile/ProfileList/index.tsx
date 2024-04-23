@@ -24,7 +24,6 @@ const ProfileList = ({ major }: ProfileListProps) => {
             imageUrl={profile.imageUrl}
             cardinal={profile.cardinal}
             major={profile.major}
-            isRecruited={profile.isRecruited}
             profileId={profile.id}
             userId={profile.userId}
             company={profile.company}
