@@ -2,18 +2,19 @@
 
 import { useRouter } from 'next/navigation';
 import { useLayoutEffect } from 'react';
-import { useUser } from '@/hooks/common/useUser';
+import { LocalStorage } from '@/libs/api/storage';
 import { useLogAnalyticsEvent } from '@/libs/logging';
 
 const EmailPage = () => {
   const router = useRouter();
   const { logShowEvent } = useLogAnalyticsEvent();
-  const { user } = useUser();
 
   useLayoutEffect(() => {
+    const isLogin = Boolean(LocalStorage.getItem('siac'));
+
     logShowEvent({ name: 'show_email_entry_site' });
 
-    if (user.isLogin) {
+    if (isLogin) {
       router.replace('/notification');
     } else {
       router.replace('/');
