@@ -89,7 +89,7 @@ const StyledDirectProfileCard = styled.div`
   padding: 16px;
   cursor: pointer;
   ${({ theme }) => css`
-    border: 1px solid ${theme.colors.gray100};
+    border: 1px solid ${theme.colors.gray200};
   `}
 `;
 
