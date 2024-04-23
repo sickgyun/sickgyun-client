@@ -10,13 +10,16 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import LoginBox from '@/components/main/LoginBox';
 import MainBanner from '@/components/main/MainBanner';
+import DirectProfileList from '@/components/profile/DirectProfileList';
 import RecuritList from '@/components/recurit/RecuritList';
 import { MAJOR_LIST, RECRUIT_FULL_VIEW_LINK } from '@/constants/profile';
+import { useUser } from '@/hooks/common/useUser';
 import { LogClickEvent } from '@/libs/logging';
 import type { Major } from '@/types/profile';
 
 const MainPage = () => {
   const router = useRouter();
+  const { user } = useUser();
 
   const renderBanners = () => {
     return [<ErrorReportBanner />, <UserInterviewBanner />];
@@ -61,6 +64,15 @@ const MainPage = () => {
             <QnaBanner />
           </Stack>
           <Spacer height={64} /> */}
+          <Stack spacing={18}>
+            <Text fontType="h3">
+              {user.isLogin
+                ? `${user.name}님의 커피챗 신청을 기다리는 선배들이에요`
+                : '커피챗 신청을 기다리는 선배들이에요'}
+            </Text>
+            <DirectProfileList />
+          </Stack>
+          <Spacer height={64} />
           <Stack spacing={18} style={{ position: 'relative' }}>
             <Flex align="center" justify="space-between">
               <Text fontType="h3">채용 중인 회사에요!</Text>

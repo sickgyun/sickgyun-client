@@ -15,7 +15,6 @@ type ProfileCardProps = {
   userId: number;
   company?: string;
   introduction?: string;
-  isRecruited: boolean;
 };
 
 const ProfileCard = ({
@@ -27,7 +26,6 @@ const ProfileCard = ({
   userId,
   company,
   introduction,
-  isRecruited,
 }: ProfileCardProps) => {
   const overlay = useOverlay();
   const { logClickEvent } = useLogAnalyticsEvent();
@@ -61,14 +59,14 @@ const ProfileCard = ({
             </Text>
           </Stack>
           {introduction && (
-            <Text fontType="p2" color="gray600" isEllipsis={true}>
+            <Text fontType="p2" color="gray600">
               {introduction.length === 20 ? introduction + '...' : introduction}
             </Text>
           )}
           <Stack direction="horizontal" spacing={6} align="center">
             <Image src="/assets/svgs/company.svg" width={16} height={16} alt="Company" />
             <Text fontType="body2" color="gray600">
-              {isRecruited ? company : '부산소프트웨어마이스터고등학교'}
+              {company ? company : '부산소프트웨어마이스터고등학교'}
             </Text>
           </Stack>
         </Stack>
