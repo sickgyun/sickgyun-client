@@ -111,7 +111,7 @@ const ProfileImageUploader = ({
           ref={imageFileRef}
           accept=".png, .jpg, .jpeg"
           onChange={handleImageFileChange}
-          hidden
+          hidden={true}
         />
       </StyledProfileImageUploader>
     </StyledProfileImageUploaderContainer>
@@ -130,7 +130,7 @@ const StyledProfileImageUploader = styled.div<{ isDragging: boolean; imageUrl: s
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
+  border-radius: 8px;
   width: 100%;
   height: 180px;
   ${({ theme, isDragging, imageUrl }) => css`

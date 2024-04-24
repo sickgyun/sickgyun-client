@@ -59,7 +59,7 @@ const StyledTextarea = styled.textarea<{ minHeight?: string }>`
   resize: none;
   outline: none;
   padding: 10px;
-  border-radius: 16px;
+  border-radius: 8px;
   width: 100%;
   min-height: ${({ minHeight }) => minHeight};
   font-size: 15px;

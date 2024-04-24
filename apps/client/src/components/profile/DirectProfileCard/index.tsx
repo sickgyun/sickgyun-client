@@ -6,7 +6,7 @@ import { Flex, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDetailModal from '../ProfileDetailModal';
-import { textEllipsis } from '@/emotion';
+import { textEllipsis } from '@/emotion/textEllipsis';
 import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 import { useUser } from '@/hooks/common/useUser';
 import { useLogAnalyticsEvent } from '@/libs/logging';

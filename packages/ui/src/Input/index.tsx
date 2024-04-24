@@ -50,7 +50,7 @@ const StyledInputWrapper = styled.div<{ width?: string }>`
 const StyledInput = styled.input<InputProps>`
   width: 100%;
   height: 54px;
-  border-radius: 16px;
+  border-radius: 8px;
   padding-left: 16px;
   padding-right: 16px;
   outline: none;

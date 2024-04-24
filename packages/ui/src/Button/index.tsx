@@ -29,6 +29,21 @@ export type ButtonProps = {
   isActive?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
+export const getButtonSize = {
+  large: css`
+    ${fonts.body1}
+    height: 54px;
+  `,
+  medium: css`
+    ${fonts.body1}
+    height: 48px;
+  `,
+  small: css`
+    ${fonts.body2}
+    height: 40px;
+  `,
+};
+
 export const Button = forwardRef(function Button(
   {
     width = '100%',
@@ -56,18 +71,3 @@ export const Button = forwardRef(function Button(
       return <PrimaryButton {...buttonProps} />;
   }
 });
-
-export const getButtonSize = {
-  large: css`
-    ${fonts.body1}
-    height: 54px;
-  `,
-  medium: css`
-    ${fonts.body1}
-    height: 48px;
-  `,
-  small: css`
-    ${fonts.body2}
-    height: 40px;
-  `,
-};
