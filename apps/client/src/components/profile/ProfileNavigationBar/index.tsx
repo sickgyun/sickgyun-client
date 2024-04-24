@@ -4,7 +4,8 @@ import { IconExpandMoreFill } from '@seed-design/icon';
 import { Button, Flex, Select, Stack, Switch, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import type { UseFormRegister, UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
 import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
 import { useUser } from '@/hooks/common/useUser';
@@ -18,17 +19,21 @@ const getMajorFieldName = {
   ETC: '기타',
 } as const;
 
-const ProfileNavigationBar = () => {
+type ProfileNavigationBarProps = {
+  register: UseFormRegister<GetProfileListParams>;
+  setValue: UseFormSetValue<GetProfileListParams>;
+  watch: UseFormWatch<GetProfileListParams>;
+};
+
+const ProfileNavigationBar = ({
+  register,
+  setValue,
+  watch,
+}: ProfileNavigationBarProps) => {
   const router = useRouter();
   const overlay = useOverlay();
   const { user, isLoading } = useUser();
-  const { register, setValue, watch } = useForm<GetProfileListParams>({
-    defaultValues: {
-      major: 'ALL',
-      cardinal: 0,
-      isRecruited: false,
-    },
-  });
+  const selectedMajor = watch('major');
 
   const handleisRecruitedSwitchChange = (value: any) => {
     setValue('isRecruited', value);
@@ -48,12 +53,17 @@ const ProfileNavigationBar = () => {
     ));
   };
 
+  useEffect(() => {
+    router.push(`/profile?major=${selectedMajor}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedMajor]);
+
   return (
     <StyledProfileNavigationBar>
       <StyledProfileNavigationBarWrapper>
         <Stack direction="vertical" spacing={18}>
           <StyledMajorSelect>
-            <Text fontType="h2">{getMajorFieldName[watch('major')]}</Text>
+            <Text fontType="h2">{getMajorFieldName[selectedMajor]}</Text>
             <StyledIconExpandMoreFill />
             <StyledSelect {...register('major')}>
               <option value="ALL">전체 분야</option>

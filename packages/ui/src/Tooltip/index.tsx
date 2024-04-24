@@ -16,9 +16,16 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react';
-import type { Dispatch, MouseEvent, ReactNode, SetStateAction } from 'react';
+import type {
+  ComponentType,
+  Dispatch,
+  MouseEvent,
+  ReactNode,
+  SetStateAction,
+} from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import type { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import { Text } from '../Text';
 
 type TooltipChildrenProps = {
@@ -202,7 +209,9 @@ const StyledRelativePositionWrapper = styled.div`
   position: relative;
 `;
 
-const StyledCSSTransition = styled(CSSTransition)`
+const StyledCSSTransition = styled(
+  CSSTransition as ComponentType<CSSTransitionProps<HTMLElement>>
+)`
   &.enter {
     opacity: 0;
   }

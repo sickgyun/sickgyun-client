@@ -3,37 +3,46 @@
 import styled from '@emotion/styled';
 import { isNil } from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import ProfileList from '@/components/profile/ProfileList';
 import ProfileNavigationBar from '@/components/profile/ProfileNavigationBar';
 import { withAuth } from '@/hocs/withAuth';
+import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
 import type { Major } from '@/types/profile';
 
 const ProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const selectedMajor = params.get('major') as Major;
+  const { register, setValue, watch } = useForm<GetProfileListParams>({
+    defaultValues: {
+      major: selectedMajor,
+      cardinal: 0,
+      isRecruited: false,
+    },
+  });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isNil(selectedMajor)) {
       router.replace('/profile?major=ALL');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedMajor]);
 
-  // const handleMajorSelected = (major: Major) => {
-  //   router.replace(`/profile?major=${major}`);
-  // };
-
   return (
     <>
       <Header />
       <StyledProfilePageLayout>
-        <ProfileNavigationBar />
+        <ProfileNavigationBar register={register} setValue={setValue} watch={watch} />
         <StyledProfilePage>
-          <ProfileList major={selectedMajor} />
+          <ProfileList
+            major={watch('major')}
+            isRecruited={watch('isRecruited')}
+            cardinal={watch('cardinal')}
+          />
         </StyledProfilePage>
       </StyledProfilePageLayout>
       <Footer />

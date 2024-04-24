@@ -44,6 +44,7 @@ const StyledTextareaWrapper = styled.div`
   position: relative;
   display: inline-flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const StyledTextarea = styled.textarea`

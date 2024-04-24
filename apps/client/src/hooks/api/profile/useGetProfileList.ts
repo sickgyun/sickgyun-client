@@ -38,8 +38,8 @@ export const useGetProfileList = ({
     queryFn: async () =>
       await get('/profiles', {
         params: {
-          major: major !== 'ALL' && major,
-          cardinal: cardinal !== 0 && cardinal,
+          major: major !== 'ALL' ? major : null,
+          cardinal: cardinal !== 0 ? cardinal : null,
           isRecruited,
         },
       }),

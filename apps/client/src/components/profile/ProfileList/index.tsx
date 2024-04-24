@@ -4,15 +4,13 @@ import { isEmpty } from 'lodash';
 import React from 'react';
 import ProfileCard from '../ProfileCard';
 import { withSuspense } from '@/hocs/withSuspense';
+import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
 import { useGetProfileList } from '@/hooks/api/profile/useGetProfileList';
-import type { Major } from '@/types/profile';
 
-type ProfileListProps = {
-  major: Major;
-};
+type ProfileListProps = GetProfileListParams;
 
-const ProfileList = ({ major }: ProfileListProps) => {
-  const { profileList } = useGetProfileList([major]);
+const ProfileList = ({ major, isRecruited, cardinal }: ProfileListProps) => {
+  const { profileList } = useGetProfileList({ major, isRecruited, cardinal });
 
   return !isEmpty(profileList) ? (
     <StyledProfileList>
