@@ -35,7 +35,7 @@ const ProfileNavigationBar = ({
   const { user, isLoading } = useUser();
   const selectedMajor = watch('major');
 
-  const handleisRecruitedSwitchChange = (value: any) => {
+  const handleIsRecruitedSwitchChange = (value: any) => {
     setValue('isRecruited', value);
   };
 
@@ -89,7 +89,7 @@ const ProfileNavigationBar = ({
                   { name: '재직자', value: true },
                 ]}
                 value={watch('isRecruited')}
-                onChange={handleisRecruitedSwitchChange}
+                onChange={handleIsRecruitedSwitchChange}
               />
             </Stack>
             {!isLoading && (
@@ -125,7 +125,7 @@ const StyledProfileNavigationBar = styled.div`
 `;
 
 const StyledProfileNavigationBarWrapper = styled.div`
-  width: calc(80% - 32px);
+  width: 80%;
   height: 100%;
   margin: 0 auto;
 `;
