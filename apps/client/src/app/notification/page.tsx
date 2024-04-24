@@ -40,14 +40,14 @@ const NotificationPage = () => {
             <Button
               onClick={() => handleCoffeechatTypeSelected('RECEIVE')}
               isActive={selectedCoffeechatType === 'RECEIVE'}
-              styleType="quaternary"
+              styleType="tertiary"
             >
               요청 받은 내역
             </Button>
             <Button
               onClick={() => handleCoffeechatTypeSelected('SEND')}
               isActive={selectedCoffeechatType === 'SEND'}
-              styleType="quaternary"
+              styleType="tertiary"
             >
               신청 한 내역
             </Button>

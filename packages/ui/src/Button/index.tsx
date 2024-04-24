@@ -8,14 +8,14 @@ import {
 } from 'react';
 import { GhostButton } from './GhostButton';
 import { PrimaryButton } from './PrimaryButton';
-import { QuaternaryButton } from './QuaternaryButton';
 import { SecondaryButton } from './SecondaryButton';
+import { TertiaryButton } from './TertiaryButton';
 
 export const BUTTON_STYLE_KEYS = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
   GHOST: 'ghost',
-  QUATERNARY: 'quaternary',
+  TERTIARY: 'tertiary',
 } as const;
 
 export const getButtonSize = {
@@ -67,8 +67,8 @@ export const Button = forwardRef(function Button(
       return <SecondaryButton {...buttonProps} />;
     case 'ghost':
       return <GhostButton {...buttonProps} />;
-    case 'quaternary':
-      return <QuaternaryButton {...buttonProps} />;
+    case 'tertiary':
+      return <TertiaryButton {...buttonProps} />;
     default:
       return <PrimaryButton {...buttonProps} />;
   }

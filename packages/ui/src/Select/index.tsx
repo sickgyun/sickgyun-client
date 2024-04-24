@@ -84,12 +84,18 @@ const StyledSelect = styled.select<{ selectSize: SelectSize }>`
     color: ${theme.colors.gray900};
     border: 1px solid ${theme.colors.gray300};
     background-color: ${theme.colors.white};
+
     ::placeholder {
       ${theme.fonts.body1}
       color: ${theme.colors.gray500};
     }
+
     &:focus {
       border: 1px solid ${theme.colors.primary};
+    }
+
+    &:hover {
+      background-color: ${theme.colors.gray100};
     }
   `};
 `;

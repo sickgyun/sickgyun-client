@@ -2,15 +2,27 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconExpandMoreFill } from '@seed-design/icon';
 import { Button, Flex, Select, Stack, Switch, Text } from '@sickgyun/ui';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
+
+const getMajorFieldName = {
+  ALL: '전체 분야',
+  FRONTEND: '프론트엔드',
+  BACKEND: '백엔드',
+  EMBEDDED: '임베디드',
+  GAME: '게임',
+  ETC: '기타',
+} as const;
 
 const ProfileNavigationBar = () => {
-  const [isRecurited, setIsRecurited] = useState(false);
+  const { register, setValue, watch } = useForm<GetProfileListParams>({
+    defaultValues: {
+      isRecruited: false,
+    },
+  });
 
-  const handleIsRecuritedSwitchChange = (value: any) => {
-    if (typeof value === 'boolean') {
-      setIsRecurited(value);
-    }
+  const handleisRecruitedSwitchChange = (value: any) => {
+    setValue('isRecruited', value);
   };
 
   return (
@@ -18,9 +30,9 @@ const ProfileNavigationBar = () => {
       <StyledProfileNavigationBarWrapper>
         <Stack direction="vertical" spacing={18}>
           <StyledMajorSelect>
-            <Text fontType="h2">전체 분야</Text>
+            <Text fontType="h2">{getMajorFieldName[watch('major')]}</Text>
             <StyledIconExpandMoreFill />
-            <StyledSelect>
+            <StyledSelect {...register('major')}>
               <option value="ALL">전체 분야</option>
               <option value="FRONTEND">프론트엔드</option>
               <option value="BACKEND">백엔드</option>
@@ -31,20 +43,20 @@ const ProfileNavigationBar = () => {
           </StyledMajorSelect>
           <Flex align="center" justify="space-between">
             <Stack direction="horizontal" align="center" spacing={16}>
-              <Select width="130px">
-                <option value="ALL">전체</option>
-                <option value="FIRST">1기</option>
-                <option value="SECOND">2기</option>
-                <option value="THIRD">3기</option>
-                <option value="FOURTH">4기</option>
+              <Select width="130px" {...register('cardinal')}>
+                <option value={0}>전체</option>
+                <option value={1}>1기</option>
+                <option value={2}>2기</option>
+                <option value={3}>3기</option>
+                <option value={4}>4기</option>
               </Select>
               <Switch
                 options={[
                   { name: '전체', value: false },
                   { name: '재직자', value: true },
                 ]}
-                value={isRecurited}
-                onChange={handleIsRecuritedSwitchChange}
+                value={watch('isRecruited')}
+                onChange={handleisRecruitedSwitchChange}
               />
             </Stack>
             <Stack direction="horizontal" align="center" spacing={12}>

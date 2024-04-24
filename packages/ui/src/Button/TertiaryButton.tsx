@@ -3,21 +3,21 @@ import styled from '@emotion/styled';
 import { type ForwardedRef, forwardRef } from 'react';
 import { type ButtonProps, getButtonSize } from '.';
 
-type QuaternaryButtonProps = ButtonProps;
+type TertiaryButtonProps = ButtonProps;
 
-export const QuaternaryButton = forwardRef(function Button(
+export const TertiaryButton = forwardRef(function Button(
   {
     width = '100%',
     size = 'medium',
     isActive = false,
     children,
     ...props
-  }: QuaternaryButtonProps,
+  }: TertiaryButtonProps,
 
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   return (
-    <StyledQuaternaryButton
+    <StyledTertiaryButton
       ref={ref}
       size={size}
       width={width}
@@ -25,11 +25,11 @@ export const QuaternaryButton = forwardRef(function Button(
       {...props}
     >
       {children}
-    </StyledQuaternaryButton>
+    </StyledTertiaryButton>
   );
 });
 
-const StyledQuaternaryButton = styled.button<QuaternaryButtonProps>`
+const StyledTertiaryButton = styled.button<TertiaryButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
