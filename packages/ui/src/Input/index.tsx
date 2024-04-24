@@ -6,16 +6,15 @@ import { Text } from '../Text';
 type InputProps = {
   label?: string;
   bottomText?: string;
-  width?: string;
   hasError?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = forwardRef(function Input(
-  { label, bottomText, hasError = false, width = '100%', onChange, ...props }: InputProps,
+  { label, bottomText, hasError = false, onChange, ...props }: InputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
   return (
-    <StyledInputWrapper width={width}>
+    <StyledInputWrapper>
       {label && (
         <Text color="gray600" fontType="p3" style={{ marginBottom: '8px' }}>
           {label}
@@ -42,6 +41,7 @@ export const Input = forwardRef(function Input(
 });
 
 const StyledInputWrapper = styled.div<{ width?: string }>`
+  flex: 1;
   display: inline-flex;
   flex-direction: column;
   width: ${({ width }) => width};

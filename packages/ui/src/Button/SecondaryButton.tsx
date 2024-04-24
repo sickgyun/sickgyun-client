@@ -5,18 +5,19 @@ import { type ButtonProps, getButtonSize } from '.';
 type SecondaryButtonProps = ButtonProps;
 
 export const SecondaryButton = forwardRef(function Button(
-  { width = '100%', size = 'medium', children, ...props }: SecondaryButtonProps,
+  { size = 'medium', children, ...props }: SecondaryButtonProps,
 
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   return (
-    <StyledSecondaryButton ref={ref} size={size} width={width} {...props}>
+    <StyledSecondaryButton ref={ref} size={size} {...props}>
       {children}
     </StyledSecondaryButton>
   );
 });
 
 const StyledSecondaryButton = styled.button<SecondaryButtonProps>`
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +26,6 @@ const StyledSecondaryButton = styled.button<SecondaryButtonProps>`
   cursor: 'pointer';
   color: ${({ theme }) => theme.colors.gray900};
   background-color: ${({ theme }) => theme.colors.gray200};
-  width: ${({ width }) => width};
   ${({ size }) => size && getButtonSize[size]}
 
   &:hover {

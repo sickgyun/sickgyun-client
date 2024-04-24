@@ -80,9 +80,7 @@ const QnaWritePage = () => {
             />
           </Stack>
           <Stack style={{ padding: '0 22px 22px 0' }} align="flex-end" spacing={0}>
-            <Button width="180px" type="submit">
-              등록하기
-            </Button>
+            <Button type="submit">등록하기</Button>
           </Stack>
         </form>
       </StyledQnaWritePage>

@@ -46,12 +46,7 @@ const CoffeechatSendCard = ({ toUser, coffeechatId, state }: CoffeechatSendCardP
       ) : state === 'ACCEPT' ? (
         <StyledCoffeechatState state="ACCEPT">수락됨</StyledCoffeechatState>
       ) : (
-        <Button
-          onClick={openCoffeechatCancelConfrim}
-          size="small"
-          styleType="secondary"
-          width="60px"
-        >
+        <Button onClick={openCoffeechatCancelConfrim} size="small" styleType="secondary">
           취소
         </Button>
       )}

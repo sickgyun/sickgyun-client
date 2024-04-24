@@ -26,25 +26,17 @@ type SelectSize = 'small' | 'medium' | 'large';
 
 type SelectProps = {
   children: ReactNode;
-  width?: string;
   label?: string;
   placeholder?: string;
   size?: SelectSize;
 } & Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'>;
 
 export const Select = forwardRef(function Select(
-  {
-    children,
-    size = 'medium',
-    placeholder,
-    label,
-    width = '100%',
-    ...props
-  }: SelectProps,
+  { children, size = 'medium', placeholder, label, ...props }: SelectProps,
   ref: ForwardedRef<HTMLSelectElement>
 ) {
   return (
-    <StyledSelectContainer width={width}>
+    <StyledSelectContainer>
       {label && (
         <Text color="gray600" fontType="p3" style={{ marginBottom: '8px' }}>
           {label}
@@ -61,10 +53,10 @@ export const Select = forwardRef(function Select(
   );
 });
 
-const StyledSelectContainer = styled.div<{ width: string }>`
+const StyledSelectContainer = styled.div`
+  flex: 1;
   display: inline-flex;
   flex-direction: column;
-  width: ${({ width }) => width};
 `;
 
 const StyledSelect = styled.select<{ selectSize: SelectSize }>`

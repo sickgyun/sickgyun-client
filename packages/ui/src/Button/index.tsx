@@ -7,6 +7,7 @@ import {
   forwardRef,
 } from 'react';
 import { GhostButton } from './GhostButton';
+import { OutlineButton } from './OutlineButton';
 import { PrimaryButton } from './PrimaryButton';
 import { SecondaryButton } from './SecondaryButton';
 import { TertiaryButton } from './TertiaryButton';
@@ -16,6 +17,7 @@ export const BUTTON_STYLE_KEYS = {
   SECONDARY: 'secondary',
   GHOST: 'ghost',
   TERTIARY: 'tertiary',
+  OUTLINE: 'outline',
 } as const;
 
 export const getButtonSize = {
@@ -40,7 +42,6 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 export type ButtonProps = {
   styleType?: ButtonStyleType;
   disabled?: boolean;
-  width?: string;
   size?: ButtonSize;
   children: ReactNode;
   isActive?: boolean;
@@ -48,7 +49,6 @@ export type ButtonProps = {
 
 export const Button = forwardRef(function Button(
   {
-    width = '100%',
     styleType = 'primary',
     disabled = false,
     size = 'medium',
@@ -58,7 +58,7 @@ export const Button = forwardRef(function Button(
   }: ButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
-  const buttonProps = { ref, width, styleType, disabled, size, type, children, ...props };
+  const buttonProps = { ref, styleType, disabled, size, type, children, ...props };
 
   switch (styleType) {
     case 'primary':
@@ -69,6 +69,8 @@ export const Button = forwardRef(function Button(
       return <GhostButton {...buttonProps} />;
     case 'tertiary':
       return <TertiaryButton {...buttonProps} />;
+    case 'outline':
+      return <OutlineButton {...buttonProps} />;
     default:
       return <PrimaryButton {...buttonProps} />;
   }

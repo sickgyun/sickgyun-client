@@ -5,29 +5,18 @@ import { type ButtonProps, getButtonSize } from '.';
 type PrimaryButtonProps = ButtonProps;
 
 export const PrimaryButton = forwardRef(function PrimaryButton(
-  {
-    width = '100%',
-    disabled = false,
-    size = 'medium',
-    children,
-    ...props
-  }: PrimaryButtonProps,
+  { disabled = false, size = 'medium', children, ...props }: PrimaryButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   return (
-    <StyledPrimaryButton
-      ref={ref}
-      disabled={disabled}
-      size={size}
-      width={width}
-      {...props}
-    >
+    <StyledPrimaryButton ref={ref} disabled={disabled} size={size} {...props}>
       {children}
     </StyledPrimaryButton>
   );
 });
 
 const StyledPrimaryButton = styled.button<PrimaryButtonProps>`
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +26,6 @@ const StyledPrimaryButton = styled.button<PrimaryButtonProps>`
     disabled ? theme.colors.gray400 : theme.colors.white};
   background-color: ${({ theme, disabled }) =>
     disabled ? theme.colors.gray600 : theme.colors.primary};
-  width: ${({ width }) => width};
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   ${({ size }) => size && getButtonSize[size]}
 

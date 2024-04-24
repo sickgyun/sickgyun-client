@@ -43,13 +43,13 @@ const ProfileNavigationBar = () => {
           </StyledMajorSelect>
           <Flex align="center" justify="space-between">
             <Stack direction="horizontal" align="center" spacing={16}>
-              <Select width="130px" {...register('cardinal')}>
-                <option value={0}>전체</option>
+              <StyledCardinalSelect {...register('cardinal')}>
+                <option value={0}>전체 기수</option>
                 <option value={1}>1기</option>
                 <option value={2}>2기</option>
                 <option value={3}>3기</option>
                 <option value={4}>4기</option>
-              </Select>
+              </StyledCardinalSelect>
               <Switch
                 options={[
                   { name: '전체', value: false },
@@ -60,7 +60,7 @@ const ProfileNavigationBar = () => {
               />
             </Stack>
             <Stack direction="horizontal" align="center" spacing={12}>
-              <Button styleType="secondary">연락처 수정</Button>
+              <Button styleType="outline">연락처 수정</Button>
               <Button>프로필 수정</Button>
             </Stack>
           </Flex>
@@ -109,4 +109,8 @@ const StyledSelect = styled.select`
   width: 115px;
   height: 33px;
   cursor: pointer;
+`;
+
+const StyledCardinalSelect = styled(Select)`
+  min-width: 130px;
 `;
