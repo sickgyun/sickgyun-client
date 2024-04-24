@@ -2,8 +2,12 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconExpandMoreFill } from '@seed-design/icon';
 import { Button, Flex, Select, Stack, Switch, Text } from '@sickgyun/ui';
+import { useOverlay } from '@toss/use-overlay';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
 import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
+import { useUser } from '@/hooks/common/useUser';
 
 const getMajorFieldName = {
   ALL: '전체 분야',
@@ -15,6 +19,9 @@ const getMajorFieldName = {
 } as const;
 
 const ProfileNavigationBar = () => {
+  const router = useRouter();
+  const overlay = useOverlay();
+  const { user, isLoading } = useUser();
   const { register, setValue, watch } = useForm<GetProfileListParams>({
     defaultValues: {
       isRecruited: false,
@@ -23,6 +30,20 @@ const ProfileNavigationBar = () => {
 
   const handleisRecruitedSwitchChange = (value: any) => {
     setValue('isRecruited', value);
+  };
+
+  const handleGoProfileManagePage = () => {
+    if (user.hasCreatedProfile) {
+      router.push('/profile/update');
+    } else {
+      router.push('/profile/create');
+    }
+  };
+
+  const openCoffeechatContactFormModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatContactFormModal isOpen={isOpen} onClose={close} />
+    ));
   };
 
   return (
@@ -59,10 +80,16 @@ const ProfileNavigationBar = () => {
                 onChange={handleisRecruitedSwitchChange}
               />
             </Stack>
-            <Stack direction="horizontal" align="center" spacing={12}>
-              <Button styleType="outline">연락처 수정</Button>
-              <Button>프로필 수정</Button>
-            </Stack>
+            {!isLoading && (
+              <Stack direction="horizontal" align="center" spacing={12}>
+                <Button onClick={openCoffeechatContactFormModal} styleType="outline">
+                  연락처 {user.hasNotContact ? '생성' : '수정'}
+                </Button>
+                <Button onClick={handleGoProfileManagePage}>
+                  프로필 {user.hasCreatedProfile ? '수정' : '생성'}
+                </Button>
+              </Stack>
+            )}
           </Flex>
         </Stack>
       </StyledProfileNavigationBarWrapper>

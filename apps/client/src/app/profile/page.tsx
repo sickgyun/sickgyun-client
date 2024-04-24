@@ -6,17 +6,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useLayoutEffect } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import ProfileActionButton from '@/components/profile/ProfileActionButton';
 import ProfileList from '@/components/profile/ProfileList';
 import ProfileNavigationBar from '@/components/profile/ProfileNavigationBar';
 import { withAuth } from '@/hocs/withAuth';
-import { useUser } from '@/hooks/common/useUser';
 import type { Major } from '@/types/profile';
 
 const ProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const { user } = useUser();
   const selectedMajor = params.get('major') as Major;
 
   useLayoutEffect(() => {
@@ -40,9 +37,6 @@ const ProfilePage = () => {
         </StyledProfilePage>
       </StyledProfilePageLayout>
       <Footer />
-      {user.isLogin ? (
-        <ProfileActionButton actionType={user.hasCreatedProfile ? 'update' : 'create'} />
-      ) : null}
     </>
   );
 };
