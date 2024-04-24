@@ -23,15 +23,15 @@ export const BUTTON_STYLE_KEYS = {
 export const getButtonSize = {
   large: css`
     ${fonts.body1}
-    height: 54px;
+    padding: 15px 16px;
   `,
   medium: css`
     ${fonts.body1}
-    height: 48px;
+    padding: 12px 16px;
   `,
   small: css`
     ${fonts.body2}
-    height: 40px;
+    padding: 10px 16px;
   `,
 };
 

@@ -24,6 +24,8 @@ const ProfileNavigationBar = () => {
   const { user, isLoading } = useUser();
   const { register, setValue, watch } = useForm<GetProfileListParams>({
     defaultValues: {
+      major: 'ALL',
+      cardinal: 0,
       isRecruited: false,
     },
   });

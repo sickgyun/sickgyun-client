@@ -19,10 +19,10 @@ export const TertiaryButton = forwardRef(function Button(
 
 const StyledTertiaryButton = styled.button<TertiaryButtonProps>`
   flex: 1;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 16px;
   border-radius: 8px;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.white};

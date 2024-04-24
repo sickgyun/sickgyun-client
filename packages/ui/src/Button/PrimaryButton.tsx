@@ -17,10 +17,10 @@ export const PrimaryButton = forwardRef(function PrimaryButton(
 
 const StyledPrimaryButton = styled.button<PrimaryButtonProps>`
   flex: 1;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 16px;
   border-radius: 8px;
   color: ${({ theme, disabled }) =>
     disabled ? theme.colors.gray400 : theme.colors.white};
