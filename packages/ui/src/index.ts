@@ -16,3 +16,4 @@ export * from './Tooltip';
 export * from './ErrorBoundary';
 export * from './Alert';
 export * from './InfoBox';
+export * from './Switch';

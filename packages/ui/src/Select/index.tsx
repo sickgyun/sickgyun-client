@@ -7,15 +7,6 @@ import { forwardRef } from 'react';
 import { Flex } from '../Flex';
 import { Text } from '../Text';
 
-type SelectSize = 'small' | 'medium' | 'large';
-type SelectProps = {
-  children: ReactNode;
-  width?: string;
-  label?: string;
-  placeholder?: string;
-  size?: SelectSize;
-} & Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'>;
-
 const getSelectSize = {
   large: css`
     ${fonts.body1}
@@ -30,6 +21,16 @@ const getSelectSize = {
     height: 40px;
   `,
 };
+
+type SelectSize = 'small' | 'medium' | 'large';
+
+type SelectProps = {
+  children: ReactNode;
+  width?: string;
+  label?: string;
+  placeholder?: string;
+  size?: SelectSize;
+} & Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'>;
 
 export const Select = forwardRef(function Select(
   {
@@ -68,10 +69,10 @@ const StyledSelectContainer = styled.div<{ width: string }>`
 
 const StyledSelect = styled.select<{ selectSize: SelectSize }>`
   width: 100%;
-  height: 54px;
   border-radius: 8px;
   padding-left: 16px;
   padding-right: 16px;
+  cursor: pointer;
   border: none;
   outline: none;
   -webkit-appearance: none;
@@ -98,5 +99,4 @@ const StyledIconExpandMoreFill = styled(IconExpandMoreFill)`
   right: 16px;
   width: 24px;
   height: 24px;
-  cursor: pointer;
 `;

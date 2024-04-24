@@ -1,9 +1,18 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconExpandMoreFill } from '@seed-design/icon';
-import { Button, Flex, Select, Stack, Text } from '@sickgyun/ui';
+import { Button, Flex, Select, Stack, Switch, Text } from '@sickgyun/ui';
+import { useState } from 'react';
 
 const ProfileNavigationBar = () => {
+  const [isRecurited, setIsRecurited] = useState(false);
+
+  const handleIsRecuritedSwitchChange = (value: any) => {
+    if (typeof value === 'boolean') {
+      setIsRecurited(value);
+    }
+  };
+
   return (
     <StyledProfileNavigationBar>
       <StyledProfileNavigationBarWrapper>
@@ -29,6 +38,14 @@ const ProfileNavigationBar = () => {
                 <option value="THIRD">3기</option>
                 <option value="FOURTH">4기</option>
               </Select>
+              <Switch
+                options={[
+                  { name: '전체', value: false },
+                  { name: '재직자', value: true },
+                ]}
+                value={isRecurited}
+                onChange={handleIsRecuritedSwitchChange}
+              />
             </Stack>
             <Stack direction="horizontal" align="center" spacing={12}>
               <Button styleType="secondary">연락처 수정</Button>

@@ -18,17 +18,6 @@ export const BUTTON_STYLE_KEYS = {
   QUATERNARY: 'quaternary',
 } as const;
 
-export type ButtonStyleType = (typeof BUTTON_STYLE_KEYS)[keyof typeof BUTTON_STYLE_KEYS];
-export type ButtonSize = 'small' | 'medium' | 'large';
-export type ButtonProps = {
-  styleType?: ButtonStyleType;
-  disabled?: boolean;
-  width?: string;
-  size?: ButtonSize;
-  children: ReactNode;
-  isActive?: boolean;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
-
 export const getButtonSize = {
   large: css`
     ${fonts.body1}
@@ -43,6 +32,19 @@ export const getButtonSize = {
     height: 40px;
   `,
 };
+
+export type ButtonStyleType = (typeof BUTTON_STYLE_KEYS)[keyof typeof BUTTON_STYLE_KEYS];
+
+export type ButtonSize = 'small' | 'medium' | 'large';
+
+export type ButtonProps = {
+  styleType?: ButtonStyleType;
+  disabled?: boolean;
+  width?: string;
+  size?: ButtonSize;
+  children: ReactNode;
+  isActive?: boolean;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = forwardRef(function Button(
   {
