@@ -63,7 +63,6 @@ const StyledProfilePage = styled.div`
   flex-direction: column;
   margin: 0 auto;
   width: 80%;
-  padding-top: 100px;
-  padding-bottom: 32px;
+  padding-top: 32px;
   margin-bottom: 48px;
 `;
