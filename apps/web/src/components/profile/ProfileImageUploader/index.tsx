@@ -78,7 +78,7 @@ const ProfileImageUploader = ({
 
   return (
     <StyledProfileImageUploaderContainer>
-      <Text color="gray600" fontType="p3" style={{ marginBottom: '8px' }}>
+      <Text color="gray600" fontType="p2" style={{ marginBottom: '8px' }}>
         프로필 사진
       </Text>
       <StyledProfileImageUploader

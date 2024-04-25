@@ -25,7 +25,7 @@ export const Textarea = forwardRef(function Textarea(
   return (
     <StyledTextareaWrapper>
       {label && (
-        <Text color="gray600" fontType="p3" style={{ marginBottom: '8px' }}>
+        <Text color="gray600" fontType="p2" style={{ marginBottom: '8px' }}>
           {label}
         </Text>
       )}
