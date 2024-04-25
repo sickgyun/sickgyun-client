@@ -113,7 +113,6 @@ const CoffeechatReceiveCard = ({
             onClick={openCoffeechatRejectConfirm}
             styleType="secondary"
             size="small"
-            width="120px"
           >
             거절하기
           </Button>

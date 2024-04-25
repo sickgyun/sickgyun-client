@@ -7,23 +7,41 @@ import {
   forwardRef,
 } from 'react';
 import { GhostButton } from './GhostButton';
+import { OutlineButton } from './OutlineButton';
 import { PrimaryButton } from './PrimaryButton';
-import { QuaternaryButton } from './QuaternaryButton';
 import { SecondaryButton } from './SecondaryButton';
+import { TertiaryButton } from './TertiaryButton';
 
 export const BUTTON_STYLE_KEYS = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
   GHOST: 'ghost',
-  QUATERNARY: 'quaternary',
+  TERTIARY: 'tertiary',
+  OUTLINE: 'outline',
 } as const;
 
+export const getButtonSize = {
+  large: css`
+    ${fonts.body1}
+    padding: 15px 16px;
+  `,
+  medium: css`
+    ${fonts.body1}
+    padding: 12px 16px;
+  `,
+  small: css`
+    ${fonts.body2}
+    padding: 10px 16px;
+  `,
+};
+
 export type ButtonStyleType = (typeof BUTTON_STYLE_KEYS)[keyof typeof BUTTON_STYLE_KEYS];
+
 export type ButtonSize = 'small' | 'medium' | 'large';
+
 export type ButtonProps = {
   styleType?: ButtonStyleType;
   disabled?: boolean;
-  width?: string;
   size?: ButtonSize;
   children: ReactNode;
   isActive?: boolean;
@@ -31,7 +49,6 @@ export type ButtonProps = {
 
 export const Button = forwardRef(function Button(
   {
-    width = '100%',
     styleType = 'primary',
     disabled = false,
     size = 'medium',
@@ -41,7 +58,7 @@ export const Button = forwardRef(function Button(
   }: ButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
-  const buttonProps = { ref, width, styleType, disabled, size, type, children, ...props };
+  const buttonProps = { ref, styleType, disabled, size, type, children, ...props };
 
   switch (styleType) {
     case 'primary':
@@ -50,24 +67,11 @@ export const Button = forwardRef(function Button(
       return <SecondaryButton {...buttonProps} />;
     case 'ghost':
       return <GhostButton {...buttonProps} />;
-    case 'quaternary':
-      return <QuaternaryButton {...buttonProps} />;
+    case 'tertiary':
+      return <TertiaryButton {...buttonProps} />;
+    case 'outline':
+      return <OutlineButton {...buttonProps} />;
     default:
       return <PrimaryButton {...buttonProps} />;
   }
 });
-
-export const getButtonSize = {
-  large: css`
-    ${fonts.body1}
-    height: 54px;
-  `,
-  medium: css`
-    ${fonts.body1}
-    height: 48px;
-  `,
-  small: css`
-    ${fonts.body2}
-    height: 40px;
-  `,
-};

@@ -3,41 +3,29 @@ import styled from '@emotion/styled';
 import { type ForwardedRef, forwardRef } from 'react';
 import { type ButtonProps, getButtonSize } from '.';
 
-type QuaternaryButtonProps = ButtonProps;
+type TertiaryButtonProps = ButtonProps;
 
-export const QuaternaryButton = forwardRef(function Button(
-  {
-    width = '100%',
-    size = 'medium',
-    isActive = false,
-    children,
-    ...props
-  }: QuaternaryButtonProps,
+export const TertiaryButton = forwardRef(function Button(
+  { size = 'medium', isActive = false, children, ...props }: TertiaryButtonProps,
 
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   return (
-    <StyledQuaternaryButton
-      ref={ref}
-      size={size}
-      width={width}
-      isActive={isActive}
-      {...props}
-    >
+    <StyledTertiaryButton ref={ref} size={size} isActive={isActive} {...props}>
       {children}
-    </StyledQuaternaryButton>
+    </StyledTertiaryButton>
   );
 });
 
-const StyledQuaternaryButton = styled.button<QuaternaryButtonProps>`
+const StyledTertiaryButton = styled.button<TertiaryButtonProps>`
+  flex: 1;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 16px;
   border-radius: 8px;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.white};
-  width: ${({ width }) => width};
   ${({ size }) => size && getButtonSize[size]}
   ${({ theme, isActive }) => css`
     color: ${isActive ? theme.colors.primary : theme.colors.gray700};

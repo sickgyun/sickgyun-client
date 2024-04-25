@@ -16,7 +16,6 @@ export type Profile = {
 
 export type ProfileFormType = {
   major: Major;
-  isRecruited: boolean;
   githubId?: string;
   company?: string;
   imageUrl?: string;

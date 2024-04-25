@@ -26,7 +26,7 @@ const QnaComment = () => {
       <form onSubmit={createQnaCommentSubmit(onCreateQnaCommentSubmit)}>
         <Textarea {...register('comment', { required: true })} />
         <Flex justify="flex-end" style={{ marginBottom: '10px' }}>
-          <Button type="submit" size="small" width="70px" style={{ marginTop: '10px' }}>
+          <Button type="submit" size="small" style={{ marginTop: '10px' }}>
             등록
           </Button>
         </Flex>

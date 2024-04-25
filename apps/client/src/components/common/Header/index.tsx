@@ -44,11 +44,11 @@ const Header = () => {
               </StyledNotificationButtonWrapper>
             )}
             {user.isLogin ? (
-              <Button onClick={handleLogout} styleType="ghost" size="small" width="90px">
+              <Button onClick={handleLogout} styleType="ghost" size="small">
                 로그아웃
               </Button>
             ) : (
-              <Button onClick={handleLogin} styleType="ghost" size="small" width="90px">
+              <Button onClick={handleLogin} styleType="ghost" size="small">
                 로그인
               </Button>
             )}

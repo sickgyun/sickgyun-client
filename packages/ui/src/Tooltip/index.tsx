@@ -218,7 +218,7 @@ const StyledCSSTransition = styled(
 
   &.enter-active {
     opacity: 1;
-    transition: opacity ${TRANSITION_MS}ms;
+    transition: 'opacity ${TRANSITION_MS}ms';
   }
 
   &.exit {
@@ -227,7 +227,7 @@ const StyledCSSTransition = styled(
 
   &.exit-active {
     opacity: 0;
-    transition: opacity ${TRANSITION_MS}ms;
+    transition: 'opacity ${TRANSITION_MS}ms';
   }
 `;
 
@@ -240,6 +240,7 @@ const StyledTooltipItem = styled.div`
     ${theme.fonts.body2}
     background-color: ${theme.colors.gray900};
     color: ${theme.colors.white};
+    z-index: ${theme.zIndex.page1};
   `}
   display: flex;
   align-items: flex-start;
