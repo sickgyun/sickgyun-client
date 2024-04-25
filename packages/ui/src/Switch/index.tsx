@@ -63,6 +63,7 @@ const StyledSwitchButton = styled.button<{ isActive: boolean }>`
 
     ${isActive &&
     css`
+      font-weight: 600;
       color: ${theme.colors.primary};
     `}
   `}
