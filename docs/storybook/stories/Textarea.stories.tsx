@@ -23,6 +23,9 @@ export const Default: StoryObj<Textarea> = {
     label: '라벨임',
     placeholder: '플레이스 홀더임',
     isAutoHeight: false,
+    style: {
+      width: '300px',
+    },
   },
   render: (args) => <TextareaComponent {...args} />,
 };

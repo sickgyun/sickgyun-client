@@ -14,6 +14,9 @@ export const Default: StoryObj<Select> = {
   args: {
     label: '라벨',
     placeholder: '플레이스 홀더',
+    style: {
+      width: '200px',
+    },
   },
   render: (args) => (
     <SelectComponent {...args}>

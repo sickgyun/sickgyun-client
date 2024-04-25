@@ -21,15 +21,8 @@ export const Default: StoryObj<Modal> = {
 
     return (
       <>
-        <ModalComponent {...args} isOpen={isOpen}>
-          <button
-            type="button"
-            onClick={() => {
-              setIsOpen(false);
-            }}
-          >
-            Close!
-          </button>
+        <ModalComponent {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
+          김석진은 멋지다.
         </ModalComponent>
         <button
           type="button"
