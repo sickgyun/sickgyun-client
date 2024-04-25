@@ -20,15 +20,17 @@
     "@storybook/test": "^7.6.6",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "eslint-plugin-storybook": "^0.6.15",
     "storybook": "^7.6.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite": "^5.2.10"
   },
   "dependencies": {
-    "@sickgyun/ui": "workspace:*",
-    "@sickgyun/design-token": "workspace:*",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@sickgyun/design-token": "workspace:*",
+    "@sickgyun/ui": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
