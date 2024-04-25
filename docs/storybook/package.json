@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint \"**/*.ts*\"",
     "storybook": "storybook dev -p 6006",
-    "build": "storybook build"
+    "build": "storybook build",
+    "lint": "eslint \"**/*.ts*\""
   },
   "devDependencies": {
     "@sickgyun/eslint-config": "workspace:*",
@@ -29,7 +29,6 @@
     "@sickgyun/design-token": "workspace:*",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "next": "14.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
