@@ -48,7 +48,7 @@ importers:
         specifier: ^5
         version: 5.3.3
 
-  apps/web:
+  apps/client:
     dependencies:
       '@chakra-ui/icons':
         specifier: ^2.1.1
@@ -3938,7 +3938,7 @@ packages:
       '@jest/test-result': 29.7.0
       '@jest/transform': 29.7.0
       '@jest/types': 29.6.3
-      '@jridgewell/trace-mapping': 0.3.20
+      '@jridgewell/trace-mapping': 0.3.25
       '@types/node': 20.12.7
       chalk: 4.1.2
       collect-v8-coverage: 1.0.2
