@@ -148,6 +148,9 @@ const StyledSelect = styled.select`
   width: 115px;
   height: 33px;
   cursor: pointer;
+  ${({ theme }) => css`
+    ${theme.fonts.body1}
+  `}
 `;
 
 const StyledCardinalSelect = styled(Select)`

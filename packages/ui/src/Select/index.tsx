@@ -97,4 +97,5 @@ const StyledIconExpandMoreFill = styled(IconExpandMoreFill)`
   right: 16px;
   width: 24px;
   height: 24px;
+  pointer-events: none;
 `;

@@ -20,8 +20,6 @@ export const Switch = ({ options, value, onChange }: SwitchProps) => {
           {index !== 0 && <StyledDividingLine />}
           <StyledSwitchButton
             key={index}
-            isFirst={index === 0}
-            isLast={index === options.length - 1}
             isActive={option.value === value}
             onClick={() => onChange(option.value)}
           >
@@ -44,19 +42,16 @@ const StyledSwitch = styled.div`
   `}
 `;
 
-const StyledSwitchButton = styled.button<{
-  isActive: boolean;
-  isFirst: boolean;
-  isLast: boolean;
-}>`
+const StyledSwitchButton = styled.button<{ isActive: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 13px 19px;
   min-width: 80px;
   height: 100%;
+  border-radius: 8px;
 
-  ${({ isActive, isFirst, isLast, theme }) => css`
+  ${({ isActive, theme }) => css`
     ${theme.fonts.body1}
     color: ${theme.colors.gray600};
     background-color: ${theme.colors.white};
@@ -69,18 +64,6 @@ const StyledSwitchButton = styled.button<{
     ${isActive &&
     css`
       color: ${theme.colors.primary};
-    `}
-
-    ${isFirst &&
-    css`
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-    `}
-
-    ${isLast &&
-    css`
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
     `}
   `}
 `;

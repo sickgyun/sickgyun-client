@@ -64,6 +64,6 @@ const StyledProfilePage = styled.div`
   margin: 0 auto;
   width: 80%;
   padding-top: 100px;
-  padding-bottom: 64px;
+  padding-bottom: 32px;
   margin-bottom: 48px;
 `;
