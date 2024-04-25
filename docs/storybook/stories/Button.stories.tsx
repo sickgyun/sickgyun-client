@@ -30,7 +30,10 @@ export default meta;
 
 export const Default: StoryObj<Button> = {
   args: {
-    children: 'label',
+    children: '버튼',
+    style: {
+      width: '300px',
+    },
   },
   render: (args) => <ButtonComponent {...args} />,
 };

@@ -20,7 +20,9 @@ export const Default: StoryObj<Input> = {
     label: '인풋 라벨',
     bottomText: '바텀 텍스트',
     placeholder: '플레이스 홀더',
-    width: '358px',
+    style: {
+      width: '350px',
+    },
   },
   render: (args) => <InputComponent {...args} />,
 };

@@ -12,8 +12,11 @@ export default meta;
 
 export const Default: StoryObj<InfoBox> = {
   args: {
-    label: 'label',
-    children: 'info box',
+    label: '정보',
+    children: '김석진은 멋지다.',
+    style: {
+      width: '300px',
+    },
   },
   render: (args) => <InfoBoxComponent {...args} />,
 };
