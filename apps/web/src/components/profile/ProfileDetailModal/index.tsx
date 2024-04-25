@@ -49,6 +49,7 @@ const ProfileDetailModal = ({
   };
 
   const handleGoProfileUpdatePage = () => {
+    onClose();
     router.push('/profile/update');
   };
 

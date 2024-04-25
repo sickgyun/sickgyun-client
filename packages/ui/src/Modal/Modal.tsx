@@ -7,6 +7,7 @@ type ModalProps = {
   isOpen: boolean;
   onClose: VoidFunction;
   children: ReactNode;
+  isRender?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
 export const Modal = forwardRef(function Modal(
@@ -14,8 +15,10 @@ export const Modal = forwardRef(function Modal(
   ref: ForwardedRef<HTMLDivElement>
 ) {
   const onClickOutside: MouseEventHandler<HTMLDivElement> = (e) => {
-    if (e.target !== e.currentTarget) return;
-    if (onClose) onClose();
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+    onClose();
   };
 
   useEffect(() => {
