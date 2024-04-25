@@ -40,7 +40,7 @@ export const useGetProfileList = ({
         params: {
           major: major !== 'ALL' ? major : null,
           cardinal: cardinal !== 0 ? cardinal : null,
-          isRecruited,
+          isRecruited: isRecruited ? true : null,
         },
       }),
   });
