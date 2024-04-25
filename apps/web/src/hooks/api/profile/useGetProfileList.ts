@@ -34,7 +34,7 @@ export const useGetProfileList = ({
     GetProfileListResponse[],
     AxiosError<ApiErrorScheme>
   >({
-    queryKey: [PROFILE_LIST_QUERY_KEY, [major, isRecruited, cardinal]],
+    queryKey: [PROFILE_LIST_QUERY_KEY, [major, isRecruited, String(cardinal)]],
     queryFn: async () =>
       await get('/profiles', {
         params: {
