@@ -1,5 +1,5 @@
+import { Textarea as TextareaComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Textarea as TextareaComponent } from '.';
 
 type Textarea = typeof TextareaComponent;
 
@@ -22,7 +22,6 @@ export const Default: StoryObj<Textarea> = {
   args: {
     label: '라벨임',
     placeholder: '플레이스 홀더임',
-    width: '358px',
     isAutoHeight: false,
   },
   render: (args) => <TextareaComponent {...args} />,

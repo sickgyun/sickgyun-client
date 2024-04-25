@@ -1,20 +1,18 @@
+import { Modal as ModalComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Confirm as ConfirmComponent } from '.';
 
-type Confirm = typeof ConfirmComponent;
+type Modal = typeof ModalComponent;
 
-const meta: Meta<Confirm> = {
-  component: ConfirmComponent,
-  title: 'Components/Confirm',
+const meta: Meta<Modal> = {
+  component: ModalComponent,
+  title: 'Components/Modal',
 };
 
 export default meta;
 
-export const Default: StoryObj<Confirm> = {
+export const Default: StoryObj<Modal> = {
   args: {
-    title: '제목입니다.',
-    description: '설명입니다.',
     isOpen: false,
   },
   render: (args) => {
@@ -23,16 +21,7 @@ export const Default: StoryObj<Confirm> = {
 
     return (
       <>
-        <ConfirmComponent
-          {...args}
-          isOpen={isOpen}
-          onClose={() => {
-            setIsOpen(false);
-          }}
-          onConfirm={() => {
-            setIsOpen(false);
-          }}
-        >
+        <ModalComponent {...args} isOpen={isOpen}>
           <button
             type="button"
             onClick={() => {
@@ -41,7 +30,7 @@ export const Default: StoryObj<Confirm> = {
           >
             Close!
           </button>
-        </ConfirmComponent>
+        </ModalComponent>
         <button
           type="button"
           onClick={() => {

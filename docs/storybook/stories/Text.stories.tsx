@@ -1,6 +1,6 @@
 import { colors, fonts } from '@sickgyun/design-token';
+import { Text as TextComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Text as TextComponent } from '.';
 
 type Text = typeof TextComponent;
 

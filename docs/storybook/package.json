@@ -1,0 +1,36 @@
+{
+  "name": "@sickgyun/storybook",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint \"**/*.ts*\"",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@sickgyun/eslint-config": "workspace:*",
+    "@sickgyun/tsconfig": "workspace:*",
+    "@storybook/addon-essentials": "^7.6.6",
+    "@storybook/addon-interactions": "^7.6.6",
+    "@storybook/addon-links": "^7.6.6",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.6",
+    "@storybook/react": "^7.6.6",
+    "@storybook/react-vite": "^7.6.6",
+    "@storybook/test": "^7.6.6",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "storybook": "^7.6.6",
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@sickgyun/ui": "workspace:*",
+    "@sickgyun/design-token": "workspace:*",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "next": "14.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

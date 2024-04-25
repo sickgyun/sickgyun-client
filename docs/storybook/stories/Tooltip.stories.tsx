@@ -1,5 +1,5 @@
+import { Tooltip, Tooltip as TooltipComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tooltip, Tooltip as TooltipComponent } from '.';
 
 type Tooltip = typeof TooltipComponent;
 

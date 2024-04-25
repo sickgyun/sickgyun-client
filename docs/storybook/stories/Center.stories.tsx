@@ -1,5 +1,5 @@
+import { Center as CenterComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Center as CenterComponent } from '.';
 
 type Center = typeof CenterComponent;
 

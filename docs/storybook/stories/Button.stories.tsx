@@ -1,5 +1,5 @@
+import { BUTTON_STYLE_KEYS, Button as ButtonComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { BUTTON_STYLE_KEYS, Button as ButtonComponent } from '.';
 
 type Button = typeof ButtonComponent;
 
@@ -31,7 +31,6 @@ export default meta;
 export const Default: StoryObj<Button> = {
   args: {
     children: 'label',
-    width: '358px',
   },
   render: (args) => <ButtonComponent {...args} />,
 };

@@ -1,17 +1,17 @@
+import { Confirm as ConfirmComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Alert as AlertComponent } from '.';
 
-type Alert = typeof AlertComponent;
+type Confirm = typeof ConfirmComponent;
 
-const meta: Meta<Alert> = {
-  component: AlertComponent,
-  title: 'Components/Alert',
+const meta: Meta<Confirm> = {
+  component: ConfirmComponent,
+  title: 'Components/Confirm',
 };
 
 export default meta;
 
-export const Default: StoryObj<Alert> = {
+export const Default: StoryObj<Confirm> = {
   args: {
     title: '제목입니다.',
     description: '설명입니다.',
@@ -23,9 +23,12 @@ export const Default: StoryObj<Alert> = {
 
     return (
       <>
-        <AlertComponent
+        <ConfirmComponent
           {...args}
           isOpen={isOpen}
+          onClose={() => {
+            setIsOpen(false);
+          }}
           onConfirm={() => {
             setIsOpen(false);
           }}
@@ -38,7 +41,7 @@ export const Default: StoryObj<Alert> = {
           >
             Close!
           </button>
-        </AlertComponent>
+        </ConfirmComponent>
         <button
           type="button"
           onClick={() => {

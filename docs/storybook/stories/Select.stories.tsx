@@ -1,5 +1,5 @@
+import { Select as SelectComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select as SelectComponent } from '.';
 
 type Select = typeof SelectComponent;
 
@@ -14,7 +14,6 @@ export const Default: StoryObj<Select> = {
   args: {
     label: '라벨',
     placeholder: '플레이스 홀더',
-    width: '384px',
   },
   render: (args) => (
     <SelectComponent {...args}>

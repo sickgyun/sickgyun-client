@@ -1,5 +1,5 @@
+import { Stack as StackComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Stack as StackComponent } from '.';
 
 type Stack = typeof StackComponent;
 

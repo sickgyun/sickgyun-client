@@ -1,18 +1,20 @@
+import { Alert as AlertComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Modal as ModalComponent } from './Modal';
 
-type Modal = typeof ModalComponent;
+type Alert = typeof AlertComponent;
 
-const meta: Meta<Modal> = {
-  component: ModalComponent,
-  title: 'Components/Modal',
+const meta: Meta<Alert> = {
+  component: AlertComponent,
+  title: 'Components/Alert',
 };
 
 export default meta;
 
-export const Default: StoryObj<Modal> = {
+export const Default: StoryObj<Alert> = {
   args: {
+    title: '제목입니다.',
+    description: '설명입니다.',
     isOpen: false,
   },
   render: (args) => {
@@ -21,7 +23,13 @@ export const Default: StoryObj<Modal> = {
 
     return (
       <>
-        <ModalComponent {...args} isOpen={isOpen}>
+        <AlertComponent
+          {...args}
+          isOpen={isOpen}
+          onConfirm={() => {
+            setIsOpen(false);
+          }}
+        >
           <button
             type="button"
             onClick={() => {
@@ -30,7 +38,7 @@ export const Default: StoryObj<Modal> = {
           >
             Close!
           </button>
-        </ModalComponent>
+        </AlertComponent>
         <button
           type="button"
           onClick={() => {

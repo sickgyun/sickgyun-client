@@ -1,6 +1,6 @@
 import { colors } from '@sickgyun/design-token';
+import { Spinner as SpinnerComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Spinner as SpinnerComponent } from '.';
 
 type Spinner = typeof SpinnerComponent;
 

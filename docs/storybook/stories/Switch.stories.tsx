@@ -1,6 +1,6 @@
+import { Switch as SwitchComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Switch as SwitchComponent } from '.';
 
 type Switch = typeof SwitchComponent;
 

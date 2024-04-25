@@ -1,5 +1,5 @@
+import { Input as InputComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input as InputComponent } from '.';
 
 type Input = typeof InputComponent;
 

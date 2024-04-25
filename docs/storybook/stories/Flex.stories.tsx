@@ -1,5 +1,5 @@
+import { Flex as FlexComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Flex as FlexComponent } from '.';
 
 type Flex = typeof FlexComponent;
 

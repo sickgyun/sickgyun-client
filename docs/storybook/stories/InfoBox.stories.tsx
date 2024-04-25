@@ -1,5 +1,5 @@
+import { InfoBox as InfoBoxComponent } from '@sickgyun/ui';
 import type { Meta, StoryObj } from '@storybook/react';
-import { InfoBox as InfoBoxComponent } from '.';
 
 type InfoBox = typeof InfoBoxComponent;
 
