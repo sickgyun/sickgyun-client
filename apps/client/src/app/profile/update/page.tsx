@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Button, Spacer, Spinner, Text } from '@sickgyun/ui';
+import { Button, Flex, Spacer, Spinner, Text } from '@sickgyun/ui';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
@@ -48,6 +48,10 @@ const ProfileUpdatePage = () => {
     updateProfileMutate(profile);
   };
 
+  const handleGoBackPage = () => {
+    router.back();
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -55,11 +59,18 @@ const ProfileUpdatePage = () => {
   return (
     <>
       <Header />
+      <Spacer height={32} />
       <StyledProfileUpdatePageLayout>
+        <StyledProfileUpdateHeader>
+          <StyledBackButton onClick={handleGoBackPage} styleType="outline">
+            뒤로가기
+          </StyledBackButton>
+          <Flex style={{ width: '600px', margin: '0 auto' }}>
+            <Text fontType="h1">프로필 수정</Text>
+          </Flex>
+        </StyledProfileUpdateHeader>
+        <Spacer height={32} />
         <StyledProfileUpdatePage>
-          <Spacer height={32} />
-          <Text fontType="h1">프로필 수정</Text>
-          <Spacer height={32} />
           <ProfileForm
             register={register}
             defaultValues={profileMine}
@@ -84,6 +95,18 @@ const StyledProfileUpdatePageLayout = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   width: 100vw;
   height: 100%;
+`;
+
+const StyledProfileUpdateHeader = styled.div`
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+`;
+
+const StyledBackButton = styled(Button)`
+  position: absolute;
+  left: 0;
+  width: 100px;
 `;
 
 const StyledProfileUpdatePage = styled.div`

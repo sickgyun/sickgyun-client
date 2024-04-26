@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Button, Spacer, Text } from '@sickgyun/ui';
+import { Button, Flex, Spacer, Text } from '@sickgyun/ui';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
@@ -44,14 +44,24 @@ const ProfileCreatePage = () => {
     createProfileMutate(profile);
   };
 
+  const handleGoBackPage = () => {
+    router.back();
+  };
+
   return (
     <>
       <Header />
       <StyledProfileCreatePageLayout>
+        <StyledProfileCreateHeader>
+          <StyledBackButton onClick={handleGoBackPage} styleType="outline">
+            뒤로가기
+          </StyledBackButton>
+          <Flex style={{ width: '600px', margin: '0 auto' }}>
+            <Text fontType="h1">프로필 작성</Text>
+          </Flex>
+        </StyledProfileCreateHeader>
+        <Spacer height={32} />
         <StyledProfileCreatePage>
-          <Spacer height={32} />
-          <Text fontType="h1">프로필 작성</Text>
-          <Spacer height={32} />
           <ProfileForm register={register} setValue={setValue} watch={watch} />
           <Spacer height={48} />
           <Button onClick={handleCreateProfileSubmit(onCreateProfile)} size="large">
@@ -76,4 +86,16 @@ const StyledProfileCreatePageLayout = styled.div`
 const StyledProfileCreatePage = styled.div`
   width: 600px;
   margin: 0 auto;
+`;
+
+const StyledProfileCreateHeader = styled.div`
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+`;
+
+const StyledBackButton = styled(Button)`
+  position: absolute;
+  left: 0;
+  width: 100px;
 `;
