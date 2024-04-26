@@ -4,7 +4,7 @@ import { Button, Flex, Stack } from '@sickgyun/ui';
 import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import Logo from '../Logo';
-import NotificationsButton from '../NotificationsButton';
+import NotificationButton from '../NotificationButton';
 import { useUser } from '@/hooks/common/useUser';
 import { RESET_USER, userAtom } from '@/store/user/userAtom';
 
@@ -39,9 +39,9 @@ const Header = () => {
         {!isLoading && (
           <Stack direction="horizontal" align="center" spacing={12}>
             {user.isLogin && (
-              <StyledNotificationsButtonWrapper>
-                <NotificationsButton hasNotification={user.hasNotification} />
-              </StyledNotificationsButtonWrapper>
+              <StyledNotificationButtonWrapper>
+                <NotificationButton hasNotification={user.hasNotification} />
+              </StyledNotificationButtonWrapper>
             )}
             {user.isLogin ? (
               <Button onClick={handleLogout} styleType="ghost" size="small">
@@ -70,6 +70,6 @@ const StyledHeader = styled.div`
   `}
 `;
 
-const StyledNotificationsButtonWrapper = styled.div`
+const StyledNotificationButtonWrapper = styled.div`
   position: relative;
 `;

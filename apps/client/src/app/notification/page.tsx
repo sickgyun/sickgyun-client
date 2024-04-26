@@ -7,14 +7,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import NotificationsCoffeechatPreview from '@/components/notifications/NotificationsCoffeechatPreview';
-import NotificationsCoffeechatReceiveCard from '@/components/notifications/NotificationsCoffeechatReceiveCard';
-import NotificationsCoffeechatSendCard from '@/components/notifications/NotificationsCoffeechatSendCard';
+import NotificationCoffeechatPreview from '@/components/notification/NotificationCoffeechatPreview';
+import NotificationCoffeechatReceiveCard from '@/components/notification/NotificationCoffeechatReceiveCard';
+import NotificationCoffeechatSendCard from '@/components/notification/NotificationCoffeechatSendCard';
 import { useGetReceiveCoffeechatList } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
 import { useGetSendCoffeechatList } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
 import type { Coffeechat, CoffeechatType } from '@/types/coffeechat';
 
-const NotificationsPage = () => {
+const NotificationPage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const [selectedCoffeechat, setSelectedCoffeechat] = useState<Coffeechat>();
@@ -25,13 +25,13 @@ const NotificationsPage = () => {
     useGetSendCoffeechatList();
   const isLoading = isReceiveCoffeechatListLoading || isSendCoffeechatListLoading;
 
-  const handleNotificationsCoffeechatTypeSwitchChange = (value: any) => {
-    router.push(`/notifications?coffeechatType=${value}`);
+  const handleNotificationCoffeechatTypeSwitchChange = (value: any) => {
+    router.push(`/notification?coffeechatType=${value}`);
   };
 
   useLayoutEffect(() => {
     if (isNil(selectedCoffeechatType)) {
-      router.replace('/notifications?coffeechatType=RECEIVE');
+      router.replace('/notification?coffeechatType=RECEIVE');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCoffeechatType]);
@@ -48,8 +48,8 @@ const NotificationsPage = () => {
   return (
     <>
       <Header />
-      <StyledNotificationsPageLayout>
-        <StyledNotificationsPage>
+      <StyledNotificationPageLayout>
+        <StyledNotificationPage>
           <Stack direction="vertical" align="flex-start" spacing={28}>
             <Text fontType="h1">커피챗 요청 내역</Text>
             <Switch
@@ -58,7 +58,7 @@ const NotificationsPage = () => {
                 { name: '보낸 요청', value: 'SEND' },
               ]}
               value={selectedCoffeechatType}
-              onChange={handleNotificationsCoffeechatTypeSwitchChange}
+              onChange={handleNotificationCoffeechatTypeSwitchChange}
             />
           </Stack>
           <Spacer height={36} />
@@ -66,51 +66,51 @@ const NotificationsPage = () => {
             <Spinner />
           ) : (
             <Flex align="flex-start" justify="space-between">
-              <StyledNotificationsList>
+              <StyledNotificationList>
                 {selectedCoffeechatType === 'RECEIVE'
                   ? receiveCoffeechatList?.map((receiveCoffeechat) => (
-                      <NotificationsCoffeechatReceiveCard
+                      <NotificationCoffeechatReceiveCard
                         receiveCoffeechat={receiveCoffeechat}
                         setSelectedCoffeechat={setSelectedCoffeechat}
                         isSelected={receiveCoffeechat.id === selectedCoffeechat?.id}
                       />
                     ))
                   : sendCoffeechatList?.map((sendCoffeechat) => (
-                      <NotificationsCoffeechatSendCard
+                      <NotificationCoffeechatSendCard
                         sendCoffeechat={sendCoffeechat}
                         setSelectedCoffeechat={setSelectedCoffeechat}
                         isSelected={sendCoffeechat.id === selectedCoffeechat?.id}
                       />
                     ))}
-              </StyledNotificationsList>
-              <NotificationsCoffeechatPreview
+              </StyledNotificationList>
+              <NotificationCoffeechatPreview
                 coffeechatType={selectedCoffeechatType}
                 coffeechat={selectedCoffeechat}
               />
             </Flex>
           )}
-        </StyledNotificationsPage>
-      </StyledNotificationsPageLayout>
+        </StyledNotificationPage>
+      </StyledNotificationPageLayout>
       <Footer />
     </>
   );
 };
 
-export default NotificationsPage;
+export default NotificationPage;
 
-const StyledNotificationsPageLayout = styled.div`
+const StyledNotificationPageLayout = styled.div`
   width: 100vw;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
-const StyledNotificationsPage = styled.div`
+const StyledNotificationPage = styled.div`
   width: 80%;
   margin: 0 auto;
   padding-top: 32px;
 `;
 
-const StyledNotificationsList = styled.div`
+const StyledNotificationList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

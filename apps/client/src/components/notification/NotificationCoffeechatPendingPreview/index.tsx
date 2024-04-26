@@ -5,15 +5,15 @@ import CoffeechatAcceptConfirm from '@/components/coffeechat/CoffeechatAcceptCon
 import CoffeechatRejectConfirm from '@/components/coffeechat/CoffeechatRejectConfirm';
 import type { Coffeechat, CoffeechatType } from '@/types/coffeechat';
 
-type NotificationsCoffeechatPendingPreviewProps = {
+type NotificationCoffeechatPendingPreviewProps = {
   coffeechatType: CoffeechatType;
   coffeechat?: Coffeechat;
 };
 
-const NotificationsCoffeechatPendingPreview = ({
+const NotificationCoffeechatPendingPreview = ({
   coffeechatType,
   coffeechat,
-}: NotificationsCoffeechatPendingPreviewProps) => {
+}: NotificationCoffeechatPendingPreviewProps) => {
   const overlay = useOverlay();
   const { id, sendMessage, fromUser, toUser } = coffeechat ?? {};
   const isReceive = coffeechatType === 'RECEIVE';
@@ -32,7 +32,7 @@ const NotificationsCoffeechatPendingPreview = ({
   };
 
   return (
-    <StyledNotificationsCoffeechatPendingPreview>
+    <StyledNotificationCoffeechatPendingPreview>
       <Text fontType="h2">
         {userName} 님에게 {isReceive ? '받은' : '요청한'} 커피챗 요청
       </Text>
@@ -56,13 +56,13 @@ const NotificationsCoffeechatPendingPreview = ({
           {userName} 님의 답변을 기다리는 중...
         </Text>
       )}
-    </StyledNotificationsCoffeechatPendingPreview>
+    </StyledNotificationCoffeechatPendingPreview>
   );
 };
 
-export default NotificationsCoffeechatPendingPreview;
+export default NotificationCoffeechatPendingPreview;
 
-const StyledNotificationsCoffeechatPendingPreview = styled.div`
+const StyledNotificationCoffeechatPendingPreview = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

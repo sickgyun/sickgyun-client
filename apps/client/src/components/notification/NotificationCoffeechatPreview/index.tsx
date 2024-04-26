@@ -1,50 +1,50 @@
 import styled from '@emotion/styled';
-import NotificationsCoffeechatAcceptPreview from '../NotificationsCoffeechatAcceptPreview';
-import NotificationsCoffeechatPendingPreview from '../NotificationsCoffeechatPendingPreview';
-import NotificationsCoffeechatRejectPreview from '../NotificationsCoffeechatRejectPreview';
+import NotificationCoffeechatAcceptPreview from '../NotificationCoffeechatAcceptPreview';
+import NotificationCoffeechatPendingPreview from '../NotificationCoffeechatPendingPreview';
+import NotificationCoffeechatRejectPreview from '../NotificationCoffeechatRejectPreview';
 import type { Coffeechat, CoffeechatType } from '@/types/coffeechat';
 
-type NotificationsCoffeechatPreviewProps = {
+type NotificationCoffeechatPreviewProps = {
   coffeechat?: Coffeechat;
   coffeechatType: CoffeechatType;
 };
 
-const NotificationsCoffeechatPreview = ({
+const NotificationCoffeechatPreview = ({
   coffeechat,
   coffeechatType,
-}: NotificationsCoffeechatPreviewProps) => {
+}: NotificationCoffeechatPreviewProps) => {
   const { state } = coffeechat ?? {};
   const isPending = state === 'PENDING';
   const isAccept = state === 'ACCEPT';
   const isReject = state === 'REJECT';
 
   return (
-    <StyledNotificationsCoffeechatPreview>
+    <StyledNotificationCoffeechatPreview>
       {isPending ? (
-        <NotificationsCoffeechatPendingPreview
+        <NotificationCoffeechatPendingPreview
           coffeechatType={coffeechatType}
           coffeechat={coffeechat}
         />
       ) : isAccept ? (
-        <NotificationsCoffeechatAcceptPreview
+        <NotificationCoffeechatAcceptPreview
           coffeechatType={coffeechatType}
           coffeechat={coffeechat}
         />
       ) : (
         isReject && (
-          <NotificationsCoffeechatRejectPreview
+          <NotificationCoffeechatRejectPreview
             coffeechatType={coffeechatType}
             coffeechat={coffeechat}
           />
         )
       )}
-    </StyledNotificationsCoffeechatPreview>
+    </StyledNotificationCoffeechatPreview>
   );
 };
 
-export default NotificationsCoffeechatPreview;
+export default NotificationCoffeechatPreview;
 
-const StyledNotificationsCoffeechatPreview = styled.div`
+const StyledNotificationCoffeechatPreview = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

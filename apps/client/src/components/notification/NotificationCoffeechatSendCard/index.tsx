@@ -5,49 +5,49 @@ import type { Dispatch, SetStateAction } from 'react';
 import { CoffeechatStateEnum } from '@/types/coffeechat';
 import type { Coffeechat, CoffeechatState } from '@/types/coffeechat';
 
-type NotificationsCoffeechatReceiveCardProps = {
-  receiveCoffeechat: Coffeechat;
+type NotificationCoffeechatSendCardProps = {
+  sendCoffeechat: Coffeechat;
   isSelected: boolean;
   setSelectedCoffeechat: Dispatch<SetStateAction<Coffeechat>>;
 };
 
-const NotificationsCoffeechatReceiveCard = ({
-  receiveCoffeechat,
+const NotificationCoffeechatSendCard = ({
+  sendCoffeechat,
   isSelected,
   setSelectedCoffeechat,
-}: NotificationsCoffeechatReceiveCardProps) => {
-  const { fromUser, state } = receiveCoffeechat;
+}: NotificationCoffeechatSendCardProps) => {
+  const { state, toUser } = sendCoffeechat;
   const isNotPending = state !== 'PENDING';
 
-  const handleNotificationsCoffeechatReceiveCardClick = () => {
-    setSelectedCoffeechat(receiveCoffeechat);
+  const handleNotificationCoffeechatReceiveCardClick = () => {
+    setSelectedCoffeechat(sendCoffeechat);
   };
 
   return (
-    <StyledNotificationsCoffeechatReceiveCard
-      onClick={handleNotificationsCoffeechatReceiveCardClick}
+    <StyledNotificationCoffeechatSendCard
+      onClick={handleNotificationCoffeechatReceiveCardClick}
     >
       {isSelected && <StyledSelectedActiveBar />}
       <Stack direction="vertical" spacing={6}>
-        <Text fontType="body1">{fromUser.name} 님으로부터 커피챗 요청이 왔어요.</Text>
+        <Text fontType="body1">{toUser.name} 님에게 커피챗을 요청했어요.</Text>
         <Stack direction="horizontal" spacing={12}>
           <Text fontType="body2" color="gray600">
-            {fromUser.cardinal}기 {fromUser.isGraduated ? '졸업생' : '재학생'}
+            {toUser.cardinal}기 {toUser.isGraduated ? '졸업생' : '재학생'}
           </Text>
         </Stack>
       </Stack>
       {isNotPending && (
         <StyledCoffeechatState state={state}>
-          {CoffeechatStateEnum[state]} 완료
+          {CoffeechatStateEnum[state]}됨
         </StyledCoffeechatState>
       )}
-    </StyledNotificationsCoffeechatReceiveCard>
+    </StyledNotificationCoffeechatSendCard>
   );
 };
 
-export default NotificationsCoffeechatReceiveCard;
+export default NotificationCoffeechatSendCard;
 
-const StyledNotificationsCoffeechatReceiveCard = styled.div`
+const StyledNotificationCoffeechatSendCard = styled.div`
   position: relative;
   display: flex;
   align-items: center;

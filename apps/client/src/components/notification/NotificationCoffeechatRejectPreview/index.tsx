@@ -3,21 +3,21 @@ import styled from '@emotion/styled';
 import { InfoBox, Text } from '@sickgyun/ui';
 import type { Coffeechat, CoffeechatType } from '@/types/coffeechat';
 
-type NotificationsCoffeechatRejectPreviewProps = {
+type NotificationCoffeechatRejectPreviewProps = {
   coffeechatType: CoffeechatType;
   coffeechat?: Coffeechat;
 };
 
-const NotificationsCoffeechatRejectPreview = ({
+const NotificationCoffeechatRejectPreview = ({
   coffeechatType,
   coffeechat,
-}: NotificationsCoffeechatRejectPreviewProps) => {
+}: NotificationCoffeechatRejectPreviewProps) => {
   const { fromUser, toUser, sendMessage, rejectMessage } = coffeechat ?? {};
   const isReceive = coffeechatType === 'RECEIVE';
   const userName = isReceive ? fromUser.name : toUser.name;
 
   return (
-    <StyledNotificationsCoffeechatRejectPreview>
+    <StyledNotificationCoffeechatRejectPreview>
       <Text fontType="h2">
         {userName} 님에게 {coffeechatType === 'RECEIVE' ? '받은' : '요청한'} 커피챗 요청
       </Text>
@@ -26,13 +26,13 @@ const NotificationsCoffeechatRejectPreview = ({
       {rejectMessage && (
         <StyledRejectMessageBox label="거절 사유">{rejectMessage}</StyledRejectMessageBox>
       )}
-    </StyledNotificationsCoffeechatRejectPreview>
+    </StyledNotificationCoffeechatRejectPreview>
   );
 };
 
-export default NotificationsCoffeechatRejectPreview;
+export default NotificationCoffeechatRejectPreview;
 
-const StyledNotificationsCoffeechatRejectPreview = styled.div`
+const StyledNotificationCoffeechatRejectPreview = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

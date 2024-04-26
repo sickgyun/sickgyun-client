@@ -3,15 +3,15 @@ import { IconNotificationFill } from '@seed-design/icon';
 import { Tooltip } from '@sickgyun/ui';
 import { useRouter } from 'next/navigation';
 
-type NotificationsButtonProps = {
+type NotificationButtonProps = {
   hasNotification: boolean;
 };
 
-const NotificationsButton = ({ hasNotification }: NotificationsButtonProps) => {
+const NotificationButton = ({ hasNotification }: NotificationButtonProps) => {
   const router = useRouter();
 
   const handleGoNotificationPage = () => {
-    router.push('/notifications');
+    router.push('/notification');
   };
 
   return hasNotification ? (
@@ -23,27 +23,27 @@ const NotificationsButton = ({ hasNotification }: NotificationsButtonProps) => {
       {({ ref }) => {
         return (
           <>
-            <StyledNotificationsButton ref={ref} onClick={handleGoNotificationPage} />
-            <StyledNotificationsDot />
+            <StyledNotificationButton ref={ref} onClick={handleGoNotificationPage} />
+            <StyledNotificationDot />
           </>
         );
       }}
     </Tooltip>
   ) : (
-    <StyledEmptyNotificationsButton onClick={handleGoNotificationPage} />
+    <StyledEmptyNotificationButton onClick={handleGoNotificationPage} />
   );
 };
 
-export default NotificationsButton;
+export default NotificationButton;
 
-const StyledNotificationsButton = styled(IconNotificationFill)`
+const StyledNotificationButton = styled(IconNotificationFill)`
   cursor: pointer;
   width: 22px;
   height: 22px;
   color: ${({ theme }) => theme.colors.gray900};
 `;
 
-const StyledNotificationsDot = styled.span`
+const StyledNotificationDot = styled.span`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.red};
   width: 4px;
@@ -53,7 +53,7 @@ const StyledNotificationsDot = styled.span`
   border-radius: 50%;
 `;
 
-const StyledEmptyNotificationsButton = styled(IconNotificationFill)`
+const StyledEmptyNotificationButton = styled(IconNotificationFill)`
   cursor: pointer;
   width: 22px;
   height: 22px;

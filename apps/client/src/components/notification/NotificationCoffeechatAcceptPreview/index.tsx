@@ -4,21 +4,21 @@ import { InfoBox, Stack, Text } from '@sickgyun/ui';
 import type { Coffeechat, CoffeechatType } from '@/types/coffeechat';
 import { convertNewlineToJSX } from '@/utils/convertNewlineToJsx';
 
-type NotificationsCoffeechatAcceptPreviewProps = {
+type NotificationCoffeechatAcceptPreviewProps = {
   coffeechatType: CoffeechatType;
   coffeechat?: Coffeechat;
 };
 
-const NotificationsCoffeechatAcceptPreview = ({
+const NotificationCoffeechatAcceptPreview = ({
   coffeechatType,
   coffeechat,
-}: NotificationsCoffeechatAcceptPreviewProps) => {
+}: NotificationCoffeechatAcceptPreviewProps) => {
   const { fromUser, toUser, contact, sendMessage } = coffeechat ?? {};
   const isReceive = coffeechatType === 'RECEIVE';
   const userName = isReceive ? fromUser.name : toUser.name;
 
   return (
-    <StyledNotificationsCoffeechatAcceptPreview>
+    <StyledNotificationCoffeechatAcceptPreview>
       <Text fontType="h2">
         {userName} 님에게 {isReceive ? '받은' : '요청한'} 커피챗 요청
       </Text>
@@ -51,13 +51,13 @@ const NotificationsCoffeechatAcceptPreview = ({
           )}
         </Stack>
       </StyledContactContainer>
-    </StyledNotificationsCoffeechatAcceptPreview>
+    </StyledNotificationCoffeechatAcceptPreview>
   );
 };
 
-export default NotificationsCoffeechatAcceptPreview;
+export default NotificationCoffeechatAcceptPreview;
 
-const StyledNotificationsCoffeechatAcceptPreview = styled.div`
+const StyledNotificationCoffeechatAcceptPreview = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

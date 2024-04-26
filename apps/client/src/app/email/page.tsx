@@ -15,7 +15,7 @@ const EmailPage = () => {
     logShowEvent({ name: 'show_email_entry_site' });
 
     if (isLogin) {
-      router.replace('/notifications');
+      router.replace('/notification');
     } else {
       router.replace('/');
     }
