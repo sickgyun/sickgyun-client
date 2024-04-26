@@ -20,7 +20,7 @@ export const Switch = ({ options, value, onChange }: SwitchProps) => {
           {index !== 0 && <StyledDividingBar />}
           <StyledSwitchButton
             key={index}
-            isActive={option.value === value}
+            isSelected={option.value === value}
             onClick={() => onChange(option.value)}
           >
             {option.name}
@@ -42,7 +42,7 @@ const StyledSwitch = styled.div`
   `}
 `;
 
-const StyledSwitchButton = styled.button<{ isActive: boolean }>`
+const StyledSwitchButton = styled.button<{ isSelected: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,7 +51,7 @@ const StyledSwitchButton = styled.button<{ isActive: boolean }>`
   height: 100%;
   border-radius: 8px;
 
-  ${({ isActive, theme }) => css`
+  ${({ isSelected, theme }) => css`
     ${theme.fonts.body1}
     color: ${theme.colors.gray600};
     background-color: ${theme.colors.white};
@@ -61,7 +61,7 @@ const StyledSwitchButton = styled.button<{ isActive: boolean }>`
       background-color: ${theme.colors.gray100};
     }
 
-    ${isActive &&
+    ${isSelected &&
     css`
       font-weight: 600;
       color: ${theme.colors.primary};
