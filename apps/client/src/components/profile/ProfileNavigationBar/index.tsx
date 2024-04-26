@@ -4,6 +4,7 @@ import { IconExpandMoreFill } from '@seed-design/icon';
 import { Button, Flex, Select, Stack, Switch, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
+import type { ChangeEventHandler } from 'react';
 import { useEffect } from 'react';
 import type { UseFormRegister, UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
@@ -37,6 +38,10 @@ const ProfileNavigationBar = ({
 
   const handleIsRecruitedSwitchChange = (value: any) => {
     setValue('isRecruited', value);
+  };
+
+  const handleCardinalSelectChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
+    setValue('cardinal', Number(e.target.value));
   };
 
   const handleGoProfileManagePage = () => {
@@ -76,12 +81,15 @@ const ProfileNavigationBar = ({
           </StyledMajorSelect>
           <Flex align="center" justify="space-between">
             <Stack direction="horizontal" align="center" spacing={16}>
-              <StyledCardinalSelect {...register('cardinal')}>
-                <option value={0}>전체 기수</option>
-                <option value={1}>1기</option>
-                <option value={2}>2기</option>
-                <option value={3}>3기</option>
-                <option value={4}>4기</option>
+              <StyledCardinalSelect
+                {...register('cardinal')}
+                onChange={handleCardinalSelectChange}
+              >
+                <option value="0">전체 기수</option>
+                <option value="1">1기</option>
+                <option value="2">2기</option>
+                <option value="3">3기</option>
+                <option value="4">4기</option>
               </StyledCardinalSelect>
               <Switch
                 options={[
