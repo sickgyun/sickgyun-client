@@ -56,7 +56,7 @@ const CoffeechatSendConfirm = ({
   return (
     <StyledCoffeechatSendConfirm
       title="커피챗 요청"
-      description="메세지를 입력해서 커피챗을 신청해보세요!"
+      description="메세지를 입력해서 커피챗을 요청해보세요!"
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={handleCreateCoffeechatSubmit(onSendCoffeechat)}

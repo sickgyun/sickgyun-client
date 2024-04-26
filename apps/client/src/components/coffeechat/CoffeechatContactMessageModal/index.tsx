@@ -27,7 +27,7 @@ const CoffeechatContactMessageModal = ({
         <Stack spacing={8}>
           <Text fontType="h2">커피챗 요청</Text>
           <Text fontType="p2" color="gray600">
-            신청자가 커피챗을 요청하면서 보낸 메세지{contact && '와 연락처'}에요!
+            요청자가 커피챗을 요청하면서 보낸 메세지{contact && '와 연락처'}에요!
           </Text>
         </Stack>
         <ModalCloseButton onClose={onClose} />

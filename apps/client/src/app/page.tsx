@@ -67,8 +67,8 @@ const MainPage = () => {
           <Stack spacing={18}>
             <Text fontType="h3">
               {user.isLogin
-                ? `${user.name}님의 커피챗 신청을 기다리는 선배들이에요`
-                : '커피챗 신청을 기다리는 선배들이에요'}
+                ? `${user.name}님의 커피챗 요청을 기다리는 선배들이에요`
+                : '커피챗 요청을 기다리는 선배들이에요'}
             </Text>
             <StyledDirectProfileListWrapper>
               <DirectProfileList />
