@@ -20,6 +20,7 @@ import type {
   ComponentType,
   Dispatch,
   MouseEvent,
+  MouseEventHandler,
   ReactNode,
   SetStateAction,
 } from 'react';
@@ -30,7 +31,7 @@ import { Text } from '../Text';
 
 type TooltipChildrenProps = {
   ref: (arg0: Element | null) => void | null;
-  onOpen?: React.MouseEventHandler<Element> | VoidFunction;
+  onOpen?: MouseEventHandler<Element> | VoidFunction;
   referenceProps: Record<string, unknown>;
 };
 

@@ -1,13 +1,14 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
+import type { MouseEventHandler } from 'react';
 import { Qna } from '@/types/qna';
 
 type QnaPostCategoryProps = {
   questionType: Qna;
   isWriteCategory?: boolean;
   isActive?: boolean;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 };
 
 const QnaPostCategory = ({
