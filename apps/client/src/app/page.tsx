@@ -59,11 +59,6 @@ const MainPage = () => {
             </Flex>
           </Stack>
           <Spacer height={64} />
-          {/* <Stack spacing={18}>
-            <Text fontType="h3">자유롭게 물어봐요!</Text>
-            <QnaBanner />
-          </Stack>
-          <Spacer height={64} /> */}
           <Stack spacing={18}>
             <Text fontType="h3">
               {user.isLogin
