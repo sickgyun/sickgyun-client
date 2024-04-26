@@ -38,7 +38,7 @@ const CoffeechatSendConfirm = ({
       toast.info('커피챗 요청을 보냈어요!', {
         action: {
           label: '확인하러 가기',
-          onClick: () => router.push('/notification?type=SEND'),
+          onClick: () => router.push('/notification?coffeechatType=SEND'),
         },
       });
     },

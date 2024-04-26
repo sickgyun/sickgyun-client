@@ -1,66 +1,94 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Button, Spacer, Stack, Text } from '@sickgyun/ui';
+import { Flex, Spacer, Spinner, Stack, Switch, Text } from '@sickgyun/ui';
 import { isNil } from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useLayoutEffect } from 'react';
-import CoffeechatReceiveList from '@/components/coffeechat/CoffeechatReceiveList';
-import CoffeechatSendList from '@/components/coffeechat/CoffeechatSendList';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import type { CoffeechatType } from '@/types/coffeechat';
+import NotificationCoffeechatPreview from '@/components/notification/NotificationCoffeechatPreview';
+import NotificationCoffeechatReceiveCard from '@/components/notification/NotificationCoffeechatReceiveCard';
+import NotificationCoffeechatSendCard from '@/components/notification/NotificationCoffeechatSendCard';
+import { useGetReceiveCoffeechatList } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
+import { useGetSendCoffeechatList } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
+import type { Coffeechat, CoffeechatType } from '@/types/coffeechat';
 
 const NotificationPage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const selectedCoffeechatType = params.get('type') as CoffeechatType;
-  const coffeechatType = selectedCoffeechatType === 'SEND' ? '신청' : '요청';
+  const [selectedCoffeechat, setSelectedCoffeechat] = useState<Coffeechat>();
+  const selectedCoffeechatType = params.get('coffeechatType') as CoffeechatType;
+  const { receiveCoffeechatList, isLoading: isReceiveCoffeechatListLoading } =
+    useGetReceiveCoffeechatList();
+  const { sendCoffeechatList, isLoading: isSendCoffeechatListLoading } =
+    useGetSendCoffeechatList();
+  const isLoading = isReceiveCoffeechatListLoading || isSendCoffeechatListLoading;
+
+  const handleNotificationCoffeechatTypeSwitchChange = (value: any) => {
+    router.push(`/notification?coffeechatType=${value}`);
+  };
 
   useLayoutEffect(() => {
     if (isNil(selectedCoffeechatType)) {
-      router.replace('/notification?type=RECEIVE');
+      router.replace('/notification?coffeechatType=RECEIVE');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCoffeechatType]);
 
-  const handleCoffeechatTypeSelected = (coffeechatType: CoffeechatType) => {
-    router.replace(`/notification?type=${coffeechatType}`);
-  };
+  useEffect(() => {
+    if (selectedCoffeechatType === 'RECEIVE') {
+      setSelectedCoffeechat(receiveCoffeechatList?.[0]);
+    } else {
+      setSelectedCoffeechat(sendCoffeechatList?.[0]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [receiveCoffeechatList, sendCoffeechatList, selectedCoffeechatType]);
 
   return (
     <>
       <Header />
       <StyledNotificationPageLayout>
         <StyledNotificationPage>
-          <Spacer height={32} />
-          <Text fontType="h1">커피챗 {coffeechatType} 내역</Text>
-          <Spacer height={32} />
-          <Stack direction="horizontal" align="center" spacing={12}>
-            <Button
-              onClick={() => handleCoffeechatTypeSelected('RECEIVE')}
-              isActive={selectedCoffeechatType === 'RECEIVE'}
-              styleType="tertiary"
-            >
-              요청 받은 내역
-            </Button>
-            <Button
-              onClick={() => handleCoffeechatTypeSelected('SEND')}
-              isActive={selectedCoffeechatType === 'SEND'}
-              styleType="tertiary"
-            >
-              신청 한 내역
-            </Button>
+          <Stack direction="vertical" align="flex-start" spacing={28}>
+            <Text fontType="h1">커피챗 요청 내역</Text>
+            <Switch
+              options={[
+                { name: '받은 요청', value: 'RECEIVE' },
+                { name: '보낸 요청', value: 'SEND' },
+              ]}
+              value={selectedCoffeechatType}
+              onChange={handleNotificationCoffeechatTypeSwitchChange}
+            />
           </Stack>
-          <Spacer height={48} />
-          <StyledCoffeechatListWrapper>
-            {selectedCoffeechatType === 'RECEIVE' ? (
-              <CoffeechatReceiveList />
-            ) : (
-              <CoffeechatSendList />
-            )}
-          </StyledCoffeechatListWrapper>
-          <Spacer height={64} />
+          <Spacer height={36} />
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <Flex align="flex-start" justify="space-between">
+              <StyledNotificationList>
+                {selectedCoffeechatType === 'RECEIVE'
+                  ? receiveCoffeechatList?.map((receiveCoffeechat) => (
+                      <NotificationCoffeechatReceiveCard
+                        receiveCoffeechat={receiveCoffeechat}
+                        setSelectedCoffeechat={setSelectedCoffeechat}
+                        isSelected={receiveCoffeechat.id === selectedCoffeechat?.id}
+                      />
+                    ))
+                  : sendCoffeechatList?.map((sendCoffeechat) => (
+                      <NotificationCoffeechatSendCard
+                        sendCoffeechat={sendCoffeechat}
+                        setSelectedCoffeechat={setSelectedCoffeechat}
+                        isSelected={sendCoffeechat.id === selectedCoffeechat?.id}
+                      />
+                    ))}
+              </StyledNotificationList>
+              <NotificationCoffeechatPreview
+                coffeechatType={selectedCoffeechatType}
+                coffeechat={selectedCoffeechat}
+              />
+            </Flex>
+          )}
         </StyledNotificationPage>
       </StyledNotificationPageLayout>
       <Footer />
@@ -77,11 +105,16 @@ const StyledNotificationPageLayout = styled.div`
 `;
 
 const StyledNotificationPage = styled.div`
-  width: 700px;
+  width: 80%;
   margin: 0 auto;
+  padding-top: 32px;
 `;
 
-const StyledCoffeechatListWrapper = styled.div`
-  width: 500px;
-  margin: 0 auto;
+const StyledNotificationList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: auto;
+  width: 540px;
+  max-height: 600px;
 `;

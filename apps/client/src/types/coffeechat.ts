@@ -7,7 +7,7 @@ export type CoffeechatState = 'ACCEPT' | 'PENDING' | 'REJECT';
 export enum CoffeechatStateEnum {
   'PENDING' = '대기',
   'REJECT' = '거절',
-  'ACCEPT' = '승인',
+  'ACCEPT' = '수락',
 }
 
 export type Contact = {
@@ -16,11 +16,12 @@ export type Contact = {
   instagramId: string;
 };
 
-export type CoffeechatList = {
+export type Coffeechat = {
   id: number;
   state: CoffeechatState;
   toUser: User;
   fromUser: User;
-  contact: Contact;
-  message?: string;
+  contact?: Contact;
+  sendMessage?: string;
+  rejectMessage?: string;
 };

@@ -14,15 +14,13 @@ export const InfoBox = forwardRef(function InfoBox(
   ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
-    <StyledInfoBoxWrapper>
+    <StyledInfoBoxWrapper {...props}>
       {label && (
         <Text color="gray600" fontType="p2" style={{ marginBottom: '8px' }}>
           {label}
         </Text>
       )}
-      <StyledInfoBox ref={ref} {...props}>
-        {children}
-      </StyledInfoBox>
+      <StyledInfoBox ref={ref}>{children}</StyledInfoBox>
     </StyledInfoBoxWrapper>
   );
 });
