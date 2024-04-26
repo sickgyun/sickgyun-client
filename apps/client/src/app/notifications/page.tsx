@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Flex, Spacer, Stack, Switch, Text } from '@sickgyun/ui';
+import { Flex, Spacer, Spinner, Stack, Switch, Text } from '@sickgyun/ui';
 import { isNil } from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useLayoutEffect, useState } from 'react';
@@ -19,8 +19,11 @@ const NotificationsPage = () => {
   const params = useSearchParams();
   const [selectedCoffeechat, setSelectedCoffeechat] = useState<Coffeechat>();
   const selectedCoffeechatType = params.get('coffeechatType') as CoffeechatType;
-  const { receiveCoffeechatList } = useGetReceiveCoffeechatList();
-  const { sendCoffeechatList } = useGetSendCoffeechatList();
+  const { receiveCoffeechatList, isLoading: isReceiveCoffeechatListLoading } =
+    useGetReceiveCoffeechatList();
+  const { sendCoffeechatList, isLoading: isSendCoffeechatListLoading } =
+    useGetSendCoffeechatList();
+  const isLoading = isReceiveCoffeechatListLoading || isSendCoffeechatListLoading;
 
   const handleNotificationsCoffeechatTypeSwitchChange = (value: any) => {
     router.push(`/notifications?coffeechatType=${value}`);
@@ -35,13 +38,9 @@ const NotificationsPage = () => {
 
   useEffect(() => {
     if (selectedCoffeechatType === 'RECEIVE') {
-      if (receiveCoffeechatList) {
-        setSelectedCoffeechat(receiveCoffeechatList[0]);
-      }
+      setSelectedCoffeechat(receiveCoffeechatList?.[0]);
     } else {
-      if (sendCoffeechatList) {
-        setSelectedCoffeechat(sendCoffeechatList[0]);
-      }
+      setSelectedCoffeechat(sendCoffeechatList?.[0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [receiveCoffeechatList, sendCoffeechatList, selectedCoffeechatType]);
@@ -63,29 +62,33 @@ const NotificationsPage = () => {
             />
           </Stack>
           <Spacer height={36} />
-          <Flex align="flex-start" justify="space-between">
-            <StyledNotificationsList>
-              {selectedCoffeechatType === 'RECEIVE'
-                ? receiveCoffeechatList?.map((receiveCoffeechat) => (
-                    <NotificationsCoffeechatReceiveCard
-                      receiveCoffeechat={receiveCoffeechat}
-                      setSelectedCoffeechat={setSelectedCoffeechat}
-                      isSelected={receiveCoffeechat.id === selectedCoffeechat?.id}
-                    />
-                  ))
-                : sendCoffeechatList?.map((sendCoffeechat) => (
-                    <NotificationsCoffeechatSendCard
-                      sendCoffeechat={sendCoffeechat}
-                      setSelectedCoffeechat={setSelectedCoffeechat}
-                      isSelected={sendCoffeechat.id === selectedCoffeechat?.id}
-                    />
-                  ))}
-            </StyledNotificationsList>
-            <NotificationsCoffeechatPreview
-              coffeechatType={selectedCoffeechatType}
-              coffeechat={selectedCoffeechat}
-            />
-          </Flex>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <Flex align="flex-start" justify="space-between">
+              <StyledNotificationsList>
+                {selectedCoffeechatType === 'RECEIVE'
+                  ? receiveCoffeechatList?.map((receiveCoffeechat) => (
+                      <NotificationsCoffeechatReceiveCard
+                        receiveCoffeechat={receiveCoffeechat}
+                        setSelectedCoffeechat={setSelectedCoffeechat}
+                        isSelected={receiveCoffeechat.id === selectedCoffeechat?.id}
+                      />
+                    ))
+                  : sendCoffeechatList?.map((sendCoffeechat) => (
+                      <NotificationsCoffeechatSendCard
+                        sendCoffeechat={sendCoffeechat}
+                        setSelectedCoffeechat={setSelectedCoffeechat}
+                        isSelected={sendCoffeechat.id === selectedCoffeechat?.id}
+                      />
+                    ))}
+              </StyledNotificationsList>
+              <NotificationsCoffeechatPreview
+                coffeechatType={selectedCoffeechatType}
+                coffeechat={selectedCoffeechat}
+              />
+            </Flex>
+          )}
         </StyledNotificationsPage>
       </StyledNotificationsPageLayout>
       <Footer />

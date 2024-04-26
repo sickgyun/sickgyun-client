@@ -6,14 +6,14 @@ import { convertNewlineToJSX } from '@/utils/convertNewlineToJsx';
 
 type NotificationsCoffeechatAcceptPreviewProps = {
   coffeechatType: CoffeechatType;
-  coffeechat: Coffeechat;
+  coffeechat?: Coffeechat;
 };
 
 const NotificationsCoffeechatAcceptPreview = ({
   coffeechatType,
   coffeechat,
 }: NotificationsCoffeechatAcceptPreviewProps) => {
-  const { fromUser, toUser, contact, sendMessage } = coffeechat;
+  const { fromUser, toUser, contact, sendMessage } = coffeechat ?? {};
   const isReceive = coffeechatType === 'RECEIVE';
   const userName = isReceive ? fromUser.name : toUser.name;
 

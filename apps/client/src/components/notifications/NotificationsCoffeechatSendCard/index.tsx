@@ -27,7 +27,7 @@ const NotificationsCoffeechatSendCard = ({
     <StyledNotificationsCoffeechatSendCard
       onClick={handleNotificationsCoffeechatReceiveCardClick}
     >
-      {isSelected && <StyledActiveBar />}
+      {isSelected && <StyledSelectedActiveBar />}
       <Stack direction="vertical" spacing={6}>
         <Text fontType="body1">{toUser.name} 님에게 커피챗을 요청했어요.</Text>
         <Stack direction="horizontal" spacing={12}>
@@ -64,7 +64,7 @@ const StyledNotificationsCoffeechatSendCard = styled.div`
   }
 `;
 
-const StyledActiveBar = styled.div`
+const StyledSelectedActiveBar = styled.div`
   position: absolute;
   left: 0;
   height: 48px;

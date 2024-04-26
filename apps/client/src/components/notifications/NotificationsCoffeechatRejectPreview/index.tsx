@@ -12,7 +12,7 @@ const NotificationsCoffeechatRejectPreview = ({
   coffeechatType,
   coffeechat,
 }: NotificationsCoffeechatRejectPreviewProps) => {
-  const { fromUser, toUser, sendMessage, rejectMessage } = coffeechat;
+  const { fromUser, toUser, sendMessage, rejectMessage } = coffeechat ?? {};
   const isReceive = coffeechatType === 'RECEIVE';
   const userName = isReceive ? fromUser.name : toUser.name;
 
