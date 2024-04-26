@@ -11,7 +11,7 @@ const NotificationButton = ({ hasNotification }: NotificationButtonProps) => {
   const router = useRouter();
 
   const handleGoNotificationPage = () => {
-    router.push('/notification');
+    router.push('/notifications');
   };
 
   return hasNotification ? (

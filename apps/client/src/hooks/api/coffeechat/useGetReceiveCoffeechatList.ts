@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { get } from '@/libs/api/client';
 import type { ApiErrorScheme } from '@/libs/exceptions';
-import type { CoffeechatList } from '@/types/coffeechat';
+import type { Coffeechat } from '@/types/coffeechat';
 
-type GetReceiveCoffeechatListResponse = CoffeechatList;
+type GetReceiveCoffeechatListResponse = Coffeechat;
 
 export const RECEIVE_COFFEE_CHAT_LIST = 'receiveCoffeechatList';
 

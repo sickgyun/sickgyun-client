@@ -17,7 +17,7 @@ export const Switch = ({ options, value, onChange }: SwitchProps) => {
     <StyledSwitch>
       {options.map((option, index) => (
         <>
-          {index !== 0 && <StyledDividingLine />}
+          {index !== 0 && <StyledDividingBar />}
           <StyledSwitchButton
             key={index}
             isActive={option.value === value}
@@ -69,7 +69,7 @@ const StyledSwitchButton = styled.button<{ isActive: boolean }>`
   `}
 `;
 
-const StyledDividingLine = styled.div`
+const StyledDividingBar = styled.div`
   width: 1px;
   height: 20px;
   border-radius: 0.5px;
