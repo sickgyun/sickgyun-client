@@ -65,7 +65,7 @@ const MainBanner = () => {
         }}
         spaceBetween={30}
         loop={true}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
         modules={[Autoplay]}
       >
         {banners.map((banner, index) => (
