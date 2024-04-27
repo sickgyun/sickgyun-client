@@ -64,7 +64,7 @@ const ProfileDetailModal = ({
   return (
     <StyledProfileDetailModal isOpen={isOpen} onClose={onClose}>
       <ModalHeader>
-        <Text fontType="h2">프로필 정보</Text>
+        <Text fontType="h3">프로필 정보</Text>
         <ModalCloseButton onClose={onClose} />
       </ModalHeader>
       <ModalBody>

@@ -22,7 +22,7 @@ const RecuritCard = ({ title, thumbnail, companyName, href }: RecuritCardProps) 
     <StyledRecuritCard onClick={handleGoRecruitDetailPage}>
       <StyledThumnailImage src={thumbnail} width={85} height={85} alt="Job Posting" />
       <Stack spacing={4}>
-        <Text fontType="h4">{title}</Text>
+        <Text fontType="h5">{title}</Text>
         <Text fontType="p2" color="gray600">
           {companyName}
         </Text>

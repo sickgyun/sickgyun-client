@@ -47,7 +47,7 @@ const LoginBox = () => {
               </Text>
             </Stack>
             <Stack direction="horizontal" align="center" spacing={4}>
-              <Text fontType="h4">{user.name}님 반가워요!</Text>
+              <Text fontType="h5">{user.name}님 반가워요!</Text>
             </Stack>
             <Text fontType="p1" color="gray500">
               {user.email}

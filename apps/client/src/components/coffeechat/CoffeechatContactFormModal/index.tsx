@@ -53,7 +53,7 @@ const CoffeechatContactFormModal = ({
     <StyledCoffeechatContactFormModal isOpen={isOpen} onClose={onClose}>
       <ModalHeader>
         <Stack spacing={8}>
-          <Text fontType="h2">연락처 {user.hasNotContact ? '추가' : '수정'}</Text>
+          <Text fontType="h3">연락처 {user.hasNotContact ? '추가' : '수정'}</Text>
           <Text fontType="p2" color="gray600">
             연락처를 추가해야 커피챗 요청 후에 매끄럽게 약속을 잡을 수 있어요!
           </Text>

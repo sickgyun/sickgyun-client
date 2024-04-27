@@ -30,7 +30,7 @@ const MobilePage = () => {
         <Logo width={160} height={54} />
         <Spacer height={24} />
         <Stack direction="vertical" align="center" spacing={12}>
-          <Text fontType="h2">PC에서 식견을 만나보세요</Text>
+          <Text fontType="h3">PC에서 식견을 만나보세요</Text>
           <Text fontType="body2" style={{ textAlign: 'center' }}>
             {convertNewlineToJSX(
               '아직 모바일 환경을 지원하지 않아요.\n당황해하실 줄 알고 밑에 공유하기 버튼을 준비했어요.'

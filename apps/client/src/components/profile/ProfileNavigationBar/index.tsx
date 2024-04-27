@@ -144,8 +144,8 @@ const StyledMajorSelect = styled.div`
 `;
 
 const StyledIconExpandMoreFill = styled(IconExpandMoreFill)`
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
   margin-left: 8px;
   color: ${({ theme }) => theme.colors.gray900};
 `;
@@ -153,7 +153,7 @@ const StyledIconExpandMoreFill = styled(IconExpandMoreFill)`
 const StyledSelect = styled.select`
   opacity: 0;
   position: absolute;
-  width: 115px;
+  width: 135px;
   height: 33px;
   cursor: pointer;
   ${({ theme }) => css`

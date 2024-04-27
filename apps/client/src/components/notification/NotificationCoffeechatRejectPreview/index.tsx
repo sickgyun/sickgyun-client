@@ -18,7 +18,7 @@ const NotificationCoffeechatRejectPreview = ({
 
   return (
     <StyledNotificationCoffeechatRejectPreview>
-      <Text fontType="h2">
+      <Text fontType="h3">
         {userName} 님에게 {coffeechatType === 'RECEIVE' ? '받은' : '요청한'} 커피챗 요청
       </Text>
       {sendMessage && <StyledSendMessageBox>{sendMessage}</StyledSendMessageBox>}
