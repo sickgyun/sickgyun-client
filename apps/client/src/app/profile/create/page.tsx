@@ -53,10 +53,9 @@ const ProfileCreatePage = () => {
 
     if (user.hasNotContact) {
       openCoffeechatContactFormModal();
-      return;
+    } else {
+      createProfileMutate(profile);
     }
-
-    createProfileMutate(profile);
   };
 
   const handleGoBackPage = () => {
