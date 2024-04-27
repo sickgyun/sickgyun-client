@@ -76,8 +76,8 @@ const LoginBox = () => {
             style={{ width: '100%', height: '100%' }}
           >
             <Flex direction="column">
-              <Text fontType="h3">로그인하고 식견에서</Text>
-              <Text fontType="h3">다양한 취업 정보를 얻어봐요!</Text>
+              <Text fontType="h4">로그인하고 식견에서</Text>
+              <Text fontType="h4">다양한 취업 정보를 얻어봐요!</Text>
             </Flex>
             <Button onClick={handleLogin} styleType="secondary">
               로그인

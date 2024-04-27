@@ -4,8 +4,6 @@ import styled from '@emotion/styled';
 import { Flex, Link, Spacer, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import ErrorReportBanner from '@/components/common/Banners/ErrorReportBanner';
-import UserInterviewBanner from '@/components/common/Banners/UserInterviewBanner';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import LoginBox from '@/components/main/LoginBox';
@@ -21,10 +19,6 @@ const MainPage = () => {
   const router = useRouter();
   const { user } = useUser();
 
-  const renderBanners = () => {
-    return [<ErrorReportBanner />, <UserInterviewBanner />];
-  };
-
   const hanldeGoProfilePage = (major: Major) => {
     router.push(`/profile?major=${major}`);
   };
@@ -35,7 +29,7 @@ const MainPage = () => {
       <StyledMainPageLayout>
         <StyledMainPage>
           <Stack direction="horizontal" align="center" spacing={36}>
-            <MainBanner banners={renderBanners()} />
+            <MainBanner />
             <LoginBox />
           </Stack>
           <Spacer height={84} />
