@@ -93,10 +93,7 @@ const ProfileDetailContent = ({
         </Stack>
       </Stack>
       {profile?.introduction && (
-        <Stack spacing={16}>
-          <Text fontType="h3">소개 말</Text>
-          <InfoBox>{convertNewlineToJSX(profile.introduction)}</InfoBox>
-        </Stack>
+        <InfoBox label="소개말">{convertNewlineToJSX(profile.introduction)}</InfoBox>
       )}
       {hasProfileInformation && (
         <Stack spacing={16}>
@@ -104,45 +101,53 @@ const ProfileDetailContent = ({
           <Stack spacing={16}>
             {profile?.githubId && (
               <StyledInfoBox onClick={handleGoGithub}>
-                <Text fontType="body2">👀 깃허브를 구경해봐요!</Text>
-                <Stack direction="horizontal" align="center" spacing={4}>
-                  <Text fontType="body3" color="gray700">
-                    깃허브 바로가기
-                  </Text>
-                  <IconChevronRightFill width={16} height={16} color={colors.gray700} />
-                </Stack>
+                <Flex align="center" justify="space-between">
+                  <Text fontType="body2">👀 깃허브를 구경해봐요!</Text>
+                  <Stack direction="horizontal" align="center" spacing={4}>
+                    <Text fontType="body3" color="gray700">
+                      깃허브 바로가기
+                    </Text>
+                    <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+                  </Stack>
+                </Flex>
               </StyledInfoBox>
             )}
             {profile?.resumeUrl && (
               <StyledInfoBox onClick={handleGoResume}>
-                <Text fontType="body2">📑 이력서가 궁금하다면?</Text>
-                <Stack direction="horizontal" align="center" spacing={4}>
-                  <Text fontType="body3" color="gray700">
-                    이력서 바로가기
-                  </Text>
-                  <IconChevronRightFill width={16} height={16} color={colors.gray700} />
-                </Stack>
+                <Flex align="center" justify="space-between">
+                  <Text fontType="body2">📑 이력서가 궁금하다면?</Text>
+                  <Stack direction="horizontal" align="center" spacing={4}>
+                    <Text fontType="body3" color="gray700">
+                      이력서 바로가기
+                    </Text>
+                    <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+                  </Stack>
+                </Flex>
               </StyledInfoBox>
             )}
             {profile?.portfolioUrl && (
               <StyledInfoBox onClick={handleGoPortfolio}>
-                <Text fontType="body2">💼 포트폴리오는 어떻게 구성되어 있을까요?</Text>
-                <Stack direction="horizontal" align="center" spacing={4}>
-                  <Text fontType="body3" color="gray700">
-                    포트폴리오 바로가기
-                  </Text>
-                  <IconChevronRightFill width={16} height={16} color={colors.gray700} />
-                </Stack>
+                <Flex align="center" justify="space-between">
+                  <Text fontType="body2">💼 포트폴리오는 어떻게 구성되어 있을까요?</Text>
+                  <Stack direction="horizontal" align="center" spacing={4}>
+                    <Text fontType="body3" color="gray700">
+                      포트폴리오 바로가기
+                    </Text>
+                    <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+                  </Stack>
+                </Flex>
               </StyledInfoBox>
             )}
             {profile?.email && (
               <StyledInfoBox onClick={handleGoEmail}>
-                <Text fontType="body2">📨 이메일</Text>
-                <Flex align="center">
-                  <Text fontType="body3" color="gray700">
-                    이메일 바로가기
-                  </Text>
-                  <IconChevronRightFill width={24} height={24} color={colors.gray700} />
+                <Flex align="center" justify="space-between">
+                  <Text fontType="body2">📨 이메일</Text>
+                  <Flex align="center">
+                    <Text fontType="body3" color="gray700">
+                      이메일 바로가기
+                    </Text>
+                    <IconChevronRightFill width={24} height={24} color={colors.gray700} />
+                  </Flex>
                 </Flex>
               </StyledInfoBox>
             )}
@@ -175,8 +180,5 @@ const StyledDeleteButton = styled(IconTrashFill)`
 `;
 
 const StyledInfoBox = styled(InfoBox)`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   cursor: pointer;
 `;
