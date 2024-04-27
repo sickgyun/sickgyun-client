@@ -19,14 +19,14 @@ const NotificationCoffeechatAcceptPreview = ({
 
   return (
     <StyledNotificationCoffeechatAcceptPreview>
-      <Text fontType="h2">
+      <Text fontType="h3">
         {userName} 님에게 {isReceive ? '받은' : '요청한'} 커피챗 요청
       </Text>
       {sendMessage && <StyledSendMessageBox>{sendMessage}</StyledSendMessageBox>}
       <StyledAcceptStateBox>수락 완료</StyledAcceptStateBox>
       <StyledContactContainer>
         <Stack direction="vertical" spacing={8}>
-          <Text fontType="body1">{userName} 님의 연락처</Text>
+          <Text fontType="h5">{userName} 님의 연락처</Text>
           <Text fontType="body2" color="gray600">
             {convertNewlineToJSX(
               `커피챗을 수락했으니 이제 약속을 잡을 차례에요!\n${userName} 님에게 먼저 연락을 보내보는 건 어떠세요?`

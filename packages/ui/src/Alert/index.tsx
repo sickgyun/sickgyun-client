@@ -36,7 +36,7 @@ export const Alert = forwardRef(function Alert(
     <StyledAlert ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
       <ModalHeader>
         <Stack spacing={8}>
-          <Text fontType="h2">{title}</Text>
+          <Text fontType="h3">{title}</Text>
           {description && (
             <Text fontType="p2" color="gray600">
               {description}

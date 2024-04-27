@@ -13,7 +13,7 @@ const UserInterviewBanner = () => {
   return (
     <StyledUserInterviewBanner onClick={handleGoUserInterviewForm}>
       <Stack direction="vertical" spacing={8}>
-        <Text fontType="h2" color="white">
+        <Text fontType="h3" color="white">
           유저 인터뷰 참여하고
         </Text>
         <Text fontType="h1" color="white">
