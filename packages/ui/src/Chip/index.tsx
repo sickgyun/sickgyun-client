@@ -28,7 +28,16 @@ const StyledChip = styled.div<{ isSelected: boolean }>`
   border-radius: 100px;
   background: rgba(112, 70, 247, 0.08);
   cursor: pointer;
+
+  /* 드래그 방지 */
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+
   ${({ theme, isSelected }) => css`
+    ${theme.fonts.p1}
     ${isSelected &&
     css`
       outline: 1px solid ${theme.colors.primary};
