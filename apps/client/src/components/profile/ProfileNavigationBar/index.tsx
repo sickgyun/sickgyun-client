@@ -127,7 +127,7 @@ const StyledProfileNavigationBar = styled.div`
   width: 100%;
   padding: 24px 0;
   ${({ theme }) => css`
-    border-bottom: 1px solid ${theme.colors.gray100};
+    border-bottom: 1px solid ${theme.colors.gray200};
     background-color: ${theme.colors.white};
   `}
 `;
