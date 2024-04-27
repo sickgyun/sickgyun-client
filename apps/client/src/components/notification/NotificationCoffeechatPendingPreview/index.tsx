@@ -2,7 +2,9 @@ import styled from '@emotion/styled';
 import { Button, InfoBox, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import CoffeechatAcceptConfirm from '@/components/coffeechat/CoffeechatAcceptConfirm';
+import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
 import CoffeechatRejectConfirm from '@/components/coffeechat/CoffeechatRejectConfirm';
+import { useUser } from '@/hooks/common/useUser';
 import type { Coffeechat, CoffeechatType } from '@/types/coffeechat';
 
 type NotificationCoffeechatPendingPreviewProps = {
@@ -15,6 +17,7 @@ const NotificationCoffeechatPendingPreview = ({
   coffeechat,
 }: NotificationCoffeechatPendingPreviewProps) => {
   const overlay = useOverlay();
+  const { user } = useUser();
   const { id, sendMessage, fromUser, toUser } = coffeechat ?? {};
   const isReceive = coffeechatType === 'RECEIVE';
   const userName = isReceive ? fromUser.name : toUser.name;
@@ -25,10 +28,24 @@ const NotificationCoffeechatPendingPreview = ({
     ));
   };
 
+  const openCoffeechatContactFormModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatContactFormModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
   const openCoffeechatRejectConfirm = () => {
     overlay.open(({ isOpen, close }) => (
       <CoffeechatRejectConfirm coffeechatId={id} isOpen={isOpen} onClose={close} />
     ));
+  };
+
+  const handleAcceptButtonClick = () => {
+    if (user.hasNotContact) {
+      openCoffeechatContactFormModal();
+    } else {
+      openCoffeechatAcceptConfirm();
+    }
   };
 
   return (
@@ -44,7 +61,7 @@ const NotificationCoffeechatPendingPreview = ({
           spacing={8}
           style={{ width: '100%', marginTop: '12px' }}
         >
-          <StyledAcceptButton onClick={openCoffeechatAcceptConfirm}>
+          <StyledAcceptButton onClick={handleAcceptButtonClick}>
             수락하기
           </StyledAcceptButton>
           <StyledRejectButton onClick={openCoffeechatRejectConfirm} styleType="secondary">
