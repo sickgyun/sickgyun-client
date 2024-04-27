@@ -3,32 +3,45 @@ import { Text } from '@sickgyun/ui';
 import { isEmpty } from 'lodash';
 import React from 'react';
 import ProfileCard from '../ProfileCard';
+import { BUMAWIKI_PROFILE_ID_LIST, SICKGYUN_PROFILE_ID_LIST } from '@/constants/profile';
 import { withSuspense } from '@/hocs/withSuspense';
 import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
 import { useGetProfileList } from '@/hooks/api/profile/useGetProfileList';
+import type { Promotion } from '@/types/profile';
 
-type ProfileListProps = GetProfileListParams;
+type ProfileListProps = {
+  promotion: Promotion;
+} & GetProfileListParams;
 
-const ProfileList = ({ major, isRecruited, cardinal }: ProfileListProps) => {
+const ProfileList = ({ major, isRecruited, cardinal, promotion }: ProfileListProps) => {
   const { profileList } = useGetProfileList({ major, isRecruited, cardinal });
 
-  return !isEmpty(profileList) ? (
+  const filteredProfileList = profileList.filter((profile) => {
+    switch (promotion) {
+      case 'BUMAWIKI':
+        return BUMAWIKI_PROFILE_ID_LIST.includes(profile.id);
+      case 'SICKGYUN':
+        return SICKGYUN_PROFILE_ID_LIST.includes(profile.id);
+      default:
+        return true;
+    }
+  });
+
+  return !isEmpty(filteredProfileList) ? (
     <StyledProfileList>
-      {profileList.map((profile) => {
-        return (
-          <ProfileCard
-            key={profile.id}
-            name={profile.name}
-            imageUrl={profile.imageUrl}
-            cardinal={profile.cardinal}
-            major={profile.major}
-            profileId={profile.id}
-            userId={profile.userId}
-            company={profile.company}
-            introduction={profile.introduction}
-          />
-        );
-      })}
+      {filteredProfileList.map((profile) => (
+        <ProfileCard
+          key={profile.id}
+          name={profile.name}
+          imageUrl={profile.imageUrl}
+          cardinal={profile.cardinal}
+          major={profile.major}
+          profileId={profile.id}
+          userId={profile.userId}
+          company={profile.company}
+          introduction={profile.introduction}
+        />
+      ))}
     </StyledProfileList>
   ) : (
     <Text fontType="h3">앗! 해당 분야의 학생이 없어요..</Text>

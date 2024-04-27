@@ -84,12 +84,11 @@ const ProfileDetailContent = ({
           <Text fontType="body2" color="gray600">
             관심 있는 분야: {profile.major}
           </Text>
-          <Stack direction="horizontal" spacing={6} align="center">
-            <Image src="/assets/svgs/company.svg" height={16} width={16} alt="Company" />
-            <Text fontType="body2" color="gray600">
-              {profile?.company ? profile.company : '부산소프트웨어마이스터고등학교'}
-            </Text>
-          </Stack>
+          <Text fontType="body2" color="gray600">
+            {profile.company
+              ? `🏢 ${profile.company}`
+              : '🏫 부산소프트웨어마이스터고등학교'}
+          </Text>
         </Stack>
       </Stack>
       {profile?.introduction && (

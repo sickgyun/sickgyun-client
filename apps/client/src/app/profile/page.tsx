@@ -11,26 +11,27 @@ import ProfileList from '@/components/profile/ProfileList';
 import ProfileNavigationBar from '@/components/profile/ProfileNavigationBar';
 import { withAuth } from '@/hocs/withAuth';
 import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
-import type { Major } from '@/types/profile';
+import type { Major, Promotion } from '@/types/profile';
 
 const ProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
-  const selectedMajor = params.get('major') as Major;
+  const major = params.get('major') as Major;
+  const promotion = params.get('promotion') as Promotion;
   const { register, setValue, watch } = useForm<GetProfileListParams>({
     defaultValues: {
-      major: selectedMajor,
+      major: major ?? 'ALL',
       cardinal: 0,
       isRecruited: false,
     },
   });
 
   useEffect(() => {
-    if (isNil(selectedMajor)) {
+    if (isNil(major)) {
       router.replace('/profile?major=ALL');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedMajor]);
+  }, [major]);
 
   return (
     <>
@@ -42,6 +43,7 @@ const ProfilePage = () => {
             major={watch('major')}
             isRecruited={watch('isRecruited')}
             cardinal={watch('cardinal')}
+            promotion={promotion}
           />
         </StyledProfilePage>
       </StyledProfilePageLayout>
