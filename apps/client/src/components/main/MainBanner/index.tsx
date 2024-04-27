@@ -6,22 +6,30 @@ import {
   IconPlayFill,
 } from '@seed-design/icon';
 import { Stack, Text } from '@sickgyun/ui';
-import { type ReactNode, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import type { SwiperClass } from 'swiper/react';
-
+import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react';
+import BumawikiBanner from '@/components/common/Banners/BumawikiBanner';
+import ErrorReportBanner from '@/components/common/Banners/ErrorReportBanner';
+import SickgyunBanner from '@/components/common/Banners/SickgyunBanner';
+import UserInterviewBanner from '@/components/common/Banners/UserInterviewBanner';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 
-type MainBannerProps = {
-  banners: ReactNode[];
+const renderBanners = () => {
+  return [
+    <ErrorReportBanner />,
+    <UserInterviewBanner />,
+    <BumawikiBanner />,
+    <SickgyunBanner />,
+  ];
 };
 
-const MainBanner = ({ banners }: MainBannerProps) => {
+const MainBanner = () => {
   const swiperRef = useRef<SwiperClass | null>(null);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [swiperIndex, setSwiperIndex] = useState(1);
+  const banners = renderBanners();
 
   const handleSwiperIndex = (swiper: SwiperClass) => {
     setSwiperIndex(swiper.realIndex + 1);
@@ -57,7 +65,7 @@ const MainBanner = ({ banners }: MainBannerProps) => {
         }}
         spaceBetween={30}
         loop={true}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
         modules={[Autoplay]}
       >
         {banners.map((banner, index) => (

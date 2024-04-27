@@ -80,7 +80,11 @@ const ProfileNavigationBar = ({
   };
 
   useEffect(() => {
-    router.push(`/profile?major=${major}`);
+    if (promotion) {
+      router.push(`/profile?major=${major}&promotion=${promotion}`);
+    } else {
+      router.push(`/profile?major=${major}`);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [major]);
 

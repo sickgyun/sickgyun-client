@@ -30,17 +30,17 @@ const NotificationButton = ({ hasNotification }: NotificationButtonProps) => {
       }}
     </Tooltip>
   ) : (
-    <StyledEmptyNotificationButton onClick={handleGoNotificationPage} />
+    <StyledNotificationButton onClick={handleGoNotificationPage} />
   );
 };
 
 export default NotificationButton;
 
 const StyledNotificationButton = styled(IconNotificationFill)`
-  cursor: pointer;
   width: 22px;
   height: 22px;
   color: ${({ theme }) => theme.colors.gray900};
+  cursor: pointer;
 `;
 
 const StyledNotificationDot = styled.span`
@@ -51,11 +51,4 @@ const StyledNotificationDot = styled.span`
   top: 0;
   right: 0;
   border-radius: 50%;
-`;
-
-const StyledEmptyNotificationButton = styled(IconNotificationFill)`
-  cursor: pointer;
-  width: 22px;
-  height: 22px;
-  color: ${({ theme }) => theme.colors.gray900};
 `;
