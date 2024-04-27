@@ -18,7 +18,7 @@ const NotificationPage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const [selectedCoffeechat, setSelectedCoffeechat] = useState<Coffeechat>();
-  const selectedCoffeechatType = params.get('coffeechatType') as CoffeechatType;
+  const coffeechatType = params.get('coffeechatType') as CoffeechatType;
   const { receiveCoffeechatList, isLoading: isReceiveCoffeechatListLoading } =
     useGetReceiveCoffeechatList();
   const { sendCoffeechatList, isLoading: isSendCoffeechatListLoading } =
@@ -30,20 +30,20 @@ const NotificationPage = () => {
   };
 
   useLayoutEffect(() => {
-    if (isNil(selectedCoffeechatType)) {
+    if (isNil(coffeechatType)) {
       router.replace('/notification?coffeechatType=RECEIVE');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCoffeechatType]);
+  }, [coffeechatType]);
 
   useEffect(() => {
-    if (selectedCoffeechatType === 'RECEIVE') {
+    if (coffeechatType === 'RECEIVE') {
       setSelectedCoffeechat(receiveCoffeechatList?.[0]);
     } else {
       setSelectedCoffeechat(sendCoffeechatList?.[0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [receiveCoffeechatList, sendCoffeechatList, selectedCoffeechatType]);
+  }, [receiveCoffeechatList, sendCoffeechatList, coffeechatType]);
 
   return (
     <>
@@ -57,7 +57,7 @@ const NotificationPage = () => {
                 { name: '받은 요청', value: 'RECEIVE' },
                 { name: '보낸 요청', value: 'SEND' },
               ]}
-              value={selectedCoffeechatType}
+              value={coffeechatType}
               onChange={handleNotificationCoffeechatTypeSwitchChange}
             />
           </Stack>
@@ -67,7 +67,7 @@ const NotificationPage = () => {
           ) : (
             <Flex align="flex-start" justify="space-between">
               <StyledNotificationList>
-                {selectedCoffeechatType === 'RECEIVE'
+                {coffeechatType === 'RECEIVE'
                   ? receiveCoffeechatList?.map((receiveCoffeechat) => (
                       <NotificationCoffeechatReceiveCard
                         receiveCoffeechat={receiveCoffeechat}
@@ -85,7 +85,7 @@ const NotificationPage = () => {
               </StyledNotificationList>
               {selectedCoffeechat && (
                 <NotificationCoffeechatPreview
-                  coffeechatType={selectedCoffeechatType}
+                  coffeechatType={coffeechatType}
                   coffeechat={selectedCoffeechat}
                 />
               )}

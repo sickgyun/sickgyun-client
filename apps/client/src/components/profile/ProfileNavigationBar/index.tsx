@@ -1,15 +1,16 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconExpandMoreFill } from '@seed-design/icon';
-import { Button, Flex, Select, Stack, Switch, Text } from '@sickgyun/ui';
+import { Button, Chip, Flex, Select, Stack, Switch, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import type { ChangeEventHandler } from 'react';
 import { useEffect } from 'react';
 import type { UseFormRegister, UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
 import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
 import { useUser } from '@/hooks/common/useUser';
+import type { Promotion } from '@/types/profile';
 
 const getMajorFieldName = {
   ALL: '전체 분야',
@@ -32,9 +33,35 @@ const ProfileNavigationBar = ({
   watch,
 }: ProfileNavigationBarProps) => {
   const router = useRouter();
+  const params = useSearchParams();
   const overlay = useOverlay();
   const { user, isLoading } = useUser();
-  const selectedMajor = watch('major');
+  const major = watch('major');
+  const promotion = params.get('promotion') as Promotion;
+  const isSickgyun = promotion === 'SICKGYUN';
+  const isBumawiki = promotion === 'BUMAWIKI';
+
+  const openCoffeechatContactFormModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatContactFormModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
+  const handleBumawikiChipClick = () => {
+    if (isBumawiki) {
+      router.push(`/profile?major=${major}`);
+    } else {
+      router.push(`/profile?major=${major}&promotion=BUMAWIKI`);
+    }
+  };
+
+  const handleSickgyunChipClick = () => {
+    if (isSickgyun) {
+      router.push(`/profile?major=${major}`);
+    } else {
+      router.push(`/profile?major=${major}&promotion=SICKGYUN`);
+    }
+  };
 
   const handleIsRecruitedSwitchChange = (value: any) => {
     setValue('isRecruited', value);
@@ -52,23 +79,17 @@ const ProfileNavigationBar = ({
     }
   };
 
-  const openCoffeechatContactFormModal = () => {
-    overlay.open(({ isOpen, close }) => (
-      <CoffeechatContactFormModal isOpen={isOpen} onClose={close} />
-    ));
-  };
-
   useEffect(() => {
-    router.push(`/profile?major=${selectedMajor}`);
+    router.push(`/profile?major=${major}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedMajor]);
+  }, [major]);
 
   return (
     <StyledProfileNavigationBar>
       <StyledProfileNavigationBarWrapper>
         <Stack direction="vertical" spacing={18}>
           <StyledMajorSelect>
-            <Text fontType="h2">{getMajorFieldName[selectedMajor]}</Text>
+            <Text fontType="h2">{getMajorFieldName[major]}</Text>
             <StyledIconExpandMoreFill />
             <StyledSelect {...register('major')}>
               <option value="ALL">전체 분야</option>
@@ -80,25 +101,41 @@ const ProfileNavigationBar = ({
             </StyledSelect>
           </StyledMajorSelect>
           <Flex align="center" justify="space-between">
-            <Stack direction="horizontal" align="center" spacing={16}>
-              <StyledCardinalSelect
-                {...register('cardinal')}
-                onChange={handleCardinalSelectChange}
-              >
-                <option value="0">전체 기수</option>
-                <option value="1">1기</option>
-                <option value="2">2기</option>
-                <option value="3">3기</option>
-                <option value="4">4기</option>
-              </StyledCardinalSelect>
-              <Switch
-                options={[
-                  { name: '전체', value: false },
-                  { name: '재직자', value: true },
-                ]}
-                value={watch('isRecruited')}
-                onChange={handleIsRecruitedSwitchChange}
-              />
+            <Stack direction="horizontal" align="center" spacing={24}>
+              <Stack direction="horizontal" align="center" spacing={16}>
+                <StyledCardinalSelect
+                  {...register('cardinal')}
+                  onChange={handleCardinalSelectChange}
+                >
+                  <option value="0">전체 기수</option>
+                  <option value="1">1기</option>
+                  <option value="2">2기</option>
+                  <option value="3">3기</option>
+                  <option value="4">4기</option>
+                </StyledCardinalSelect>
+                <Switch
+                  options={[
+                    { name: '전체', value: false },
+                    { name: '재직자', value: true },
+                  ]}
+                  value={watch('isRecruited')}
+                  onChange={handleIsRecruitedSwitchChange}
+                />
+              </Stack>
+              <Stack direction="horizontal" align="center" spacing={8}>
+                <Chip
+                  isSelected={promotion === 'BUMAWIKI'}
+                  onClick={handleBumawikiChipClick}
+                >
+                  #부마위키
+                </Chip>
+                <Chip
+                  isSelected={promotion === 'SICKGYUN'}
+                  onClick={handleSickgyunChipClick}
+                >
+                  #식견
+                </Chip>
+              </Stack>
             </Stack>
             {!isLoading && (
               <Stack direction="horizontal" align="center" spacing={12}>

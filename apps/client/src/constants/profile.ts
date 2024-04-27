@@ -32,3 +32,7 @@ export const DIRECT_PROFILE_LIST = [
     introduction: `- 마루, 식견의 디자인을 맡았어요.\n- 디자인과 디자이너 취업 등에 대해 이야기\n해드릴 수 있어요.`,
   },
 ] as const;
+
+export const BUMAWIKI_PROFILE_ID_LIST = [5, 13, 7, 14, 16];
+
+export const SICKGYUN_PROFILE_ID_LIST = [5, 15, 3, 4];

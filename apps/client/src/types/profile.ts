@@ -25,3 +25,5 @@ export type ProfileFormType = {
 };
 
 export type Major = 'ALL' | 'FRONTEND' | 'BACKEND' | 'EMBEDDED' | 'GAME' | 'ETC';
+
+export type Promotion = 'BUMAWIKI' | 'SICKGYUN';
