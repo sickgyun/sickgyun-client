@@ -47,7 +47,7 @@ const ProfileNavigationBar = ({
     ));
   };
 
-  const handleBumawikiChipClick = () => {
+  const handleBumawikiChipToggleClick = () => {
     if (isBumawiki) {
       router.push(`/profile?major=${major}`);
     } else {
@@ -55,7 +55,7 @@ const ProfileNavigationBar = ({
     }
   };
 
-  const handleSickgyunChipClick = () => {
+  const handleSickgyunChipToggleClick = () => {
     if (isSickgyun) {
       router.push(`/profile?major=${major}`);
     } else {
@@ -125,13 +125,13 @@ const ProfileNavigationBar = ({
               <Stack direction="horizontal" align="center" spacing={8}>
                 <Chip
                   isSelected={promotion === 'BUMAWIKI'}
-                  onClick={handleBumawikiChipClick}
+                  onClick={handleBumawikiChipToggleClick}
                 >
                   #부마위키
                 </Chip>
                 <Chip
                   isSelected={promotion === 'SICKGYUN'}
-                  onClick={handleSickgyunChipClick}
+                  onClick={handleSickgyunChipToggleClick}
                 >
                   #식견
                 </Chip>
