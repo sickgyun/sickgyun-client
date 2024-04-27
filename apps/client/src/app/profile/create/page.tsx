@@ -3,9 +3,11 @@
 import styled from '@emotion/styled';
 import { Button, Flex, Spacer, Text } from '@sickgyun/ui';
 import { useQueryClient } from '@tanstack/react-query';
+import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import ProfileForm from '@/components/profile/ProfileForm';
@@ -20,6 +22,7 @@ import { useLogAnalyticsEvent } from '@/libs/logging';
 
 const ProfileCreatePage = () => {
   const router = useRouter();
+  const overlay = useOverlay();
   const { user } = useUser();
   const { logClickEvent } = useLogAnalyticsEvent();
   const queryClient = useQueryClient();
@@ -39,8 +42,20 @@ const ProfileCreatePage = () => {
     },
   });
 
+  const openCoffeechatContactFormModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <CoffeechatContactFormModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
   const onCreateProfile: SubmitHandler<CreateProfileRequest> = (data) => {
     const profile = { isGraduated: user.isGraduated, ...data };
+
+    if (user.hasNotContact) {
+      openCoffeechatContactFormModal();
+      return;
+    }
+
     createProfileMutate(profile);
   };
 
