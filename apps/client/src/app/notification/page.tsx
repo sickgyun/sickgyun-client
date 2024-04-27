@@ -83,10 +83,12 @@ const NotificationPage = () => {
                       />
                     ))}
               </StyledNotificationList>
-              <NotificationCoffeechatPreview
-                coffeechatType={selectedCoffeechatType}
-                coffeechat={selectedCoffeechat}
-              />
+              {selectedCoffeechat && (
+                <NotificationCoffeechatPreview
+                  coffeechatType={selectedCoffeechatType}
+                  coffeechat={selectedCoffeechat}
+                />
+              )}
             </Flex>
           )}
         </StyledNotificationPage>
