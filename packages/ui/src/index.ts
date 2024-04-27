@@ -17,3 +17,4 @@ export * from './ErrorBoundary';
 export * from './Alert';
 export * from './InfoBox';
 export * from './Switch';
+export * from './Chip';
