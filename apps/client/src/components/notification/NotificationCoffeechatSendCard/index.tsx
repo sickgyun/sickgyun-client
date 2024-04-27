@@ -28,7 +28,7 @@ const NotificationCoffeechatSendCard = ({
       onClick={handleNotificationCoffeechatReceiveCardClick}
     >
       {isSelected && <StyledSelectedActiveBar />}
-      <Stack direction="vertical" spacing={6}>
+      <Stack direction="vertical" spacing={4}>
         <Text fontType="body1">{toUser.name} 님에게 커피챗을 요청했어요.</Text>
         <Stack direction="horizontal" spacing={12}>
           <Text fontType="body2" color="gray600">
@@ -53,7 +53,6 @@ const StyledNotificationCoffeechatSendCard = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 24px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray200};
   padding: 17px 16px;
   cursor: pointer;
