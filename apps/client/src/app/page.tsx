@@ -40,7 +40,7 @@ const MainPage = () => {
           </Stack>
           <Spacer height={84} />
           <Stack spacing={18}>
-            <Text fontType="h3">커피챗할 선배나 친구를 찾아봐요!</Text>
+            <Text fontType="h4">커피챗할 선배나 친구를 찾아봐요!</Text>
             <Flex justify="space-between">
               {MAJOR_LIST.map((major) => (
                 <StyledStudentProfileRedirectButton
@@ -60,7 +60,7 @@ const MainPage = () => {
           </Stack>
           <Spacer height={64} />
           <Stack spacing={18}>
-            <Text fontType="h3">
+            <Text fontType="h4">
               {user.isLogin
                 ? `${user.name}님의 커피챗 요청을 기다리는 선배들이에요`
                 : '커피챗 요청을 기다리는 선배들이에요'}
@@ -72,7 +72,7 @@ const MainPage = () => {
           <Spacer height={64} />
           <Stack spacing={18} style={{ position: 'relative' }}>
             <Flex align="center" justify="space-between">
-              <Text fontType="h3">채용 중인 회사에요!</Text>
+              <Text fontType="h4">채용 중인 회사에요!</Text>
               <LogClickEvent name="click_recurit_full_view_link">
                 <Link href={RECRUIT_FULL_VIEW_LINK} fontType="p1" color="gray750">
                   전체 보기
