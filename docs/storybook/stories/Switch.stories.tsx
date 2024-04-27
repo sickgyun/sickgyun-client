@@ -19,7 +19,6 @@ export const Default: StoryObj<Switch> = {
     ],
   },
   render: (args) => {
-    const { options } = args;
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [boolean, setBoolean] = useState(false);
 
@@ -29,11 +28,7 @@ export const Default: StoryObj<Switch> = {
 
     return (
       <div style={{ display: 'flex' }}>
-        <SwitchComponent
-          onChange={handleBooleanSwitchChange}
-          value={boolean}
-          options={options}
-        />
+        <SwitchComponent {...args} onChange={handleBooleanSwitchChange} value={boolean} />
       </div>
     );
   },
