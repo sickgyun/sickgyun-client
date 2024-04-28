@@ -34,6 +34,7 @@ export const useGetProfileList = ({
     GetProfileListResponse[],
     AxiosError<ApiErrorScheme>
   >({
+    // NOTE: cardinal이 number 타입일 경우 0이면 false로 인식되어 쿼리 업데이트가 진행되지 않기 때문에 string으로 강제 형 변환을 진행해 줍니다.
     queryKey: [PROFILE_LIST_QUERY_KEY, [major, isRecruited, String(cardinal)]],
     queryFn: async () =>
       await get('/profiles', {

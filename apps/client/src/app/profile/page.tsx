@@ -11,13 +11,12 @@ import ProfileList from '@/components/profile/ProfileList';
 import ProfileNavigationBar from '@/components/profile/ProfileNavigationBar';
 import { withAuth } from '@/hocs/withAuth';
 import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
-import type { Major, Promotion } from '@/types/profile';
+import type { Major } from '@/types/profile';
 
 const ProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const major = params.get('major') as Major;
-  const promotion = params.get('promotion') as Promotion;
   const { register, setValue, watch } = useForm<GetProfileListParams>({
     defaultValues: {
       major: major ?? 'ALL',
@@ -42,8 +41,8 @@ const ProfilePage = () => {
           <ProfileList
             major={watch('major')}
             isRecruited={watch('isRecruited')}
-            cardinal={watch('cardinal')}
-            promotion={promotion}
+            // NOTE: cardinal이 number 타입 보장이 되지 않음 isRecruited, major가 변경이 되면 string 타입으로 변경되는 문제가 있어서 강제 형 변환 적용
+            cardinal={Number(watch('cardinal'))}
           />
         </StyledProfilePage>
       </StyledProfilePageLayout>

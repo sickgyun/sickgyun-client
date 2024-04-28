@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Text } from '@sickgyun/ui';
 import { isEmpty } from 'lodash';
-import React from 'react';
+import { useSearchParams } from 'next/navigation';
 import ProfileCard from '../ProfileCard';
 import { BUMAWIKI_PROFILE_ID_LIST, SICKGYUN_PROFILE_ID_LIST } from '@/constants/profile';
 import { withSuspense } from '@/hocs/withSuspense';
@@ -9,12 +9,12 @@ import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList
 import { useGetProfileList } from '@/hooks/api/profile/useGetProfileList';
 import type { Promotion } from '@/types/profile';
 
-type ProfileListProps = {
-  promotion: Promotion;
-} & GetProfileListParams;
+type ProfileListProps = GetProfileListParams;
 
-const ProfileList = ({ major, isRecruited, cardinal, promotion }: ProfileListProps) => {
+const ProfileList = ({ major, isRecruited, cardinal }: ProfileListProps) => {
+  const params = useSearchParams();
   const { profileList } = useGetProfileList({ major, isRecruited, cardinal });
+  const promotion = params.get('promotion') as Promotion;
 
   const filteredProfileList = profileList.filter((profile) => {
     switch (promotion) {
