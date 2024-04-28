@@ -47,10 +47,10 @@ const StyledRejectStateBox = styled.div`
   width: 100%;
   height: 48px;
   border-radius: 8px;
-  background: rgba(244, 67, 54, 0.05);
   ${({ theme }) => css`
     ${theme.fonts.body1}
     color: ${theme.colors.red};
+    background-color: ${theme.colors.redBackgound};
   `}
 `;
 

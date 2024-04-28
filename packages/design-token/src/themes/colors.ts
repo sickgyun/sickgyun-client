@@ -4,11 +4,16 @@ export type ColorKeys = keyof typeof colors;
 export const colors = {
   black: '#1D1D1F',
   white: '#FFFFFF',
+
   red: '#F44336',
+  redBackgound: '#FFF0EF',
+
   yellow: '#FEE500',
+  yellowBackground: '#FFFDEB',
 
   primary: '#7046F7',
   primaryHover: '#673AF7',
+  primaryBackground: '#F4F1FF',
 
   gray50: '#FAFAFB',
   gray100: '#F8F8F9',

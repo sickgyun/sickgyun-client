@@ -76,10 +76,10 @@ const StyledAcceptStateBox = styled.div`
   width: 100%;
   height: 48px;
   border-radius: 8px;
-  background: rgba(112, 70, 247, 0.05);
   ${({ theme }) => css`
     ${theme.fonts.body1}
     color: ${theme.colors.primary};
+    background-color: ${theme.colors.primaryBackground};
   `}
 `;
 
