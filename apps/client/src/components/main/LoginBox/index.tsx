@@ -57,13 +57,13 @@ const LoginBox = () => {
             <StyledNavigationButton onClick={handleGoProfileManagePage}>
               <IconProfileFill width={24} height={24} color={colors.gray900} />
               <Text fontType="body2">
-                프로필 {user.hasCreatedProfile ? '수정' : '추가'}하기
+                프로필 {user.hasCreatedProfile ? '수정' : '생성'}하기
               </Text>
             </StyledNavigationButton>
             <StyledNavigationButton onClick={openCoffeechatContactFormModal}>
               <IconWriteStoryFill width={24} height={24} color={colors.gray900} />
               <Text fontType="body2">
-                연락처 {user.hasNotContact ? '추가' : '수정'}하기
+                연락처 {user.hasNotContact ? '생성' : '수정'}하기
               </Text>
             </StyledNavigationButton>
           </Flex>

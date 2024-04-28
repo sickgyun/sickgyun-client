@@ -82,7 +82,7 @@ const ProfileDetailModal = ({
               styleType="secondary"
               size="large"
             >
-              연락처 {user.hasNotContact ? '추가' : '수정'}
+              연락처 {user.hasNotContact ? '생성' : '수정'}
             </StyledUpdateContactButton>
             <Button onClick={handleGoProfileUpdatePage} size="large">
               프로필 수정
