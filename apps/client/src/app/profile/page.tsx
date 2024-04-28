@@ -1,6 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
+import { InlineBanner } from '@sickgyun/ui';
 import { isNil } from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
@@ -11,12 +12,13 @@ import ProfileList from '@/components/profile/ProfileList';
 import ProfileNavigationBar from '@/components/profile/ProfileNavigationBar';
 import { withAuth } from '@/hocs/withAuth';
 import type { GetProfileListParams } from '@/hooks/api/profile/useGetProfileList';
-import type { Major } from '@/types/profile';
+import type { Major, Promotion } from '@/types/profile';
 
 const ProfilePage = () => {
   const router = useRouter();
   const params = useSearchParams();
   const major = params.get('major') as Major;
+  const promotion = params.get('promotion') as Promotion;
   const { register, setValue, watch } = useForm<GetProfileListParams>({
     defaultValues: {
       major: major ?? 'ALL',
@@ -37,6 +39,11 @@ const ProfilePage = () => {
       <Header />
       <StyledProfilePageLayout>
         <ProfileNavigationBar register={register} setValue={setValue} watch={watch} />
+        {promotion === 'BUMAWIKI' ? (
+          <InlineBanner>지금 바로 부마위키 개발자와 커피챗을 나눠보세요!</InlineBanner>
+        ) : promotion === 'SICKGYUN' ? (
+          <InlineBanner>지금 바로 식견 팀과 커피챗을 나눠보세요!</InlineBanner>
+        ) : null}
         <StyledProfilePage>
           <ProfileList
             major={watch('major')}
