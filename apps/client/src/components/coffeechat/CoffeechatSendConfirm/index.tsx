@@ -32,7 +32,8 @@ const CoffeechatSendConfirm = ({
   } = useForm<SendCoffeechatRequest>();
   const { mutate: sendCoffeechatMutate } = useSendCoffeechat(userId, {
     onSuccess: () => {
-      logClickEvent({ name: 'click_send_coffeechat', params: watch() });
+      const sendCoffeechatRequest = watch();
+      logClickEvent({ name: 'click_send_coffeechat', params: sendCoffeechatRequest });
       queryClient.invalidateQueries({ queryKey: [SEND_COFFEE_CHAT_LIST] });
       router.replace('/profile');
       toast.info('커피챗 요청을 보냈어요!', {

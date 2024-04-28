@@ -26,7 +26,12 @@ const CoffeechatRejectConfirm = ({
   const { register, handleSubmit: handleRejectCoffeechatSubmit } = useForm();
   const { mutate: rejectCoffeechatMutate } = useRejectCoffeechat(coffeechatId, {
     onSuccess: () => {
-      logClickEvent({ name: 'click_reject_coffeechat' });
+      logClickEvent({
+        name: 'click_reject_coffeechat',
+        params: {
+          coffeechatId,
+        },
+      });
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
       toast.info('커피챗 요청을 거절했어요.');

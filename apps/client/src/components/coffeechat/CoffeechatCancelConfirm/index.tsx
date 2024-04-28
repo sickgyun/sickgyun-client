@@ -21,7 +21,12 @@ const CoffeechatCancelConfirm = ({
 
   const { mutate: cancelCoffeechatMutate } = useCancelCoffeechat(coffeechatId, {
     onSuccess: () => {
-      logClickEvent({ name: 'click_cancel_coffeechat' });
+      logClickEvent({
+        name: 'click_cancel_coffeechat',
+        params: {
+          coffeechatId,
+        },
+      });
       queryClient.invalidateQueries({ queryKey: [SEND_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       toast.info('커피챗 요청을 취소했어요!');

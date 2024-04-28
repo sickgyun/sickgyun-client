@@ -19,7 +19,12 @@ const CoffeechatAcceptConfirm = ({
 
   const { mutate: acceptCoffeechatMutate } = useAcceptCoffeechat(coffeechatId, {
     onSuccess: () => {
-      logClickEvent({ name: 'click_accept_coffeechat' });
+      logClickEvent({
+        name: 'click_accept_coffeechat',
+        params: {
+          coffeechatId,
+        },
+      });
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
     },
