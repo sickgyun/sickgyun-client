@@ -92,7 +92,7 @@ const ProfileDetailContent = ({
         </Stack>
       </Stack>
       {profile?.introduction && (
-        <InfoBox label="소개말">{convertNewlineToJSX(profile.introduction)}</InfoBox>
+        <InfoBox>{convertNewlineToJSX(profile.introduction)}</InfoBox>
       )}
       {hasProfileInformation && (
         <Stack spacing={16}>
