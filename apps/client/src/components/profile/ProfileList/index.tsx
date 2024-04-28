@@ -44,7 +44,7 @@ const ProfileList = ({ major, isRecruited, cardinal, promotion }: ProfileListPro
       ))}
     </StyledProfileList>
   ) : (
-    <Text fontType="h3">앗! 해당 분야의 학생이 없어요..</Text>
+    <Text fontType="h4">앗! 해당 분야의 학생이 없어요..</Text>
   );
 };
 
