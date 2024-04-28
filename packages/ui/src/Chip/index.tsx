@@ -26,7 +26,6 @@ const StyledChip = styled.div<{ isSelected: boolean }>`
   height: 36px;
   padding: 0 14px;
   border-radius: 100px;
-  background: rgba(112, 70, 247, 0.08);
   cursor: pointer;
 
   /* 드래그 방지 */
@@ -38,6 +37,7 @@ const StyledChip = styled.div<{ isSelected: boolean }>`
 
   ${({ theme, isSelected }) => css`
     ${theme.fonts.p1}
+    background-color: ${theme.colors.primaryBackground};
     ${isSelected &&
     css`
       outline: 1px solid ${theme.colors.primary};
