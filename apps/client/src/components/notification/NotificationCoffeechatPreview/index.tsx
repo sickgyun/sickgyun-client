@@ -48,5 +48,5 @@ const StyledNotificationCoffeechatPreview = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 570px;
+  width: 100%;
 `;

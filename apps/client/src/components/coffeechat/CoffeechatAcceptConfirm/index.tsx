@@ -38,7 +38,7 @@ const CoffeechatAcceptConfirm = ({
   return (
     <Confirm
       title="커피챗 수락"
-      description="수락하면 상대방이 보낸 메세지와 연락처를 확인할 수 있어요!"
+      description="수락하면 상대방의 연락처를 확인할 수 있어요!"
       isOpen={isOpen}
       onClose={onClose}
       onConfirm={handleConfirm}

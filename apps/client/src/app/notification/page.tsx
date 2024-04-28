@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Flex, Spacer, Spinner, Stack, Switch, Text } from '@sickgyun/ui';
+import { Spacer, Spinner, Stack, Switch, Text } from '@sickgyun/ui';
 import { isNil } from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useLayoutEffect, useState } from 'react';
@@ -50,22 +50,21 @@ const NotificationPage = () => {
       <Header />
       <StyledNotificationPageLayout>
         <StyledNotificationPage>
-          <Stack direction="vertical" align="flex-start" spacing={28}>
-            <Text fontType="h1">커피챗 요청 내역</Text>
-            <Switch
-              options={[
-                { name: '받은 요청', value: 'RECEIVE' },
-                { name: '보낸 요청', value: 'SEND' },
-              ]}
-              value={coffeechatType}
-              onChange={handleNotificationCoffeechatTypeSwitchChange}
-            />
-          </Stack>
+          <Text fontType="h1">커피챗 요청 내역</Text>
+          <Spacer height={28} />
+          <Switch
+            options={[
+              { name: '받은 요청', value: 'RECEIVE' },
+              { name: '보낸 요청', value: 'SEND' },
+            ]}
+            value={coffeechatType}
+            onChange={handleNotificationCoffeechatTypeSwitchChange}
+          />
           <Spacer height={36} />
           {isLoading ? (
             <Spinner />
           ) : (
-            <Flex align="flex-start" justify="space-between">
+            <Stack direction="horizontal" spacing={64} style={{ width: '100%' }}>
               <StyledNotificationList>
                 {coffeechatType === 'RECEIVE'
                   ? receiveCoffeechatList?.map((receiveCoffeechat) => (
@@ -89,7 +88,7 @@ const NotificationPage = () => {
                   coffeechat={selectedCoffeechat}
                 />
               )}
-            </Flex>
+            </Stack>
           )}
         </StyledNotificationPage>
       </StyledNotificationPageLayout>
@@ -107,9 +106,13 @@ const StyledNotificationPageLayout = styled.div`
 `;
 
 const StyledNotificationPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 80%;
   margin: 0 auto;
   padding-top: 32px;
+  margin-bottom: 48px;
 `;
 
 const StyledNotificationList = styled.div`
@@ -117,6 +120,6 @@ const StyledNotificationList = styled.div`
   flex-direction: column;
   align-items: flex-start;
   overflow: auto;
-  width: 540px;
+  width: 100%;
   max-height: 600px;
 `;
