@@ -10,7 +10,7 @@ import { LocalStorage } from '@/libs/api/storage';
 import { useToast } from '@/libs/toast';
 import { getGoogleAccessToken } from '@/utils/getGoogleAccessToken';
 
-const GoogleLoginPage = () => {
+const AuthPage = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { mutate: loginGoogleMutate } = useLoginGoogle({
@@ -37,23 +37,23 @@ const GoogleLoginPage = () => {
   }, []);
 
   return (
-    <StyledGoogleLoginPageLayout>
-      <StyledGoogleLoginPage>
+    <StyledAuthPageLayout>
+      <StyledAuthPage>
         <Spinner />
-      </StyledGoogleLoginPage>
-    </StyledGoogleLoginPageLayout>
+      </StyledAuthPage>
+    </StyledAuthPageLayout>
   );
 };
 
-export default GoogleLoginPage;
+export default AuthPage;
 
-const StyledGoogleLoginPageLayout = styled.div`
+const StyledAuthPageLayout = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
-const StyledGoogleLoginPage = styled.div`
+const StyledAuthPage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
