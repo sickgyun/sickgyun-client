@@ -33,6 +33,6 @@ export const DIRECT_PROFILE_LIST = [
   },
 ] as const;
 
-export const BUMAWIKI_PROFILE_ID_LIST = [5, 13, 7, 14, 16];
+export const BUMAWIKI_PROFILE_ID_LIST = [5, 13, 7, 14, 16, 45];
 
 export const SICKGYUN_PROFILE_ID_LIST = [5, 15, 3, 4];
