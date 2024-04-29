@@ -10,6 +10,7 @@ const globalStyle = css`
   body {
     font-family: WantedSansVariable;
     color: ${colors.gray900};
+    overflow-x: hidden;
   }
 `;
 
