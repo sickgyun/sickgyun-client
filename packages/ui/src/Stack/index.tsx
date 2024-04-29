@@ -8,7 +8,7 @@ type StackProps = {
   spacing?: number;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Stack = (
+const Stack = (
   {
     children,
     spacing = 24,

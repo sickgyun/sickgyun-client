@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { type InputHTMLAttributes, type Ref, forwardRef } from 'react';
-import { Text } from '../Text';
+import { Text } from '..';
 
 type InputProps = {
   label?: string;
@@ -9,7 +9,7 @@ type InputProps = {
   hasError?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = (
+const Input = (
   { label, bottomText, hasError = false, onChange, ...props }: InputProps,
   ref: Ref<HTMLInputElement>
 ) => {

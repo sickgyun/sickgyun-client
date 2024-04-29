@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
-import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import type { CSSProperties, HTMLAttributes, ReactNode, Ref } from 'react';
 import { forwardRef } from 'react';
+import { Modal, ModalBody, ModalFooter, ModalHeader, Stack, Text } from '..';
 import { Button } from '../Button';
-import { Modal, ModalBody, ModalFooter, ModalHeader } from '../Modal';
-import { Stack } from '../Stack';
-import { Text } from '../Text';
 
 type AlertProps = {
   isOpen: boolean;
@@ -17,19 +15,22 @@ type AlertProps = {
   style?: CSSProperties;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Alert = ({
-  isOpen,
-  onClose,
-  onConfirm,
-  confirmButtonText = '확인',
-  title,
-  description,
-  children,
-  style,
-  ...props
-}: AlertProps) => {
+const Alert = (
+  {
+    isOpen,
+    onClose,
+    onConfirm,
+    confirmButtonText = '확인',
+    title,
+    description,
+    children,
+    style,
+    ...props
+  }: AlertProps,
+  ref: Ref<HTMLDivElement>
+) => {
   return (
-    <StyledAlert isOpen={isOpen} onClose={onClose} style={style} {...props}>
+    <StyledAlert ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h3">{title}</Text>

@@ -6,7 +6,7 @@ type ModalCloseButtonProps = {
   onClose: VoidFunction;
 } & SVGAttributes<SVGSVGElement>;
 
-export const ModalCloseButton = (
+const ModalCloseButton = (
   { onClose }: ModalCloseButtonProps,
   ref: Ref<SVGSVGElement>
 ) => {

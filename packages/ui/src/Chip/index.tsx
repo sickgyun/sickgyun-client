@@ -8,7 +8,7 @@ type ChipProps = {
   isSelected: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Chip = (
+const Chip = (
   { children, isSelected, ...props }: ChipProps,
   ref: Ref<HTMLDivElement>
 ) => {

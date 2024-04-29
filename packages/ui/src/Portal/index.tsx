@@ -8,7 +8,7 @@ type PortalProps = {
   isOpen: boolean;
 };
 
-export const Portal = ({ isOpen, children }: PortalProps) => {
+const Portal = ({ isOpen, children }: PortalProps) => {
   const [container, setContainer] = useState<Element | null>(null);
 
   useDidMount(() => {

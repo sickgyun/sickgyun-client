@@ -7,10 +7,7 @@ type SpacerProps = {
   height?: number;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Spacer = (
-  { width, height, ...props }: SpacerProps,
-  ref: Ref<HTMLDivElement>
-) => {
+const Spacer = ({ width, height, ...props }: SpacerProps, ref: Ref<HTMLDivElement>) => {
   return (
     <div
       ref={ref}

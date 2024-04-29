@@ -6,7 +6,7 @@ type ModalFooterProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const ModalFooter = (
+const ModalFooter = (
   { children, ...props }: ModalFooterProps,
   ref: Ref<HTMLDivElement>
 ) => {

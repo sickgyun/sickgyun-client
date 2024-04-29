@@ -9,7 +9,7 @@ type SpinnerProps = {
   color?: string;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Spinner = (
+const Spinner = (
   { size = 32, color = colors.primary, ...props }: SpinnerProps,
   ref: Ref<HTMLDivElement>
 ) => {

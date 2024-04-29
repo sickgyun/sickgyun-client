@@ -8,7 +8,7 @@ export type CenterProps = {
   height?: string;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Center = (
+const Center = (
   { tag = 'div', children, width = '100%', height = '100%', ...props }: CenterProps,
   ref: Ref<HTMLDivElement>
 ) => {

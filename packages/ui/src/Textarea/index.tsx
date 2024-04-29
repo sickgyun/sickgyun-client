@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ChangeEvent, ForwardedRef, TextareaHTMLAttributes } from 'react';
 import { forwardRef, useCallback } from 'react';
-import { Text } from '../Text';
+import { Text } from '..';
 
 type TextareaProps = {
   label?: string;
@@ -10,7 +10,7 @@ type TextareaProps = {
   isAutoHeight?: boolean;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-export const Textarea = (
+const Textarea = (
   { label, isAutoHeight = false, onChange, ...props }: TextareaProps,
   ref: ForwardedRef<HTMLTextAreaElement>
 ) => {

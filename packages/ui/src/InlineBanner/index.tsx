@@ -33,7 +33,7 @@ type InlineBannerProps = {
   styleType?: InlineBannerStyleType;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const InlineBanner = (
+const InlineBanner = (
   { children, styleType = 'primary', ...props }: InlineBannerProps,
   ref: Ref<HTMLDivElement>
 ) => {

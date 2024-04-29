@@ -2,14 +2,14 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { HTMLAttributes, ReactNode, Ref } from 'react';
 import { forwardRef } from 'react';
-import { Text } from '../Text';
+import { Text } from '..';
 
 type InfoBoxProps = {
   label?: string;
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const InfoBox = (
+const InfoBox = (
   { label, children, ...props }: InfoBoxProps,
   ref: Ref<HTMLDivElement>
 ) => {

@@ -1,9 +1,13 @@
 import styled from '@emotion/styled';
-import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import {
+  type CSSProperties,
+  type HTMLAttributes,
+  type ReactNode,
+  type Ref,
+  forwardRef,
+} from 'react';
+import { Modal, ModalBody, ModalFooter, ModalHeader, Stack, Text } from '..';
 import { Button } from '../Button';
-import { Modal, ModalBody, ModalFooter, ModalHeader } from '../Modal';
-import { Stack } from '../Stack';
-import { Text } from '../Text';
 
 type ConfirmProps = {
   isOpen: boolean;
@@ -19,20 +23,23 @@ type ConfirmProps = {
   style?: CSSProperties;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Confirm = ({
-  isOpen,
-  onClose,
-  onConfirm,
-  closeButtonText = '취소',
-  confirmButtonText = '확인',
-  title,
-  description,
-  children,
-  style,
-  ...props
-}: ConfirmProps) => {
+const Confirm = (
+  {
+    isOpen,
+    onClose,
+    onConfirm,
+    closeButtonText = '취소',
+    confirmButtonText = '확인',
+    title,
+    description,
+    children,
+    style,
+    ...props
+  }: ConfirmProps,
+  ref: Ref<HTMLDivElement>
+) => {
   return (
-    <StyledConfirm isOpen={isOpen} onClose={onClose} style={style} {...props}>
+    <StyledConfirm ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h3">{title}</Text>
@@ -58,7 +65,8 @@ export const Confirm = ({
   );
 };
 
-export default Confirm;
+const ForwardRef = forwardRef(Confirm);
+export default ForwardRef;
 
 const StyledConfirm = styled(Modal)`
   display: flex;

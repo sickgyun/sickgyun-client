@@ -13,7 +13,7 @@ type FlexOptions = {
 
 type FlexProps = FlexOptions & HTMLAttributes<HTMLDivElement>;
 
-export const Flex = (
+const Flex = (
   { children, direction, align, justify, wrap, basis, grow, shrink, ...props }: FlexProps,
   ref: Ref<HTMLDivElement>
 ) => {

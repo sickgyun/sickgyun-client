@@ -9,7 +9,7 @@ export type TextProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLSpanElement>;
 
-export const Text = (
+const Text = (
   {
     tag = 'span',
     children,

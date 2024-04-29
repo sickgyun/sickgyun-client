@@ -6,7 +6,7 @@ type ModalHeaderProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const ModalHeader = (
+const ModalHeader = (
   { children, ...props }: ModalHeaderProps,
   ref: Ref<HTMLDivElement>
 ) => {

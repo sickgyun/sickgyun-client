@@ -20,7 +20,7 @@ import type { ComponentType, MouseEventHandler, ReactNode } from 'react';
 import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import type { CSSTransitionProps } from 'react-transition-group/CSSTransition';
-import { Text } from '../Text';
+import { Text } from '..';
 import { PositionWrapper } from './components/PositionWrapper';
 import { useForceUpdate } from './hooks/useForceUpdate';
 import { useTimeoutTransition } from './hooks/useTimeoutTransition';
@@ -50,7 +50,7 @@ type TooltipProps = {
 
 const TRANSITION_MS = 200;
 
-export const Tooltip = ({
+const Tooltip = ({
   onClose,
   children,
   content,

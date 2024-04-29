@@ -12,7 +12,7 @@ type LinkProps = {
   fontType?: FontKeys;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export const Link = (
+const Link = (
   { children, href, fontType: textStyle = 'p1', color = 'black', ...props }: LinkProps,
   ref: Ref<HTMLAnchorElement>
 ) => {

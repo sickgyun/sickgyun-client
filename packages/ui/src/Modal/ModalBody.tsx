@@ -6,10 +6,7 @@ type ModalBodyProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const ModalBody = (
-  { children, ...props }: ModalBodyProps,
-  ref: Ref<HTMLDivElement>
-) => {
+const ModalBody = ({ children, ...props }: ModalBodyProps, ref: Ref<HTMLDivElement>) => {
   return (
     <StyledModalBody ref={ref} {...props}>
       {children}

@@ -9,7 +9,7 @@ type ModalProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Modal = (
+const Modal = (
   { children, isOpen, onClose, ...props }: ModalProps,
   ref: Ref<HTMLDivElement>
 ) => {

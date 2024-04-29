@@ -14,10 +14,7 @@ type SwitchProps = {
   options: SelectOption[];
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Switch = (
-  { options, value, onChange }: SwitchProps,
-  ref: Ref<HTMLDivElement>
-) => {
+const Switch = ({ options, value, onChange }: SwitchProps, ref: Ref<HTMLDivElement>) => {
   return (
     <StyledSwitch ref={ref}>
       {options.map((option, index) => (

@@ -4,8 +4,7 @@ import { IconExpandMoreFill } from '@seed-design/icon';
 import { fonts } from '@sickgyun/design-token';
 import type { ReactNode, Ref, SelectHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
-import { Flex } from '../Flex';
-import { Text } from '../Text';
+import { Flex, Text } from '..';
 
 const getSelectSize = {
   large: css`
@@ -31,7 +30,7 @@ type SelectProps = {
   size?: SelectSize;
 } & Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'>;
 
-export const Select = (
+const Select = (
   { children, size = 'medium', placeholder, label, ...props }: SelectProps,
   ref: Ref<HTMLSelectElement>
 ) => {
