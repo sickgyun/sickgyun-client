@@ -2,7 +2,7 @@
 
 import styled from '@emotion/styled';
 import { Spacer, Spinner, Stack, Switch, Text } from '@sickgyun/ui';
-import { isNil } from 'lodash';
+import { isEmpty, isNil } from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Footer from '@/components/common/Footer';
@@ -66,21 +66,29 @@ const NotificationPage = () => {
           ) : (
             <Stack direction="horizontal" spacing={64} style={{ width: '100%' }}>
               <StyledNotificationList>
-                {coffeechatType === 'RECEIVE'
-                  ? receiveCoffeechatList?.map((receiveCoffeechat) => (
+                {coffeechatType === 'RECEIVE' ? (
+                  !isEmpty(receiveCoffeechatList) ? (
+                    receiveCoffeechatList.map((receiveCoffeechat) => (
                       <NotificationCoffeechatReceiveCard
                         receiveCoffeechat={receiveCoffeechat}
                         setSelectedCoffeechat={setSelectedCoffeechat}
                         isSelected={receiveCoffeechat.id === selectedCoffeechat?.id}
                       />
                     ))
-                  : sendCoffeechatList?.map((sendCoffeechat) => (
-                      <NotificationCoffeechatSendCard
-                        sendCoffeechat={sendCoffeechat}
-                        setSelectedCoffeechat={setSelectedCoffeechat}
-                        isSelected={sendCoffeechat.id === selectedCoffeechat?.id}
-                      />
-                    ))}
+                  ) : (
+                    <Text fontType="h4">앗! 아직 받은 커피챗 요청이 없어요...</Text>
+                  )
+                ) : !isEmpty(sendCoffeechatList) ? (
+                  sendCoffeechatList.map((sendCoffeechat) => (
+                    <NotificationCoffeechatSendCard
+                      sendCoffeechat={sendCoffeechat}
+                      setSelectedCoffeechat={setSelectedCoffeechat}
+                      isSelected={sendCoffeechat.id === selectedCoffeechat?.id}
+                    />
+                  ))
+                ) : (
+                  <Text fontType="h4">앗! 아직 요청한 커피챗이 없어요...</Text>
+                )}
               </StyledNotificationList>
               {selectedCoffeechat && (
                 <NotificationCoffeechatPreview
