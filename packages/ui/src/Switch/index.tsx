@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import type { HTMLAttributes, Ref } from 'react';
+import { forwardRef } from 'react';
 
 type SelectOption = {
   name: string;
@@ -10,11 +12,14 @@ type SwitchProps = {
   value: any;
   onChange: (value: any) => void;
   options: SelectOption[];
-};
+} & HTMLAttributes<HTMLDivElement>;
 
-export const Switch = ({ options, value, onChange }: SwitchProps) => {
+export const Switch = (
+  { options, value, onChange }: SwitchProps,
+  ref: Ref<HTMLDivElement>
+) => {
   return (
-    <StyledSwitch>
+    <StyledSwitch ref={ref}>
       {options.map((option, index) => (
         <>
           {index !== 0 && <StyledDividingBar />}
@@ -30,6 +35,9 @@ export const Switch = ({ options, value, onChange }: SwitchProps) => {
     </StyledSwitch>
   );
 };
+
+const ForwardRef = forwardRef(Switch);
+export default ForwardRef;
 
 const StyledSwitch = styled.div`
   display: flex;

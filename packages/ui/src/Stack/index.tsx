@@ -1,10 +1,5 @@
 import styled from '@emotion/styled';
-import {
-  type CSSProperties,
-  type ForwardedRef,
-  type HTMLAttributes,
-  forwardRef,
-} from 'react';
+import { type CSSProperties, type HTMLAttributes, type Ref, forwardRef } from 'react';
 
 type StackProps = {
   align?: CSSProperties['alignItems'];
@@ -13,7 +8,7 @@ type StackProps = {
   spacing?: number;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Stack = forwardRef(function Stack(
+export const Stack = (
   {
     children,
     spacing = 24,
@@ -22,8 +17,8 @@ export const Stack = forwardRef(function Stack(
     justify,
     ...props
   }: StackProps,
-  ref: ForwardedRef<HTMLDivElement>
-) {
+  ref: Ref<HTMLDivElement>
+) => {
   return (
     <StyledStack
       ref={ref}
@@ -36,7 +31,10 @@ export const Stack = forwardRef(function Stack(
       {children}
     </StyledStack>
   );
-});
+};
+
+const ForwardRef = forwardRef(Stack);
+export default ForwardRef;
 
 const StyledStack = styled.div<StackProps>`
   display: flex;

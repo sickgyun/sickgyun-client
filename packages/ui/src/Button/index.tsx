@@ -1,16 +1,11 @@
 import { css } from '@emotion/react';
 import { fonts } from '@sickgyun/design-token';
-import {
-  type ButtonHTMLAttributes,
-  type ForwardedRef,
-  type ReactNode,
-  forwardRef,
-} from 'react';
-import { GhostButton } from './GhostButton';
-import { OutlineButton } from './OutlineButton';
-import { PrimaryButton } from './PrimaryButton';
-import { SecondaryButton } from './SecondaryButton';
-import { TertiaryButton } from './TertiaryButton';
+import { type ButtonHTMLAttributes, type ReactNode, type Ref, forwardRef } from 'react';
+import GhostButton from './GhostButton';
+import OutlineButton from './OutlineButton';
+import PrimaryButton from './PrimaryButton';
+import SecondaryButton from './SecondaryButton';
+import TertiaryButton from './TertiaryButton';
 
 export const BUTTON_STYLE_KEYS = {
   PRIMARY: 'primary',
@@ -35,9 +30,9 @@ export const getButtonSize = {
   `,
 };
 
-export type ButtonStyleType = (typeof BUTTON_STYLE_KEYS)[keyof typeof BUTTON_STYLE_KEYS];
+type ButtonStyleType = (typeof BUTTON_STYLE_KEYS)[keyof typeof BUTTON_STYLE_KEYS];
 
-export type ButtonSize = 'small' | 'medium' | 'large';
+type ButtonSize = 'small' | 'medium' | 'large';
 
 export type ButtonProps = {
   styleType?: ButtonStyleType;
@@ -47,7 +42,7 @@ export type ButtonProps = {
   isActive?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = forwardRef(function Button(
+export const Button = (
   {
     styleType = 'primary',
     disabled = false,
@@ -56,8 +51,8 @@ export const Button = forwardRef(function Button(
     children,
     ...props
   }: ButtonProps,
-  ref: ForwardedRef<HTMLButtonElement>
-) {
+  ref: Ref<HTMLButtonElement>
+) => {
   const buttonProps = { ref, styleType, disabled, size, type, children, ...props };
 
   switch (styleType) {
@@ -74,4 +69,7 @@ export const Button = forwardRef(function Button(
     default:
       return <PrimaryButton {...buttonProps} />;
   }
-});
+};
+
+const ForwardRef = forwardRef(Button);
+export default ForwardRef;

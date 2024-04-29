@@ -10,10 +10,10 @@ type TextareaProps = {
   isAutoHeight?: boolean;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-export const Textarea = forwardRef(function Textarea(
+export const Textarea = (
   { label, isAutoHeight = false, onChange, ...props }: TextareaProps,
   ref: ForwardedRef<HTMLTextAreaElement>
-) {
+) => {
   const handleTextareaHeightChange = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => {
       e.target.style.height = 'inherit';
@@ -37,7 +37,10 @@ export const Textarea = forwardRef(function Textarea(
       />
     </StyledTextareaWrapper>
   );
-});
+};
+
+const ForwardRef = forwardRef(Textarea);
+export default ForwardRef;
 
 const StyledTextareaWrapper = styled.div`
   flex: 1;

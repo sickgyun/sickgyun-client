@@ -1,20 +1,23 @@
 import styled from '@emotion/styled';
-import { type ForwardedRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import type { Ref } from 'react';
 import { type ButtonProps, getButtonSize } from '.';
 
 type GhostButtonProps = ButtonProps;
 
-export const GhostButton = forwardRef(function Button(
+const GhostButton = (
   { size = 'medium', children, ...props }: GhostButtonProps,
-
-  ref: ForwardedRef<HTMLButtonElement>
-) {
+  ref: Ref<HTMLButtonElement>
+) => {
   return (
     <StyledGhostButton ref={ref} size={size} {...props}>
       {children}
     </StyledGhostButton>
   );
-});
+};
+
+const ForwardRef = forwardRef(GhostButton);
+export default ForwardRef;
 
 const StyledGhostButton = styled.button<GhostButtonProps>`
   flex: 1;

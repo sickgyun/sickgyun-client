@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconExpandMoreFill } from '@seed-design/icon';
 import { fonts } from '@sickgyun/design-token';
-import type { ForwardedRef, ReactNode, SelectHTMLAttributes } from 'react';
+import type { ReactNode, Ref, SelectHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 import { Flex } from '../Flex';
 import { Text } from '../Text';
@@ -31,10 +31,10 @@ type SelectProps = {
   size?: SelectSize;
 } & Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'>;
 
-export const Select = forwardRef(function Select(
+export const Select = (
   { children, size = 'medium', placeholder, label, ...props }: SelectProps,
-  ref: ForwardedRef<HTMLSelectElement>
-) {
+  ref: Ref<HTMLSelectElement>
+) => {
   return (
     <StyledSelectContainer>
       {label && (
@@ -51,7 +51,10 @@ export const Select = forwardRef(function Select(
       </Flex>
     </StyledSelectContainer>
   );
-});
+};
+
+const ForwardRef = forwardRef(Select);
+export default ForwardRef;
 
 const StyledSelectContainer = styled.div`
   flex: 1;

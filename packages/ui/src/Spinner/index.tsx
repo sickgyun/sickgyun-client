@@ -1,23 +1,27 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { colors } from '@sickgyun/design-token';
-import { type ForwardedRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import type { HTMLAttributes, Ref } from 'react';
 
 type SpinnerProps = {
   size?: number;
   color?: string;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
-export const Spinner = forwardRef(function Spinner(
+export const Spinner = (
   { size = 32, color = colors.primary, ...props }: SpinnerProps,
-  ref: ForwardedRef<HTMLDivElement>
-) {
+  ref: Ref<HTMLDivElement>
+) => {
   return (
     <StyledSpinnerWrapper>
       <StyledSpinner ref={ref} color={color} size={size} {...props} />
     </StyledSpinnerWrapper>
   );
-});
+};
+
+const ForwardRef = forwardRef(Spinner);
+export default ForwardRef;
 
 const StyledSpinnerWrapper = styled.div`
   position: absolute;

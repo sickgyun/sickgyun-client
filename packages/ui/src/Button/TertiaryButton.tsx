@@ -5,17 +5,20 @@ import { type ButtonProps, getButtonSize } from '.';
 
 type TertiaryButtonProps = ButtonProps;
 
-export const TertiaryButton = forwardRef(function Button(
+const TertiaryButton = (
   { size = 'medium', isActive = false, children, ...props }: TertiaryButtonProps,
 
   ref: ForwardedRef<HTMLButtonElement>
-) {
+) => {
   return (
     <StyledTertiaryButton ref={ref} size={size} isActive={isActive} {...props}>
       {children}
     </StyledTertiaryButton>
   );
-});
+};
+
+const ForwardRef = forwardRef(TertiaryButton);
+export default ForwardRef;
 
 const StyledTertiaryButton = styled.button<TertiaryButtonProps>`
   flex: 1;
