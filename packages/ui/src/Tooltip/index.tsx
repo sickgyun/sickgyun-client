@@ -16,18 +16,15 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react';
-import type {
-  ComponentType,
-  Dispatch,
-  MouseEvent,
-  MouseEventHandler,
-  ReactNode,
-  SetStateAction,
-} from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import type { ComponentType, MouseEventHandler, ReactNode } from 'react';
+import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import type { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import { Text } from '../Text';
+import { PositionWrapper } from './components/PositionWrapper';
+import { useForceUpdate } from './hooks/useForceUpdate';
+import { useTimeoutTransition } from './hooks/useTimeoutTransition';
+import { useTooltipState } from './hooks/useTooltipState';
 
 type TooltipChildrenProps = {
   ref: (arg0: Element | null) => void | null;
@@ -143,75 +140,6 @@ export const Tooltip = ({
 
 export default Tooltip;
 
-const useTooltipState = ({ onClose }: { onClose?: VoidFunction }) => {
-  const onCloseRef = useRef<VoidFunction>();
-  const [isOpen, setIsOpen] = useState(false);
-  const openTooltip = useCallback((e?: MouseEvent<Element, MouseEvent>) => {
-    e?.stopPropagation();
-    setIsOpen(true);
-  }, []);
-  const closeTooltip = useCallback((e?: MouseEvent<Element, MouseEvent>) => {
-    e?.stopPropagation();
-    setIsOpen(false);
-    onCloseRef.current?.();
-  }, []);
-
-  useEffect(() => {
-    onCloseRef.current = onClose;
-  }, [onClose]);
-
-  return [isOpen, setIsOpen, openTooltip, closeTooltip] as const;
-};
-
-const useForceUpdate = <T,>({
-  status,
-  fn,
-}: {
-  status: T;
-  fn: Dispatch<SetStateAction<T>>;
-}) => {
-  useEffect(() => {
-    fn(status);
-  }, [status, fn]);
-};
-
-const useTimeoutTransition = ({
-  possible,
-  duration,
-  callback,
-}: {
-  possible?: boolean;
-  duration?: number;
-  callback: (e?: MouseEvent<Element, MouseEvent>) => void;
-}) => {
-  useEffect(() => {
-    if (possible && duration !== undefined) {
-      const clearId = setTimeout(callback, duration);
-      return () => {
-        callback();
-        clearTimeout(clearId);
-      };
-    }
-  }, [possible, duration, callback]);
-};
-
-const PositionWrapper = ({
-  children,
-  strategy,
-}: {
-  strategy?: Strategy;
-  children: ReactNode;
-}) => {
-  if (strategy === 'fixed') {
-    return <>{children}</>;
-  }
-  return <StyledRelativePositionWrapper>{children}</StyledRelativePositionWrapper>;
-};
-
-const StyledRelativePositionWrapper = styled.div`
-  position: relative;
-`;
-
 const StyledCSSTransition = styled(
   CSSTransition as ComponentType<CSSTransitionProps<HTMLElement>>
 )`
@@ -239,18 +167,19 @@ const StyledTooltipItemWrapper = styled.div`
 `;
 
 const StyledTooltipItem = styled.div`
-  ${({ theme }) => css`
-    ${theme.fonts.body2}
-    background-color: ${theme.colors.gray900};
-    color: ${theme.colors.white};
-    z-index: ${theme.zIndex.page1};
-  `}
   display: flex;
   align-items: flex-start;
   width: max-content;
   max-width: calc(100vw - 32px);
   padding: 8px 12px;
   border-radius: 8px;
+
+  ${({ theme }) => css`
+    ${theme.fonts.body2}
+    background-color: ${theme.colors.gray900};
+    color: ${theme.colors.white};
+    z-index: ${theme.zIndex.page1};
+  `}
 `;
 
 const StyledArrow = styled(FloatingArrow)`

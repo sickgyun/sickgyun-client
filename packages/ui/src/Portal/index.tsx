@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import type { EffectCallback, ReactNode } from 'react';
+import { useState } from 'react';
+import type { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import { useDidMount } from './hooks/useDidMount';
 
 type PortalProps = {
   children: ReactNode;
@@ -22,14 +23,3 @@ export const Portal = ({ isOpen, children }: PortalProps) => {
 };
 
 export default Portal;
-
-const useDidMount = (callback: EffectCallback) => {
-  const didMountRef = useRef(false);
-
-  useEffect(() => {
-    if (didMountRef.current) return;
-    didMountRef.current = true;
-
-    callback();
-  }, []);
-};
