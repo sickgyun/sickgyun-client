@@ -26,9 +26,11 @@ const MainPage = () => {
   return (
     <>
       <Header />
-      <InlineBanner>
-        학교 계정으로 로그인해주세요. *아직 선생님 계정은 지원하지 않아요ㅠ
-      </InlineBanner>
+      {!user.isLogin && (
+        <InlineBanner>
+          학교 계정으로 로그인해주세요. *아직 선생님 계정은 지원하지 않아요ㅠ
+        </InlineBanner>
+      )}
       <StyledMainPageLayout>
         <StyledMainPage>
           <Stack direction="horizontal" align="center" spacing={36}>
