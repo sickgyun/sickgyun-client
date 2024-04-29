@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Flex, Link, Spacer, Stack, Text } from '@sickgyun/ui';
+import { Flex, InlineBanner, Link, Spacer, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
@@ -26,6 +26,9 @@ const MainPage = () => {
   return (
     <>
       <Header />
+      <InlineBanner>
+        학교 계정으로 로그인해주세요. *아직 선생님 계정은 지원하지 않아요ㅠ
+      </InlineBanner>
       <StyledMainPageLayout>
         <StyledMainPage>
           <Stack direction="horizontal" align="center" spacing={36}>
