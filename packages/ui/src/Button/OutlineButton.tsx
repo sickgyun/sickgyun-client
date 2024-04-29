@@ -32,5 +32,9 @@ const StyledOutlineButton = styled.button<OutlineButtonProps>`
     ${size && getButtonSize[size]}
     border: 1px solid ${theme.colors.gray300};
     background-color: ${theme.colors.white};
+
+    &:hover {
+      background-color: ${theme.colors.gray50};
+    }
   `}
 `;
