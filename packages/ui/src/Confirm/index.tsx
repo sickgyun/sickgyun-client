@@ -1,11 +1,5 @@
 import styled from '@emotion/styled';
-import {
-  type CSSProperties,
-  type HTMLAttributes,
-  type ReactNode,
-  type Ref,
-  forwardRef,
-} from 'react';
+import { type HTMLAttributes, type ReactNode, type Ref, forwardRef } from 'react';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Stack, Text } from '..';
 import { Button } from '../Button';
 
@@ -17,10 +11,7 @@ type ConfirmProps = {
   confirmButtonText?: string;
   title: string;
   description?: string;
-  width?: string;
-  height?: string;
   children?: ReactNode;
-  style?: CSSProperties;
 } & HTMLAttributes<HTMLDivElement>;
 
 const Confirm = (
@@ -33,13 +24,12 @@ const Confirm = (
     title,
     description,
     children,
-    style,
     ...props
   }: ConfirmProps,
   ref: Ref<HTMLDivElement>
 ) => {
   return (
-    <StyledConfirm ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
+    <StyledConfirm ref={ref} isOpen={isOpen} onClose={onClose} {...props}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h3">{title}</Text>

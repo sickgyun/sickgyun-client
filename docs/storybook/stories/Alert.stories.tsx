@@ -29,6 +29,9 @@ export const Default: StoryObj<Alert> = {
           onConfirm={() => {
             setIsOpen(false);
           }}
+          onClose={() => {
+            setIsOpen(false);
+          }}
         />
         <button
           type="button"

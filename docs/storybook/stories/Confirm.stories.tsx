@@ -26,10 +26,10 @@ export const Default: StoryObj<Confirm> = {
         <ConfirmComponent
           {...args}
           isOpen={isOpen}
-          onClose={() => {
+          onConfirm={() => {
             setIsOpen(false);
           }}
-          onConfirm={() => {
+          onClose={() => {
             setIsOpen(false);
           }}
         />

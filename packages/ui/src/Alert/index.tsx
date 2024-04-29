@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import type { CSSProperties, HTMLAttributes, ReactNode, Ref } from 'react';
+import type { HTMLAttributes, ReactNode, Ref } from 'react';
 import { forwardRef } from 'react';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Stack, Text } from '..';
 import { Button } from '../Button';
@@ -12,7 +12,6 @@ type AlertProps = {
   title: string;
   description?: string;
   children?: ReactNode;
-  style?: CSSProperties;
 } & HTMLAttributes<HTMLDivElement>;
 
 const Alert = (
@@ -24,13 +23,12 @@ const Alert = (
     title,
     description,
     children,
-    style,
     ...props
   }: AlertProps,
   ref: Ref<HTMLDivElement>
 ) => {
   return (
-    <StyledAlert ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
+    <StyledAlert ref={ref} isOpen={isOpen} onClose={onClose} {...props}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h3">{title}</Text>
