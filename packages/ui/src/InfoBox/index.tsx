@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { ForwardedRef, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode, Ref } from 'react';
 import { forwardRef } from 'react';
 import { Text } from '../Text';
 
@@ -9,10 +9,10 @@ type InfoBoxProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const InfoBox = forwardRef(function InfoBox(
+export const InfoBox = (
   { label, children, ...props }: InfoBoxProps,
-  ref: ForwardedRef<HTMLDivElement>
-) {
+  ref: Ref<HTMLDivElement>
+) => {
   return (
     <StyledInfoBoxWrapper {...props}>
       {label && (
@@ -23,7 +23,10 @@ export const InfoBox = forwardRef(function InfoBox(
       <StyledInfoBox ref={ref}>{children}</StyledInfoBox>
     </StyledInfoBoxWrapper>
   );
-});
+};
+
+const ForwardRef = forwardRef(InfoBox);
+export default ForwardRef;
 
 const StyledInfoBoxWrapper = styled.div`
   display: flex;

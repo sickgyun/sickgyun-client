@@ -141,6 +141,8 @@ export const Tooltip = ({
   );
 };
 
+export default Tooltip;
+
 const useTooltipState = ({ onClose }: { onClose?: VoidFunction }) => {
   const onCloseRef = useRef<VoidFunction>();
   const [isOpen, setIsOpen] = useState(false);

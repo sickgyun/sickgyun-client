@@ -1,14 +1,24 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { HTMLAttributes, ReactNode } from 'react';
+import { type HTMLAttributes, type ReactNode, type Ref, forwardRef } from 'react';
 
 type ModalHeaderProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const ModalHeader = ({ children, ...props }: ModalHeaderProps) => {
-  return <StyledModalHeader {...props}>{children}</StyledModalHeader>;
+export const ModalHeader = (
+  { children, ...props }: ModalHeaderProps,
+  ref: Ref<HTMLDivElement>
+) => {
+  return (
+    <StyledModalHeader ref={ref} {...props}>
+      {children}
+    </StyledModalHeader>
+  );
 };
+
+const ForwardRef = forwardRef(ModalHeader);
+export default ForwardRef;
 
 const StyledModalHeader = styled.div`
   position: relative;

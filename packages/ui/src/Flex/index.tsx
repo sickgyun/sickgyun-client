@@ -1,12 +1,7 @@
 import styled from '@emotion/styled';
-import {
-  type CSSProperties,
-  type ForwardedRef,
-  type HTMLAttributes,
-  forwardRef,
-} from 'react';
+import { type CSSProperties, type HTMLAttributes, type Ref, forwardRef } from 'react';
 
-export type FlexOptions = {
+type FlexOptions = {
   direction?: CSSProperties['flexDirection'];
   align?: CSSProperties['alignItems'];
   justify?: CSSProperties['justifyContent'];
@@ -16,12 +11,12 @@ export type FlexOptions = {
   shrink?: CSSProperties['flexShrink'];
 };
 
-export type FlexProps = FlexOptions & HTMLAttributes<HTMLDivElement>;
+type FlexProps = FlexOptions & HTMLAttributes<HTMLDivElement>;
 
-export const Flex = forwardRef(function Flex(
+export const Flex = (
   { children, direction, align, justify, wrap, basis, grow, shrink, ...props }: FlexProps,
-  ref: ForwardedRef<HTMLDivElement>
-) {
+  ref: Ref<HTMLDivElement>
+) => {
   return (
     <StyledFlex
       ref={ref}
@@ -37,7 +32,10 @@ export const Flex = forwardRef(function Flex(
       {children}
     </StyledFlex>
   );
-});
+};
+
+const ForwardRef = forwardRef(Flex);
+export default ForwardRef;
 
 const StyledFlex = styled.div<FlexOptions>`
   display: flex;

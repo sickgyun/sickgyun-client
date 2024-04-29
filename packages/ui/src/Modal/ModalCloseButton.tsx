@@ -1,14 +1,18 @@
 import { IconCloseFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import type { SVGAttributes } from 'react';
+import { type Ref, type SVGAttributes, forwardRef } from 'react';
 
 type ModalCloseButtonProps = {
   onClose: VoidFunction;
 } & SVGAttributes<SVGSVGElement>;
 
-export const ModalCloseButton = ({ onClose }: ModalCloseButtonProps) => {
+export const ModalCloseButton = (
+  { onClose }: ModalCloseButtonProps,
+  ref: Ref<SVGSVGElement>
+) => {
   return (
     <IconCloseFill
+      ref={ref}
       onClick={onClose}
       width={28}
       height={28}
@@ -18,3 +22,6 @@ export const ModalCloseButton = ({ onClose }: ModalCloseButtonProps) => {
     />
   );
 };
+
+const ForwardRef = forwardRef(ModalCloseButton);
+export default ForwardRef;

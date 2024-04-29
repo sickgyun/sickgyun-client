@@ -1,20 +1,22 @@
 import styled from '@emotion/styled';
-import { type ForwardedRef, forwardRef } from 'react';
+import { type Ref, forwardRef } from 'react';
 import { type ButtonProps, getButtonSize } from '.';
 
 type SecondaryButtonProps = ButtonProps;
 
-export const SecondaryButton = forwardRef(function Button(
+export const SecondaryButton = (
   { size = 'medium', children, ...props }: SecondaryButtonProps,
-
-  ref: ForwardedRef<HTMLButtonElement>
-) {
+  ref: Ref<HTMLButtonElement>
+) => {
   return (
     <StyledSecondaryButton ref={ref} size={size} {...props}>
       {children}
     </StyledSecondaryButton>
   );
-});
+};
+
+const ForwardRef = forwardRef(SecondaryButton);
+export default ForwardRef;
 
 const StyledSecondaryButton = styled.button<SecondaryButtonProps>`
   flex: 1;

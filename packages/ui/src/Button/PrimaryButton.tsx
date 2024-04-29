@@ -1,19 +1,22 @@
 import styled from '@emotion/styled';
-import { type ForwardedRef, forwardRef } from 'react';
+import { type Ref, forwardRef } from 'react';
 import { type ButtonProps, getButtonSize } from '.';
 
 type PrimaryButtonProps = ButtonProps;
 
-export const PrimaryButton = forwardRef(function PrimaryButton(
+const PrimaryButton = (
   { disabled = false, size = 'medium', children, ...props }: PrimaryButtonProps,
-  ref: ForwardedRef<HTMLButtonElement>
-) {
+  ref: Ref<HTMLButtonElement>
+) => {
   return (
     <StyledPrimaryButton ref={ref} disabled={disabled} size={size} {...props}>
       {children}
     </StyledPrimaryButton>
   );
-});
+};
+
+const ForwardRef = forwardRef(PrimaryButton);
+export default ForwardRef;
 
 const StyledPrimaryButton = styled.button<PrimaryButtonProps>`
   flex: 1;

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { ForwardedRef, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode, Ref } from 'react';
 import { forwardRef } from 'react';
 
 type ChipProps = {
@@ -8,16 +8,19 @@ type ChipProps = {
   isSelected: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Chip = forwardRef(function Chip(
+export const Chip = (
   { children, isSelected, ...props }: ChipProps,
-  ref: ForwardedRef<HTMLDivElement>
-) {
+  ref: Ref<HTMLDivElement>
+) => {
   return (
     <StyledChip ref={ref} isSelected={isSelected} {...props}>
       {children}
     </StyledChip>
   );
-});
+};
+
+const ForwardRef = forwardRef(Chip);
+export default ForwardRef;
 
 const StyledChip = styled.div<{ isSelected: boolean }>`
   display: inline-flex;

@@ -1,21 +1,23 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { type ForwardedRef, forwardRef } from 'react';
+import { type Ref, forwardRef } from 'react';
 import { type ButtonProps, getButtonSize } from '.';
 
 type OutlineButtonProps = ButtonProps;
 
-export const OutlineButton = forwardRef(function Button(
+const OutlineButton = (
   { size = 'medium', children, ...props }: OutlineButtonProps,
-
-  ref: ForwardedRef<HTMLButtonElement>
-) {
+  ref: Ref<HTMLButtonElement>
+) => {
   return (
     <StyledOutlineButton ref={ref} size={size} {...props}>
       {children}
     </StyledOutlineButton>
   );
-});
+};
+
+const ForwardRef = forwardRef(OutlineButton);
+export default ForwardRef;
 
 const StyledOutlineButton = styled.button<OutlineButtonProps>`
   flex: 1;

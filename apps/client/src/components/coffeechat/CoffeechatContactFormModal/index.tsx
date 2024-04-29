@@ -77,7 +77,7 @@ const CoffeechatContactFormModal = ({
           <Input
             label="카카오톡 아이디"
             defaultValue={user.kakaoId}
-            placeholder="카카오톡 아아디를 입력해주세요."
+            placeholder="카카오톡 아이디를 입력해주세요."
             {...register('kakaoId')}
           />
         </Stack>

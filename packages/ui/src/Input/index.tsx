@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { type ForwardedRef, type InputHTMLAttributes, forwardRef } from 'react';
+import { type InputHTMLAttributes, type Ref, forwardRef } from 'react';
 import { Text } from '../Text';
 
 type InputProps = {
@@ -9,10 +9,10 @@ type InputProps = {
   hasError?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const Input = forwardRef(function Input(
+export const Input = (
   { label, bottomText, hasError = false, onChange, ...props }: InputProps,
-  ref: ForwardedRef<HTMLInputElement>
-) {
+  ref: Ref<HTMLInputElement>
+) => {
   return (
     <StyledInputWrapper>
       {label && (
@@ -38,7 +38,10 @@ export const Input = forwardRef(function Input(
       )}
     </StyledInputWrapper>
   );
-});
+};
+
+const ForwardRef = forwardRef(Input);
+export default ForwardRef;
 
 const StyledInputWrapper = styled.div<{ width?: string }>`
   flex: 1;

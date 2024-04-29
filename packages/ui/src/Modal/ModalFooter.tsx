@@ -1,13 +1,24 @@
 import styled from '@emotion/styled';
-import type { HTMLAttributes, ReactNode } from 'react';
+import { forwardRef } from 'react';
+import type { HTMLAttributes, ReactNode, Ref } from 'react';
 
 type ModalFooterProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const ModalFooter = ({ children, ...props }: ModalFooterProps) => {
-  return <StyledModalFooter {...props}>{children}</StyledModalFooter>;
+export const ModalFooter = (
+  { children, ...props }: ModalFooterProps,
+  ref: Ref<HTMLDivElement>
+) => {
+  return (
+    <StyledModalFooter ref={ref} {...props}>
+      {children}
+    </StyledModalFooter>
+  );
 };
+
+const ForwardRef = forwardRef(ModalFooter);
+export default ForwardRef;
 
 const StyledModalFooter = styled.div`
   display: flex;

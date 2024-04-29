@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
-import type { CSSProperties, ForwardedRef, ReactNode } from 'react';
+import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import { forwardRef } from 'react';
 import { Button } from '../Button';
-import { ModalBody, ModalFooter, ModalHeader } from '../Modal';
-import { Modal } from '../Modal/Modal';
+import { Modal, ModalBody, ModalFooter, ModalHeader } from '../Modal';
 import { Stack } from '../Stack';
 import { Text } from '../Text';
 
@@ -16,24 +15,21 @@ type AlertProps = {
   description?: string;
   children?: ReactNode;
   style?: CSSProperties;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
-export const Alert = forwardRef(function Alert(
-  {
-    isOpen,
-    onClose,
-    onConfirm,
-    confirmButtonText = '확인',
-    title,
-    description,
-    children,
-    style,
-    ...props
-  }: AlertProps,
-  ref: ForwardedRef<HTMLDivElement>
-) {
+export const Alert = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  confirmButtonText = '확인',
+  title,
+  description,
+  children,
+  style,
+  ...props
+}: AlertProps) => {
   return (
-    <StyledAlert ref={ref} isOpen={isOpen} onClose={onClose} style={style} {...props}>
+    <StyledAlert isOpen={isOpen} onClose={onClose} style={style} {...props}>
       <ModalHeader>
         <Stack spacing={8}>
           <Text fontType="h3">{title}</Text>
@@ -52,7 +48,10 @@ export const Alert = forwardRef(function Alert(
       </ModalFooter>
     </StyledAlert>
   );
-});
+};
+
+const ForwardRef = forwardRef(Alert);
+export default ForwardRef;
 
 const StyledAlert = styled(Modal)`
   display: flex;

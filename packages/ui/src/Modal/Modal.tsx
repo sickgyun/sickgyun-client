@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import type { ForwardedRef, HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import type { HTMLAttributes, MouseEventHandler, ReactNode, Ref } from 'react';
 import { forwardRef, useEffect } from 'react';
 import Portal from '../Portal';
 
@@ -9,10 +9,10 @@ type ModalProps = {
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Modal = forwardRef(function Modal(
+export const Modal = (
   { children, isOpen, onClose, ...props }: ModalProps,
-  ref: ForwardedRef<HTMLDivElement>
-) {
+  ref: Ref<HTMLDivElement>
+) => {
   const onClickOutside: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target !== e.currentTarget) {
       return;
@@ -24,7 +24,7 @@ export const Modal = forwardRef(function Modal(
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     }
   }, [isOpen]);
 
@@ -37,7 +37,10 @@ export const Modal = forwardRef(function Modal(
       </StyledDIM>
     </Portal>
   );
-});
+};
+
+const ForwardRef = forwardRef(Modal);
+export default ForwardRef;
 
 const StyledDIM = styled.div`
   position: fixed;

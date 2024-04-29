@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { colors } from '@sickgyun/design-token';
-import type { ForwardedRef, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode, Ref } from 'react';
 import { forwardRef } from 'react';
 
 export const INLINE_BANNER_STYLE_KEYS = {
@@ -10,7 +10,7 @@ export const INLINE_BANNER_STYLE_KEYS = {
   YELLOW: 'yellow',
 } as const;
 
-export const getInlineBannerStyle = {
+const getInlineBannerStyle = {
   primary: css`
     color: ${colors.primary};
     background-color: ${colors.primaryBackground};
@@ -33,16 +33,19 @@ type InlineBannerProps = {
   styleType?: InlineBannerStyleType;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const InlineBanner = forwardRef(function InlineBanner(
+export const InlineBanner = (
   { children, styleType = 'primary', ...props }: InlineBannerProps,
-  ref: ForwardedRef<HTMLDivElement>
-) {
+  ref: Ref<HTMLDivElement>
+) => {
   return (
     <StyledInlineBanner ref={ref} styleType={styleType} {...props}>
       {children}
     </StyledInlineBanner>
   );
-});
+};
+
+const ForwardRef = forwardRef(InlineBanner);
+export default ForwardRef;
 
 const StyledInlineBanner = styled.div<{ styleType: InlineBannerStyleType }>`
   display: flex;
