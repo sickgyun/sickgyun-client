@@ -40,6 +40,9 @@ const ProfileList = ({ major, isRecruited, cardinal }: ProfileListProps) => {
           userId={profile.userId}
           company={profile.company}
           introduction={profile.introduction}
+          portfolioUrl={profile.portfolioUrl}
+          githubId={profile.githubId}
+          resumeUrl={profile.resumeUrl}
         />
       ))}
     </StyledProfileList>

@@ -162,6 +162,7 @@ const StyledProfileNavigationBar = styled.div`
   ${({ theme }) => css`
     border-bottom: 1px solid ${theme.colors.gray200};
     background-color: ${theme.colors.white};
+    z-index: ${theme.zIndex.component3};
   `}
 `;
 
