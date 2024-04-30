@@ -39,9 +39,7 @@ const Header = () => {
         {!isLoading && (
           <Stack direction="horizontal" align="center" spacing={12}>
             {user.isLogin && (
-              <StyledNotificationButtonWrapper>
-                <NotificationButton hasNotification={user.hasNotification} />
-              </StyledNotificationButtonWrapper>
+              <NotificationButton hasNotification={user.hasNotification} />
             )}
             {user.isLogin ? (
               <Button onClick={handleLogout} styleType="ghost" size="small">
@@ -68,8 +66,4 @@ const StyledHeader = styled.div`
     border-bottom: 1px solid ${theme.colors.gray200};
     background-color: ${theme.colors.white};
   `}
-`;
-
-const StyledNotificationButtonWrapper = styled.div`
-  position: relative;
 `;

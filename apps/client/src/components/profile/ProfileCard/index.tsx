@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { IconReviewStarFill, IconStoryArticleFill } from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
-import { Stack, Text } from '@sickgyun/ui';
+import { Stack, Text, Tooltip } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDetailModal from '../ProfileDetailModal';
@@ -66,18 +66,47 @@ const ProfileCard = ({
       </Stack>
       <StyledProfilePresenceCheck direction="horizontal" align="center" spacing={8}>
         {portfolioUrl && (
-          <IconReviewStarFill width={20} height={20} color={colors.gray400} />
+          <Tooltip content="포트폴리오" placement="bottom-end">
+            {({ ref }) => {
+              return (
+                <IconReviewStarFill
+                  ref={ref}
+                  width={20}
+                  height={20}
+                  color={colors.gray400}
+                />
+              );
+            }}
+          </Tooltip>
         )}
         {resumeUrl && (
-          <IconStoryArticleFill width={20} height={20} color={colors.gray400} />
+          <Tooltip content="이력서" placement="bottom-end">
+            {({ ref }) => {
+              return (
+                <IconStoryArticleFill
+                  ref={ref}
+                  width={20}
+                  height={20}
+                  color={colors.gray400}
+                />
+              );
+            }}
+          </Tooltip>
         )}
         {githubId && (
-          <Image
-            src="/assets/svgs/github_icon.svg"
-            width={20}
-            height={20}
-            alt="Github Logo"
-          />
+          <Tooltip content="깃허브" placement="bottom-end">
+            {({ ref }) => {
+              return (
+                <Image
+                  ref={ref}
+                  src="/assets/svgs/github_icon.svg"
+                  width={20}
+                  height={20}
+                  alt="Github Logo"
+                />
+              );
+            }}
+          </Tooltip>
         )}
       </StyledProfilePresenceCheck>
     </StyledProfileCard>
