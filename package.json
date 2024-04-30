@@ -24,6 +24,6 @@
     "turbo": "latest",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@8.6.10",
+  "packageManager": "pnpm@8.15.8",
   "name": "sickgyun"
 }
