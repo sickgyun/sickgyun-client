@@ -11,8 +11,8 @@ import { Autoplay } from 'swiper/modules';
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react';
 import BumawikiBanner from '@/components/common/Banners/BumawikiBanner';
 import ErrorReportBanner from '@/components/common/Banners/ErrorReportBanner';
-import InstagramBanner from '@/components/common/Banners/InstagramBanner';
 import SickgyunBanner from '@/components/common/Banners/SickgyunBanner';
+import SickgyunInstagramBanner from '@/components/common/Banners/SickgyunInstagramBanner';
 import UserInterviewBanner from '@/components/common/Banners/UserInterviewBanner';
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -20,7 +20,7 @@ import 'swiper/css/autoplay';
 const renderBanners = () => {
   return [
     <UserInterviewBanner />,
-    <InstagramBanner />,
+    <SickgyunInstagramBanner />,
     <BumawikiBanner />,
     <SickgyunBanner />,
     <ErrorReportBanner />,
