@@ -12,15 +12,17 @@ export type GetProfileListParams = {
 
 export type GetProfileListResponse = {
   id: number;
-  userId: number;
   name: string;
-  admissionYear: number;
   imageUrl: string;
-  major: Major;
-  introduction: string;
-  company: string;
-  isRecruited: boolean;
   cardinal: number;
+  major: Major;
+  profileId: number;
+  userId: number;
+  company?: string;
+  introduction?: string;
+  githubId?: string;
+  portfolioUrl?: string;
+  resumeUrl?: string;
 };
 
 export const PROFILE_LIST_QUERY_KEY = 'profileList';

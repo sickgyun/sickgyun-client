@@ -102,14 +102,12 @@ const Tooltip = ({
   });
 
   return (
-    <>
-      <PositionWrapper strategy={strategy}>
-        {children({
-          ref: refs.setReference,
-          onOpen: openTooltip,
-          referenceProps: getReferenceProps(),
-        })}
-      </PositionWrapper>
+    <PositionWrapper strategy={strategy}>
+      {children({
+        ref: refs.setReference,
+        onOpen: openTooltip,
+        referenceProps: getReferenceProps(),
+      })}
       <StyledCSSTransition
         nodeRef={transitionRef}
         in={isOpen}
@@ -134,7 +132,7 @@ const Tooltip = ({
           </StyledTooltipItem>
         </StyledTooltipItemWrapper>
       </StyledCSSTransition>
-    </>
+    </PositionWrapper>
   );
 };
 

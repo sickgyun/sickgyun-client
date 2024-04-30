@@ -1,21 +1,14 @@
 import styled from '@emotion/styled';
-import { Stack, Text } from '@sickgyun/ui';
+import { IconReviewStarFill, IconStoryArticleFill } from '@seed-design/icon';
+import { colors } from '@sickgyun/design-token';
+import { Stack, Text, Tooltip } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import Image from 'next/image';
 import ProfileDetailModal from '../ProfileDetailModal';
+import type { GetProfileListResponse } from '@/hooks/api/profile/useGetProfileList';
 import { useLogAnalyticsEvent } from '@/libs/logging';
-import type { Major } from '@/types/profile';
 
-type ProfileCardProps = {
-  name: string;
-  imageUrl: string;
-  cardinal: number;
-  major: Major;
-  profileId: number;
-  userId: number;
-  company?: string;
-  introduction?: string;
-};
+type ProfileCardProps = Omit<GetProfileListResponse, 'id'>;
 
 const ProfileCard = ({
   name,
@@ -26,6 +19,9 @@ const ProfileCard = ({
   userId,
   company,
   introduction,
+  githubId,
+  portfolioUrl,
+  resumeUrl,
 }: ProfileCardProps) => {
   const overlay = useOverlay();
   const { logClickEvent } = useLogAnalyticsEvent();
@@ -68,6 +64,51 @@ const ProfileCard = ({
           </Text>
         </Stack>
       </Stack>
+      <StyledProfilePresenceCheck direction="horizontal" align="center" spacing={8}>
+        {portfolioUrl && (
+          <Tooltip content="포트폴리오" placement="bottom-end">
+            {({ ref }) => {
+              return (
+                <IconReviewStarFill
+                  ref={ref}
+                  width={20}
+                  height={20}
+                  color={colors.gray400}
+                />
+              );
+            }}
+          </Tooltip>
+        )}
+        {resumeUrl && (
+          <Tooltip content="이력서" placement="bottom-end">
+            {({ ref }) => {
+              return (
+                <IconStoryArticleFill
+                  ref={ref}
+                  width={20}
+                  height={20}
+                  color={colors.gray400}
+                />
+              );
+            }}
+          </Tooltip>
+        )}
+        {githubId && (
+          <Tooltip content="깃허브" placement="bottom-end">
+            {({ ref }) => {
+              return (
+                <Image
+                  ref={ref}
+                  src="/assets/svgs/github_icon.svg"
+                  width={20}
+                  height={20}
+                  alt="Github Logo"
+                />
+              );
+            }}
+          </Tooltip>
+        )}
+      </StyledProfilePresenceCheck>
     </StyledProfileCard>
   );
 };
@@ -75,6 +116,7 @@ const ProfileCard = ({
 export default ProfileCard;
 
 const StyledProfileCard = styled.div`
+  position: relative;
   transition: all 0.25s ease;
   padding: 16px;
   border-radius: 8px;
@@ -89,4 +131,10 @@ const StyledProfileCard = styled.div`
 const StyledProfileImage = styled(Image)`
   border-radius: 8px;
   object-fit: cover;
+`;
+
+const StyledProfilePresenceCheck = styled(Stack)`
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
 `;
