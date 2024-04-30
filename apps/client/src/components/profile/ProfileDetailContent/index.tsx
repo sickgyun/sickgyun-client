@@ -66,7 +66,7 @@ const ProfileDetailContent = ({
         style={{ height: '94px' }}
       >
         <StyledProfileImage src={profile.imageUrl} width={94} height={94} alt="Profile" />
-        <Stack style={{ width: '100%' }} spacing={4}>
+        <Stack spacing={4} style={{ flex: 1, width: '100%' }}>
           <Stack
             direction="horizontal"
             align="center"

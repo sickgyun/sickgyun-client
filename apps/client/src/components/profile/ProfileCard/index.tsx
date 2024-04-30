@@ -50,8 +50,8 @@ const ProfileCard = ({
         spacing={24}
         style={{ height: '100%' }}
       >
-        <StyledProfileImage src={imageUrl} width={88} height={88} alt="Student Profile" />
-        <Stack spacing={6}>
+        <StyledProfileImage src={imageUrl} width={88} height={88} alt="Profile" />
+        <Stack spacing={6} style={{ flex: 1 }}>
           <Stack direction="horizontal" align="center" spacing={6}>
             <Text fontType="body1">{name}</Text>
             <Text fontType="body3" color="gray600">
