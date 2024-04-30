@@ -1,13 +1,10 @@
 import styled from '@emotion/styled';
 import { Stack, Text } from '@sickgyun/ui';
 import Logo from '../../Logo';
-import { useToast } from '@/libs/toast';
 
 const UserInterviewBanner = () => {
-  const { toast } = useToast();
-
   const handleGoUserInterviewForm = () => {
-    toast.info('5월 1일에 열려요!');
+    window.open('https://walla.my/sickgyun-first-userinterview');
   };
 
   return (
