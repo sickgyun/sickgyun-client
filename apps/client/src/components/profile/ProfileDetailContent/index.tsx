@@ -1,5 +1,10 @@
 import styled from '@emotion/styled';
-import { IconChevronRightFill, IconTrashFill } from '@seed-design/icon';
+import {
+  IconChevronRightFill,
+  IconReviewStarFill,
+  IconStoryArticleFill,
+  IconTrashFill,
+} from '@seed-design/icon';
 import { colors } from '@sickgyun/design-token';
 import { Flex, InfoBox, Stack, Text } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
@@ -24,7 +29,7 @@ const ProfileDetailContent = ({
   const { profile, isFetching } = useGetProfile(profileId);
   const isProfileMine = user.profileId === profile.id;
   const hasProfileInformation = Boolean(
-    profile.githubId || profile.resumeUrl || profile.portfolioUrl || profile.email
+    profile.githubId || profile.resumeUrl || profile.portfolioUrl
   );
 
   const openProfileDeleteConfirm = () => {
@@ -39,10 +44,6 @@ const ProfileDetailContent = ({
 
   const handleGoGithub = () => {
     window.open(`https://github.com/${profile.githubId}`);
-  };
-
-  const handleGoEmail = () => {
-    window.open(`mailto: ${profile.email}`);
   };
 
   const handleGoResume = () => {
@@ -98,36 +99,13 @@ const ProfileDetailContent = ({
         <Stack spacing={16}>
           <Text fontType="h3">정보</Text>
           <Stack spacing={16}>
-            {profile?.githubId && (
-              <StyledInfoBox onClick={handleGoGithub}>
-                <Flex align="center" justify="space-between">
-                  <Text fontType="body2">👀 깃허브를 구경해봐요!</Text>
-                  <Stack direction="horizontal" align="center" spacing={4}>
-                    <Text fontType="body3" color="gray700">
-                      깃허브 바로가기
-                    </Text>
-                    <IconChevronRightFill width={16} height={16} color={colors.gray700} />
-                  </Stack>
-                </Flex>
-              </StyledInfoBox>
-            )}
-            {profile?.resumeUrl && (
-              <StyledInfoBox onClick={handleGoResume}>
-                <Flex align="center" justify="space-between">
-                  <Text fontType="body2">📑 이력서가 궁금하다면?</Text>
-                  <Stack direction="horizontal" align="center" spacing={4}>
-                    <Text fontType="body3" color="gray700">
-                      이력서 바로가기
-                    </Text>
-                    <IconChevronRightFill width={16} height={16} color={colors.gray700} />
-                  </Stack>
-                </Flex>
-              </StyledInfoBox>
-            )}
             {profile?.portfolioUrl && (
               <StyledInfoBox onClick={handleGoPortfolio}>
                 <Flex align="center" justify="space-between">
-                  <Text fontType="body2">💼 포트폴리오는 어떻게 구성되어 있을까요?</Text>
+                  <Stack direction="horizontal" align="center" spacing={8}>
+                    <IconReviewStarFill width={16} height={16} color={colors.gray400} />
+                    <Text fontType="body2">포트폴리오는 어떻게 구성되어 있을까요?</Text>
+                  </Stack>
                   <Stack direction="horizontal" align="center" spacing={4}>
                     <Text fontType="body3" color="gray700">
                       포트폴리오 바로가기
@@ -137,16 +115,40 @@ const ProfileDetailContent = ({
                 </Flex>
               </StyledInfoBox>
             )}
-            {profile?.email && (
-              <StyledInfoBox onClick={handleGoEmail}>
+            {profile?.resumeUrl && (
+              <StyledInfoBox onClick={handleGoResume}>
                 <Flex align="center" justify="space-between">
-                  <Text fontType="body2">📨 이메일</Text>
-                  <Flex align="center">
+                  <Stack direction="horizontal" align="center" spacing={8}>
+                    <IconStoryArticleFill width={16} height={16} color={colors.gray400} />
+                    <Text fontType="body2">이력서가 궁금하다면?</Text>
+                  </Stack>
+                  <Stack direction="horizontal" align="center" spacing={4}>
                     <Text fontType="body3" color="gray700">
-                      이메일 바로가기
+                      이력서 바로가기
                     </Text>
-                    <IconChevronRightFill width={24} height={24} color={colors.gray700} />
-                  </Flex>
+                    <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+                  </Stack>
+                </Flex>
+              </StyledInfoBox>
+            )}
+            {profile?.githubId && (
+              <StyledInfoBox onClick={handleGoGithub}>
+                <Flex align="center" justify="space-between">
+                  <Stack direction="horizontal" align="center" spacing={8}>
+                    <Image
+                      src="/assets/svgs/github_icon.svg"
+                      width={16}
+                      height={16}
+                      alt="Github Logo"
+                    />
+                    <Text fontType="body2">깃허브를 구경해봐요!</Text>
+                  </Stack>
+                  <Stack direction="horizontal" align="center" spacing={4}>
+                    <Text fontType="body3" color="gray700">
+                      깃허브 바로가기
+                    </Text>
+                    <IconChevronRightFill width={16} height={16} color={colors.gray700} />
+                  </Stack>
                 </Flex>
               </StyledInfoBox>
             )}

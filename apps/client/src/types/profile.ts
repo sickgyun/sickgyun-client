@@ -2,7 +2,6 @@ export type Profile = {
   id: number;
   name: string;
   cardinal: number;
-  email: string;
   imageUrl: string;
   isGraduated: boolean;
   isRecruited: boolean;
