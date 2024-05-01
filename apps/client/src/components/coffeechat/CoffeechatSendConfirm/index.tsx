@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { SEND_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetSendCoffeechatList';
 import { useSendCoffeechat } from '@/hooks/api/coffeechat/useSendCoffeechat';
 import type { SendCoffeechatRequest } from '@/hooks/api/coffeechat/useSendCoffeechat';
+import { useShowConfettiEffect } from '@/hooks/common/useShowConfettiEffect';
 import { useLogAnalyticsEvent } from '@/libs/logging';
 import { useToast } from '@/libs/toast';
 
@@ -24,6 +25,7 @@ const CoffeechatSendConfirm = ({
   const router = useRouter();
   const queryClient = useQueryClient();
   const { toast } = useToast();
+  const { showConfettiEffect } = useShowConfettiEffect();
   const { logClickEvent } = useLogAnalyticsEvent();
   const {
     register,
@@ -36,6 +38,7 @@ const CoffeechatSendConfirm = ({
       logClickEvent({ name: 'click_send_coffeechat', params: sendCoffeechatRequest });
       queryClient.invalidateQueries({ queryKey: [SEND_COFFEE_CHAT_LIST] });
       router.replace('/profile');
+      showConfettiEffect();
       toast.info('커피챗 요청을 보냈어요!', {
         action: {
           label: '확인하러 가기',
