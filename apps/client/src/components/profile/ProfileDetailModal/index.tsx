@@ -11,10 +11,13 @@ import {
 } from '@sickgyun/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import ProfileDetailContent from '../ProfileDetailContent';
 import CoffeechatContactFormModal from '@/components/coffeechat/CoffeechatContactFormModal';
 import CoffeechatSendConfirm from '@/components/coffeechat/CoffeechatSendConfirm';
+import { useGetProfile } from '@/hooks/api/profile/useGetProfile';
 import { useUser } from '@/hooks/common/useUser';
+import { useToast } from '@/libs/toast';
 
 type ProfileDetailModalProps = {
   profileId: number;
@@ -30,6 +33,8 @@ const ProfileDetailModal = ({
   const overlay = useOverlay();
   const router = useRouter();
   const { user } = useUser();
+  const { toast } = useToast();
+  const { profile } = useGetProfile(profileId);
 
   const openCoffeechatSendConfirm = () => {
     overlay.open(({ isOpen, close }) => (
@@ -61,6 +66,13 @@ const ProfileDetailModal = ({
     }
   };
 
+  useEffect(() => {
+    if (profile.isGraduated) {
+      toast.error('졸업생에겐 커피챗 요청이 일시적으로 불가능해요.');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <StyledProfileDetailModal isOpen={isOpen} onClose={onClose}>
       <StyledProfileDetailModalHeaderWrapper>
@@ -74,7 +86,11 @@ const ProfileDetailModal = ({
       </ModalBody>
       <StyledProfileDetailModalFooter>
         {user.profileId !== profileId ? (
-          <Button onClick={handleCoffeechatRequestSend} size="large">
+          <Button
+            disabled={profile.isGraduated}
+            onClick={handleCoffeechatRequestSend}
+            size="large"
+          >
             커피챗 요청 보내기
           </Button>
         ) : (
