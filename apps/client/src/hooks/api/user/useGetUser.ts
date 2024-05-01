@@ -20,6 +20,8 @@ export const useGetUser = () => {
     queryKey: [USER_QUERY_KEY],
     queryFn: async () => await get('/user'),
     enabled: Boolean(accessToken),
+    staleTime: 10 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
   });
 
   return {
