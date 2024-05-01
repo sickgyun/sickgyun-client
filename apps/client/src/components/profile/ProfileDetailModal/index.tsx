@@ -63,11 +63,13 @@ const ProfileDetailModal = ({
 
   return (
     <StyledProfileDetailModal isOpen={isOpen} onClose={onClose}>
-      <ModalHeader>
-        <Text fontType="h3">프로필 정보</Text>
-        <ModalCloseButton onClose={onClose} />
-      </ModalHeader>
-      <ModalBody>
+      <StyledProfileDetailModalHeaderWrapper>
+        <StyledProfileDetailModalHeader>
+          <Text fontType="h3">프로필 정보</Text>
+          <ModalCloseButton onClose={onClose} />
+        </StyledProfileDetailModalHeader>
+      </StyledProfileDetailModalHeaderWrapper>
+      <ModalBody style={{ padding: '0 32px' }}>
         <ProfileDetailContent profileId={profileId} onProfileDetailModalClose={onClose} />
       </ModalBody>
       <StyledProfileDetailModalFooter>
@@ -100,6 +102,16 @@ const StyledProfileDetailModal = styled(Modal)`
   position: relative;
   width: 600px;
   max-height: 580px;
+  padding: 0;
+`;
+
+const StyledProfileDetailModalHeaderWrapper = styled.div`
+  padding: 32px 32px 0 32px;
+  width: 100%;
+`;
+
+const StyledProfileDetailModalHeader = styled(ModalHeader)`
+  width: 100%;
 `;
 
 const StyledProfileDetailModalFooter = styled(ModalFooter)`
@@ -107,6 +119,8 @@ const StyledProfileDetailModalFooter = styled(ModalFooter)`
   bottom: 0;
   left: 0;
   width: 100%;
+  padding: 0 32px 32px 32px;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const StyledUpdateContactButton = styled(Button)`
