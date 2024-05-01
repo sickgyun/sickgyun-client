@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Logo from '../Logo';
 import NotificationButton from '../NotificationButton';
 import { useUser } from '@/hooks/common/useUser';
-import { RESET_USER, userAtom } from '@/store/user/userAtom';
+import { RESET_USER, userAtom } from '@/stores/user/userAtom';
 
 const Header = () => {
   const router = useRouter();

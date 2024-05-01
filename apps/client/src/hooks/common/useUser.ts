@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { userAtom } from '../../store/user/userAtom';
+import { userAtom } from '../../stores/user/userAtom';
 import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUser } from '@/hooks/api/user/useGetUser';
 import { LocalStorage } from '@/libs/api/storage';
