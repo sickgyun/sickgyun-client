@@ -17,7 +17,7 @@ import type { Major } from '@/types/profile';
 
 const MainPage = () => {
   const router = useRouter();
-  const { user, isLoading } = useUser();
+  const { user, isLogin, isLoading } = useUser();
 
   const hanldeGoProfilePage = (major: Major) => {
     router.push(`/profile?major=${major}`);
@@ -28,7 +28,7 @@ const MainPage = () => {
       <Header />
       {isLoading
         ? null
-        : !user.isLogin && (
+        : !isLogin && (
             <InlineBanner>
               학교 계정으로 로그인해주세요. *아직 선생님 계정은 지원하지 않아요ㅠ
             </InlineBanner>
@@ -62,7 +62,7 @@ const MainPage = () => {
           <Spacer height={64} />
           <Stack spacing={18}>
             <Text fontType="h4">
-              {user.isLogin
+              {isLogin
                 ? `${user.name}님의 커피챗 요청을 기다리는 선배들이에요`
                 : '커피챗 요청을 기다리는 선배들이에요'}
             </Text>

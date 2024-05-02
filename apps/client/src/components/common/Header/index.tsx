@@ -1,25 +1,25 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button, Flex, Stack } from '@sickgyun/ui';
-import { useSetAtom } from 'jotai';
+import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import Logo from '../Logo';
 import NotificationButton from '../NotificationButton';
+import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
 import { useUser } from '@/hooks/common/useUser';
-import { RESET_USER, userAtom } from '@/stores/user/userAtom';
 
 const Header = () => {
   const router = useRouter();
-  const setUser = useSetAtom(userAtom);
-  const { user, isLoading } = useUser();
+  const queryClient = useQueryClient();
+  const { user, isLogin, isLoading } = useUser();
 
   const handleLogin = () => {
     router.replace(process.env.NEXT_PUBLIC_GOOGLE_LOGIN_URL);
   };
 
   const handleLogout = () => {
-    setUser(RESET_USER);
     localStorage.clear();
+    queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
     router.replace('/');
   };
 
@@ -38,10 +38,8 @@ const Header = () => {
         />
         {!isLoading && (
           <Stack direction="horizontal" align="center" spacing={12}>
-            {user.isLogin && (
-              <NotificationButton hasNotification={user.hasNotification} />
-            )}
-            {user.isLogin ? (
+            {isLogin && <NotificationButton hasNotification={user.hasNotification} />}
+            {isLogin ? (
               <Button onClick={handleLogout} styleType="ghost" size="small">
                 로그아웃
               </Button>
