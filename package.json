@@ -4,6 +4,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "graph": "turbo run build lint --graph=./assets/sickgyun_graph.png",
     "test": "jest --passWithNoTests --updateSnapshot --coverage",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "commit": "cz",
