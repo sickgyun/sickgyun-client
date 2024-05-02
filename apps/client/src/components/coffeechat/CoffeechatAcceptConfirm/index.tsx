@@ -3,7 +3,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useAcceptCoffeechat } from '@/hooks/api/coffeechat/useAcceptCoffeechat';
 import { RECEIVE_COFFEE_CHAT_LIST } from '@/hooks/api/coffeechat/useGetReceiveCoffeechatList';
 import { USER_QUERY_KEY } from '@/hooks/api/user/useGetUser';
-import { useShowConfettiEffect } from '@/hooks/common/useShowConfettiEffect';
+import { useShowConfetti } from '@/hooks/common/useShowConfetti';
 import { useLogAnalyticsEvent } from '@/libs/logging';
 
 type CoffeechatAcceptConfirmProps = {
@@ -17,7 +17,7 @@ const CoffeechatAcceptConfirm = ({
 }: CoffeechatAcceptConfirmProps) => {
   const queryClient = useQueryClient();
   const { logClickEvent } = useLogAnalyticsEvent();
-  const { showConfettiEffect } = useShowConfettiEffect();
+  const { showConfetti } = useShowConfetti();
   const { mutate: acceptCoffeechatMutate } = useAcceptCoffeechat(coffeechatId, {
     onSuccess: () => {
       logClickEvent({
@@ -28,7 +28,7 @@ const CoffeechatAcceptConfirm = ({
       });
       queryClient.invalidateQueries({ queryKey: [RECEIVE_COFFEE_CHAT_LIST] });
       queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] });
-      showConfettiEffect();
+      showConfetti();
     },
   });
 

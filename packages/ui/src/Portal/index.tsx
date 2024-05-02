@@ -17,7 +17,9 @@ const Portal = ({ isOpen, children }: PortalProps) => {
     }
   });
 
-  if (!container) return null;
+  if (!container) {
+    return null;
+  }
 
   return createPortal(isOpen && children, container);
 };
