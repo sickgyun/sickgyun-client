@@ -10,7 +10,7 @@ import { useUser } from '@/hooks/common/useUser';
 
 const LoginBox = () => {
   const router = useRouter();
-  const { user, isLoading } = useUser();
+  const { user, isLogin, isLoading } = useUser();
   const overlay = useOverlay();
 
   const handleLogin = () => {
@@ -35,7 +35,7 @@ const LoginBox = () => {
     <StyledLoginBox>
       {isLoading ? (
         <Spinner />
-      ) : user.isLogin ? (
+      ) : isLogin ? (
         <StyledLoginSuccessBox>
           <Stack spacing={6}>
             <Stack direction="horizontal" align="center" spacing={2}>

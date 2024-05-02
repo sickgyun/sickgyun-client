@@ -26,12 +26,12 @@ const DirectProfileCard = ({
 }: DirectProfileCardProps) => {
   const overlay = useOverlay();
   const { toast } = useToast();
-  const { user } = useUser();
+  const { isLogin } = useUser();
   const { logClickEvent } = useLogAnalyticsEvent();
   const { profile } = useGetProfile(profileId);
 
   const openProfileDetailModal = () => {
-    if (!user.isLogin) {
+    if (!isLogin) {
       toast.error('로그인이 필요한 서비스에요.');
       return;
     }

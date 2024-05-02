@@ -25,7 +25,7 @@ export const useGetUser = () => {
   });
 
   return {
-    user: userQuery.data,
+    user: { hasNotification: userQuery.data?.hasNotification, ...userQuery.data?.user },
     ...userQuery,
   };
 };

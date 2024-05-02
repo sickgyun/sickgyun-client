@@ -1,33 +1,27 @@
-import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-import { userAtom } from '../../stores/user/userAtom';
-import { LOCAL_STORAGE_KEY } from '@/constants/storage';
 import { useGetUser } from '@/hooks/api/user/useGetUser';
 import { LocalStorage } from '@/libs/api/storage';
 
 export const useUser = () => {
-  const userQuery = useGetUser();
+  const { user, ...userQuery } = useGetUser();
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useAtom(userAtom);
+  const [isLogin, setIsLogin] = useState(false);
+  const accessToken = LocalStorage.getItem('siac');
 
   useEffect(() => {
-    const accessToken = LocalStorage.getItem(LOCAL_STORAGE_KEY.accessToken);
-
-    if (userQuery.data) {
-      const user = {
-        isLogin: Boolean(accessToken),
-        hasNotification: userQuery.data.hasNotification,
-        ...userQuery.data.user,
-      };
-      setUser(user);
+    if (user) {
+      setIsLogin(Boolean(accessToken));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [accessToken]);
 
-    const timerId = setTimeout(() => {
+  useEffect(() => {
+    if (!userQuery.isLoading || !userQuery.isFetching) {
       setIsLoading(false);
-    }, 300);
+    } else {
+      setIsLoading(true);
+    }
+  }, [userQuery.isFetching, userQuery.isLoading]);
 
-    return () => clearTimeout(timerId);
-  }, [setUser, userQuery.data]);
-
-  return { ...userQuery, isLoading, user: { ...user } };
+  return { user, isLogin, ...userQuery, isLoading };
 };
