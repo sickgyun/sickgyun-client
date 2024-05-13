@@ -13,13 +13,11 @@ import BumawikiBanner from '@/components/common/Banners/BumawikiBanner';
 import ErrorReportBanner from '@/components/common/Banners/ErrorReportBanner';
 import SickgyunBanner from '@/components/common/Banners/SickgyunBanner';
 import SickgyunInstagramBanner from '@/components/common/Banners/SickgyunInstagramBanner';
-import UserInterviewBanner from '@/components/common/Banners/UserInterviewBanner';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 
 const renderBanners = () => {
   return [
-    <UserInterviewBanner />,
     <SickgyunInstagramBanner />,
     <BumawikiBanner />,
     <SickgyunBanner />,
