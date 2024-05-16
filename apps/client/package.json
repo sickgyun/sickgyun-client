@@ -15,7 +15,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.4",
-    "@seed-design/icon": "^0.5.3",
+    "@seed-design/icon": "^0.6.0",
     "@sickgyun/design-token": "workspace:*",
     "@sickgyun/ui": "workspace:*",
     "@tanstack/react-query": "^5.7.2",
