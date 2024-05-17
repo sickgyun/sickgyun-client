@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { Flex, InlineBanner, Link, Spacer, Stack, Text } from '@sickgyun/ui';
+import { Flex, InlineBanner, Spacer, Stack, Text } from '@sickgyun/ui';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Footer from '@/components/common/Footer';
@@ -9,10 +9,8 @@ import Header from '@/components/common/Header';
 import LoginBox from '@/components/main/LoginBox';
 import MainBanner from '@/components/main/MainBanner';
 import DirectProfileList from '@/components/profile/DirectProfileList';
-import RecuritList from '@/components/recurit/RecuritList';
-import { MAJOR_LIST, RECRUIT_FULL_VIEW_LINK } from '@/constants/profile';
+import { MAJOR_LIST } from '@/constants/profile';
 import { useUser } from '@/hooks/common/useUser';
-import { LogClickEvent } from '@/libs/logging';
 import type { Major } from '@/types/profile';
 
 const MainPage = () => {
@@ -70,7 +68,7 @@ const MainPage = () => {
               <DirectProfileList />
             </StyledDirectProfileListWrapper>
           </Stack>
-          <Spacer height={64} />
+          {/* <Spacer height={64} />
           <Stack spacing={18} style={{ position: 'relative' }}>
             <Flex align="center" justify="space-between">
               <Text fontType="h4">채용 중인 회사에요!</Text>
@@ -84,7 +82,7 @@ const MainPage = () => {
               <RecuritList />
             </StyledRecuritListWrapper>
           </Stack>
-          <Spacer height={64} />
+          <Spacer height={64} /> */}
         </StyledMainPage>
       </StyledMainPageLayout>
       <Footer />
@@ -125,9 +123,4 @@ const StyledStudentProfileRedirectButton = styled.div`
 const StyledDirectProfileListWrapper = styled.div`
   position: relative;
   height: 180px;
-`;
-
-const StyledRecuritListWrapper = styled.div`
-  position: relative;
-  height: 300px;
 `;
