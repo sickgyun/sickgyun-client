@@ -27,7 +27,11 @@ const ProfileList = ({ major, isRecruited, cardinal }: ProfileListProps) => {
     }
   });
 
-  return !isEmpty(filteredProfileList) ? (
+  if (isEmpty(filteredProfileList)) {
+    return <Text fontType="h4">앗! 해당 분야의 학생이 없어요...</Text>;
+  }
+
+  return (
     <StyledProfileList>
       {filteredProfileList.map((profile) => (
         <ProfileCard
@@ -46,8 +50,6 @@ const ProfileList = ({ major, isRecruited, cardinal }: ProfileListProps) => {
         />
       ))}
     </StyledProfileList>
-  ) : (
-    <Text fontType="h4">앗! 해당 분야의 학생이 없어요...</Text>
   );
 };
 
